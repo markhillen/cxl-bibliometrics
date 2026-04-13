@@ -1,0 +1,9 @@
+__pycache__/
+cache/records.json
+cache/records_disambig.json
+cache/records_cited.json
+cache/citation_cache.json
+data/analysis.json
+outputs/
+*.pyc
+.DS_Store
