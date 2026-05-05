@@ -26,6 +26,14 @@ import pathlib
 import sys
 import time
 
+
+class _SetEncoder(json.JSONEncoder):
+    """Convert sets to sorted lists for JSON serialisation."""
+    def default(self, obj):
+        if isinstance(obj, set):
+            return sorted(obj)
+        return super().default(obj)
+
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 
 
@@ -36,7 +44,6 @@ def main():
         epilog=__doc__
     )
     parser.add_argument("--api-key",        default="",    help="NCBI API key")
-    parser.add_argument("--pmid-file",      default=None,  help="Path to file with one PMID per line")
     parser.add_argument("--refresh",        action="store_true", help="Force re-download from PubMed")
     parser.add_argument("--skip-fetch",     action="store_true", help="Use cached records only")
     parser.add_argument("--skip-citations", action="store_true", help="Skip CrossRef citation lookup")
@@ -94,7 +101,7 @@ def main():
         from disambiguate import assign_author_ids
         records, _ = assign_author_ids(records)
         with open(disambig_path, "w") as f:
-            json.dump(records, f)
+            json.dump(records, f, cls=_SetEncoder)
         print(f"[main] Saved disambiguated records")
     else:
         print(f"[main] Using pre-disambiguated records")
@@ -113,7 +120,7 @@ def main():
         from citations import enrich_citations
         records = enrich_citations(records)
         with open(cited_path, "w") as f:
-            json.dump(records, f)
+            json.dump(records, f, cls=_SetEncoder)
         print(f"[main] Citation enrichment complete")
     else:
         print(f"[main] Citation enrichment skipped")

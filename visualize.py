@@ -20,8 +20,12 @@ import numpy as np
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import config
 
-OUT = pathlib.Path(config.OUTPUT_DIR)
-OUT.mkdir(parents=True, exist_ok=True)
+def _out_dir() -> pathlib.Path:
+    """Return current output dir — evaluated at call time so config overrides work."""
+    p = pathlib.Path(config.OUTPUT_DIR)
+    p.mkdir(parents=True, exist_ok=True)
+    return p
+    # Output dir created on demand by _out_dir()
 
 # ── Style ─────────────────────────────────────────────────────────────────────
 plt.rcParams.update({
@@ -40,8 +44,14 @@ PALETTE = ["#2C6FAC", "#E05C1B", "#3A9E6B", "#9B59B6",
 
 
 def _save(fig, name: str):
-    path = OUT / name
-    fig.savefig(path, bbox_inches="tight", dpi=150)
+    fmt  = getattr(config, "FIGURE_FORMAT", "pdf")
+    stem = pathlib.Path(name).stem
+    fname = f"{stem}.{fmt}"
+    path  = _out_dir() / fname
+    kwargs = {"bbox_inches": "tight"}
+    if fmt == "png":
+        kwargs["dpi"] = 300
+    fig.savefig(path, **kwargs)
     plt.close(fig)
     print(f"  saved: {path.name}")
 
@@ -79,7 +89,7 @@ def plot_temporal(temporal: dict):
     ax2.legend(loc="upper left", fontsize=9)
 
     plt.tight_layout()
-    _save(fig, "fig1_temporal_trends.png")
+    _save(fig, "fig1_temporal_trends.pdf")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -107,7 +117,7 @@ def plot_journals(journals: list[dict], top_n: int = None):
                 f"{pct:.1f}%", va="center", fontsize=8, color="gray")
 
     plt.tight_layout()
-    _save(fig, "fig2_top_journals.png")
+    _save(fig, "fig2_top_journals.pdf")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -118,13 +128,16 @@ def plot_countries(countries: list[dict], top_n: int = None):
     top_n = top_n or config.TOP_N_COUNTRIES
     top = [c for c in countries if c["country"] != "Unknown"][:top_n]
 
-    labels = [r["country"] for r in top]
-    counts = [r["count"] for r in top]
-    cites  = [r["citations"] for r in top]
-    ratios = [r["citations"] / r["count"] if r["count"] else 0 for r in top]
+    labels  = [r["country"] for r in top]
+    counts  = [r["count"] for r in top]
+    cites   = [r["citations"] for r in top]
+    ratios  = [r["citations"] / r["count"] if r["count"] else 0 for r in top]
+    # Per-capita: only countries with population data
+    percap  = [r.get("pubs_per_million") for r in top]
+    has_percap = any(v is not None for v in percap)
 
     has_cites = any(cites)
-    ncols = 3 if has_cites else 1
+    ncols = (1 + int(has_cites) * 2 + int(has_percap))
     fig, axes = plt.subplots(1, ncols, figsize=(6 * ncols, max(6, top_n * 0.33)))
     if ncols == 1:
         axes = [axes]
@@ -132,39 +145,74 @@ def plot_countries(countries: list[dict], top_n: int = None):
 
     y = range(len(labels))
 
-    # Panel 1: publication count
+    # Panel 1: publication count (sorted by volume — default order)
     axes[0].barh(list(y), counts, color=PALETTE[0], alpha=0.85)
     axes[0].set_yticks(list(y)); axes[0].set_yticklabels(labels, fontsize=9)
     axes[0].invert_yaxis(); axes[0].set_xlabel("Publications")
     axes[0].set_title("Publication volume")
 
+    ax_idx = 1
     if has_cites:
-        # Panel 2: total citations (re-sort by citations for this panel)
+        # Panel 2: total citations (re-sorted)
         cite_order = sorted(range(len(top)), key=lambda i: cites[i], reverse=True)
-        axes[1].barh(list(y), [cites[i] for i in cite_order], color=PALETTE[2], alpha=0.85)
-        axes[1].set_yticks(list(y))
-        axes[1].set_yticklabels([labels[i] for i in cite_order], fontsize=9)
-        axes[1].invert_yaxis(); axes[1].set_xlabel("Total citations (CrossRef)")
-        axes[1].set_title("Total citation impact")
+        axes[ax_idx].barh(list(y), [cites[i] for i in cite_order], color=PALETTE[2], alpha=0.85)
+        axes[ax_idx].set_yticks(list(y))
+        axes[ax_idx].set_yticklabels([labels[i] for i in cite_order], fontsize=9)
+        axes[ax_idx].invert_yaxis(); axes[ax_idx].set_xlabel("Total citations (CrossRef)")
+        axes[ax_idx].set_title("Total citation impact")
+        ax_idx += 1
 
-        # Panel 3: citations per publication (impact ratio) — re-sort
+        # Panel 3: citation efficiency (re-sorted)
         ratio_order = sorted(range(len(top)), key=lambda i: ratios[i], reverse=True)
         colors_r = [PALETTE[3] if ratios[i] > np.median(ratios) else PALETTE[4]
                     for i in ratio_order]
-        bars = axes[2].barh(list(y), [ratios[i] for i in ratio_order],
-                             color=colors_r, alpha=0.85)
-        axes[2].set_yticks(list(y))
-        axes[2].set_yticklabels([labels[i] for i in ratio_order], fontsize=9)
-        axes[2].invert_yaxis()
-        axes[2].set_xlabel("Mean citations per publication")
-        axes[2].set_title("Citation efficiency (above median = darker)")
-        # Annotate values
+        bars = axes[ax_idx].barh(list(y), [ratios[i] for i in ratio_order],
+                                  color=colors_r, alpha=0.85)
+        axes[ax_idx].set_yticks(list(y))
+        axes[ax_idx].set_yticklabels([labels[i] for i in ratio_order], fontsize=9)
+        axes[ax_idx].invert_yaxis()
+        axes[ax_idx].set_xlabel("Mean citations per publication")
+        axes[ax_idx].set_title("Citation efficiency (above median = darker)")
         for bar, i in zip(bars, ratio_order):
-            axes[2].text(bar.get_width() + 0.5, bar.get_y() + bar.get_height() / 2,
-                         f"{ratios[i]:.1f}", va="center", fontsize=7.5)
+            axes[ax_idx].text(bar.get_width() + 0.5, bar.get_y() + bar.get_height() / 2,
+                              f"{ratios[i]:.1f}", va="center", fontsize=7.5)
+        ax_idx += 1
+
+    if has_percap:
+        # Panel 4: publications per million population (re-sorted; skip unknowns)
+        pc_order = sorted(
+            [i for i in range(len(top)) if percap[i] is not None],
+            key=lambda i: percap[i], reverse=True
+        )
+        # Include all countries; those without data plotted at 0 with hatching
+        pc_vals   = [percap[i] if percap[i] is not None else 0 for i in range(len(top))]
+        pc_sorted = sorted(range(len(top)),
+                           key=lambda i: (percap[i] or 0), reverse=True)
+        colors_pc = [PALETTE[3] if (percap[i] or 0) > np.median([v for v in percap if v])
+                     else PALETTE[4] for i in pc_sorted]
+        bars_pc = axes[ax_idx].barh(
+            list(range(len(top))),
+            [pc_vals[i] for i in pc_sorted],
+            color=colors_pc, alpha=0.85
+        )
+        # Hatch bars with no population data
+        for bar, i in zip(bars_pc, pc_sorted):
+            if percap[i] is None:
+                bar.set_hatch("///")
+        axes[ax_idx].set_yticks(list(range(len(top))))
+        axes[ax_idx].set_yticklabels([labels[i] for i in pc_sorted], fontsize=9)
+        axes[ax_idx].invert_yaxis()
+        axes[ax_idx].set_xlabel("Publications per million population")
+        axes[ax_idx].set_title("Per-capita output\n(2024 UN population estimates)")
+        for bar, i in zip(bars_pc, pc_sorted):
+            if percap[i] is not None:
+                axes[ax_idx].text(
+                    bar.get_width() + 0.05, bar.get_y() + bar.get_height() / 2,
+                    f"{percap[i]:.1f}", va="center", fontsize=7.5
+                )
 
     plt.tight_layout()
-    _save(fig, "fig3_top_countries.png")
+    _save(fig, "fig3_top_countries.pdf")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -172,10 +220,11 @@ def plot_countries(countries: list[dict], top_n: int = None):
 # ─────────────────────────────────────────────────────────────────────────────
 
 def plot_authors(authors: list[dict], top_n: int = 25):
-    top = authors[:top_n]
+    top    = authors[:top_n]
     labels = [r["author_id"] for r in top]
     pubs   = [r["pub_count"] for r in top]
     first  = [r["first_author_count"] for r in top]
+    last   = [r.get("last_author_count", 0) or 0 for r in top]
     cites  = [r.get("citation_total", 0) or 0 for r in top]
     ratios = [c / p if p else 0 for c, p in zip(cites, pubs)]
 
@@ -188,16 +237,17 @@ def plot_authors(authors: list[dict], top_n: int = 25):
 
     y = np.arange(len(labels))
 
-    # Panel 1: publications (sorted by total, first-author overlaid)
-    axes[0].barh(y, pubs,  color=PALETTE[0], alpha=0.8, label="Total")
-    axes[0].barh(y, first, color=PALETTE[1], alpha=0.9, label="First-author")
+    # Panel 1: total pubs, with first- and last-author overlaid
+    axes[0].barh(y,       pubs,  color=PALETTE[0], alpha=0.75, label="Total")
+    axes[0].barh(y - 0.18, first, height=0.35, color=PALETTE[1], alpha=0.9,  label="First-author")
+    axes[0].barh(y + 0.18, last,  height=0.35, color=PALETTE[3], alpha=0.9,  label="Last-author")
     axes[0].set_yticks(y); axes[0].set_yticklabels(labels, fontsize=9)
     axes[0].invert_yaxis(); axes[0].set_xlabel("Publications")
-    axes[0].set_title("Publication volume")
-    axes[0].legend(fontsize=8)
+    axes[0].set_title("Publication volume\n(first- and last-authorship overlaid)")
+    axes[0].legend(fontsize=8, loc="lower right")
 
     if has_cites:
-        # Panel 2: total citations — re-sort
+        # Panel 2: total citations — re-sorted
         cite_order = sorted(range(len(top)), key=lambda i: cites[i], reverse=True)
         axes[1].barh(list(range(len(top))), [cites[i] for i in cite_order],
                      color=PALETTE[2], alpha=0.85)
@@ -206,7 +256,7 @@ def plot_authors(authors: list[dict], top_n: int = 25):
         axes[1].invert_yaxis(); axes[1].set_xlabel("Total citations (CrossRef)")
         axes[1].set_title("Total citation impact")
 
-        # Panel 3: citations per publication — re-sort
+        # Panel 3: citation efficiency — re-sorted
         ratio_order = sorted(range(len(top)), key=lambda i: ratios[i], reverse=True)
         med = float(np.median(ratios))
         colors_r = [PALETTE[3] if ratios[i] >= med else PALETTE[4]
@@ -223,7 +273,7 @@ def plot_authors(authors: list[dict], top_n: int = 25):
                          f"{ratios[i]:.1f}", va="center", fontsize=7)
 
     plt.tight_layout()
-    _save(fig, "fig4_top_authors.png")
+    _save(fig, "fig4_top_authors.pdf")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -248,7 +298,7 @@ def plot_keywords(kw_data: dict, top_n: int = None, title_suffix: str = ""):
     ax.set_title(f"Top {top_n} Keywords {title_suffix}", fontweight="bold")
     plt.tight_layout()
     safe = title_suffix.replace("(","").replace(")","").replace(" ","_").lower()
-    fname = f"fig5_{safe}.png" if title_suffix else "fig5_keywords.png"
+    fname = f"fig5_{safe}.pdf" if title_suffix else "fig5_keywords.pdf"
     _save(fig, fname)
 
 
@@ -287,7 +337,7 @@ def plot_pubtypes(pub_types: dict):
               loc="center left", bbox_to_anchor=(1, 0, 0.5, 1), fontsize=9)
     ax.set_title("Publication Types", fontweight="bold")
     plt.tight_layout()
-    _save(fig, "fig6_pub_types.png")
+    _save(fig, "fig6_pub_types.pdf")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -329,7 +379,7 @@ def plot_country_collab(country_net: dict, top_n: int = 20):
                         ha="center", va="center", fontsize=6,
                         color="black" if matrix[i][j] < matrix.max() * 0.5 else "white")
     plt.tight_layout()
-    _save(fig, "fig7_country_collab.png")
+    _save(fig, "fig7_country_collab.pdf")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -423,7 +473,7 @@ def plot_keyword_trends(records: list[dict], top_keywords: list[str], n: int = 1
     )
 
     plt.tight_layout()
-    _save(fig, "fig8_keyword_trends.png")
+    _save(fig, "fig8_keyword_trends.pdf")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -442,8 +492,13 @@ def plot_institutions(institutions: list[dict], top_n: int = 20):
     fig, axes = plt.subplots(1, ncols, figsize=(7 * ncols, max(6, top_n * 0.35)))
     if ncols == 1:
         axes = [axes]
-    fig.suptitle(f"Top {top_n} Institutions in CXL Research",
-                 fontsize=13, fontweight="bold")
+    fig.suptitle(
+        f"Top {top_n} Institutions in CXL Research (first-author attribution)",
+        fontsize=13, fontweight="bold"
+    )
+    fig.text(0.5, 0.97,
+             "Each publication credited once to the first author's institution only",
+             ha="center", va="top", fontsize=9, style="italic", color="#555555")
 
     y = range(len(labels))
     axes[0].barh(list(y), counts, color=PALETTE[4], alpha=0.85)
@@ -476,7 +531,40 @@ def plot_institutions(institutions: list[dict], top_n: int = 20):
                          f"{ratios[i]:.1f}", va="center", fontsize=7)
 
     plt.tight_layout()
-    _save(fig, "fig9_institutions.png")
+    _save(fig, "fig9_institutions.pdf")
+
+    y = range(len(labels))
+    axes[0].barh(list(y), counts, color=PALETTE[4], alpha=0.85)
+    axes[0].set_yticks(list(y)); axes[0].set_yticklabels(labels, fontsize=9)
+    axes[0].invert_yaxis(); axes[0].set_xlabel("Publications")
+    axes[0].set_title("Publication volume")
+
+    if has_cites:
+        cite_order = sorted(range(len(top)), key=lambda i: cites[i], reverse=True)
+        axes[1].barh(list(range(len(top))), [cites[i] for i in cite_order],
+                     color=PALETTE[2], alpha=0.85)
+        axes[1].set_yticks(list(range(len(top))))
+        axes[1].set_yticklabels([labels[i] for i in cite_order], fontsize=9)
+        axes[1].invert_yaxis(); axes[1].set_xlabel("Total citations (CrossRef)")
+        axes[1].set_title("Total citation impact")
+
+        ratio_order = sorted(range(len(top)), key=lambda i: ratios[i], reverse=True)
+        med = float(np.median(ratios)) if ratios else 0
+        colors_r = [PALETTE[3] if ratios[i] >= med else PALETTE[4]
+                    for i in ratio_order]
+        bars = axes[2].barh(list(range(len(top))), [ratios[i] for i in ratio_order],
+                             color=colors_r, alpha=0.85)
+        axes[2].set_yticks(list(range(len(top))))
+        axes[2].set_yticklabels([labels[i] for i in ratio_order], fontsize=9)
+        axes[2].invert_yaxis()
+        axes[2].set_xlabel("Mean citations per publication")
+        axes[2].set_title("Citation efficiency (above median = darker)")
+        for bar, i in zip(bars, ratio_order):
+            axes[2].text(bar.get_width() + 0.5, bar.get_y() + bar.get_height() / 2,
+                         f"{ratios[i]:.1f}", va="center", fontsize=7)
+
+    plt.tight_layout()
+    _save(fig, "fig9_institutions.pdf")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -647,7 +735,7 @@ def plot_author_network(auth_net: dict, top_n: int = 30):
     )
     ax.axis("off")
     plt.tight_layout()
-    _save(fig, "fig10_author_network.png")
+    _save(fig, "fig10_author_network.pdf")
 
 
 

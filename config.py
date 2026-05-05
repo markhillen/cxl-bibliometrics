@@ -76,3 +76,9 @@ OUTPUT_DIR = str(_HERE / "outputs")
 # Create dirs
 for _d in [DATA_DIR, CACHE_DIR, OUTPUT_DIR]:
     _pl.Path(_d).mkdir(parents=True, exist_ok=True)
+
+# ── Figure format ─────────────────────────────────────────────────────────────
+# "pdf" — vector, best for journal submission
+# "svg" — vector, editable in Illustrator / Inkscape
+# "png" — raster (300 dpi); avoid for publication figures
+FIGURE_FORMAT = "pdf"
