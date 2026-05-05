@@ -87,6 +87,7 @@ def generate_reports(results: dict):
             "author":             a["author_id"],
             "publications":       a["pub_count"],
             "first_author":       a["first_author_count"],
+            "last_author":        a.get("last_author_count", 0),
             "total_citations":    a["citation_total"],
             "h_index_estimate":   a["h_index_est"],
             "year_first":         a.get("year_first", ""),
@@ -96,9 +97,9 @@ def generate_reports(results: dict):
             "sample_affiliation": "; ".join(a.get("affils_sample", [])),
         })
     _write_csv("authors_top.csv",
-               ["rank", "author", "publications", "first_author", "total_citations",
-                "h_index_estimate", "year_first", "year_last", "years_active",
-                "journal_count", "sample_affiliation"],
+               ["rank", "author", "publications", "first_author", "last_author",
+                "total_citations", "h_index_estimate", "year_first", "year_last",
+                "years_active", "journal_count", "sample_affiliation"],
                author_rows)
 
     # ── Journals ───────────────────────────────────────────────────────────
@@ -122,14 +123,17 @@ def generate_reports(results: dict):
     valid = [c for c in results["countries"] if c["country"] != "Unknown"]
     for rank, c in enumerate(valid[:config.TOP_N_COUNTRIES], 1):
         country_rows.append({
-            "rank":           rank,
-            "country":        c["country"],
-            "publications":   c["count"],
-            "percentage":     c["percentage"],
-            "total_citations":c["citations"],
+            "rank":              rank,
+            "country":           c["country"],
+            "publications":      c["count"],
+            "percentage":        c["percentage"],
+            "total_citations":   c["citations"],
+            "pubs_per_million":  c.get("pubs_per_million", ""),
+            "cites_per_million": c.get("cites_per_million", ""),
         })
     _write_csv("countries_top.csv",
-               ["rank", "country", "publications", "percentage", "total_citations"],
+               ["rank", "country", "publications", "percentage", "total_citations",
+                "pubs_per_million", "cites_per_million"],
                country_rows)
 
     # ── Keywords ───────────────────────────────────────────────────────────
@@ -152,13 +156,43 @@ def generate_reports(results: dict):
                  for i, r in enumerate(results["institutions"][:50])]
     _write_csv("institutions_top.csv", ["rank", "institution", "publications"], inst_rows)
 
+    # ── Languages ──────────────────────────────────────────────────────────
+    _LANG_NAMES = {
+        "eng": "English",    "ger": "German",     "rus": "Russian",
+        "chi": "Chinese",    "fre": "French",     "rum": "Romanian",
+        "heb": "Hebrew",     "cze": "Czech",      "por": "Portuguese",
+        "dut": "Dutch",      "hun": "Hungarian",  "pol": "Polish",
+        "ita": "Italian",    "slo": "Slovak",     "spa": "Spanish",
+        "tur": "Turkish",    "kor": "Korean",     "jpn": "Japanese",
+        "ara": "Arabic",     "per": "Persian",
+    }
+    lang_data = results.get("languages", {})
+    lang_rows = [
+        {"rank": r, "code": code, "language": _LANG_NAMES.get(code, code), "n": n}
+        for r, (code, n) in enumerate(
+            sorted(lang_data.items(), key=lambda x: x[1], reverse=True), 1
+        )
+    ]
+    _write_csv("languages.csv", ["rank", "code", "language", "n"], lang_rows)
+
+    # ── Publication types ─────────────────────────────────────────────────
+    pub_type_data = results.get("pub_types", {})
+    pub_type_rows = [
+        {"publication_type": pt, "n": n}
+        for pt, n in sorted(pub_type_data.items(), key=lambda x: x[1], reverse=True)
+    ]
+    _write_csv("pub_types.csv", ["publication_type", "n"], pub_type_rows)
+
+
     # ── Excel workbook ─────────────────────────────────────────────────────
     _write_excel(results, summary_rows, temporal_rows, author_rows,
-                 journal_rows, country_rows, kw_rows, mesh_rows, inst_rows)
+                 journal_rows, country_rows, kw_rows, mesh_rows, inst_rows,
+                 lang_rows, pub_type_rows)
 
 
 def _write_excel(results, summary_rows, temporal_rows, author_rows,
-                 journal_rows, country_rows, kw_rows, mesh_rows, inst_rows):
+                 journal_rows, country_rows, kw_rows, mesh_rows, inst_rows,
+                 lang_rows=None, pub_type_rows=None):
     """Write multi-sheet Excel workbook using openpyxl if available, else skip."""
     try:
         import openpyxl
@@ -221,6 +255,10 @@ def _write_excel(results, summary_rows, temporal_rows, author_rows,
     _add_sheet(wb, "Keywords",     ["rank", "keyword", "frequency"],            kw_rows)
     _add_sheet(wb, "MeSH Terms",   ["rank", "mesh_term", "frequency"],          mesh_rows)
     _add_sheet(wb, "Institutions", ["rank", "institution", "publications"],     inst_rows)
+    if lang_rows:
+        _add_sheet(wb, "Languages",    ["rank", "code", "language", "n"],          lang_rows)
+    if pub_type_rows:
+        _add_sheet(wb, "Pub Types",    ["publication_type", "n"],                  pub_type_rows)
 
     path = pathlib.Path(config.OUTPUT_DIR) / "cxl_bibliometrics.xlsx"
     wb.save(path)
