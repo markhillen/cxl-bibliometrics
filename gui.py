@@ -648,10 +648,10 @@ HTML = r"""<!DOCTYPE html>
     <h3>📅 Date Range</h3>
 
     <div class="presets" id="presets">
-      <button class="preset-btn" data-start="2001" data-end="2025">All (2001–2025)</button>
-      <button class="preset-btn" data-start="2016" data-end="2025">Last 10 yr</button>
-      <button class="preset-btn" data-start="2021" data-end="2025">Last 5 yr</button>
-      <button class="preset-btn" data-start="2023" data-end="2025">Last 3 yr</button>
+      <button class="preset-btn" data-start="2001" data-end="__END_YEAR__">All (2001–__END_YEAR__)</button>
+      <button class="preset-btn" data-start="__LAST10_START__" data-end="__END_YEAR__">Last 10 yr</button>
+      <button class="preset-btn" data-start="__LAST5_START__" data-end="__END_YEAR__">Last 5 yr</button>
+      <button class="preset-btn" data-start="__LAST3_START__" data-end="__END_YEAR__">Last 3 yr</button>
       <button class="preset-btn" data-start="2001" data-end="2010">2001–2010</button>
       <button class="preset-btn" data-start="2011" data-end="2020">2011–2020</button>
     </div>
@@ -659,16 +659,16 @@ HTML = r"""<!DOCTYPE html>
     <div style="margin-top:1rem;">
       <div class="year-row">
         <label>From</label>
-        <input type="range" id="start-year" min="2001" max="2025" value="2001">
+        <input type="range" id="start-year" min="2001" max="__END_YEAR__" value="2001">
         <span class="year-display" id="start-display">2001</span>
       </div>
       <div class="year-row">
         <label>To</label>
-        <input type="range" id="end-year" min="2001" max="2025" value="2025">
-        <span class="year-display" id="end-display">2025</span>
+        <input type="range" id="end-year" min="2001" max="__END_YEAR__" value="__END_YEAR__">
+        <span class="year-display" id="end-display">__END_YEAR__</span>
       </div>
       <div class="year-range-summary" id="range-summary">
-        2001 – 2025 &nbsp;·&nbsp; 25 years
+        2001 – __END_YEAR__ &nbsp;·&nbsp; __SPAN_YEARS__ years
       </div>
     </div>
   </div>
@@ -1479,7 +1479,17 @@ class Handler(BaseHTTPRequestHandler):
         params = dict(urllib.parse.parse_qsl(parsed.query))
 
         if path == "/" or path == "/index.html":
-            self._send(200, "text/html", HTML.encode())
+            import config as _cfg
+            ey = _cfg.END_YEAR
+            ay = _cfg.ALL_TIME_START
+            html = (HTML
+                .replace("__END_YEAR__",    str(ey))
+                .replace("__LAST10_START__", str(ey - 9))
+                .replace("__LAST5_START__",  str(ey - 4))
+                .replace("__LAST3_START__",  str(ey - 2))
+                .replace("__SPAN_YEARS__",   str(ey - ay + 1))
+            )
+            self._send(200, "text/html", html.encode())
 
         elif path == "/api/logs":
             lines = []
@@ -1629,10 +1639,11 @@ class Handler(BaseHTTPRequestHandler):
         elif path == "/api/validate_query":
             # Run an esearch count for the given query + date range
             try:
+                import config as _cfg
                 req_data = json.loads(body)
                 q     = req_data.get("query", "").strip()
                 sy    = int(req_data.get("start_year", 2001))
-                ey    = int(req_data.get("end_year",   2025))
+                ey    = int(req_data.get("end_year",   _cfg.END_YEAR))
                 akey  = req_data.get("api_key", "").strip()
                 if not q:
                     self._send(200, "application/json",
