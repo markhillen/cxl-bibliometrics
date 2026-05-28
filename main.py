@@ -77,14 +77,14 @@ def main():
         config.NCBI_API_KEY = args.api_key
     if args.skip_citations:
         config.FETCH_CITATIONS = False
-    if args.start_year:
+    if args.start_year is not None:
         config.ALL_TIME_START = args.start_year
         config.START_YEAR     = args.start_year
-    if args.end_year:
+    if args.end_year is not None:
         config.END_YEAR = args.end_year
 
     # Rebuild periods if date overrides were applied
-    if args.start_year or args.end_year:
+    if args.start_year is not None or args.end_year is not None:
         s = config.ALL_TIME_START
         e = config.END_YEAR
         config.ANALYSIS_PERIODS = [

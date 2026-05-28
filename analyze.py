@@ -91,9 +91,12 @@ def author_stats(records: list[dict]) -> list[dict]:
             yr = 0
 
         authors = rec.get("authors", [])
-        # Filter out collective/anonymous entries for position calculation
+        # Filter out collective/anonymous entries for position calculation.
+        # Build an index by object id so last-author detection is O(1) and
+        # immune to duplicate dicts (named.index() would return the first match).
         named = [a for a in authors if a.get("author_id") and a["author_id"] != "__collective__"]
         n_named = len(named)
+        named_last_id = id(named[-1]) if named else None
         for pos, a in enumerate(authors):
             aid = a.get("author_id")
             if not aid or aid == "__collective__":
@@ -107,8 +110,7 @@ def author_stats(records: list[dict]) -> list[dict]:
                 first_auth[aid] += 1
             # Last author: final named position (senior/PI convention).
             # Only meaningful for multi-author papers (≥2 named authors).
-            named_pos = named.index(a) if a in named else -1
-            if n_named >= 2 and named_pos == n_named - 1:
+            if n_named >= 2 and id(a) == named_last_id:
                 last_auth[aid] += 1
             if a.get("affils") and len(affils_sample[aid]) < 3:
                 affils_sample[aid].extend(a["affils"][:2])
@@ -119,7 +121,7 @@ def author_stats(records: list[dict]) -> list[dict]:
     def est_h(total_cites, n_pubs):
         if n_pubs == 0 or total_cites is None:
             return 0
-        return round(math.sqrt(total_cites * 0.5))
+        return min(round(math.sqrt(total_cites * 0.5)), n_pubs)
 
     rows = []
     for aid, rec_list in pubs.items():

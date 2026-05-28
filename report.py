@@ -21,12 +21,10 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import config
 
-OUT = pathlib.Path(config.OUTPUT_DIR)
-OUT.mkdir(parents=True, exist_ok=True)
-
-
 def _write_csv(filename: str, fieldnames: list, rows: list[dict]):
-    path = OUT / filename
+    out = pathlib.Path(config.OUTPUT_DIR)
+    out.mkdir(parents=True, exist_ok=True)
+    path = out / filename
     with open(path, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
         w.writeheader()

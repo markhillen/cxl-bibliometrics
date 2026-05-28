@@ -15,21 +15,16 @@ import collections
 import json
 import pathlib
 import sys
+import unicodedata
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import config
 
 
 def _norm_last(s: str) -> str:
-    """Normalize last name: lowercase, strip diacritics (simple ASCII fold)."""
+    """Normalize last name: lowercase, strip diacritics via Unicode decomposition."""
     s = s.lower().strip()
-    # Simple transliteration of common accented chars
-    accents = {'à':'a','á':'a','â':'a','ã':'a','ä':'a','å':'a','ç':'c',
-               'è':'e','é':'e','ê':'e','ë':'e','ì':'i','í':'i','î':'i','ï':'i',
-               'ñ':'n','ò':'o','ó':'o','ô':'o','õ':'o','ö':'o',
-               'ù':'u','ú':'u','û':'u','ü':'u','ý':'y','ÿ':'y'}
-    tr = str.maketrans(accents)
-    return s.translate(tr)
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
 
 
 def _norm_fore(s: str) -> str:

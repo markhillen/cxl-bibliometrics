@@ -11,10 +11,8 @@ Then:  browser opens automatically at http://localhost:7432
 
 import http.server
 import json
-import os
 import pathlib
 import queue
-import subprocess
 import sys
 import threading
 import time
@@ -36,6 +34,7 @@ PORT = 7432
 # ── Global state ──────────────────────────────────────────────────────────────
 _log_queue:  queue.Queue = queue.Queue()
 _run_state = {"running": False, "done": False, "error": False, "pid": None}
+_run_lock:   threading.Lock = threading.Lock()
 _last_config: dict = {}
 
 # ── HTML ──────────────────────────────────────────────────────────────────────
@@ -1540,8 +1539,8 @@ class Handler(BaseHTTPRequestHandler):
         elif path == "/api/figure":
             name = params.get("name", "")
             period = params.get("period", "all_time")
-            p = OUTPUT_DIR / period / name
-            if p.exists() and p.suffix == ".png":
+            p = (OUTPUT_DIR / period / name).resolve()
+            if p.is_relative_to(OUTPUT_DIR.resolve()) and p.exists() and p.suffix == ".png":
                 self._send(200, "image/png", p.read_bytes())
             else:
                 self._send(404, "text/plain", b"not found")
@@ -1568,10 +1567,14 @@ class Handler(BaseHTTPRequestHandler):
         elif path == "/api/download":
             name = params.get("name", "")
             period = params.get("period", "all_time")
-            p = OUTPUT_DIR / period / name
+            root = OUTPUT_DIR.resolve()
+            p = (OUTPUT_DIR / period / name).resolve()
+            if not p.is_relative_to(root):
+                self._send(403, "text/plain", b"forbidden")
+                return
             if not p.exists():
-                p = OUTPUT_DIR / name
-            if p.exists():
+                p = (OUTPUT_DIR / name).resolve()
+            if p.is_relative_to(root) and p.exists():
                 ct = {
                     ".png":  "image/png",
                     ".pdf":  "application/pdf",
@@ -1618,14 +1621,16 @@ class Handler(BaseHTTPRequestHandler):
         body   = self.rfile.read(length) if length else b""
 
         if path == "/api/run":
-            if _run_state["running"]:
-                self._send(409, "text/plain", b"already running")
-                return
             try:
                 cfg = json.loads(body)
             except Exception:
                 self._send(400, "text/plain", b"bad json")
                 return
+            with _run_lock:
+                if _run_state["running"]:
+                    self._send(409, "text/plain", b"already running")
+                    return
+                _run_state["running"] = True
             threading.Thread(target=_run_pipeline, args=(cfg,), daemon=True).start()
             self._send(200, "application/json", b'{"ok":true}')
 
@@ -1642,7 +1647,7 @@ class Handler(BaseHTTPRequestHandler):
                 import config as _cfg
                 req_data = json.loads(body)
                 q     = req_data.get("query", "").strip()
-                sy    = int(req_data.get("start_year", 2001))
+                sy    = int(req_data.get("start_year", _cfg.ALL_TIME_START))
                 ey    = int(req_data.get("end_year",   _cfg.END_YEAR))
                 akey  = req_data.get("api_key", "").strip()
                 if not q:
@@ -1679,7 +1684,7 @@ def _log(msg: str):
 def _run_pipeline(cfg: dict):
     global _last_config
     _last_config = cfg
-    _run_state.update({"running": True, "done": False, "error": False})
+    _run_state.update({"done": False, "error": False})
 
     try:
         import importlib
@@ -1699,7 +1704,8 @@ def _run_pipeline(cfg: dict):
         if cfg.get("api_key"):
             conf.NCBI_API_KEY  = cfg["api_key"]
 
-        # Patch the PUBMED_QUERY date range
+        # Patch the PUBMED_QUERY date range (save original for restore after run)
+        _orig_query = conf.PUBMED_QUERY
         conf.PUBMED_QUERY = conf.PUBMED_QUERY.rsplit('AND (', 1)[0].rstrip() + \
             f' AND ("{cfg["start_year"]}/01/01"[PDAT] : "{cfg["end_year"]}/12/31"[PDAT])'
 
@@ -1769,8 +1775,13 @@ def _run_pipeline(cfg: dict):
                        if cfg.get("multi_period", True) else cfg["start_year"])
         _log(f"  Filtering to {_filt_start}–{cfg['end_year']} …")
         before = len(records)
+        def _yr(r):
+            try:
+                return int(r.get("year") or 0)
+            except (ValueError, TypeError):
+                return 0
         records = [r for r in records
-                   if _filt_start <= int(r.get("year") or 0) <= cfg["end_year"]]
+                   if _filt_start <= _yr(r) <= cfg["end_year"]]
         _log(f"  {len(records)} records in range (dropped {before - len(records)})")
 
         if not records:
@@ -1880,17 +1891,17 @@ def _run_pipeline(cfg: dict):
             single_dir.mkdir(parents=True, exist_ok=True)
             _orig_out = conf.OUTPUT_DIR
             conf.OUTPUT_DIR = str(single_dir)
+            try:
+                _log("[6/6] Generating figures and reports …")
+                import visualize as viz
+                importlib.reload(viz)
+                viz.run_visualizations(results, records)
 
-            _log("[6/6] Generating figures and reports …")
-            import visualize as viz
-            importlib.reload(viz)
-            viz.run_visualizations(results, records)
-
-            import report as rep
-            importlib.reload(rep)
-            rep.generate_reports(results)
-
-            conf.OUTPUT_DIR = _orig_out
+                import report as rep
+                importlib.reload(rep)
+                rep.generate_reports(results)
+            finally:
+                conf.OUTPUT_DIR = _orig_out
 
             _log("=" * 50)
             _log("PIPELINE COMPLETE ✓")
@@ -1907,6 +1918,12 @@ def _run_pipeline(cfg: dict):
         for line in traceback.format_exc().splitlines():
             _log(line)
         _run_state.update({"running": False, "done": True, "error": True})
+    finally:
+        # Restore PUBMED_QUERY so the next run starts from the original base string
+        try:
+            conf.PUBMED_QUERY = _orig_query
+        except NameError:
+            pass  # query patch was never reached (early error)
 
 
 # ── Server launch ─────────────────────────────────────────────────────────────
