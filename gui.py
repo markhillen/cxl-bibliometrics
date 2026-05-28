@@ -26,7 +26,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 HERE       = pathlib.Path(__file__).resolve().parent
 CACHE_DIR  = HERE / "cache"
 DATA_DIR   = HERE / "data"
-OUTPUT_DIR = HERE / "outputs"
+OUTPUT_DIR = HERE / "output"
 
 for d in [CACHE_DIR, DATA_DIR, OUTPUT_DIR]:
     d.mkdir(parents=True, exist_ok=True)
@@ -750,6 +750,17 @@ HTML = r"""<!DOCTYPE html>
 
     <div class="toggle-row">
       <div>
+        <span>Multi-period analysis</span><br>
+        <span class="hint-inline">All-time + last 20/15/10/5 yr</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="multi-period" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <div>
         <span>Use cached records</span><br>
         <span class="hint-inline">Skip re-downloading</span>
       </div>
@@ -832,6 +843,10 @@ HTML = r"""<!DOCTYPE html>
           <div class="big">📈</div>
           <p>Charts will appear here after a successful run.</p>
         </div>
+        <div class="period-selector" id="fig-period-selector" style="display:none; margin-bottom:.8rem;">
+          <label style="font-size:.72rem; color:var(--muted); margin-right:.5rem;">Period:</label>
+          <select id="fig-period" onchange="loadFigures()" style="font-family:var(--mono); font-size:.78rem; padding:.3rem .5rem; background:var(--panel); color:var(--text); border:1px solid var(--border); border-radius:6px;"></select>
+        </div>
         <div class="figures-grid" id="figures-grid" style="display:none"></div>
       </div>
 
@@ -839,6 +854,10 @@ HTML = r"""<!DOCTYPE html>
         <div class="empty" id="downloads-empty">
           <div class="big">⬇️</div>
           <p>Download links will appear here after a successful run.</p>
+        </div>
+        <div class="period-selector" id="dl-period-selector" style="display:none; margin-bottom:.8rem;">
+          <label style="font-size:.72rem; color:var(--muted); margin-right:.5rem;">Period:</label>
+          <select id="dl-period" onchange="loadDownloads()" style="font-family:var(--mono); font-size:.78rem; padding:.3rem .5rem; background:var(--panel); color:var(--text); border:1px solid var(--border); border-radius:6px;"></select>
         </div>
         <div id="downloads-grid" style="display:none"></div>
       </div>
@@ -971,6 +990,7 @@ async function runPipeline() {
     force_refresh:    mode !== 'cache' && document.getElementById('force-refresh').checked,
     min_author_pubs:  parseInt(document.getElementById('min-author-pubs').value) || 3,
     top_n:            parseInt(document.getElementById('top-n').value) || 20,
+    multi_period:     document.getElementById('multi-period').checked,
   };
 
   // Validate query mode has content
@@ -1178,11 +1198,33 @@ function renderResults(d) {
 }
 
 // ── Load figures ───────────────────────────────────────────────────────────
+function _periodLabel(p) {
+  return ({all_time:'All time', last_20yr:'Last 20 years', last_15yr:'Last 15 years',
+           last_10yr:'Last 10 years', last_5yr:'Last 5 years'})[p] || p;
+}
+
+function _syncPeriodDropdown(selectId, periods, current) {
+  const sel = document.getElementById(selectId);
+  if (!periods || !periods.length) return;
+  const existing = Array.from(sel.options).map(o => o.value);
+  if (existing.join(',') !== periods.join(',')) {
+    sel.innerHTML = periods.map(p => `<option value="${p}">${_periodLabel(p)}</option>`).join('');
+  }
+  if (current) sel.value = current;
+}
+
 async function loadFigures() {
   try {
-    const r = await fetch('/api/figures');
+    const sel = document.getElementById('fig-period');
+    const period = sel.value || 'all_time';
+    const r = await fetch('/api/figures?period=' + encodeURIComponent(period));
     if (!r.ok) return;
     const d = await r.json();
+
+    if (d.periods?.length) {
+      document.getElementById('fig-period-selector').style.display = '';
+      _syncPeriodDropdown('fig-period', d.periods, period);
+    }
     if (!d.figures?.length) return;
 
     document.getElementById('figures-empty').style.display = 'none';
@@ -1190,13 +1232,14 @@ async function loadFigures() {
     grid.style.display = '';
     grid.innerHTML = '';
 
+    const pq = '&period=' + encodeURIComponent(document.getElementById('fig-period').value || 'all_time');
     d.figures.forEach(f => {
       const card = document.createElement('div');
       card.className = 'fig-card';
-      card.innerHTML = `<img src="/api/figure?name=${encodeURIComponent(f.name)}&t=${Date.now()}"
+      card.innerHTML = `<img src="/api/figure?name=${encodeURIComponent(f.name)}${pq}&t=${Date.now()}"
                              alt="${f.label}" loading="lazy">
                         <div class="fig-label">${f.label}</div>`;
-      card.querySelector('img').addEventListener('click', () => openLightbox('/api/figure?name=' + encodeURIComponent(f.name)));
+      card.querySelector('img').addEventListener('click', () => openLightbox('/api/figure?name=' + encodeURIComponent(f.name) + pq));
       grid.appendChild(card);
     });
 
@@ -1207,27 +1250,37 @@ async function loadFigures() {
 // ── Load downloads ─────────────────────────────────────────────────────────
 async function loadDownloads() {
   try {
-    const r = await fetch('/api/downloads');
+    const sel = document.getElementById('dl-period');
+    const period = sel.value || 'all_time';
+    const r = await fetch('/api/downloads?period=' + encodeURIComponent(period));
     if (!r.ok) return;
     const d = await r.json();
+
+    const fsel = document.getElementById('fig-period');
+    if (fsel && fsel.options.length) {
+      const periods = Array.from(fsel.options).map(o => o.value);
+      document.getElementById('dl-period-selector').style.display = '';
+      _syncPeriodDropdown('dl-period', periods, period);
+    }
     if (!d.files?.length) return;
 
     document.getElementById('downloads-empty').style.display = 'none';
     const grid = document.getElementById('downloads-grid');
     grid.style.display = '';
 
-    const icons = {png:'🖼️', xlsx:'📊', csv:'📄', json:'📋', txt:'📝', md:'📝'};
+    const pq = '&period=' + encodeURIComponent(document.getElementById('dl-period').value || 'all_time');
+    const icons = {png:'🖼️', pdf:'📕', xlsx:'📊', csv:'📄', json:'📋', txt:'📝', md:'📝', html:'🌐'};
 
     // Group by type
-    const imgs  = d.files.filter(f => f.ext === 'png');
-    const data  = d.files.filter(f => f.ext !== 'png');
+    const imgs  = d.files.filter(f => f.ext === 'png' || f.ext === 'pdf');
+    const data  = d.files.filter(f => f.ext !== 'png' && f.ext !== 'pdf');
 
     let html = '';
     if (data.length) {
       html += '<div class="section-title" style="margin-top:0">Data Files</div>';
       html += '<div class="downloads-grid">';
       data.forEach(f => {
-        html += `<a class="dl-btn" href="/api/download?name=${encodeURIComponent(f.name)}" download="${f.name}">
+        html += `<a class="dl-btn" href="/api/download?name=${encodeURIComponent(f.name)}${pq}" download="${f.name}">
           <span class="icon">${icons[f.ext]||'📄'}</span>
           <span>${f.name}</span>
           <span class="size">${f.size}</span>
@@ -1239,8 +1292,8 @@ async function loadDownloads() {
       html += '<div class="section-title">Figures</div>';
       html += '<div class="downloads-grid">';
       imgs.forEach(f => {
-        html += `<a class="dl-btn" href="/api/download?name=${encodeURIComponent(f.name)}" download="${f.name}">
-          <span class="icon">🖼️</span>
+        html += `<a class="dl-btn" href="/api/download?name=${encodeURIComponent(f.name)}${pq}" download="${f.name}">
+          <span class="icon">${icons[f.ext]||'🖼️'}</span>
           <span>${f.name}</span>
           <span class="size">${f.size}</span>
         </a>`;
@@ -1406,6 +1459,15 @@ def _esearch_count(query: str, api_key: str = "") -> int:
     return int(data["esearchresult"]["count"])
 
 
+def _list_periods():
+    """Return list of period subfolders that contain output."""
+    if not OUTPUT_DIR.exists():
+        return []
+    order = ["all_time", "last_20yr", "last_15yr", "last_10yr", "last_5yr"]
+    found = [d.name for d in OUTPUT_DIR.iterdir() if d.is_dir()]
+    return [p for p in order if p in found] + [p for p in found if p not in order]
+
+
 class Handler(BaseHTTPRequestHandler):
 
     def log_message(self, fmt, *args):
@@ -1456,14 +1518,19 @@ class Handler(BaseHTTPRequestHandler):
                 "fig9_institutions":     "Institutions",
                 "fig10_author_network":  "Author Network",
             }
-            for f in sorted(OUTPUT_DIR.glob("fig*.png")):
-                stem = f.stem
-                figs.append({"name": f.name, "label": labels.get(stem, stem)})
-            self._send(200, "application/json", json.dumps({"figures": figs}).encode())
+            period = params.get("period", "all_time")
+            pdir = OUTPUT_DIR / period
+            if pdir.exists():
+                for f in sorted(pdir.glob("fig*.png")):
+                    stem = f.stem
+                    figs.append({"name": f.name, "label": labels.get(stem, stem)})
+            self._send(200, "application/json",
+                       json.dumps({"figures": figs, "periods": _list_periods()}).encode())
 
         elif path == "/api/figure":
             name = params.get("name", "")
-            p = OUTPUT_DIR / name
+            period = params.get("period", "all_time")
+            p = OUTPUT_DIR / period / name
             if p.exists() and p.suffix == ".png":
                 self._send(200, "image/png", p.read_bytes())
             else:
@@ -1471,8 +1538,12 @@ class Handler(BaseHTTPRequestHandler):
 
         elif path == "/api/downloads":
             files = []
-            for f in sorted(OUTPUT_DIR.iterdir()):
-                if f.suffix in (".png", ".csv", ".xlsx", ".json", ".md", ".txt"):
+            period = params.get("period", "all_time")
+            scan_dir = OUTPUT_DIR / period
+            if not scan_dir.exists():
+                scan_dir = OUTPUT_DIR
+            for f in sorted(scan_dir.iterdir()) if scan_dir.exists() else []:
+                if f.suffix in (".png", ".pdf", ".csv", ".xlsx", ".json", ".md", ".txt", ".html"):
                     sz = f.stat().st_size
                     if sz > 1024*1024:
                         size_str = f"{sz/1024/1024:.1f} MB"
@@ -1486,14 +1557,19 @@ class Handler(BaseHTTPRequestHandler):
 
         elif path == "/api/download":
             name = params.get("name", "")
-            p = OUTPUT_DIR / name
+            period = params.get("period", "all_time")
+            p = OUTPUT_DIR / period / name
+            if not p.exists():
+                p = OUTPUT_DIR / name
             if p.exists():
                 ct = {
                     ".png":  "image/png",
+                    ".pdf":  "application/pdf",
                     ".csv":  "text/csv",
                     ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                     ".json": "application/json",
                     ".md":   "text/markdown",
+                    ".html": "text/html",
                 }.get(p.suffix, "application/octet-stream")
                 self.send_response(200)
                 self.send_header("Content-Type", ct)
@@ -1673,11 +1749,17 @@ def _run_pipeline(cfg: dict):
             _log(f"  ERROR: Unknown source mode: {mode}")
             raise ValueError(f"Unknown mode: {mode}")
 
-        # Filter to selected date range
-        _log(f"  Filtering to {cfg['start_year']}–{cfg['end_year']} …")
+        # Filter to date range. In multi-period mode use the project's
+        # ALL_TIME_START so pre-slider records (e.g. pre-2001 keratoconus
+        # papers) are retained for the all-time window; periods.py then slices
+        # each window. In single-window mode honour the slider start year.
+        import config as _cfgmod
+        _filt_start = (getattr(_cfgmod, "ALL_TIME_START", cfg["start_year"])
+                       if cfg.get("multi_period", True) else cfg["start_year"])
+        _log(f"  Filtering to {_filt_start}–{cfg['end_year']} …")
         before = len(records)
         records = [r for r in records
-                   if cfg["start_year"] <= int(r.get("year") or 0) <= cfg["end_year"]]
+                   if _filt_start <= int(r.get("year") or 0) <= cfg["end_year"]]
         _log(f"  {len(records)} records in range (dropped {before - len(records)})")
 
         if not records:
@@ -1705,40 +1787,108 @@ def _run_pipeline(cfg: dict):
         else:
             _log("[4/6] Citation fetch skipped.")
 
-        # ── Step 5: Analyse ───────────────────────────────────────────────
-        _log("[5/6] Running bibliometric analysis …")
-        import analyze as an
-        importlib.reload(an)
-        results = an.run_analysis(records)
+        # ── Force PNG figures so they display inline in the browser ────────
+        conf.FIGURE_FORMAT = "png"
 
-        import json as _json
-        pathlib.Path(conf.DATA_DIR).mkdir(parents=True, exist_ok=True)
-        with open(pathlib.Path(conf.DATA_DIR) / "analysis.json", "w") as f:
-            _json.dump(results, f, indent=2, default=str)
+        multi = cfg.get("multi_period", True)
 
-        _log(f"  {results['n_records']} records · "
-             f"{len(results['authors'])} authors · "
-             f"{len(results['journals'])} journals · "
-             f"{len(results['countries'])} countries")
+        if multi:
+            # ── Steps 5–6: Multi-period analysis ──────────────────────────
+            _log("[5/6] Running multi-period analysis …")
+            # Build period windows from the project's ALL_TIME_START so that
+            # "all time" reflects the full indexed literature (e.g. 1950 for
+            # keratoconus, 2001 for CXL). A rolling window is only included if
+            # it is meaningfully shorter than the all-time span.
+            e        = cfg["end_year"]
+            at_start = getattr(conf, "ALL_TIME_START", cfg["start_year"])
+            windows  = [("all_time", at_start, e)]
+            for label, span in [("last_25yr", 25), ("last_20yr", 20),
+                                 ("last_15yr", 15), ("last_10yr", 10),
+                                 ("last_5yr", 5)]:
+                w_start = e - (span - 1)
+                if w_start > at_start:          # skip windows == all-time
+                    windows.append((label, w_start, e))
+            conf.ANALYSIS_PERIODS = windows
+            _log(f"  Periods: {[w[0] for w in windows]} "
+                 f"(all-time from {at_start})")
+            import periods as per
+            importlib.reload(per)
+            # Figures need matplotlib; if it is missing, still produce CSV/Excel
+            # reports rather than crashing the whole run.
+            try:
+                import matplotlib  # noqa: F401
+                _skip_viz = False
+            except ImportError:
+                _skip_viz = True
+                _log("  WARNING: matplotlib not found — skipping figures, "
+                     "generating data reports only.")
+                _log("  To enable figures, install it for this Python:")
+                _log(f"    {sys.executable} -m pip install matplotlib networkx "
+                     "--break-system-packages")
+            _log("[6/6] Generating " +
+                 ("reports per period (no figures) …" if _skip_viz
+                  else "figures and reports per period …"))
+            all_results = per.run_all_periods(
+                records, output_root=str(conf.OUTPUT_DIR), skip_viz=_skip_viz)
 
-        # ── Step 6: Visualise + report ────────────────────────────────────
-        _log("[6/6] Generating figures and reports …")
-        import visualize as viz
-        importlib.reload(viz)
-        viz.run_visualizations(results, records)
+            _log("=" * 50)
+            _log("PIPELINE COMPLETE ✓")
+            for label, res in all_results.items():
+                p = res.get("_period", {})
+                _log(f"  {label:<12} {p.get('n','?'):>5} records "
+                     f"({p.get('start','?')}–{p.get('end','?')})")
+            _log(f"  Outputs in   : {conf.OUTPUT_DIR}/<period>/")
+            # Save all_time analysis.json for the results panel
+            import json as _json
+            at = all_results.get("all_time")
+            if at:
+                pathlib.Path(conf.DATA_DIR).mkdir(parents=True, exist_ok=True)
+                with open(pathlib.Path(conf.DATA_DIR) / "analysis.json", "w") as f:
+                    _json.dump(at, f, indent=2, default=str)
+            _run_state.update({"running": False, "done": True, "error": False})
 
-        import report as rep
-        importlib.reload(rep)
-        rep.generate_reports(results)
+        else:
+            # ── Single-window mode (legacy) ───────────────────────────────
+            _log("[5/6] Running bibliometric analysis …")
+            import analyze as an
+            importlib.reload(an)
+            results = an.run_analysis(records)
 
-        _log("=" * 50)
-        _log("PIPELINE COMPLETE ✓")
-        _log(f"  Publications : {results['n_records']}")
-        _log(f"  Authors      : {len(results['authors'])}")
-        _log(f"  Journals     : {len(results['journals'])}")
-        _log(f"  Countries    : {len([c for c in results['countries'] if c['country']!='Unknown'])}")
-        _log(f"  Outputs in   : {conf.OUTPUT_DIR}")
-        _run_state.update({"running": False, "done": True, "error": False})
+            import json as _json
+            pathlib.Path(conf.DATA_DIR).mkdir(parents=True, exist_ok=True)
+            with open(pathlib.Path(conf.DATA_DIR) / "analysis.json", "w") as f:
+                _json.dump(results, f, indent=2, default=str)
+
+            _log(f"  {results['n_records']} records · "
+                 f"{len(results['authors'])} authors · "
+                 f"{len(results['journals'])} journals · "
+                 f"{len(results['countries'])} countries")
+
+            # Write single-window output to output/all_time/ for consistency
+            single_dir = pathlib.Path(conf.OUTPUT_DIR) / "all_time"
+            single_dir.mkdir(parents=True, exist_ok=True)
+            _orig_out = conf.OUTPUT_DIR
+            conf.OUTPUT_DIR = str(single_dir)
+
+            _log("[6/6] Generating figures and reports …")
+            import visualize as viz
+            importlib.reload(viz)
+            viz.run_visualizations(results, records)
+
+            import report as rep
+            importlib.reload(rep)
+            rep.generate_reports(results)
+
+            conf.OUTPUT_DIR = _orig_out
+
+            _log("=" * 50)
+            _log("PIPELINE COMPLETE ✓")
+            _log(f"  Publications : {results['n_records']}")
+            _log(f"  Authors      : {len(results['authors'])}")
+            _log(f"  Journals     : {len(results['journals'])}")
+            _log(f"  Countries    : {len([c for c in results['countries'] if c['country']!='Unknown'])}")
+            _log(f"  Outputs in   : {conf.OUTPUT_DIR}/all_time/")
+            _run_state.update({"running": False, "done": True, "error": False})
 
     except Exception as exc:
         import traceback
@@ -1751,6 +1901,16 @@ def _run_pipeline(cfg: dict):
 # ── Server launch ─────────────────────────────────────────────────────────────
 
 def main():
+    # ── Warn about missing packages up front (GUI still launches) ──────────────
+    try:
+        import check_deps
+        missing = check_deps.check(verbose=True)
+        if missing:
+            print("  NOTE: the GUI will load, but analysis runs will fail or "
+                  "skip outputs until the above packages are installed.\n")
+    except ImportError:
+        pass
+
     server = HTTPServer(("127.0.0.1", PORT), Handler)
     url    = f"http://localhost:{PORT}"
 

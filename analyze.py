@@ -70,12 +70,13 @@ def temporal_trends(records: list[dict]) -> dict:
 def author_stats(records: list[dict]) -> list[dict]:
     """
     Returns list of author dicts sorted by publication count desc.
-    Fields: author_id, pub_count, first_author_count, citation_total,
-            h_index_est, years_active, journals, affiliations_sample
+    Fields: author_id, pub_count, first_author_count, last_author_count,
+            citation_total, h_index_est, years_active, journals, affiliations_sample
     """
     # Per-author aggregation
     pubs:       dict[str, list[dict]] = collections.defaultdict(list)
     first_auth: dict[str, int]        = collections.Counter()
+    last_auth:  dict[str, int]        = collections.Counter()
     citations:  dict[str, int]        = collections.defaultdict(int)
     affils_sample: dict[str, list]    = collections.defaultdict(list)
     journals_per_auth: dict[str, set] = collections.defaultdict(set)
@@ -90,6 +91,9 @@ def author_stats(records: list[dict]) -> list[dict]:
             yr = 0
 
         authors = rec.get("authors", [])
+        # Filter out collective/anonymous entries for position calculation
+        named = [a for a in authors if a.get("author_id") and a["author_id"] != "__collective__"]
+        n_named = len(named)
         for pos, a in enumerate(authors):
             aid = a.get("author_id")
             if not aid or aid == "__collective__":
@@ -101,6 +105,11 @@ def author_stats(records: list[dict]) -> list[dict]:
                 years_per_auth[aid].add(yr)
             if pos == 0:
                 first_auth[aid] += 1
+            # Last author: final named position (senior/PI convention).
+            # Only meaningful for multi-author papers (≥2 named authors).
+            named_pos = named.index(a) if a in named else -1
+            if n_named >= 2 and named_pos == n_named - 1:
+                last_auth[aid] += 1
             if a.get("affils") and len(affils_sample[aid]) < 3:
                 affils_sample[aid].extend(a["affils"][:2])
 
@@ -120,16 +129,17 @@ def author_stats(records: list[dict]) -> list[dict]:
         tc = citations[aid]
         yrs = sorted(years_per_auth[aid])
         rows.append({
-            "author_id":         aid,
-            "pub_count":         n,
-            "first_author_count":first_auth[aid],
-            "citation_total":    tc,
-            "h_index_est":       est_h(tc, n),
-            "year_first":        yrs[0]  if yrs else None,
-            "year_last":         yrs[-1] if yrs else None,
-            "years_active":      len(yrs),
-            "journal_count":     len(journals_per_auth[aid]),
-            "affils_sample":     list(dict.fromkeys(affils_sample[aid]))[:3],
+            "author_id":          aid,
+            "pub_count":          n,
+            "first_author_count": first_auth[aid],
+            "last_author_count":  last_auth[aid],
+            "citation_total":     tc,
+            "h_index_est":        est_h(tc, n),
+            "year_first":         yrs[0]  if yrs else None,
+            "year_last":          yrs[-1] if yrs else None,
+            "years_active":       len(yrs),
+            "journal_count":      len(journals_per_auth[aid]),
+            "affils_sample":      list(dict.fromkeys(affils_sample[aid]))[:3],
         })
 
     rows.sort(key=lambda x: x["pub_count"], reverse=True)
@@ -164,7 +174,55 @@ def journal_stats(records: list[dict]) -> list[dict]:
 # ─────────────────────────────────────────────────────────────────────────────
 
 def country_stats(records: list[dict]) -> list[dict]:
-    """Publication and citation counts per country (first author)."""
+    """Publication and citation counts per country (first author).
+
+    Per-capita metrics use 2024 UN population estimates (millions).
+    Countries absent from the lookup table receive pubs_per_million = None.
+    """
+    # 2024 UN population estimates (millions), covering all countries likely
+    # to appear in the CXL literature.
+    _POP_MILLIONS: dict[str, float] = {
+        "Australia":       26.5,
+        "Austria":          9.1,
+        "Belgium":         11.7,
+        "Brazil":         215.3,
+        "Canada":          38.8,
+        "China":         1412.0,
+        "Czech Republic":  10.9,
+        "Denmark":          5.9,
+        "Egypt":          107.0,
+        "Finland":          5.6,
+        "France":          68.4,
+        "Germany":         84.4,
+        "Greece":          10.4,
+        "Hungary":          9.7,
+        "India":         1441.0,
+        "Iran":            89.2,
+        "Israel":           9.8,
+        "Italy":           59.0,
+        "Japan":          123.3,
+        "Jordan":          10.3,
+        "Lebanon":          5.5,
+        "Netherlands":     17.9,
+        "New Zealand":      5.1,
+        "Norway":           5.5,
+        "Poland":          41.0,
+        "Portugal":        10.3,
+        "Romania":         19.0,
+        "Saudi Arabia":    36.4,
+        "Singapore":        6.0,
+        "South Korea":     51.7,
+        "Spain":           47.4,
+        "Sweden":          10.5,
+        "Switzerland":      8.8,
+        "Taiwan":          23.6,
+        "Turkey":          85.3,
+        "Ukraine":         43.5,
+        "United Arab Emirates": 9.8,
+        "United Kingdom":  67.7,
+        "United States":  335.9,
+    }
+
     counter: dict[str, dict] = {}
     for rec in records:
         c = rec.get("country", "Unknown")
@@ -173,10 +231,18 @@ def country_stats(records: list[dict]) -> list[dict]:
             counter[c] = {"country": c, "count": 0, "citations": 0}
         counter[c]["count"] += 1
         counter[c]["citations"] += cc
+
     rows = sorted(counter.values(), key=lambda x: x["count"], reverse=True)
     total = len(records)
     for r in rows:
         r["percentage"] = round(r["count"] / total * 100, 2)
+        pop = _POP_MILLIONS.get(r["country"])
+        if pop:
+            r["pubs_per_million"]   = round(r["count"]   / pop, 2)
+            r["cites_per_million"]  = round(r["citations"] / pop, 1)
+        else:
+            r["pubs_per_million"]  = None
+            r["cites_per_million"] = None
     return rows
 
 
@@ -663,13 +729,27 @@ def _norm_institution(affil: str) -> str:
     return best
 
 
-def institution_stats(records: list[dict]) -> list[dict]:
+def institution_stats(records: list[dict],
+                      first_author_only: bool = False) -> list[dict]:
+    """Institutional publication and citation counts.
+
+    Args:
+        first_author_only: If True, count only the first author's institution
+            per paper (corresponding to the originating research group).
+            If False (default), count all co-authors' institutions, which
+            inflates counts for institutions that frequently appear as
+            co-authors on others' papers.
+    """
     counter:  dict[str, int] = collections.Counter()
     cite_sum: dict[str, int] = collections.defaultdict(int)
     for rec in records:
         cc = rec.get("citation_count") or 0
         seen = set()
-        for a in rec.get("authors", []):
+        authors = rec.get("authors", [])
+        if first_author_only:
+            # Only the first named author
+            authors = authors[:1]
+        for a in authors:
             for affil in a.get("affils", []):
                 inst = _norm_institution(affil)
                 if not inst or len(inst) < 6:
@@ -798,7 +878,8 @@ def run_analysis(records: list[dict]) -> dict:
     mesh_stats = keyword_stats(records, use_mesh=True)
 
     print("[analyze] Computing institution statistics …")
-    institutions = institution_stats(records)
+    institutions            = institution_stats(records, first_author_only=True)
+    institutions_all_authors = institution_stats(records, first_author_only=False)
 
     print("[analyze] Computing publication type breakdown …")
     pubtypes = pubtype_stats(records)
@@ -818,7 +899,8 @@ def run_analysis(records: list[dict]) -> dict:
         "country_net":   country_net,
         "keywords":      kw_stats,
         "mesh":          mesh_stats,
-        "institutions":  institutions,
+        "institutions":         institutions,
+        "institutions_all":     institutions_all_authors,
         "pub_types":     pubtypes,
         "languages":     languages,
         "author_net":    auth_net,

@@ -251,6 +251,145 @@ def _parse_pubmed_xml(xml_text: str) -> list[dict]:
 
 # ── Top-level runner ──────────────────────────────────────────────────────────
 
+def is_cxl_relevant(rec: dict) -> tuple[bool, str]:
+    """
+    Return (True, "") if the record is a legitimate CXL / corneal / ophthalmic
+    publication, or (False, reason) if it should be excluded.
+
+    The PubMed query "corneal cross-linking" occasionally retrieves records
+    where the term appears incidentally — e.g. plastic surgery, dental, tissue
+    engineering, or polymer science papers — or where a name collision means a
+    non-ophthalmic author's papers are returned.  This filter expels them.
+
+    Checks are applied in order of specificity (cheapest first):
+      1. Journal-level exclusion — definitive: plastic/dental/polymer journals
+         that have no CXL content.
+      2. MeSH-level exclusion — records whose primary MeSH headings indicate
+         a non-ophthalmic procedure or body site.
+      3. Title/abstract content — records with no corneal/ophthalmic term in
+         either field are excluded regardless of journal.
+    """
+
+    title    = (rec.get("title",    "") or "").lower()
+    abstract = (rec.get("abstract", "") or "").lower()
+    journal  = (rec.get("journal",  "") or "").lower()
+    mesh     = [m.lower() for m in rec.get("mesh", [])]
+    combined = title + " " + abstract
+
+    # ── 1. Journal-level exclusion ────────────────────────────────────────────
+    # Journals that publish exclusively non-ophthalmic content and can never
+    # contain legitimate CXL papers.  Matched as substring of journal name.
+    _EXCLUDED_JOURNALS = (
+        "plastic",
+        "aesthetic",
+        "rhinoplasty",
+        "reconstructive surgery",
+        "annals of surgery",
+        "dental",
+        "oral",
+        "maxillofacial",
+        "orthodont",
+        "endodont",
+        "periodon",
+        "biomaterials",
+        "acta biomater",
+        "polymer",
+        "hydrogel",
+        "tissue engineering",
+        "wound repair",
+        "cartilage",
+        "bone",
+        "spine",
+        "orthop",
+        "dermatol",
+        "skin",
+        "vascular",
+        "cardiovasc",
+        "thoracic",
+        "urology",
+        "gynaecol",
+        "gynecol",
+        "obstet",
+        "hepatol",
+        "gastroenter",
+        "neurosurg",
+        "neurol",   # neurology — not neuro-ophthalmology
+        "psychiatr",
+        "oncol",
+        "hematol",
+        "endocrinol",
+        "nephrol",
+        "pulmonol",
+        "respirat",
+    )
+    for jkw in _EXCLUDED_JOURNALS:
+        if jkw in journal:
+            return False, f"Non-ophthalmic journal: {rec.get('journal','')}"
+
+    # ── 2. MeSH-level exclusion ───────────────────────────────────────────────
+    # If the record carries MeSH headings that unambiguously indicate a
+    # non-ophthalmic procedure, exclude regardless of title match.
+    _EXCLUDED_MESH = (
+        "rhinoplasty",
+        "plastic surgery",
+        "reconstructive surgical procedures",
+        "skin transplantation",
+        "cartilage",
+        "bone and bones",
+        "dental enamel",
+        "dentin",
+        "tooth",
+        "dental pulp",
+        "periodontal",
+        "orthodontic",
+        "tissue scaffolds",
+        "tissue engineering",
+        "cardiovascular",
+        "aorta",
+        "blood vessels",
+    )
+    for mkw in _EXCLUDED_MESH:
+        if any(mkw in m for m in mesh):
+            return False, f"Excluded MeSH term: {mkw}"
+
+    # ── 3. Title + abstract must contain at least one ophthalmic term ─────────
+    # Any legitimate CXL paper will mention the cornea, eye, or a related
+    # ophthalmic structure somewhere in the title or abstract.
+    _OPHTHALMIC_TERMS = (
+        "cornea", "corneal", "keratoconus", "ectasia", "keratitis",
+        "keratectasia", "keratocyte", "riboflavin", "ultraviolet",
+        "uva", "uvb", "stroma", "stromal", "epithelium", "epithelial",
+        "endothelium", "endothelial", "collagen cross", "collagen cros",
+        "pack-cxl", "cxl", "ophthalmol", "ocular", "intraocular",
+        "refractive", "lasik", "topograph", "keratometry", "kmax",
+        "visual acuity", "slit lamp", "anterior segment",
+    )
+    if not any(term in combined for term in _OPHTHALMIC_TERMS):
+        return False, "No ophthalmic/corneal term found in title or abstract"
+
+    return True, ""
+
+
+def filter_records(records: list[dict]) -> list[dict]:
+    """Apply is_cxl_relevant() and return only relevant records, logging exclusions."""
+    kept = []
+    excluded_count = 0
+    for rec in records:
+        relevant, reason = is_cxl_relevant(rec)
+        if relevant:
+            kept.append(rec)
+        else:
+            excluded_count += 1
+            if excluded_count <= 20:   # log first 20 exclusions to avoid spam
+                pmid  = rec.get("pmid", "?")
+                title = (rec.get("title", "") or "")[:80]
+                print(f"  [filter] Excluded PMID {pmid}: {reason} | \"{title}\"")
+    if excluded_count > 20:
+        print(f"  [filter] ... and {excluded_count - 20} more excluded records (not shown)")
+    print(f"[filter] {len(kept)} records retained, {excluded_count} excluded")
+    return kept
+
+
 def run_fetch(api_key: str = "", force_refresh: bool = False) -> list[dict]:
     """
     Full fetch pipeline. Returns list of record dicts.
@@ -275,6 +414,7 @@ def run_fetch(api_key: str = "", force_refresh: bool = False) -> list[dict]:
     print(f"[fetch] Saved {len(pmids)} PMIDs to {pmid_path}")
 
     records = efetch_batch(pmids, api_key=api_key)
+    records = filter_records(records)
 
     with open(cache_path, "w") as f:
         json.dump(records, f, indent=2)
@@ -326,6 +466,7 @@ def run_fetch_from_pmids(pmid_file: str, api_key: str = "",
         json.dump(pmids, f)
 
     records = efetch_batch(pmids, api_key=api_key)
+    records = filter_records(records)
 
     with open(cache_path, "w") as f:
         json.dump(records, f, indent=2)

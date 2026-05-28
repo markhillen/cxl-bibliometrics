@@ -10,13 +10,29 @@ and CrossRef. No Web of Science or Scopus required.
 
 ### 1. Requirements
 
-Python 3.10+ and:
+Python 3.10+ and four packages (numpy, matplotlib, networkx, openpyxl):
 
 ```bash
-pip install requests pandas numpy matplotlib seaborn networkx openpyxl scipy
+python3 -m pip install -r requirements.txt
 ```
 
-No Biopython required — uses the NCBI REST API directly via `urllib`.
+If you are not using a virtual environment and pip complains about an
+externally-managed environment, add `--break-system-packages`:
+
+```bash
+python3 -m pip install -r requirements.txt --break-system-packages
+```
+
+No Biopython or `requests` required — HTTP uses the standard-library
+`urllib`. `pandas`, `seaborn`, and `scipy` are not used. The optional
+`pyvis` package enables the interactive HTML co-authorship network; the
+pipeline runs fine without it.
+
+To verify your environment before a run:
+
+```bash
+python3 check_deps.py
+```
 
 ### 2. Get an NCBI API key (free, recommended)
 

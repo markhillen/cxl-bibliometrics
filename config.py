@@ -5,15 +5,34 @@ Edit this file to change search parameters, date ranges, API keys, and output pa
 """
 
 import os
+from datetime import date
 
-# ── API Credentials ──────────────────────────────────────────────────────────
+# ── Project identity ──────────────────────────────────────────────────────────
+PROJECT_NAME    = "CXL Bibliometrics"
+PROJECT_VERSION = "2.0.0"
+
+# ── API Credentials ───────────────────────────────────────────────────────────
 # Get a free NCBI API key at: https://www.ncbi.nlm.nih.gov/account/
 # With key: 10 requests/sec  |  Without key: 3 requests/sec
 NCBI_API_KEY = os.environ.get("NCBI_API_KEY", "")   # set env var or paste here
 
 # ── Date Range ────────────────────────────────────────────────────────────────
-START_YEAR = 2001
-END_YEAR   = 2025   # inclusive
+# CXL was first reported clinically in 2003 (Wollensak et al.); 2001 captures
+# any preclinical precursors indexed under corneal cross-linking.
+ALL_TIME_START = 2001
+END_YEAR       = date.today().year   # inclusive; updates automatically
+START_YEAR     = ALL_TIME_START      # used for primary/default window
+
+# ── Analysis time windows ─────────────────────────────────────────────────────
+# All windows slice the same fetched dataset — no extra API calls.
+# CXL literature starts 2001 so "all_time" ~= last 25yr; no need to duplicate.
+ANALYSIS_PERIODS = [
+    ("all_time",  ALL_TIME_START, END_YEAR),
+    ("last_20yr", END_YEAR - 19,  END_YEAR),
+    ("last_15yr", END_YEAR - 14,  END_YEAR),
+    ("last_10yr", END_YEAR - 9,   END_YEAR),
+    ("last_5yr",  END_YEAR - 4,   END_YEAR),
+]
 
 # ── PubMed Search Query ───────────────────────────────────────────────────────
 # Corneal-specific cross-linking query; avoids cartilage, dental, polymer etc.
@@ -37,43 +56,40 @@ PUBMED_QUERY = (
     '"hydrogel"[tiab] OR "polymer"[tiab] OR "scaffold"[tiab] OR '
     '"tissue engineering"[tiab] OR "wound healing"[tiab]'
     ') '
-    f'AND ("{START_YEAR}/01/01"[PDAT] : "{END_YEAR}/12/31"[PDAT])'
+    f'AND ("{ALL_TIME_START}/01/01"[PDAT] : "{END_YEAR}/12/31"[PDAT])'
 )
 
 # ── Fetch Settings ────────────────────────────────────────────────────────────
-BATCH_SIZE        = 200    # records per API request (max 10000, but 200 is stable)
-REQUEST_DELAY     = 0.15   # seconds between requests (0.1 with key, 0.34 without)
+BATCH_SIZE        = 200
+REQUEST_DELAY     = 0.15
 MAX_RETRIES       = 3
 
 # ── Author Disambiguation ─────────────────────────────────────────────────────
-# Minimum co-author overlap to merge two "same-name" author variants
 DISAMBIGUATION_CO_AUTHOR_THRESHOLD = 2
-# Minimum publications for author to appear in rankings
 MIN_AUTHOR_PUBS = 3
 
 # ── Citation Enrichment ───────────────────────────────────────────────────────
-# Uses CrossRef free API to fetch citation counts by DOI — can be slow for large sets
 FETCH_CITATIONS      = True
-CITATION_BATCH_DELAY = 0.5   # be polite to CrossRef
+CITATION_BATCH_DELAY = 0.5
 
 # ── Co-occurrence / Network ───────────────────────────────────────────────────
-MIN_KEYWORD_FREQ     = 5     # minimum occurrences to include in keyword network
-MIN_COOCCURRENCE     = 3     # minimum co-occurrence for an edge
-TOP_N_AUTHORS        = 30    # for network graphs
-TOP_N_COUNTRIES      = 20
-TOP_N_JOURNALS       = 20
-TOP_N_KEYWORDS       = 50
+MIN_KEYWORD_FREQ  = 5
+MIN_COOCCURRENCE  = 3
+TOP_N_AUTHORS     = 30
+TOP_N_COUNTRIES   = 20
+TOP_N_JOURNALS    = 20
+TOP_N_KEYWORDS    = 50
+TOP_N_INSTITUTIONS = 20
 
-# ── Paths — all relative to wherever this config.py lives ────────────────────
+# ── Paths ─────────────────────────────────────────────────────────────────────
 import pathlib as _pl
-_HERE      = _pl.Path(__file__).resolve().parent   # folder containing config.py
+_HERE      = _pl.Path(__file__).resolve().parent
 
 BASE_DIR   = str(_HERE)
 DATA_DIR   = str(_HERE / "data")
 CACHE_DIR  = str(_HERE / "cache")
-OUTPUT_DIR = str(_HERE / "outputs")
+OUTPUT_DIR = str(_HERE / "output")
 
-# Create dirs
 for _d in [DATA_DIR, CACHE_DIR, OUTPUT_DIR]:
     _pl.Path(_d).mkdir(parents=True, exist_ok=True)
 

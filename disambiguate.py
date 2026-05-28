@@ -70,10 +70,10 @@ KNOWN_DISTINCT: list[tuple[str, str, str]] = [
     ("seiler",  "theo",         "theo günter"),
     ("seiler",  "theo",         "theo g"),
     ("seiler",  "t",            "tg"),           # initials-only variants
-    # Farhad Hafezi vs Nikki Hafezi
+    # Farhad Hafezi (ELZA Institute, Zurich) vs Nikki L. Hafezi (ELZA Institute)
     ("hafezi",  "farhad",       "nikki"),
     ("hafezi",  "f",            "n"),
-    # Add further pairs as needed:
+    # Add further forename-pair entries as needed:
     # ("surname", "forename_a",  "forename_b"),
 ]
 
@@ -81,6 +81,41 @@ KNOWN_DISTINCT: list[tuple[str, str, str]] = [
 _DISTINCT_SET: set[frozenset] = set()
 for _last, _fa, _fb in KNOWN_DISTINCT:
     _DISTINCT_SET.add(frozenset({(_last, _fa), (_last, _fb)}))
+
+# ── Affiliation-based exclusions ──────────────────────────────────────────────
+# For cases where two authors share an IDENTICAL full name but are confirmed
+# different people at different institutions/specialties.
+# Each entry: (last_norm, fore_norm, affil_keyword_lowercase)
+# Any occurrence whose affiliation contains affil_keyword will NEVER be merged
+# with occurrences that lack it — even though forenames match exactly.
+#
+# Known case: Prof. Farhad Hafezi (plastic surgeon, Tehran University of Medical
+# Sciences / Iran University of Medical Sciences) shares an identical full name
+# with Prof. Farhad Hafezi (ophthalmologist, ELZA Institute Zurich / CXL pioneer).
+# Layer 2 (exact forename match) would otherwise unconditionally merge these.
+KNOWN_DISTINCT_AFFIL: list[tuple[str, str, str]] = [
+    ("hafezi", "farhad", "tehran university"),
+    ("hafezi", "farhad", "iran university of medical"),
+    ("hafezi", "farhad", "iums.ac.ir"),
+    # Add further entries as new same-name collisions are identified:
+    # ("surname_norm", "fore_norm", "affil_keyword_lowercase"),
+]
+
+# Build fast lookup: (last_norm, fore_norm) → [affil_keywords]
+_DISTINCT_AFFIL_MAP: dict[tuple[str, str], list[str]] = {}
+for _last, _fore, _akw in KNOWN_DISTINCT_AFFIL:
+    _DISTINCT_AFFIL_MAP.setdefault((_last.lower(), _fore.lower()), []).append(_akw.lower())
+
+
+def _has_excluded_affil(last_n: str, fore_n: str, affils: list[str]) -> bool:
+    """Return True if this occurrence carries an affiliation that marks it as
+    a known distinct person who must never be merged with same-name occurrences
+    lacking that affiliation keyword."""
+    keywords = _DISTINCT_AFFIL_MAP.get((last_n.lower(), fore_n.lower()), [])
+    if not keywords:
+        return False
+    affil_blob = " ".join(affils).lower()
+    return any(kw in affil_blob for kw in keywords)
 
 
 def _are_known_distinct(last_n: str, fore_a: str, fore_b: str) -> bool:
@@ -332,39 +367,50 @@ def disambiguate(occurrences: list[dict]) -> dict[int, str]:
                             union(ki, kj)
 
         # Within each fore_group, union occurrences (same forename = same person)
-        # EXCEPTION: for common surnames, split by institution if clearly different.
+        # EXCEPTION 1: for common surnames, split by institution if clearly different.
+        # EXCEPTION 2: for any surname, block merge if one occurrence carries an
+        #   affiliation keyword that marks it as a known distinct person
+        #   (KNOWN_DISTINCT_AFFIL safelist — handles same full-name collisions).
         # Use a secondary union-find within the group to handle chains correctly.
         for fname, idxs in fore_groups.items():
-            if last_n not in _COMMON_SURNAMES or len(idxs) == 1:
-                # Simple case: union all
-                for k in idxs[1:]:
-                    union(k, idxs[0])
-            else:
-                # Common surname: cluster within the fore_group by institution.
-                # Walk through occurrences and merge only if no inst_conflict.
-                # Each occurrence starts in its own sub-cluster; greedily merge
-                # with the first compatible existing cluster.
-                sub_clusters: list[list[int]] = []
-                for k in idxs:
-                    affil_k = occurrences[k]["affils"]
-                    merged = False
+            fore_norm = fname.lower()
+            # Partition by affiliation-exclusion first: occurrences carrying an
+            # excluded affiliation are kept permanently separate from those that don't.
+            excluded_idxs = [k for k in idxs
+                             if _has_excluded_affil(last_n, fore_norm, occurrences[k]["affils"])]
+            normal_idxs   = [k for k in idxs if k not in excluded_idxs]
+
+            # Union normal occurrences (with common-surname institution check)
+            def _union_group(group_idxs: list[int]) -> None:
+                if last_n not in _COMMON_SURNAMES or len(group_idxs) == 1:
+                    for k in group_idxs[1:]:
+                        union(k, group_idxs[0])
+                else:
+                    sub_clusters: list[list[int]] = []
+                    for k in group_idxs:
+                        affil_k = occurrences[k]["affils"]
+                        merged = False
+                        for cluster in sub_clusters:
+                            rep = cluster[0]
+                            all_affils = []
+                            for m in cluster:
+                                all_affils.extend(occurrences[m]["affils"])
+                            if not _inst_conflict(affil_k, all_affils or occurrences[rep]["affils"]):
+                                cluster.append(k)
+                                merged = True
+                                break
+                        if not merged:
+                            sub_clusters.append([k])
                     for cluster in sub_clusters:
-                        rep = cluster[0]
-                        affil_rep = occurrences[rep]["affils"]
-                        # Also gather all affils in the cluster for richer comparison
-                        all_affils = []
-                        for m in cluster:
-                            all_affils.extend(occurrences[m]["affils"])
-                        if not _inst_conflict(affil_k, all_affils or affil_rep):
-                            cluster.append(k)
-                            merged = True
-                            break
-                    if not merged:
-                        sub_clusters.append([k])
-                # Union everything within each sub-cluster
-                for cluster in sub_clusters:
-                    for k in cluster[1:]:
-                        union(k, cluster[0])
+                        for k in cluster[1:]:
+                            union(k, cluster[0])
+
+            if normal_idxs:
+                _union_group(normal_idxs)
+            # Excluded occurrences are unioned among themselves only
+            if excluded_idxs:
+                _union_group(excluded_idxs)
+            # Normal and excluded groups are NEVER unioned with each other
 
     # ── Build canonical IDs ────────────────────────────────────────────────
     # For each component, pick the most frequent (last, fore) pair as canonical name

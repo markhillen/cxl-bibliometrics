@@ -21,7 +21,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import config
 
 def _out_dir() -> pathlib.Path:
-    """Return current output dir — evaluated at call time so config overrides work."""
+    """Return current output dir — evaluated at call time so period overrides work."""
     p = pathlib.Path(config.OUTPUT_DIR)
     p.mkdir(parents=True, exist_ok=True)
     return p
@@ -44,13 +44,15 @@ PALETTE = ["#2C6FAC", "#E05C1B", "#3A9E6B", "#9B59B6",
 
 
 def _save(fig, name: str):
+    # Replace extension with configured format
     fmt  = getattr(config, "FIGURE_FORMAT", "pdf")
     stem = pathlib.Path(name).stem
     fname = f"{stem}.{fmt}"
     path  = _out_dir() / fname
     kwargs = {"bbox_inches": "tight"}
     if fmt == "png":
-        kwargs["dpi"] = 300
+        kwargs["dpi"] = 300           # high-dpi raster only
+    # PDF and SVG are vector — dpi argument is ignored/irrelevant
     fig.savefig(path, **kwargs)
     plt.close(fig)
     print(f"  saved: {path.name}")
@@ -69,7 +71,7 @@ def plot_temporal(temporal: dict):
 
     # Panel 1: annual + moving average + cumulative
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8), sharex=True)
-    fig.suptitle("CXL Publications Over Time", fontsize=14, fontweight="bold")
+    fig.suptitle("Keratoconus & Corneal Ectasia Publications Over Time", fontsize=14, fontweight="bold")
 
     ax1.bar(years, counts, color=PALETTE[0], alpha=0.7, label="Annual publications")
     ax1.plot(years, mavg, color=PALETTE[1], linewidth=2.5,
@@ -110,7 +112,7 @@ def plot_journals(journals: list[dict], top_n: int = None):
     ax.set_yticklabels(labels, fontsize=9)
     ax.invert_yaxis()
     ax.set_xlabel("Number of publications")
-    ax.set_title(f"Top {top_n} Journals Publishing CXL Research", fontweight="bold")
+    ax.set_title(f"Top {top_n} Journals Publishing Keratoconus Research", fontweight="bold")
 
     for bar, pct in zip(bars, pcts):
         ax.text(bar.get_width() + counts[0] * 0.01, bar.get_y() + bar.get_height() / 2,
@@ -141,7 +143,7 @@ def plot_countries(countries: list[dict], top_n: int = None):
     fig, axes = plt.subplots(1, ncols, figsize=(6 * ncols, max(6, top_n * 0.33)))
     if ncols == 1:
         axes = [axes]
-    fig.suptitle(f"Top {top_n} Countries in CXL Research", fontsize=13, fontweight="bold")
+    fig.suptitle(f"Top {top_n} Countries in Keratoconus Research", fontsize=13, fontweight="bold")
 
     y = range(len(labels))
 
@@ -233,7 +235,7 @@ def plot_authors(authors: list[dict], top_n: int = 25):
     fig, axes = plt.subplots(1, ncols, figsize=(7 * ncols, max(6, top_n * 0.35)))
     if ncols == 1:
         axes = [axes]
-    fig.suptitle(f"Top {top_n} Most Productive Authors", fontsize=13, fontweight="bold")
+    fig.suptitle(f"Top {top_n} Most Productive Authors — Keratoconus Research", fontsize=13, fontweight="bold")
 
     y = np.arange(len(labels))
 
@@ -493,45 +495,12 @@ def plot_institutions(institutions: list[dict], top_n: int = 20):
     if ncols == 1:
         axes = [axes]
     fig.suptitle(
-        f"Top {top_n} Institutions in CXL Research (first-author attribution)",
+        f"Top {top_n} Institutions in Keratoconus Research (first-author attribution)",
         fontsize=13, fontweight="bold"
     )
     fig.text(0.5, 0.97,
              "Each publication credited once to the first author's institution only",
              ha="center", va="top", fontsize=9, style="italic", color="#555555")
-
-    y = range(len(labels))
-    axes[0].barh(list(y), counts, color=PALETTE[4], alpha=0.85)
-    axes[0].set_yticks(list(y)); axes[0].set_yticklabels(labels, fontsize=9)
-    axes[0].invert_yaxis(); axes[0].set_xlabel("Publications")
-    axes[0].set_title("Publication volume")
-
-    if has_cites:
-        cite_order = sorted(range(len(top)), key=lambda i: cites[i], reverse=True)
-        axes[1].barh(list(range(len(top))), [cites[i] for i in cite_order],
-                     color=PALETTE[2], alpha=0.85)
-        axes[1].set_yticks(list(range(len(top))))
-        axes[1].set_yticklabels([labels[i] for i in cite_order], fontsize=9)
-        axes[1].invert_yaxis(); axes[1].set_xlabel("Total citations (CrossRef)")
-        axes[1].set_title("Total citation impact")
-
-        ratio_order = sorted(range(len(top)), key=lambda i: ratios[i], reverse=True)
-        med = float(np.median(ratios)) if ratios else 0
-        colors_r = [PALETTE[3] if ratios[i] >= med else PALETTE[4]
-                    for i in ratio_order]
-        bars = axes[2].barh(list(range(len(top))), [ratios[i] for i in ratio_order],
-                             color=colors_r, alpha=0.85)
-        axes[2].set_yticks(list(range(len(top))))
-        axes[2].set_yticklabels([labels[i] for i in ratio_order], fontsize=9)
-        axes[2].invert_yaxis()
-        axes[2].set_xlabel("Mean citations per publication")
-        axes[2].set_title("Citation efficiency (above median = darker)")
-        for bar, i in zip(bars, ratio_order):
-            axes[2].text(bar.get_width() + 0.5, bar.get_y() + bar.get_height() / 2,
-                         f"{ratios[i]:.1f}", va="center", fontsize=7)
-
-    plt.tight_layout()
-    _save(fig, "fig9_institutions.pdf")
 
     y = range(len(labels))
     axes[0].barh(list(y), counts, color=PALETTE[4], alpha=0.85)
