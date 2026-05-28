@@ -27,12 +27,14 @@ START_YEAR     = ALL_TIME_START      # used for primary/default window
 # All windows slice the same fetched dataset — no extra API calls.
 # CXL literature starts 2001 so "all_time" ~= last 25yr; no need to duplicate.
 ANALYSIS_PERIODS = [
-    ("all_time",  ALL_TIME_START, END_YEAR),
-    ("last_20yr", END_YEAR - 19,  END_YEAR),
-    ("last_15yr", END_YEAR - 14,  END_YEAR),
-    ("last_10yr", END_YEAR - 9,   END_YEAR),
-    ("last_5yr",  END_YEAR - 4,   END_YEAR),
-    ("last_3yr",  END_YEAR - 2,   END_YEAR),
+    ("all_time",       ALL_TIME_START, END_YEAR),
+    ("last_20yr",      END_YEAR - 19,  END_YEAR),
+    ("last_15yr",      END_YEAR - 14,  END_YEAR),
+    ("last_10yr",      END_YEAR - 9,   END_YEAR),
+    ("last_5yr",       END_YEAR - 4,   END_YEAR),
+    ("last_3yr",       END_YEAR - 2,   END_YEAR),
+    ("decade_2011_20", 2011,           2020),
+    ("decade_2001_10", 2001,           2010),
 ]
 
 # ── PubMed Search Query ───────────────────────────────────────────────────────

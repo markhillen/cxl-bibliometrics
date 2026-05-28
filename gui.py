@@ -651,8 +651,8 @@ HTML = r"""<!DOCTYPE html>
       <button class="preset-btn" data-start="__LAST10_START__" data-end="__END_YEAR__" data-period="last_10yr">Last 10 yr</button>
       <button class="preset-btn" data-start="__LAST5_START__" data-end="__END_YEAR__" data-period="last_5yr">Last 5 yr</button>
       <button class="preset-btn" data-start="__LAST3_START__" data-end="__END_YEAR__" data-period="last_3yr">Last 3 yr</button>
-      <button class="preset-btn" data-start="2001" data-end="2010">2001–2010</button>
-      <button class="preset-btn" data-start="2011" data-end="2020">2011–2020</button>
+      <button class="preset-btn" data-start="2001" data-end="2010" data-period="decade_2001_10">2001–2010</button>
+      <button class="preset-btn" data-start="2011" data-end="2020" data-period="decade_2011_20">2011–2020</button>
     </div>
 
     <div style="margin-top:1rem;">
@@ -1246,8 +1246,8 @@ function renderResults(d) {
 // ── Load figures ───────────────────────────────────────────────────────────
 function _periodLabel(p) {
   return ({all_time:'All time', last_20yr:'Last 20 years', last_15yr:'Last 15 years',
-           last_10yr:'Last 10 years', last_5yr:'Last 5 years',
-           last_3yr:'Last 3 years'})[p] || p;
+           last_10yr:'Last 10 years', last_5yr:'Last 5 years', last_3yr:'Last 3 years',
+           decade_2011_20:'2011–2020', decade_2001_10:'2001–2010'})[p] || p;
 }
 
 function _syncPeriodDropdown(selectId, periods, current) {
@@ -1530,7 +1530,8 @@ def _list_periods():
     """Return list of period subfolders that contain output."""
     if not OUTPUT_DIR.exists():
         return []
-    order = ["all_time", "last_20yr", "last_15yr", "last_10yr", "last_5yr", "last_3yr"]
+    order = ["all_time", "last_20yr", "last_15yr", "last_10yr", "last_5yr", "last_3yr",
+             "decade_2011_20", "decade_2001_10"]
     found = [d.name for d in OUTPUT_DIR.iterdir() if d.is_dir()]
     return [p for p in order if p in found] + [p for p in found if p not in order]
 
@@ -1906,6 +1907,11 @@ def _run_pipeline(cfg: dict):
                 w_start = e - (span - 1)
                 if w_start > at_start:          # skip windows == all-time
                     windows.append((label, w_start, e))
+            # Fixed decade windows — always included when corpus spans them
+            for label, s, en in [("decade_2011_20", 2011, 2020),
+                                  ("decade_2001_10", 2001, 2010)]:
+                if at_start <= s and en <= e:
+                    windows.append((label, s, en))
             conf.ANALYSIS_PERIODS = windows
             _log(f"  Periods: {[w[0] for w in windows]} "
                  f"(all-time from {at_start})")
