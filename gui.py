@@ -647,10 +647,10 @@ HTML = r"""<!DOCTYPE html>
     <h3>📅 Date Range</h3>
 
     <div class="presets" id="presets">
-      <button class="preset-btn" data-start="2001" data-end="__END_YEAR__">All (2001–__END_YEAR__)</button>
-      <button class="preset-btn" data-start="__LAST10_START__" data-end="__END_YEAR__">Last 10 yr</button>
-      <button class="preset-btn" data-start="__LAST5_START__" data-end="__END_YEAR__">Last 5 yr</button>
-      <button class="preset-btn" data-start="__LAST3_START__" data-end="__END_YEAR__">Last 3 yr</button>
+      <button class="preset-btn" data-start="2001" data-end="__END_YEAR__" data-period="all_time">All (2001–__END_YEAR__)</button>
+      <button class="preset-btn" data-start="__LAST10_START__" data-end="__END_YEAR__" data-period="last_10yr">Last 10 yr</button>
+      <button class="preset-btn" data-start="__LAST5_START__" data-end="__END_YEAR__" data-period="last_5yr">Last 5 yr</button>
+      <button class="preset-btn" data-start="__LAST3_START__" data-end="__END_YEAR__" data-period="last_3yr">Last 3 yr</button>
       <button class="preset-btn" data-start="2001" data-end="2010">2001–2010</button>
       <button class="preset-btn" data-start="2011" data-end="2020">2011–2020</button>
     </div>
@@ -909,12 +909,30 @@ function updateRangeSummary() {
 startSlider.addEventListener('input', updateRangeSummary);
 endSlider.addEventListener('input',   updateRangeSummary);
 
-document.getElementById('presets').addEventListener('click', e => {
+document.getElementById('presets').addEventListener('click', async e => {
   const btn = e.target.closest('.preset-btn');
   if (!btn) return;
   startSlider.value = btn.dataset.start;
   endSlider.value   = btn.dataset.end;
   updateRangeSummary();
+
+  // If this preset maps to a named period and output already exists,
+  // jump straight to the Figures tab for that period — no re-run needed.
+  const period = btn.dataset.period;
+  if (!period) return;
+  try {
+    const r = await fetch('/api/figures?period=' + encodeURIComponent(period));
+    const d = await r.json();
+    if (d.figures && d.figures.length > 0) {
+      _syncPeriodDropdown('fig-period', d.periods, period);
+      _syncPeriodDropdown('dl-period',  d.periods, period);
+      document.getElementById('fig-period-selector').style.display = '';
+      document.getElementById('dl-period-selector').style.display  = '';
+      loadFigures();
+      loadDownloads();
+      switchTab('figures');
+    }
+  } catch(_) {}
 });
 
 // Prevent start > end
@@ -1199,7 +1217,8 @@ function renderResults(d) {
 // ── Load figures ───────────────────────────────────────────────────────────
 function _periodLabel(p) {
   return ({all_time:'All time', last_20yr:'Last 20 years', last_15yr:'Last 15 years',
-           last_10yr:'Last 10 years', last_5yr:'Last 5 years'})[p] || p;
+           last_10yr:'Last 10 years', last_5yr:'Last 5 years',
+           last_3yr:'Last 3 years'})[p] || p;
 }
 
 function _syncPeriodDropdown(selectId, periods, current) {
@@ -1433,7 +1452,7 @@ async function validateQuery() {
 checkCache();
 updateRangeSummary();
 // Mark "All" preset as active by default
-document.querySelector('.preset-btn[data-start="2001"]').classList.add('active');
+document.querySelector('.preset-btn[data-period="all_time"]').classList.add('active');
 </script>
 </body>
 </html>
@@ -1826,7 +1845,7 @@ def _run_pipeline(cfg: dict):
             windows  = [("all_time", at_start, e)]
             for label, span in [("last_25yr", 25), ("last_20yr", 20),
                                  ("last_15yr", 15), ("last_10yr", 10),
-                                 ("last_5yr", 5)]:
+                                 ("last_5yr", 5), ("last_3yr", 3)]:
                 w_start = e - (span - 1)
                 if w_start > at_start:          # skip windows == all-time
                     windows.append((label, w_start, e))

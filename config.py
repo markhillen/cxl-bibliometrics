@@ -32,6 +32,7 @@ ANALYSIS_PERIODS = [
     ("last_15yr", END_YEAR - 14,  END_YEAR),
     ("last_10yr", END_YEAR - 9,   END_YEAR),
     ("last_5yr",  END_YEAR - 4,   END_YEAR),
+    ("last_3yr",  END_YEAR - 2,   END_YEAR),
 ]
 
 # ── PubMed Search Query ───────────────────────────────────────────────────────
