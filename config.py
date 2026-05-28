@@ -20,7 +20,7 @@ NCBI_API_KEY = os.environ.get("NCBI_API_KEY", "")   # set env var or paste here
 # CXL was first reported clinically in 2003 (Wollensak et al.); 2001 captures
 # any preclinical precursors indexed under corneal cross-linking.
 ALL_TIME_START = 2001
-END_YEAR       = date.today().year   # inclusive; updates automatically
+END_YEAR       = min(date.today().year, 2025)  # capped at manuscript corpus year
 START_YEAR     = ALL_TIME_START      # used for primary/default window
 
 # ── Analysis time windows ─────────────────────────────────────────────────────
