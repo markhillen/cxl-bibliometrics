@@ -80,6 +80,12 @@ def run_all_periods(records: list[dict], output_root: str = None,
         finally:
             config.OUTPUT_DIR = _orig
 
+        # Save per-period analysis.json so the GUI Results tab can show
+        # period-specific data without a re-run.
+        import json as _json
+        with open(period_dir / "analysis.json", "w") as _f:
+            _json.dump(results, _f, indent=2, default=str)
+
         # Compute field-level h-index now while period_records is in scope
         cite_counts = sorted(
             (rec.get("citation_count") or 0 for rec in period_records),

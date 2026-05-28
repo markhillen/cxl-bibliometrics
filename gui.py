@@ -835,6 +835,10 @@ HTML = r"""<!DOCTYPE html>
           <p>Results will appear here after a successful run.<br>
           Summary statistics, top authors, journals, and countries.</p>
         </div>
+        <div class="period-selector" id="res-period-selector" style="display:none; margin-bottom:.8rem;">
+          <label style="font-size:.72rem; color:var(--muted); margin-right:.5rem;">Period:</label>
+          <select id="res-period" onchange="loadResults()" style="font-family:var(--mono); font-size:.78rem; padding:.3rem .5rem; background:var(--panel); color:var(--text); border:1px solid var(--border); border-radius:6px;"></select>
+        </div>
       </div>
 
       <div class="tab-panel" id="figures-panel">
@@ -924,10 +928,12 @@ document.getElementById('presets').addEventListener('click', async e => {
     const r = await fetch('/api/figures?period=' + encodeURIComponent(period));
     const d = await r.json();
     if (d.figures && d.figures.length > 0) {
+      _syncResultsPeriod(d.periods, period);
       _syncPeriodDropdown('fig-period', d.periods, period);
       _syncPeriodDropdown('dl-period',  d.periods, period);
       document.getElementById('fig-period-selector').style.display = '';
       document.getElementById('dl-period-selector').style.display  = '';
+      loadResults();
       loadFigures();
       loadDownloads();
       switchTab('figures');
@@ -1091,10 +1097,20 @@ async function pollLogs() {
       } else {
         dot.className = 'status-dot done';
         addLog('Pipeline complete ✓', 'ok');
-        loadResults();
-        loadFigures();
-        loadDownloads();
-        switchTab('results');
+        // Fetch available periods from figures endpoint, then sync all dropdowns
+        fetch('/api/figures?period=all_time').then(r=>r.json()).then(d=>{
+          if (d.periods?.length) {
+            _syncResultsPeriod(d.periods, 'all_time');
+            _syncPeriodDropdown('fig-period', d.periods, 'all_time');
+            _syncPeriodDropdown('dl-period',  d.periods, 'all_time');
+            document.getElementById('fig-period-selector').style.display = '';
+            document.getElementById('dl-period-selector').style.display  = '';
+          }
+          loadResults();
+          loadFigures();
+          loadDownloads();
+          switchTab('results');
+        }).catch(()=>{ loadResults(); loadFigures(); loadDownloads(); switchTab('results'); });
       }
     }
   } catch(e) { /* server restarting */ }
@@ -1103,11 +1119,24 @@ async function pollLogs() {
 // ── Load results ───────────────────────────────────────────────────────────
 async function loadResults() {
   try {
-    const r = await fetch('/api/results');
+    const sel    = document.getElementById('res-period');
+    const period = sel?.value || 'all_time';
+    const r = await fetch('/api/results?period=' + encodeURIComponent(period));
     if (!r.ok) return;
     const d = await r.json();
     renderResults(d);
   } catch(e) {}
+}
+
+function _syncResultsPeriod(periods, current) {
+  const sel = document.getElementById('res-period');
+  if (!periods?.length) return;
+  const existing = Array.from(sel.options).map(o => o.value);
+  if (existing.join(',') !== periods.join(',')) {
+    sel.innerHTML = periods.map(p => `<option value="${p}">${_periodLabel(p)}</option>`).join('');
+  }
+  if (current && sel.value !== current) sel.value = current;
+  document.getElementById('res-period-selector').style.display = '';
 }
 
 function renderResults(d) {
@@ -1524,11 +1553,19 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, "application/json", payload)
 
         elif path == "/api/results":
-            p = DATA_DIR / "analysis.json"
-            if p.exists():
-                self._send(200, "application/json", p.read_bytes())
+            period = params.get("period", "all_time")
+            root   = OUTPUT_DIR.resolve()
+            per_p  = (OUTPUT_DIR / period / "analysis.json").resolve()
+            # Serve period-specific analysis if available, else fall back to
+            # the legacy all_time data/analysis.json
+            if per_p.is_relative_to(root) and per_p.exists():
+                self._send(200, "application/json", per_p.read_bytes())
             else:
-                self._send(404, "text/plain", b"not ready")
+                p = DATA_DIR / "analysis.json"
+                if p.exists():
+                    self._send(200, "application/json", p.read_bytes())
+                else:
+                    self._send(404, "text/plain", b"not ready")
 
         elif path == "/api/figures":
             figs = []
