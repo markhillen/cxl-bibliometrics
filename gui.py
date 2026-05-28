@@ -1482,6 +1482,26 @@ checkCache();
 updateRangeSummary();
 // Mark "All" preset as active by default
 document.querySelector('.preset-btn[data-period="all_time"]').classList.add('active');
+
+// Auto-detect existing output and populate all period selectors on load.
+// This means users who have run the CLI don't need to re-run the GUI to
+// browse per-period results — the dropdowns appear immediately.
+(async function initFromExistingOutput() {
+  try {
+    const r = await fetch('/api/figures?period=all_time');
+    const d = await r.json();
+    if (d.periods && d.periods.length) {
+      _syncResultsPeriod(d.periods, 'all_time');
+      _syncPeriodDropdown('fig-period', d.periods, 'all_time');
+      _syncPeriodDropdown('dl-period',  d.periods, 'all_time');
+      document.getElementById('fig-period-selector').style.display = '';
+      document.getElementById('dl-period-selector').style.display  = '';
+      loadResults();
+      loadFigures();
+      loadDownloads();
+    }
+  } catch(_) {}
+})();
 </script>
 </body>
 </html>
@@ -1510,7 +1530,7 @@ def _list_periods():
     """Return list of period subfolders that contain output."""
     if not OUTPUT_DIR.exists():
         return []
-    order = ["all_time", "last_20yr", "last_15yr", "last_10yr", "last_5yr"]
+    order = ["all_time", "last_20yr", "last_15yr", "last_10yr", "last_5yr", "last_3yr"]
     found = [d.name for d in OUTPUT_DIR.iterdir() if d.is_dir()]
     return [p for p in order if p in found] + [p for p in found if p not in order]
 
