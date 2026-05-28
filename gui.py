@@ -839,6 +839,7 @@ HTML = r"""<!DOCTYPE html>
           <label style="font-size:.72rem; color:var(--muted); margin-right:.5rem;">Period:</label>
           <select id="res-period" onchange="loadResults()" style="font-family:var(--mono); font-size:.78rem; padding:.3rem .5rem; background:var(--panel); color:var(--text); border:1px solid var(--border); border-radius:6px;"></select>
         </div>
+        <div id="res-notice" style="display:none;padding:2rem;text-align:center;color:var(--muted);font-size:.88rem;"></div>
       </div>
 
       <div class="tab-panel" id="figures-panel">
@@ -846,6 +847,7 @@ HTML = r"""<!DOCTYPE html>
           <div class="big">📈</div>
           <p>Charts will appear here after a successful run.</p>
         </div>
+        <div id="fig-notice" style="display:none;padding:2rem;text-align:center;color:var(--muted);font-size:.88rem;"></div>
         <div class="period-selector" id="fig-period-selector" style="display:none; margin-bottom:.8rem;">
           <label style="font-size:.72rem; color:var(--muted); margin-right:.5rem;">Period:</label>
           <select id="fig-period" onchange="loadFigures()" style="font-family:var(--mono); font-size:.78rem; padding:.3rem .5rem; background:var(--panel); color:var(--text); border:1px solid var(--border); border-radius:6px;"></select>
@@ -858,6 +860,7 @@ HTML = r"""<!DOCTYPE html>
           <div class="big">⬇️</div>
           <p>Download links will appear here after a successful run.</p>
         </div>
+        <div id="dl-notice" style="display:none;padding:2rem;text-align:center;color:var(--muted);font-size:.88rem;"></div>
         <div class="period-selector" id="dl-period-selector" style="display:none; margin-bottom:.8rem;">
           <label style="font-size:.72rem; color:var(--muted); margin-right:.5rem;">Period:</label>
           <select id="dl-period" onchange="loadDownloads()" style="font-family:var(--mono); font-size:.78rem; padding:.3rem .5rem; background:var(--panel); color:var(--text); border:1px solid var(--border); border-radius:6px;"></select>
@@ -888,6 +891,14 @@ let logCount = 0;
 let pollTimer = null;
 let running   = false;
 
+// Injected by the server from config.ANALYSIS_PERIODS — [{name,start,end},…]
+const KNOWN_PERIODS = __PERIODS_JSON__;
+
+function resolvePeriod(start, end) {
+  const m = KNOWN_PERIODS.find(p => p.start === start && p.end === end);
+  return m ? m.name : null;
+}
+
 // ── Year range controls ────────────────────────────────────────────────────
 const startSlider = document.getElementById('start-year');
 const endSlider   = document.getElementById('end-year');
@@ -903,48 +914,63 @@ function updateRangeSummary() {
   endDisp.textContent   = e;
   const yrs = e - s + 1;
   rangeSumm.textContent = `${s} – ${e}  ·  ${yrs} year${yrs>1?'s':''}`;
-  // Deactivate presets that no longer match
   document.querySelectorAll('.preset-btn').forEach(b => {
     b.classList.toggle('active',
       parseInt(b.dataset.start) === s && parseInt(b.dataset.end) === e);
   });
 }
 
-startSlider.addEventListener('input', updateRangeSummary);
-endSlider.addEventListener('input',   updateRangeSummary);
+// Called on every slider move or preset click — resolves to a named period
+// and immediately updates Results (from cached JSON) + Figures/Downloads.
+function onDateRangeChange() {
+  const s = parseInt(startSlider.value);
+  const e = parseInt(endSlider.value);
+  if (s > e) { startSlider.value = e; return onDateRangeChange(); }
+  updateRangeSummary();
 
-document.getElementById('presets').addEventListener('click', async e => {
+  const period = resolvePeriod(s, e);
+  if (period) {
+    // Sync all three dropdowns to this period
+    const resSel = document.getElementById('res-period');
+    if (resSel && [...resSel.options].some(o => o.value === period)) resSel.value = period;
+    const figSel = document.getElementById('fig-period');
+    if (figSel && [...figSel.options].some(o => o.value === period)) figSel.value = period;
+    const dlSel  = document.getElementById('dl-period');
+    if (dlSel  && [...dlSel.options].some(o => o.value === period))  dlSel.value  = period;
+    loadResults();
+    loadFigures();
+    loadDownloads();
+  } else {
+    // Custom range — no pre-computed data available
+    const msg = `Custom range ${s}–${e}. Click <strong>Run</strong> to compute results for this window.`;
+    _setNotice('res-notice', msg);
+    _setNotice('fig-notice', `📈 &nbsp;${msg}`);
+    _setNotice('dl-notice',  `⬇️ &nbsp;${msg}`);
+    const rc = document.querySelector('#results-panel .results-content');
+    if (rc) rc.style.display = 'none';
+    document.getElementById('figures-grid').style.display    = 'none';
+    document.getElementById('downloads-grid').style.display  = 'none';
+    document.getElementById('figures-empty').style.display   = 'none';
+    document.getElementById('downloads-empty').style.display = 'none';
+  }
+}
+
+function _setNotice(id, html) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = html;
+  el.style.display = '';
+}
+
+startSlider.addEventListener('input', onDateRangeChange);
+endSlider.addEventListener('input',   onDateRangeChange);
+
+document.getElementById('presets').addEventListener('click', e => {
   const btn = e.target.closest('.preset-btn');
   if (!btn) return;
   startSlider.value = btn.dataset.start;
   endSlider.value   = btn.dataset.end;
-  updateRangeSummary();
-
-  // If this preset maps to a named period and output already exists,
-  // jump straight to the Figures tab for that period — no re-run needed.
-  const period = btn.dataset.period;
-  if (!period) return;
-  try {
-    const r = await fetch('/api/figures?period=' + encodeURIComponent(period));
-    const d = await r.json();
-    if (d.figures && d.figures.length > 0) {
-      _syncResultsPeriod(d.periods, period);
-      _syncPeriodDropdown('fig-period', d.periods, period);
-      _syncPeriodDropdown('dl-period',  d.periods, period);
-      document.getElementById('fig-period-selector').style.display = '';
-      document.getElementById('dl-period-selector').style.display  = '';
-      loadResults();
-      loadFigures();
-      loadDownloads();
-      switchTab('figures');
-    }
-  } catch(_) {}
-});
-
-// Prevent start > end
-startSlider.addEventListener('input', () => {
-  if (parseInt(startSlider.value) > parseInt(endSlider.value))
-    endSlider.value = startSlider.value;
+  onDateRangeChange();
 });
 
 // ── Tabs ───────────────────────────────────────────────────────────────────
@@ -1122,7 +1148,18 @@ async function loadResults() {
     const sel    = document.getElementById('res-period');
     const period = sel?.value || 'all_time';
     const r = await fetch('/api/results?period=' + encodeURIComponent(period));
-    if (!r.ok) return;
+    if (!r.ok) {
+      const msg = running
+        ? '⏳ Computing results for this period…'
+        : 'No results yet for this period. Click <strong>Run</strong> to compute.';
+      _setNotice('res-notice', msg);
+      const rc = document.querySelector('#results-panel .results-content');
+      if (rc) rc.style.display = 'none';
+      return;
+    }
+    document.getElementById('res-notice').style.display = 'none';
+    const rc = document.querySelector('#results-panel .results-content');
+    if (rc) rc.style.display = '';
     const d = await r.json();
     renderResults(d);
   } catch(e) {}
@@ -1268,11 +1305,21 @@ async function loadFigures() {
     if (!r.ok) return;
     const d = await r.json();
 
+    document.getElementById('fig-notice').style.display = 'none';
+
     if (d.periods?.length) {
       document.getElementById('fig-period-selector').style.display = '';
       _syncPeriodDropdown('fig-period', d.periods, period);
     }
-    if (!d.figures?.length) return;
+    if (!d.figures?.length) {
+      const msg = running
+        ? '⏳ Figures are being generated for this period — check back in a moment.'
+        : 'No figures for this period yet. Click <strong>Run</strong> to generate them.';
+      _setNotice('fig-notice', msg);
+      document.getElementById('figures-empty').style.display  = 'none';
+      document.getElementById('figures-grid').style.display   = 'none';
+      return;
+    }
 
     document.getElementById('figures-empty').style.display = 'none';
     const grid = document.getElementById('figures-grid');
@@ -1309,7 +1356,16 @@ async function loadDownloads() {
       document.getElementById('dl-period-selector').style.display = '';
       _syncPeriodDropdown('dl-period', periods, period);
     }
-    if (!d.files?.length) return;
+    document.getElementById('dl-notice').style.display = 'none';
+    if (!d.files?.length) {
+      const msg = running
+        ? '⏳ Files are being generated for this period — check back in a moment.'
+        : 'No files for this period yet. Click <strong>Run</strong> to generate them.';
+      _setNotice('dl-notice', msg);
+      document.getElementById('downloads-empty').style.display = 'none';
+      document.getElementById('downloads-grid').style.display  = 'none';
+      return;
+    }
 
     document.getElementById('downloads-empty').style.display = 'none';
     const grid = document.getElementById('downloads-grid');
@@ -1547,15 +1603,20 @@ class Handler(BaseHTTPRequestHandler):
         params = dict(urllib.parse.parse_qsl(parsed.query))
 
         if path == "/" or path == "/index.html":
-            import config as _cfg
+            import config as _cfg, json as _json
             ey = _cfg.END_YEAR
             ay = _cfg.ALL_TIME_START
+            periods_json = _json.dumps([
+                {"name": n, "start": s, "end": e}
+                for n, s, e in _cfg.ANALYSIS_PERIODS
+            ])
             html = (HTML
-                .replace("__END_YEAR__",    str(ey))
-                .replace("__LAST10_START__", str(ey - 9))
-                .replace("__LAST5_START__",  str(ey - 4))
-                .replace("__LAST3_START__",  str(ey - 2))
-                .replace("__SPAN_YEARS__",   str(ey - ay + 1))
+                .replace("__END_YEAR__",     str(ey))
+                .replace("__LAST10_START__",  str(ey - 9))
+                .replace("__LAST5_START__",   str(ey - 4))
+                .replace("__LAST3_START__",   str(ey - 2))
+                .replace("__SPAN_YEARS__",    str(ey - ay + 1))
+                .replace("__PERIODS_JSON__",  periods_json)
             )
             self._send(200, "text/html", html.encode())
 
