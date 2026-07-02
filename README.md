@@ -76,7 +76,7 @@ The pipeline supports three ways to supply records:
 Export PMIDs from a PubMed search and save them one per line, then:
 
 ```bash
-python3 main.py --api-key YOUR_KEY --pmid-file pmids.txt
+python3 main.py --api-key YOUR_KEY --pmid-file pmids_expanded.txt
 ```
 
 ### Option B — PubMed query (fetch by search term)
@@ -102,10 +102,22 @@ python3 main.py --skip-fetch --skip-citations
 
 ## Running the Pipeline
 
+### Launch the web GUI
+
+```bash
+python3 gui.py
+```
+
+Opens a local app in your browser (date-range sliders, results tables, figures,
+and downloadable CSV/Excel). Non-technical users can just double-click
+`Start.command` instead (see Quick start).
+
+
+
 ### Full run (fetch + citations + analysis, ~30–50 min)
 
 ```bash
-python3 main.py --api-key YOUR_KEY --pmid-file pmids.txt
+python3 main.py --api-key YOUR_KEY --pmid-file pmids_expanded.txt
 ```
 
 Steps performed:
@@ -142,7 +154,7 @@ free API key as of 2026 (single-record lookups by DOI/PMID remain free).
 Useful for a fast first pass; citation columns will be zero or empty.
 
 ```bash
-python3 main.py --api-key YOUR_KEY --pmid-file pmids.txt --skip-citations
+python3 main.py --api-key YOUR_KEY --pmid-file pmids_expanded.txt --skip-citations
 ```
 
 ### Re-run analysis on cached data (no API calls, ~30 s)
@@ -160,7 +172,7 @@ python3 main.py --skip-fetch --skip-citations --period last_5yr
 ### Force a complete re-download
 
 ```bash
-python3 main.py --api-key YOUR_KEY --pmid-file pmids.txt --refresh
+python3 main.py --api-key YOUR_KEY --pmid-file pmids_expanded.txt --refresh
 ```
 
 ---
