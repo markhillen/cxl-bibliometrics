@@ -2,7 +2,21 @@
 
 A self-contained Python pipeline for bibliometric analysis of the
 corneal cross-linking (CXL) research literature. Pulls data from
-PubMed and CrossRef — no Web of Science or Scopus subscription required.
+PubMed for the corpus and OpenAlex for citations, countries, and institutions (with CrossRef retained as a cross-check) — no Web of Science or Scopus subscription required.
+
+---
+
+## Quick start (no technical knowledge needed)
+
+**Double-click `Start.command`** — it sets up everything (a private Python
+environment and the required packages, about a minute the first time) and opens
+the app in your browser. See `QUICKSTART.txt` for troubleshooting.
+
+**First run:** a fresh download does *not* include the dataset — it ships the
+PubMed ID list instead. On first use, open the app and click **Run Analysis**
+(PMID-file mode, with `pmids_expanded.txt`) to build the dataset. This takes a
+few minutes; an NCBI API key (below) just makes it faster. After that, results
+load instantly from the local cache.
 
 ---
 
@@ -76,6 +90,8 @@ or use the GUI's PubMed Query mode to test alternatives interactively.
 
 ### Option C — Cached records only (fastest, no network)
 
+> Note: a fresh download has no cache yet — run Option A once first.
+
 Once records have been downloaded, skip re-fetching entirely:
 
 ```bash
@@ -99,6 +115,27 @@ Steps performed:
 4. Citation counts from CrossRef (~25–40 min)
 5. Bibliometric analysis across all time windows
 6. Figures (PDF) + CSV tables + Excel workbook per period
+
+### OpenAlex hybrid enrichment (recommended)
+
+By default the pipeline can also use **OpenAlex** — a free, CC0-licensed index
+of works, authors, institutions, and citations — instead of CrossRef. OpenAlex
+resolves author affiliations to ROR institution IDs and clean country codes
+(fixing affiliation-string errors) and supplies citation counts, all keyed to
+our records by DOI/PMID.
+
+```bash
+# 1. fetch the corpus from PubMed (uses the included PMID list)
+python3 main.py --api-key YOUR_KEY --pmid-file pmids_expanded.txt --skip-citations
+# 2. enrich with OpenAlex (country + institution + citations)
+python3 openalex_enrich.py
+# 3. regenerate the analysis in hybrid mode
+python3 main.py --skip-fetch --skip-citations --use-openalex
+```
+
+`openalex_compare.py` prints a side-by-side of OpenAlex vs the current numbers.
+CrossRef counts are retained in parallel as a cross-check. OpenAlex requires a
+free API key as of 2026 (single-record lookups by DOI/PMID remain free).
 
 ### Skip CrossRef (~3–5 min total)
 
