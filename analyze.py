@@ -259,11 +259,14 @@ def country_collab_network(records: list[dict]) -> dict:
     for rec in records:
         countries_in_paper: set[str] = set()
         for a in rec.get("authors", []):
-            affils = a.get("affils", [])
-            if affils:
-                c = extract_country(affils)
-                if c != "Unknown":
-                    countries_in_paper.add(c)
+            # Prefer OpenAlex/ROR country when the hybrid overlay supplied it;
+            # fall back to affiliation-string parsing otherwise.
+            c = a.get("oa_country_name")
+            if not c:
+                affils = a.get("affils", [])
+                c = extract_country(affils) if affils else "Unknown"
+            if c and c != "Unknown":
+                countries_in_paper.add(c)
         for c in countries_in_paper:
             node_counts[c] += 1
         for c1, c2 in itertools.combinations(sorted(countries_in_paper), 2):

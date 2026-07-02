@@ -96,6 +96,9 @@ class Handler(BaseHTTPRequestHandler):
                 .replace("__LAST3_START__",   str(ey - 2))
                 .replace("__SPAN_YEARS__",    str(ey - ay + 1))
                 .replace("__PERIODS_JSON__",  periods_json)
+                .replace("__PROJECT_NAME__",  _cfg.PROJECT_NAME)
+                .replace("__BRAND_MAIN__",    _cfg.PROJECT_NAME.replace(" Bibliometrics", ""))
+                .replace("__PUBMED_QUERY_JS__", _json.dumps(_cfg.PUBMED_QUERY))
             )
             self._send(200, "text/html", html.encode())
 
@@ -293,7 +296,8 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(code)
         self.send_header("Content-Type", ct)
         self.send_header("Content-Length", str(len(body)))
-        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Origin",
+                         f"http://localhost:{self.server.server_address[1]}")
         self.end_headers()
         self.wfile.write(body)
 
@@ -556,8 +560,18 @@ def main():
     except ImportError:
         pass
 
-    server = HTTPServer(("127.0.0.1", PORT), Handler)
-    url    = f"http://localhost:{PORT}"
+    port = PORT
+    for _attempt in range(20):
+        try:
+            server = HTTPServer(("127.0.0.1", port), Handler)
+            break
+        except OSError:
+            port += 1
+    else:
+        print(f"ERROR: could not find a free port near {PORT}. "
+              "Close any other running copies and try again.")
+        sys.exit(1)
+    url    = f"http://localhost:{server.server_address[1]}"
 
     print(f"""
 ╔══════════════════════════════════════════════════╗

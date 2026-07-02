@@ -54,6 +54,9 @@ def main():
     parser.add_argument("--skip-fetch",     action="store_true", help="Use cached records only")
     parser.add_argument("--skip-citations", action="store_true", help="Skip CrossRef lookup")
     parser.add_argument("--skip-viz",       action="store_true", help="Skip chart generation")
+    parser.add_argument("--use-openalex",   action="store_true",
+                        help="Hybrid mode: overlay OpenAlex citations + ROR country "
+                             "(needs cache/openalex_cache.json from openalex_enrich.py)")
     parser.add_argument("--period",         default="",
                         help="Run a single period only (e.g. all_time, last_10yr)")
     parser.add_argument("--start-year",     type=int, default=None,
@@ -176,6 +179,21 @@ def main():
         print("[main] Citations enriched and cached")
     else:
         print("[main] Skipped (--skip-citations)")
+
+    # ── Step 4.5: OpenAlex hybrid overlay ─────────────────────────────────────
+    if args.use_openalex:
+        print(f"\n[4.5] Applying OpenAlex hybrid overlay …")
+        from openalex_integrate import overlay, load_cache, author_disagreements
+        oa = load_cache()
+        if not oa:
+            print("[main] WARNING: --use-openalex set but cache/openalex_cache.json "
+                  "not found. Run: python3 openalex_enrich.py")
+        else:
+            records, _ = overlay(records, oa)
+            report = author_disagreements(records)
+            rep_path = pathlib.Path(config.OUTPUT_DIR) / "openalex_author_disagreements.md"
+            rep_path.write_text(report)
+            print(f"[main] Author-disagreement report: {rep_path}")
 
     # ── Steps 5–8: Multi-period analysis, viz, reports ────────────────────────
     print(f"\n[5–8/8] Running multi-period analysis …")

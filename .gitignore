@@ -1,9 +1,15 @@
 __pycache__/
-cache/records.json
-cache/records_disambig.json
-cache/records_cited.json
-cache/citation_cache.json
-data/analysis.json
-outputs/
 *.pyc
 .DS_Store
+.venv/
+venv/
+.claude/
+# regenerable data / large artifacts — reproduce via the included PMID list
+cache/
+output/
+outputs/
+data/analysis.json
+data/*/cache/
+data/*/output/
+*.tmp
+*.json.tmp

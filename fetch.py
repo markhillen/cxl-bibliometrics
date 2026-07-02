@@ -36,27 +36,72 @@ def _get(url: str, retries: int = config.MAX_RETRIES) -> str:
     raise RuntimeError(f"Failed to fetch: {url[:120]}")
 
 
-def esearch(query: str, retmax: int = 100_000, api_key: str = "") -> list[str]:
-    """Return list of PMIDs matching query."""
+def esearch(query: str, api_key: str = "") -> tuple[str, str, int]:
+    """
+    Post query to PubMed history server.
+    Returns (WebEnv, query_key, total_count).
+    Using usehistory=y avoids the 10 000-PMID cap on direct ID retrieval.
+    """
     params = {
-        "db": "pubmed",
-        "term": query,
-        "retmax": retmax,
-        "retmode": "json",
-        "usehistory": "n",
+        "db":         "pubmed",
+        "term":       query,
+        "retmax":     "0",
+        "retmode":    "json",
+        "usehistory": "y",
     }
     if api_key:
         params["api_key"] = api_key
     url = BASE_URL + "esearch.fcgi?" + urllib.parse.urlencode(params)
-    print(f"[esearch] Querying PubMed …")
-    data = json.loads(_get(url))
-    pmids = data["esearchresult"]["idlist"]
-    total = int(data["esearchresult"]["count"])
-    print(f"[esearch] Found {total} total records; retrieved {len(pmids)} PMIDs")
-    if total > retmax:
-        print(f"[esearch] WARNING: corpus ({total}) exceeds retmax ({retmax}) — "
-              f"{total - len(pmids)} records silently dropped. Increase retmax or use a PMID file.")
-    return pmids
+    print("[esearch] Querying PubMed …")
+    data    = json.loads(_get(url))
+    result  = data["esearchresult"]
+    total   = int(result["count"])
+    webenv  = result["webenv"]
+    qkey    = result["querykey"]
+    print(f"[esearch] Found {total} records (WebEnv history server, query_key={qkey})")
+    return webenv, qkey, total
+
+
+# NCBI rejects efetch retstart >= this value even with usehistory=y.
+_NCBI_EFETCH_LIMIT = 9_999
+
+
+def _query_for_years(start_yr: int, end_yr: int) -> str:
+    """Rebuild PUBMED_QUERY with a narrower date window for chunked fetching."""
+    base = config.PUBMED_QUERY.rsplit(' AND (', 1)[0]
+    return base + f' AND ("{start_yr}/01/01"[PDAT] : "{end_yr}/12/31"[PDAT])'
+
+
+def efetch_from_history(webenv: str, query_key: str, total: int,
+                        api_key: str = "") -> list[dict]:
+    """Fetch all records stored on the NCBI history server in batches."""
+    records    = []
+    batch_size = config.BATCH_SIZE
+    delay      = config.REQUEST_DELAY if api_key else 0.34
+
+    for retstart in range(0, total, batch_size):
+        end = min(retstart + batch_size, total)
+        pct = end / total * 100
+        print(f"  fetching records {retstart+1}–{end} / {total}  ({pct:.1f}%)", end="\r")
+
+        params = {
+            "db":        "pubmed",
+            "query_key": query_key,
+            "WebEnv":    webenv,
+            "retstart":  retstart,
+            "retmax":    batch_size,
+            "rettype":   "xml",
+            "retmode":   "xml",
+        }
+        if api_key:
+            params["api_key"] = api_key
+        url = BASE_URL + "efetch.fcgi?" + urllib.parse.urlencode(params)
+        xml_text = _get(url)
+        records.extend(_parse_pubmed_xml(xml_text))
+        time.sleep(delay)
+
+    print(f"\n[efetch] Parsed {len(records)} records from history server")
+    return records
 
 
 def efetch_batch(pmids: list[str], api_key: str = "") -> list[dict]:
@@ -409,16 +454,41 @@ def run_fetch(api_key: str = "", force_refresh: bool = False) -> list[dict]:
         return records
 
     api_key = api_key or config.NCBI_API_KEY
-    pmids = esearch(config.PUBMED_QUERY, api_key=api_key)
+    webenv, query_key, total = esearch(config.PUBMED_QUERY, api_key=api_key)
 
-    # Cache PMIDs
     pmid_path = pathlib.Path(config.CACHE_DIR) / "pmids.json"
     with open(pmid_path, "w") as f:
-        json.dump(pmids, f)
-    print(f"[fetch] Saved {len(pmids)} PMIDs to {pmid_path}")
+        json.dump({"total": total, "method": "usehistory"}, f)
 
-    records = efetch_batch(pmids, api_key=api_key)
-    records = filter_records(records)
+    if total <= _NCBI_EFETCH_LIMIT:
+        print(f"[fetch] {total} records; paginating via history server …")
+        raw = efetch_from_history(webenv, query_key, total, api_key=api_key)
+    else:
+        print(f"[fetch] {total} records > {_NCBI_EFETCH_LIMIT} limit; "
+              f"fetching by decade …")
+        raw   = []
+        seen  = set()
+        start = config.ALL_TIME_START
+        while start <= config.END_YEAR:
+            end     = min(start + 9, config.END_YEAR)
+            chunk_q = _query_for_years(start, end)
+            wenv, qk, n = esearch(chunk_q, api_key=api_key)
+            if n:
+                chunk = efetch_from_history(wenv, qk, n, api_key=api_key)
+                added = 0
+                for rec in chunk:
+                    pmid = rec.get("pmid", "")
+                    if pmid and pmid not in seen:
+                        seen.add(pmid)
+                        raw.append(rec)
+                        added += 1
+                    elif not pmid:
+                        raw.append(rec)
+                print(f"  [{start}–{end}] {n} found, {added} added after dedup")
+            start = end + 1
+        print(f"[fetch] Chunked fetch complete: {len(raw)} unique records")
+
+    records = filter_records(raw)
 
     tmp = cache_path.with_suffix(".tmp")
     with open(tmp, "w") as f:
