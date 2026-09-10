@@ -13,3 +13,4 @@ data/*/cache/
 data/*/output/
 *.tmp
 *.json.tmp
+checkpoints/

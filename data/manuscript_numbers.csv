@@ -1,0 +1,64 @@
+metric,manuscript_value,location
+n_records,2853,Abstract; Results Temporal
+n_journals,252,Abstract; Results Journal Distribution
+n_countries,72,Abstract; Results Geographic
+peak_year,2021,Abstract; Results Temporal
+peak_count,236,Abstract; Results Temporal
+year.2002,1,Abstract (single publication in 2002)
+year.2007,19,Results Temporal
+year.2013,177,Results Temporal
+year.2025,206,Figure 1
+total_citations,101412,Methods; Results Citation Impact; Table 5
+journal.Cornea.n,307,Abstract; Table 1
+journal.Cornea.pct,10.8,Abstract; Table 1
+journal.J Refract Surg.n,242,Abstract; Table 1
+journal.J Cataract Refract Surg.n,236,Abstract; Table 1
+journal.Am J Ophthalmol.n,67,Table 1
+journal.Am J Ophthalmol.pct,2.3,Table 1 (Figure 2 says 2.4)
+country.United States.n,308,Abstract; Table 2
+country.China.n,238,Abstract; Table 2
+country.Turkey.n,187,Table 2
+country.India.n,163,Table 2
+country.Italy.n,161,Table 2
+country.Germany.n,160,Table 2
+country.United Kingdom.n,147,Table 2
+country.Switzerland.n,125,Table 2
+country.Iran.n,104,Table 2
+country.Greece.n,102,Table 2
+country.Unknown.n,235,Results Geographic (8.2% unresolved)
+country.Germany.cites,14510,SDC Table 1
+country.Switzerland.per_million,14.2,Results Per-Capita; Discussion
+last5.n_records,961,Table 5
+last5.country.China.n,121,Abstract; Results Geographic
+last5.country.United States.n,117,Abstract; Results Geographic
+author.Hafezi F.n,130,Abstract; Table 4
+author.Hafezi F.first,25,Table 4
+author.Hafezi F.last,55,Table 4
+author.Hafezi F.cites,6903,Table 4
+author.Kymionis GD.n,72,Table 4
+author.Mazzotta C.n,47,Table 4
+author.Spoerl E.n,41,Table 4
+author.Spoerl E.cites,10615,Table 4; Results Citation Impact
+author.Seiler T.n,34,Table 4 (rank 13)
+author.Seiler T.cites,10839,Table 4
+author.Wollensak G.n,23,Table 4
+author.Wollensak G.cites,8571,Table 4
+author.Torres-Netto EA.n,37,Table 4
+author.Kanellopoulos AJ.n,40,Table 4
+n_authors_ge3,1170,Results Author Productivity
+institution.Wenzhou Medical University.n,32,Abstract; Table 3
+institution.Tehran University of Medical Sciences.n,30,Abstract; Table 3
+institution.Laservision Institute Athens.n,29,Table 3
+institution.University of Crete.n,29,Table 3
+institution.ELZA Institute.n,28,Table 3
+institution.University of Zurich.n,28,Table 3
+institution.IROC Zurich.n,22,Table 3
+institution.Moorfields Eye Hospital.n,21,Table 3
+keyword.keratoconus.n,723,Results Keywords
+keyword.riboflavin.n,134,Results Keywords
+keyword.corneal ectasia.n,99,Results Keywords
+keyword.infectious keratitis.n,90,Results Keywords
+keyword.accelerated CXL.n,36,Results Keywords
+keyword.PACK-CXL.n,31,Results Keywords
+pubtype.RCT,121,Results Publication Types; Conclusion (4.2%)
+pubtype.Review,327,Results Publication Types
