@@ -1,0 +1,14 @@
+author_id,why
+Hafezi F,rank 1; KNOWN_DISTINCT_AFFIL separates the Tehran plastic surgeon of the same name
+Hafezi NL,KNOWN_DISTINCT from Hafezi F
+Seiler T,Theo Seiler senior (KNOWN_DISTINCT from Seiler TG)
+Seiler TG,Theo G. Seiler junior
+Zhou X (Fudan),common-surname display suffix (automatic)
+Kymionis GD,rank 2
+Mazzotta C,rank 3
+Kanellopoulos AJ,OpenAlex splits into 3 IDs
+Randleman JB,OpenAlex splits into 2 IDs
+Shetty R,OpenAlex splits into 6 IDs
+Torres-Netto EA,name-variant merge (Torres-Netto E / Netto EAT)
+Meek KM,name-variant merge
+Hillen M,manuscript author

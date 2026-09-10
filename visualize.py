@@ -30,8 +30,14 @@ def _out_dir() -> pathlib.Path:
 # ── Style ─────────────────────────────────────────────────────────────────────
 plt.rcParams.update({
     "figure.dpi":        150,
-    "font.family":       "DejaVu Sans",
-    "font.size":         10,
+    "font.family":       "sans-serif",
+    "font.sans-serif":   ["Arial", "Liberation Sans", "Helvetica", "DejaVu Sans"],
+    "font.size":         8,
+    "axes.titlesize":    9,
+    "axes.labelsize":    8,
+    "legend.fontsize":   7,
+    "pdf.fonttype":      42,          # embed TrueType so text stays editable
+    "ps.fonttype":       42,
     "axes.spines.top":   False,
     "axes.spines.right": False,
     "axes.grid":         True,
@@ -43,12 +49,27 @@ PALETTE = ["#2C6FAC", "#E05C1B", "#3A9E6B", "#9B59B6",
            "#E8A020", "#16A085", "#C0392B", "#2980B9"]
 
 
+FIG_MAX_WIDTH_IN = getattr(config, "FIG_MAX_WIDTH_IN", 7.0)
+
+
+def _cite_label(prefix: str = "Total citations") -> str:
+    return f"{prefix} ({getattr(config, 'CITATION_SOURCE_LABEL', 'OpenAlex')})"
+
+
+def _panel_letter(ax, letter: str):
+    ax.text(-0.02, 1.04, letter, transform=ax.transAxes, fontsize=10, fontweight="bold",
+            va="bottom", ha="right")
+
+
 def _save(fig, name: str):
     # Replace extension with configured format
     fmt  = getattr(config, "FIGURE_FORMAT", "pdf")
     stem = pathlib.Path(name).stem
     fname = f"{stem}.{fmt}"
     path  = _out_dir() / fname
+    w, h = fig.get_size_inches()
+    if w > FIG_MAX_WIDTH_IN + 0.01:
+        print(f"  [warn] {fname}: figure is {w:.1f} in wide; journal maximum is {FIG_MAX_WIDTH_IN} in")
     kwargs = {"bbox_inches": "tight"}
     if fmt == "png":
         kwargs["dpi"] = 300           # high-dpi raster only
@@ -63,32 +84,41 @@ def _save(fig, name: str):
 # ─────────────────────────────────────────────────────────────────────────────
 
 def plot_temporal(temporal: dict):
+    """Fig 1. A: annual publications (bars) + 3-yr moving average (solid line)
+    with total citations received by that year's papers on a right axis.
+    B: cumulative publications."""
     years  = temporal["years"]
     counts = temporal["counts"]
     cumul  = temporal["cumulative"]
     mavg   = temporal["moving_avg"]
-    cites  = temporal["citations"]
+    cites  = temporal.get("citations") or []
 
-    # Panel 1: annual + moving average + cumulative
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8), sharex=True)
-    fig.suptitle("Keratoconus & Corneal Ectasia Publications Over Time", fontsize=14, fontweight="bold")
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(7, 6), sharex=True,
+                                   gridspec_kw={"height_ratios": [3, 2]})
+    fig.suptitle("Corneal cross-linking publications, "
+                 f"{config.ALL_TIME_START}–{config.END_YEAR}", fontsize=10, fontweight="bold")
 
-    ax1.bar(years, counts, color=PALETTE[0], alpha=0.7, label="Annual publications")
-    ax1.plot(years, mavg, color=PALETTE[1], linewidth=2.5,
-             marker="o", markersize=4, label="3-yr moving average")
+    b1 = ax1.bar(years, counts, color=PALETTE[0], alpha=0.75, label="Publications per year")
+    l1, = ax1.plot(years, mavg, color=PALETTE[1], linewidth=2, marker="o", markersize=3,
+                   label="3-year moving average")
     ax1.set_ylabel("Publications per year")
-    ax1.legend(fontsize=9)
-
-    ax2b = ax2.twinx()
-    ax2.bar(years, cumul, color=PALETTE[2], alpha=0.6, label="Cumulative publications")
+    handles = [b1, l1]
     if any(cites):
-        ax2b.plot(years, cites, color=PALETTE[1], linewidth=2,
-                  marker="s", markersize=4, label="Total citations")
-        ax2b.set_ylabel("Total citations (CrossRef)", color=PALETTE[1])
-        ax2b.tick_params(axis="y", colors=PALETTE[1])
+        ax1b = ax1.twinx()
+        l2, = ax1b.plot(years, cites, color=PALETTE[2], linewidth=1.6, marker="s", markersize=3,
+                        linestyle="-", label=_cite_label("Citations received by that year's papers"))
+        ax1b.set_ylabel(_cite_label("Citations"), color=PALETTE[2])
+        ax1b.tick_params(axis="y", colors=PALETTE[2])
+        ax1b.spines["right"].set_visible(True)
+        ax1b.grid(False)
+        handles.append(l2)
+    ax1.legend(handles, [h.get_label() for h in handles], loc="upper left")
+    _panel_letter(ax1, "A")
+
+    ax2.bar(years, cumul, color=PALETTE[3], alpha=0.65)
     ax2.set_ylabel("Cumulative publications")
     ax2.set_xlabel("Year")
-    ax2.legend(loc="upper left", fontsize=9)
+    _panel_letter(ax2, "B")
 
     plt.tight_layout()
     _save(fig, "fig1_temporal_trends.pdf")
@@ -105,14 +135,14 @@ def plot_journals(journals: list[dict], top_n: int = None):
     counts = [r["count"] for r in top]
     pcts   = [r["percentage"] for r in top]
 
-    fig, ax = plt.subplots(figsize=(10, max(6, top_n * 0.35)))
+    fig, ax = plt.subplots(figsize=(7, max(4.5, top_n * 0.28)))
     y = range(len(labels))
     bars = ax.barh(list(y), counts, color=PALETTE[0], alpha=0.8)
     ax.set_yticks(list(y))
-    ax.set_yticklabels(labels, fontsize=9)
+    ax.set_yticklabels(labels, fontsize=7.5)
     ax.invert_yaxis()
     ax.set_xlabel("Number of publications")
-    ax.set_title(f"Top {top_n} Journals Publishing Keratoconus Research", fontweight="bold")
+    ax.set_title(f"Top {top_n} journals publishing corneal cross-linking research", fontweight="bold")
 
     for bar, pct in zip(bars, pcts):
         ax.text(bar.get_width() + counts[0] * 0.01, bar.get_y() + bar.get_height() / 2,
@@ -126,92 +156,64 @@ def plot_journals(journals: list[dict], top_n: int = None):
 # 3. Top countries
 # ─────────────────────────────────────────────────────────────────────────────
 
-def plot_countries(countries: list[dict], top_n: int = None):
-    top_n = top_n or config.TOP_N_COUNTRIES
+def plot_countries(countries: list[dict], top_n: int = 15):
+    """Fig 3, 2×2: A volume, B total citations, C median citations per paper,
+    D publications per million population."""
     top = [c for c in countries if c["country"] != "Unknown"][:top_n]
-
     labels  = [r["country"] for r in top]
     counts  = [r["count"] for r in top]
-    cites   = [r["citations"] for r in top]
-    ratios  = [r["citations"] / r["count"] if r["count"] else 0 for r in top]
-    # Per-capita: only countries with population data
+    cites   = [r.get("citations", 0) or 0 for r in top]
+    medians = [r.get("citations_median") for r in top]
     percap  = [r.get("pubs_per_million") for r in top]
+    has_cites = any(cites)
     has_percap = any(v is not None for v in percap)
 
-    has_cites = any(cites)
-    ncols = (1 + int(has_cites) * 2 + int(has_percap))
-    fig, axes = plt.subplots(1, ncols, figsize=(6 * ncols, max(6, top_n * 0.33)))
-    if ncols == 1:
-        axes = [axes]
-    fig.suptitle(f"Top {top_n} Countries in Keratoconus Research", fontsize=13, fontweight="bold")
+    fig, axes = plt.subplots(2, 2, figsize=(7, 8.5))
+    axes = axes.ravel()
+    fig.suptitle(f"Top {top_n} first-author countries in corneal cross-linking research",
+                 fontsize=10, fontweight="bold")
+    y = list(range(len(labels)))
 
-    y = range(len(labels))
+    axes[0].barh(y, counts, color=PALETTE[0], alpha=0.85)
+    axes[0].set_yticks(y); axes[0].set_yticklabels(labels, fontsize=7)
+    axes[0].invert_yaxis(); axes[0].set_xlabel("Publications (first author)")
+    axes[0].set_title("Publication volume"); _panel_letter(axes[0], "A")
 
-    # Panel 1: publication count (sorted by volume — default order)
-    axes[0].barh(list(y), counts, color=PALETTE[0], alpha=0.85)
-    axes[0].set_yticks(list(y)); axes[0].set_yticklabels(labels, fontsize=9)
-    axes[0].invert_yaxis(); axes[0].set_xlabel("Publications")
-    axes[0].set_title("Publication volume")
-
-    ax_idx = 1
     if has_cites:
-        # Panel 2: total citations (re-sorted)
-        cite_order = sorted(range(len(top)), key=lambda i: cites[i], reverse=True)
-        axes[ax_idx].barh(list(y), [cites[i] for i in cite_order], color=PALETTE[2], alpha=0.85)
-        axes[ax_idx].set_yticks(list(y))
-        axes[ax_idx].set_yticklabels([labels[i] for i in cite_order], fontsize=9)
-        axes[ax_idx].invert_yaxis(); axes[ax_idx].set_xlabel("Total citations (CrossRef)")
-        axes[ax_idx].set_title("Total citation impact")
-        ax_idx += 1
+        order = sorted(range(len(top)), key=lambda i: cites[i], reverse=True)
+        axes[1].barh(y, [cites[i] for i in order], color=PALETTE[2], alpha=0.85)
+        axes[1].set_yticks(y); axes[1].set_yticklabels([labels[i] for i in order], fontsize=7)
+        axes[1].invert_yaxis(); axes[1].set_xlabel(_cite_label())
+        axes[1].set_title("Total citations"); _panel_letter(axes[1], "B")
 
-        # Panel 3: citation efficiency (re-sorted)
-        ratio_order = sorted(range(len(top)), key=lambda i: ratios[i], reverse=True)
-        colors_r = [PALETTE[3] if ratios[i] > np.median(ratios) else PALETTE[4]
-                    for i in ratio_order]
-        bars = axes[ax_idx].barh(list(y), [ratios[i] for i in ratio_order],
-                                  color=colors_r, alpha=0.85)
-        axes[ax_idx].set_yticks(list(y))
-        axes[ax_idx].set_yticklabels([labels[i] for i in ratio_order], fontsize=9)
-        axes[ax_idx].invert_yaxis()
-        axes[ax_idx].set_xlabel("Mean citations per publication")
-        axes[ax_idx].set_title("Citation efficiency (above median = darker)")
-        for bar, i in zip(bars, ratio_order):
-            axes[ax_idx].text(bar.get_width() + 0.5, bar.get_y() + bar.get_height() / 2,
-                              f"{ratios[i]:.1f}", va="center", fontsize=7.5)
-        ax_idx += 1
+        vals = [m if m is not None else 0 for m in medians]
+        order = sorted(range(len(top)), key=lambda i: vals[i], reverse=True)
+        bars = axes[2].barh(y, [vals[i] for i in order], color=PALETTE[3], alpha=0.85)
+        axes[2].set_yticks(y); axes[2].set_yticklabels([labels[i] for i in order], fontsize=7)
+        axes[2].invert_yaxis(); axes[2].set_xlabel("Median citations per publication")
+        axes[2].set_title("Citations per publication (median)"); _panel_letter(axes[2], "C")
+        for bar, i in zip(bars, order):
+            axes[2].text(bar.get_width() + 0.3, bar.get_y() + bar.get_height() / 2,
+                         f"{vals[i]:.0f}", va="center", fontsize=6)
+    else:
+        axes[1].axis("off"); axes[2].axis("off")
 
     if has_percap:
-        # Panel 4: publications per million population (re-sorted; skip unknowns)
-        pc_order = sorted(
-            [i for i in range(len(top)) if percap[i] is not None],
-            key=lambda i: percap[i], reverse=True
-        )
-        # Include all countries; those without data plotted at 0 with hatching
-        pc_vals   = [percap[i] if percap[i] is not None else 0 for i in range(len(top))]
-        pc_sorted = sorted(range(len(top)),
-                           key=lambda i: (percap[i] or 0), reverse=True)
-        colors_pc = [PALETTE[3] if (percap[i] or 0) > np.median([v for v in percap if v])
-                     else PALETTE[4] for i in pc_sorted]
-        bars_pc = axes[ax_idx].barh(
-            list(range(len(top))),
-            [pc_vals[i] for i in pc_sorted],
-            color=colors_pc, alpha=0.85
-        )
-        # Hatch bars with no population data
-        for bar, i in zip(bars_pc, pc_sorted):
+        pc = [v if v is not None else 0 for v in percap]
+        order = sorted(range(len(top)), key=lambda i: pc[i], reverse=True)
+        bars = axes[3].barh(y, [pc[i] for i in order], color=PALETTE[4], alpha=0.85)
+        for bar, i in zip(bars, order):
             if percap[i] is None:
                 bar.set_hatch("///")
-        axes[ax_idx].set_yticks(list(range(len(top))))
-        axes[ax_idx].set_yticklabels([labels[i] for i in pc_sorted], fontsize=9)
-        axes[ax_idx].invert_yaxis()
-        axes[ax_idx].set_xlabel("Publications per million population")
-        axes[ax_idx].set_title("Per-capita output\n(2024 UN population estimates)")
-        for bar, i in zip(bars_pc, pc_sorted):
+        axes[3].set_yticks(y); axes[3].set_yticklabels([labels[i] for i in order], fontsize=7)
+        axes[3].invert_yaxis(); axes[3].set_xlabel("Publications per million population")
+        axes[3].set_title("Per-capita output (2024 population)"); _panel_letter(axes[3], "D")
+        for bar, i in zip(bars, order):
             if percap[i] is not None:
-                axes[ax_idx].text(
-                    bar.get_width() + 0.05, bar.get_y() + bar.get_height() / 2,
-                    f"{percap[i]:.1f}", va="center", fontsize=7.5
-                )
+                axes[3].text(bar.get_width() + 0.1, bar.get_y() + bar.get_height() / 2,
+                             f"{percap[i]:.1f}", va="center", fontsize=6)
+    else:
+        axes[3].axis("off")
 
     plt.tight_layout()
     _save(fig, "fig3_top_countries.pdf")
@@ -221,58 +223,49 @@ def plot_countries(countries: list[dict], top_n: int = None):
 # 4. Top authors
 # ─────────────────────────────────────────────────────────────────────────────
 
-def plot_authors(authors: list[dict], top_n: int = 25):
+def plot_authors(authors: list[dict], top_n: int = 20):
+    """Fig 4, 1×3: A publications (first/last overlaid), B total citations,
+    C median citations per publication."""
     top    = authors[:top_n]
     labels = [r["author_id"] for r in top]
     pubs   = [r["pub_count"] for r in top]
     first  = [r["first_author_count"] for r in top]
     last   = [r.get("last_author_count", 0) or 0 for r in top]
     cites  = [r.get("citation_total", 0) or 0 for r in top]
-    ratios = [c / p if p else 0 for c, p in zip(cites, pubs)]
-
+    meds   = [r.get("citations_median") for r in top]
     has_cites = any(cites)
     ncols = 3 if has_cites else 1
-    fig, axes = plt.subplots(1, ncols, figsize=(7 * ncols, max(6, top_n * 0.35)))
+    fig, axes = plt.subplots(1, ncols, figsize=(7, max(5, top_n * 0.3)))
     if ncols == 1:
         axes = [axes]
-    fig.suptitle(f"Top {top_n} Most Productive Authors — Keratoconus Research", fontsize=13, fontweight="bold")
-
+    fig.suptitle(f"Top {top_n} most productive authors in corneal cross-linking research",
+                 fontsize=10, fontweight="bold")
     y = np.arange(len(labels))
 
-    # Panel 1: total pubs, with first- and last-author overlaid
-    axes[0].barh(y,       pubs,  color=PALETTE[0], alpha=0.75, label="Total")
-    axes[0].barh(y - 0.18, first, height=0.35, color=PALETTE[1], alpha=0.9,  label="First-author")
-    axes[0].barh(y + 0.18, last,  height=0.35, color=PALETTE[3], alpha=0.9,  label="Last-author")
-    axes[0].set_yticks(y); axes[0].set_yticklabels(labels, fontsize=9)
+    axes[0].barh(y, pubs, color=PALETTE[0], alpha=0.75, label="All positions")
+    axes[0].barh(y - 0.18, first, height=0.35, color=PALETTE[1], alpha=0.9, label="First author")
+    axes[0].barh(y + 0.18, last, height=0.35, color=PALETTE[3], alpha=0.9, label="Last author")
+    axes[0].set_yticks(y); axes[0].set_yticklabels(labels, fontsize=6.5)
     axes[0].invert_yaxis(); axes[0].set_xlabel("Publications")
-    axes[0].set_title("Publication volume\n(first- and last-authorship overlaid)")
-    axes[0].legend(fontsize=8, loc="lower right")
+    axes[0].set_title("Publications"); axes[0].legend(fontsize=6, loc="lower right")
+    _panel_letter(axes[0], "A")
 
     if has_cites:
-        # Panel 2: total citations — re-sorted
-        cite_order = sorted(range(len(top)), key=lambda i: cites[i], reverse=True)
-        axes[1].barh(list(range(len(top))), [cites[i] for i in cite_order],
-                     color=PALETTE[2], alpha=0.85)
-        axes[1].set_yticks(list(range(len(top))))
-        axes[1].set_yticklabels([labels[i] for i in cite_order], fontsize=9)
-        axes[1].invert_yaxis(); axes[1].set_xlabel("Total citations (CrossRef)")
-        axes[1].set_title("Total citation impact")
+        order = sorted(range(len(top)), key=lambda i: cites[i], reverse=True)
+        axes[1].barh(y, [cites[i] for i in order], color=PALETTE[2], alpha=0.85)
+        axes[1].set_yticks(y); axes[1].set_yticklabels([labels[i] for i in order], fontsize=6.5)
+        axes[1].invert_yaxis(); axes[1].set_xlabel(_cite_label())
+        axes[1].set_title("Total citations"); _panel_letter(axes[1], "B")
 
-        # Panel 3: citation efficiency — re-sorted
-        ratio_order = sorted(range(len(top)), key=lambda i: ratios[i], reverse=True)
-        med = float(np.median(ratios))
-        colors_r = [PALETTE[3] if ratios[i] >= med else PALETTE[4]
-                    for i in ratio_order]
-        bars = axes[2].barh(list(range(len(top))), [ratios[i] for i in ratio_order],
-                             color=colors_r, alpha=0.85)
-        axes[2].set_yticks(list(range(len(top))))
-        axes[2].set_yticklabels([labels[i] for i in ratio_order], fontsize=9)
-        axes[2].invert_yaxis()
-        axes[2].set_xlabel("Mean citations per publication")
-        axes[2].set_title("Citation efficiency (above median = darker)")
-        for bar, i in zip(bars, ratio_order):
-            axes[2].text(bar.get_width() + 0.5, bar.get_y() + bar.get_height() / 2,
-                         f"{ratios[i]:.1f}", va="center", fontsize=7)
+        vals = [m if m is not None else 0 for m in meds]
+        order = sorted(range(len(top)), key=lambda i: vals[i], reverse=True)
+        bars = axes[2].barh(y, [vals[i] for i in order], color=PALETTE[3], alpha=0.85)
+        axes[2].set_yticks(y); axes[2].set_yticklabels([labels[i] for i in order], fontsize=6.5)
+        axes[2].invert_yaxis(); axes[2].set_xlabel("Median citations per publication")
+        axes[2].set_title("Citations per publication (median)"); _panel_letter(axes[2], "C")
+        for bar, i in zip(bars, order):
+            axes[2].text(bar.get_width() + 0.3, bar.get_y() + bar.get_height() / 2,
+                         f"{vals[i]:.0f}", va="center", fontsize=5.5)
 
     plt.tight_layout()
     _save(fig, "fig4_top_authors.pdf")
@@ -290,14 +283,17 @@ def plot_keywords(kw_data: dict, top_n: int = None, title_suffix: str = ""):
     labels = [k for k, _ in top_kws]
     counts = [v for _, v in top_kws]
 
-    fig, ax = plt.subplots(figsize=(10, max(6, top_n * 0.28)))
+    fig, ax = plt.subplots(figsize=(7, max(5, top_n * 0.18)))
     y = range(len(labels))
     ax.barh(list(y), counts, color=PALETTE[3], alpha=0.75)
     ax.set_yticks(list(y))
-    ax.set_yticklabels(labels, fontsize=8.5)
+    ax.set_yticklabels(labels, fontsize=6.5)
     ax.invert_yaxis()
-    ax.set_xlabel("Frequency")
-    ax.set_title(f"Top {top_n} Keywords {title_suffix}", fontweight="bold")
+    ax.set_xlabel("Records carrying the term")
+    src = kw_data.get("source", "")
+    cov = (kw_data.get("coverage") or {}).get("overall_pct")
+    sub = f" — {cov}% of records carry author keywords" if (src == "author" and cov is not None) else ""
+    ax.set_title(f"Top {top_n} normalised keywords {title_suffix}{sub}", fontweight="bold")
     plt.tight_layout()
     safe = title_suffix.replace("(","").replace(")","").replace(" ","_").lower()
     fname = f"fig5_{safe}.pdf" if title_suffix else "fig5_keywords.pdf"
@@ -329,7 +325,7 @@ def plot_pubtypes(pub_types: dict):
     pairs = sorted(zip(sizes, labels), reverse=True)
     sizes, labels = zip(*pairs) if pairs else ([], [])
 
-    fig, ax = plt.subplots(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(6, 4.5))
     colors = cm.Set3(np.linspace(0, 1, len(labels)))
     wedges, texts, autotexts = ax.pie(
         sizes, labels=None, autopct="%1.1f%%",
@@ -364,7 +360,7 @@ def plot_country_collab(country_net: dict, top_n: int = 20):
             matrix[i][j] = weight
             matrix[j][i] = weight
 
-    fig, ax = plt.subplots(figsize=(12, 10))
+    fig, ax = plt.subplots(figsize=(7, 6.5))
     im = ax.imshow(np.log1p(matrix), cmap="YlOrRd", aspect="auto")
     ax.set_xticks(range(n))
     ax.set_yticks(range(n))
@@ -389,90 +385,45 @@ def plot_country_collab(country_net: dict, top_n: int = 20):
 # ─────────────────────────────────────────────────────────────────────────────
 
 def plot_keyword_trends(records: list[dict], top_keywords: list[str], n: int = 10):
-    # ── Keyword normalisation must match analyze.py synonym map ──────────────
-    # Import the same cleaner so trend lookups find merged terms correctly
-    try:
-        from analyze import _clean_keyword, _KW_SYNONYMS
-    except ImportError:
-        def _clean_keyword(k): return k.lower().strip().rstrip(".,;:")
-
+    """Suppl. Fig: A share (%) of keyword-bearing records carrying each of the
+    top-n normalised author keywords, per year; B share of all records that
+    carry any author keyword (the denominator, which rises from 0% to >60%)."""
+    import keywords as _kw
     kws = top_keywords[:n]
-    year_kw: dict[int, dict[str, int]] = collections.defaultdict(
-        lambda: collections.defaultdict(int))
-
-    for rec in records:
-        try:
-            yr = int(rec.get("year", 0))
-        except (ValueError, TypeError):
-            continue
-        if not (config.START_YEAR <= yr <= config.END_YEAR):
-            continue
-        # Apply the same synonym cleaning as the analysis step
-        raw_kws = rec.get("keywords", []) + rec.get("mesh", [])
-        cleaned_set = {ck for k in raw_kws
-                       if k.strip()
-                       for ck in [_clean_keyword(k)]
-                       if ck is not None}
-        for kw in kws:
-            if kw in cleaned_set:
-                year_kw[yr][kw] += 1
-
-    years = sorted(year_kw.keys())
+    tr = _kw.trends([r for r in records
+                     if config.START_YEAR <= (int(r.get("year") or 0) if str(r.get("year") or "").isdigit() else 0) <= config.END_YEAR],
+                    kws, source="author")
+    years = tr["years"]
+    # start where the denominator is meaningful
+    first = next((i for i, d in enumerate(tr["denominator"]) if d >= 20), 0)
+    years = years[first:]
     if not years:
         return
-
-    # ── Visually distinct style assignments ──────────────────────────────────
-    # 10 colours chosen to be maximally distinct (colourblind-safe set +
-    # supplementary colours), paired with 4 line styles so every line is
-    # uniquely identifiable by colour AND dash pattern.
-    DISTINCT_COLORS = [
-        "#1f77b4",  # steel blue
-        "#d62728",  # brick red
-        "#2ca02c",  # forest green
-        "#ff7f0e",  # orange
-        "#9467bd",  # purple
-        "#8c564b",  # brown
-        "#e377c2",  # pink
-        "#17becf",  # teal
-        "#bcbd22",  # olive/yellow-green
-        "#7f7f7f",  # mid grey
-    ]
+    DISTINCT_COLORS = ["#1f77b4", "#d62728", "#2ca02c", "#ff7f0e", "#9467bd",
+                       "#8c564b", "#e377c2", "#17becf", "#bcbd22", "#7f7f7f"]
     LINE_STYLES = ["-", "--", "-.", ":"]
     MARKERS     = ["o", "s", "^", "D", "v", "P", "X", "*", "h", "p"]
-    MARKER_SIZE = [4,   4,   4,   4,   4,   5,   5,   6,   4,   5  ]
 
-    fig, ax = plt.subplots(figsize=(13, 6))
-
+    fig, (ax, axc) = plt.subplots(2, 1, figsize=(7, 6), sharex=True,
+                                  gridspec_kw={"height_ratios": [3, 1]})
     for i, kw in enumerate(kws):
-        vals  = [year_kw[y].get(kw, 0) for y in years]
-        color = DISTINCT_COLORS[i % len(DISTINCT_COLORS)]
-        ls    = LINE_STYLES[i % len(LINE_STYLES)]
-        mk    = MARKERS[i % len(MARKERS)]
-        ms    = MARKER_SIZE[i % len(MARKER_SIZE)]
-        ax.plot(years, vals,
-                color=color, linestyle=ls,
-                marker=mk, markersize=ms, markevery=2,
-                linewidth=1.8, alpha=0.88,
-                label=kw)
-
-    ax.set_xlabel("Year", fontsize=11)
-    ax.set_ylabel("Papers containing keyword", fontsize=11)
-    ax.set_title(f"Temporal Trends of Top {n} Keywords", fontweight="bold", fontsize=13)
-    ax.set_xlim(min(years) - 0.5, max(years) + 0.5)
+        vals = tr["share_pct"][kw][first:]
+        ax.plot(years, [v if v is not None else float("nan") for v in vals],
+                color=DISTINCT_COLORS[i % 10], linestyle=LINE_STYLES[i % 4],
+                marker=MARKERS[i % 10], markersize=3, markevery=2, linewidth=1.5, label=kw)
+    ax.set_ylabel("% of keyword-bearing records")
+    ax.set_title(f"Temporal trajectories of the top {n} normalised author keywords", fontweight="bold")
     ax.yaxis.grid(True, linestyle="--", alpha=0.4)
-    ax.set_axisbelow(True)
+    ax.legend(bbox_to_anchor=(1.01, 1), loc="upper left", fontsize=6.5, framealpha=0.9,
+              edgecolor="#cccccc", handlelength=2.5)
+    _panel_letter(ax, "A")
 
-    # Legend outside right, sorted by final-year value (most prominent on top)
-    final_vals = {kw: year_kw[max(years)].get(kw, 0) for kw in kws}
-    handles, labels = ax.get_legend_handles_labels()
-    order = sorted(range(len(labels)), key=lambda i: final_vals.get(labels[i], 0), reverse=True)
-    ax.legend(
-        [handles[i] for i in order],
-        [labels[i]  for i in order],
-        bbox_to_anchor=(1.01, 1), loc="upper left",
-        fontsize=8.5, framealpha=0.9, edgecolor="#cccccc",
-        handlelength=2.5,   # show enough of the dash pattern to distinguish styles
-    )
+    cov = [100 * d / nr if nr else 0 for d, nr in zip(tr["denominator"][first:], tr["n_records"][first:])]
+    axc.bar(years, cov, color=PALETTE[0], alpha=0.6)
+    axc.set_ylabel("% records with\nauthor keywords")
+    axc.set_xlabel("Year")
+    axc.set_ylim(0, 100)
+    _panel_letter(axc, "B")
 
     plt.tight_layout()
     _save(fig, "fig8_keyword_trends.pdf")
@@ -491,11 +442,11 @@ def plot_institutions(institutions: list[dict], top_n: int = 20):
 
     has_cites = any(cites)
     ncols = 3 if has_cites else 1
-    fig, axes = plt.subplots(1, ncols, figsize=(7 * ncols, max(6, top_n * 0.35)))
+    fig, axes = plt.subplots(1, ncols, figsize=(7, max(5, top_n * 0.3)))
     if ncols == 1:
         axes = [axes]
     fig.suptitle(
-        f"Top {top_n} Institutions in Keratoconus Research (first-author attribution)",
+        f"Top {top_n} institutions in corneal cross-linking research (first-author attribution)",
         fontsize=13, fontweight="bold"
     )
     fig.text(0.5, 0.97,
@@ -514,7 +465,7 @@ def plot_institutions(institutions: list[dict], top_n: int = 20):
                      color=PALETTE[2], alpha=0.85)
         axes[1].set_yticks(list(range(len(top))))
         axes[1].set_yticklabels([labels[i] for i in cite_order], fontsize=9)
-        axes[1].invert_yaxis(); axes[1].set_xlabel("Total citations (CrossRef)")
+        axes[1].invert_yaxis(); axes[1].set_xlabel(_cite_label())
         axes[1].set_title("Total citation impact")
 
         ratio_order = sorted(range(len(top)), key=lambda i: ratios[i], reverse=True)
@@ -626,7 +577,7 @@ def plot_author_network(auth_net: dict, top_n: int = 30):
     edge_alphas = [0.25 + 0.55 * (G[u][v]["weight"] / max_ew) for u, v in G.edges()]
 
     # ── 6. Draw ───────────────────────────────────────────────────────────────
-    fig, ax = plt.subplots(figsize=(16, 13))
+    fig, ax = plt.subplots(figsize=(7, 6.5))
     fig.patch.set_facecolor("#f8f8f8")
     ax.set_facecolor("#f8f8f8")
 

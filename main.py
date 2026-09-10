@@ -71,6 +71,10 @@ def main():
                         help="Fail if output/screening_queue.csv is non-empty")
     parser.add_argument("--allow-stale",    action="store_true",
                         help="Use a cache written by an older parser schema")
+    parser.add_argument("--no-sensitivity", action="store_true",
+                        help="Skip the SDC / sensitivity tables (output/sdc/)")
+    parser.add_argument("--skip-benchmarks", action="store_true",
+                        help="Sensitivity tables without the two PubMed-count benchmarks (offline)")
     args = parser.parse_args()
 
     # ── Verify dependencies before doing any work ──────────────────────────────
@@ -228,6 +232,12 @@ def main():
             rep_path.write_text(report)
             print(f"[main] Author-disagreement report: {rep_path}")
 
+    # citation-source label for figure axes
+    srcs = {rec.get("citation_source") for rec in records if rec.get("citation_count") is not None}
+    config.CITATION_SOURCE_LABEL = ("OpenAlex" if srcs <= {"openalex"} else
+                                    "CrossRef" if srcs <= {"crossref", None} else
+                                    "OpenAlex; CrossRef/ROR fallback, see SDC")
+
     # ── Attribution audit table (one row per record) ──────────────────────────
     import csv as _csv
     attr_path = pathlib.Path(config.OUTPUT_DIR) / "record_attribution.csv"
@@ -250,6 +260,14 @@ def main():
         output_root=config.OUTPUT_DIR,
         skip_viz=args.skip_viz,
     )
+
+    # ── Step 9: SDC / sensitivity tables from the same records ────────────────
+    if not args.no_sensitivity:
+        print(f"\n[9/9] Sensitivity analyses and SDC tables …")
+        import sensitivity
+        from fetch import read_manifest
+        sensitivity.run_all(records, read_manifest(), api_key=config.NCBI_API_KEY,
+                            skip_benchmarks=args.skip_benchmarks)
 
     # ── Summary ───────────────────────────────────────────────────────────────
     elapsed = time.time() - t0

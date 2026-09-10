@@ -171,3 +171,5 @@ for _d in [DATA_DIR, CACHE_DIR, OUTPUT_DIR]:
 # "svg" — vector, editable in Illustrator / Inkscape
 # "png" — raster (300 dpi); avoid for publication figures
 FIGURE_FORMAT = "pdf"
+FIG_MAX_WIDTH_IN = 7.0            # journal full-page width; _save() warns beyond this
+CITATION_SOURCE_LABEL = "OpenAlex"  # axis label for citation panels (set by main.py per run mode)
