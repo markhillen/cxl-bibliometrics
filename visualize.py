@@ -70,7 +70,15 @@ def _save(fig, name: str):
     w, h = fig.get_size_inches()
     if w > FIG_MAX_WIDTH_IN + 0.01:
         print(f"  [warn] {fname}: figure is {w:.1f} in wide; journal maximum is {FIG_MAX_WIDTH_IN} in")
-    kwargs = {"bbox_inches": "tight"}
+    # Save at the declared figure size (no bbox expansion) so the page width
+    # never exceeds the journal maximum; layout is packed first so tick labels
+    # stay inside the canvas.
+    try:
+        if not fig.get_constrained_layout():
+            fig.tight_layout()
+    except Exception:  # noqa: BLE001
+        pass
+    kwargs = {"bbox_inches": None, "pad_inches": 0.02}
     if fmt == "png":
         kwargs["dpi"] = 300           # high-dpi raster only
     # PDF and SVG are vector — dpi argument is ignored/irrelevant
@@ -191,7 +199,7 @@ def plot_countries(countries: list[dict], top_n: int = 15):
         bars = axes[2].barh(y, [vals[i] for i in order], color=PALETTE[3], alpha=0.85)
         axes[2].set_yticks(y); axes[2].set_yticklabels([labels[i] for i in order], fontsize=7)
         axes[2].invert_yaxis(); axes[2].set_xlabel("Median citations per publication")
-        axes[2].set_title("Citations per publication (median)"); _panel_letter(axes[2], "C")
+        axes[2].set_title("Median citations"); _panel_letter(axes[2], "C")
         for bar, i in zip(bars, order):
             axes[2].text(bar.get_width() + 0.3, bar.get_y() + bar.get_height() / 2,
                          f"{vals[i]:.0f}", va="center", fontsize=6)
@@ -235,7 +243,7 @@ def plot_authors(authors: list[dict], top_n: int = 20):
     meds   = [r.get("citations_median") for r in top]
     has_cites = any(cites)
     ncols = 3 if has_cites else 1
-    fig, axes = plt.subplots(1, ncols, figsize=(7, max(5, top_n * 0.3)))
+    fig, axes = plt.subplots(1, ncols, figsize=(7, max(6, top_n * 0.36)))
     if ncols == 1:
         axes = [axes]
     fig.suptitle(f"Top {top_n} most productive authors in corneal cross-linking research",
@@ -262,7 +270,7 @@ def plot_authors(authors: list[dict], top_n: int = 20):
         bars = axes[2].barh(y, [vals[i] for i in order], color=PALETTE[3], alpha=0.85)
         axes[2].set_yticks(y); axes[2].set_yticklabels([labels[i] for i in order], fontsize=6.5)
         axes[2].invert_yaxis(); axes[2].set_xlabel("Median citations per publication")
-        axes[2].set_title("Citations per publication (median)"); _panel_letter(axes[2], "C")
+        axes[2].set_title("Median citations"); _panel_letter(axes[2], "C")
         for bar, i in zip(bars, order):
             axes[2].text(bar.get_width() + 0.3, bar.get_y() + bar.get_height() / 2,
                          f"{vals[i]:.0f}", va="center", fontsize=5.5)
@@ -433,56 +441,44 @@ def plot_keyword_trends(records: list[dict], top_keywords: list[str], n: int = 1
 # 9. Institutions
 # ─────────────────────────────────────────────────────────────────────────────
 
-def plot_institutions(institutions: list[dict], top_n: int = 20):
+def plot_institutions(institutions: list[dict], top_n: int = 15):
+    """SDC figure, 3×1: A publications, B total citations, C mean citations per
+    publication.  Stacked vertically so long institution names fit in 7 in."""
     top = institutions[:top_n]
-    labels = [r["institution"] for r in top]
+    _short = {"TU Dresden / University Hospital Carl Gustav Carus": "TU Dresden / Univ. Hosp. Carl Gustav Carus",
+              "All India Institute of Medical Sciences": "All India Inst. of Medical Sciences",
+              "Federal University of São Paulo": "Federal Univ. of São Paulo",
+              "University Medical Center Utrecht": "Univ. Medical Center Utrecht"}
+    labels = [_short.get(r["institution"], r["institution"]) for r in top]
     counts = [r["count"] for r in top]
     cites  = [r.get("citations", 0) or 0 for r in top]
     ratios = [c / p if p else 0 for c, p in zip(cites, counts)]
-
     has_cites = any(cites)
-    ncols = 3 if has_cites else 1
-    fig, axes = plt.subplots(1, ncols, figsize=(7, max(5, top_n * 0.3)))
-    if ncols == 1:
+    nrows = 3 if has_cites else 1
+    fig, axes = plt.subplots(nrows, 1, figsize=(7, 3.4 * nrows))
+    if nrows == 1:
         axes = [axes]
-    fig.suptitle(
-        f"Top {top_n} institutions in corneal cross-linking research (first-author attribution)",
-        fontsize=13, fontweight="bold"
-    )
-    fig.text(0.5, 0.97,
-             "Each publication credited once to the first author's institution only",
-             ha="center", va="top", fontsize=9, style="italic", color="#555555")
-
-    y = range(len(labels))
-    axes[0].barh(list(y), counts, color=PALETTE[4], alpha=0.85)
-    axes[0].set_yticks(list(y)); axes[0].set_yticklabels(labels, fontsize=9)
-    axes[0].invert_yaxis(); axes[0].set_xlabel("Publications")
-    axes[0].set_title("Publication volume")
-
+    fig.suptitle(f"Top {top_n} institutions in corneal cross-linking research (first-author primary affiliation)",
+                 fontsize=10, fontweight="bold")
+    y = list(range(len(labels)))
+    axes[0].barh(y, counts, color=PALETTE[4], alpha=0.85)
+    axes[0].set_yticks(y); axes[0].set_yticklabels(labels, fontsize=7)
+    axes[0].invert_yaxis(); axes[0].set_xlabel("Publications"); axes[0].set_title("Publications")
+    _panel_letter(axes[0], "A")
     if has_cites:
-        cite_order = sorted(range(len(top)), key=lambda i: cites[i], reverse=True)
-        axes[1].barh(list(range(len(top))), [cites[i] for i in cite_order],
-                     color=PALETTE[2], alpha=0.85)
-        axes[1].set_yticks(list(range(len(top))))
-        axes[1].set_yticklabels([labels[i] for i in cite_order], fontsize=9)
-        axes[1].invert_yaxis(); axes[1].set_xlabel(_cite_label())
-        axes[1].set_title("Total citation impact")
-
-        ratio_order = sorted(range(len(top)), key=lambda i: ratios[i], reverse=True)
-        med = float(np.median(ratios)) if ratios else 0
-        colors_r = [PALETTE[3] if ratios[i] >= med else PALETTE[4]
-                    for i in ratio_order]
-        bars = axes[2].barh(list(range(len(top))), [ratios[i] for i in ratio_order],
-                             color=colors_r, alpha=0.85)
-        axes[2].set_yticks(list(range(len(top))))
-        axes[2].set_yticklabels([labels[i] for i in ratio_order], fontsize=9)
-        axes[2].invert_yaxis()
-        axes[2].set_xlabel("Mean citations per publication")
-        axes[2].set_title("Citation efficiency (above median = darker)")
-        for bar, i in zip(bars, ratio_order):
+        order = sorted(range(len(top)), key=lambda i: cites[i], reverse=True)
+        axes[1].barh(y, [cites[i] for i in order], color=PALETTE[2], alpha=0.85)
+        axes[1].set_yticks(y); axes[1].set_yticklabels([labels[i] for i in order], fontsize=7)
+        axes[1].invert_yaxis(); axes[1].set_xlabel(_cite_label()); axes[1].set_title("Total citations")
+        _panel_letter(axes[1], "B")
+        order = sorted(range(len(top)), key=lambda i: ratios[i], reverse=True)
+        bars = axes[2].barh(y, [ratios[i] for i in order], color=PALETTE[3], alpha=0.85)
+        axes[2].set_yticks(y); axes[2].set_yticklabels([labels[i] for i in order], fontsize=7)
+        axes[2].invert_yaxis(); axes[2].set_xlabel("Mean citations per publication")
+        axes[2].set_title("Mean citations per publication"); _panel_letter(axes[2], "C")
+        for bar, i in zip(bars, order):
             axes[2].text(bar.get_width() + 0.5, bar.get_y() + bar.get_height() / 2,
-                         f"{ratios[i]:.1f}", va="center", fontsize=7)
-
+                         f"{ratios[i]:.0f}", va="center", fontsize=6)
     plt.tight_layout()
     _save(fig, "fig9_institutions.pdf")
 

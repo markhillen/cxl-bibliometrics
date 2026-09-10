@@ -173,3 +173,4 @@ for _d in [DATA_DIR, CACHE_DIR, OUTPUT_DIR]:
 FIGURE_FORMAT = "pdf"
 FIG_MAX_WIDTH_IN = 7.0            # journal full-page width; _save() warns beyond this
 CITATION_SOURCE_LABEL = "OpenAlex"  # axis label for citation panels (set by main.py per run mode)
+CITATION_FILL_CROSSREF = False   # True → records without an OpenAlex match take their CrossRef count (source "crossref")

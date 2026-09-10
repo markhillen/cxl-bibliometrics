@@ -24,8 +24,12 @@ import collections
 import json
 import re
 import pathlib
+import sys
 
 HERE = pathlib.Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+import config  # noqa: E402
+
 CACHE = HERE / "cache"
 OUT = HERE / "output"
 
@@ -119,7 +123,16 @@ def overlay(records: list[dict], oa: dict, verbose: bool = True) -> tuple[list[d
         w = oa.get(str(rec.get("pmid")))
         if not w or not w.get("found"):
             rec["oa_matched"] = False
-            rec.setdefault("citation_source", None)
+            # Keep any CrossRef count in its own field; the primary citation
+            # count is OpenAlex-only unless config.CITATION_FILL_CROSSREF is set,
+            # so mixed-source means are never produced silently.
+            if "citation_count_crossref" not in rec:
+                rec["citation_count_crossref"] = rec.get("citation_count")
+            if getattr(config, "CITATION_FILL_CROSSREF", False) and rec.get("citation_count") is not None:
+                rec["citation_source"] = "crossref"
+            else:
+                rec["citation_count"] = None
+                rec["citation_source"] = None
             rec.setdefault("country_source", rec.get("country_source", "affil_regex"))
             continue
         rec["oa_matched"] = True

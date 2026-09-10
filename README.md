@@ -75,11 +75,13 @@ records are removed by the logged relevance filter in `relevance.py`).
 
 Two things can drift over time and are therefore frozen:
 
-* **The PMID list** of the published corpus: `data/pmids_corpus_<date>.txt`.
+* **The PMID list** of the published corpus: `data/pmids_final_corpus_<date>.txt`
+  (the 3,223 records after screening; `data/pmids_corpus_<date>.txt` is the raw
+  esearch result before screening).
   Re-running the live query later retrieves a slightly different set (PubMed
   keeps indexing 2025 papers and re-indexing older ones), so **the frozen list,
   not the live query, reproduces the published record set**:
-  `python3 main.py --pmid-file data/pmids_corpus_2026-09-10.txt`.
+  `python3 main.py --pmid-file data/pmids_final_corpus_2026-09-10.txt`.
 * **OpenAlex citation / affiliation data**: `cache/openalex_cache.json` carries
   a `fetched` date per record; the SDC provenance table reports the months.
 
