@@ -228,6 +228,20 @@ def main():
             rep_path.write_text(report)
             print(f"[main] Author-disagreement report: {rep_path}")
 
+    # ── Attribution audit table (one row per record) ──────────────────────────
+    import csv as _csv
+    attr_path = pathlib.Path(config.OUTPUT_DIR) / "record_attribution.csv"
+    with open(attr_path, "w", newline="", encoding="utf-8") as fh:
+        w = _csv.writer(fh)
+        w.writerow(["pmid", "year", "country", "country_source", "countries_all",
+                    "citation_count", "citation_source", "oa_matched"])
+        for rec in records:
+            w.writerow([rec.get("pmid"), rec.get("year"), rec.get("country"),
+                        rec.get("country_source", ""), "|".join(rec.get("countries_all", []) or []),
+                        rec.get("citation_count"), rec.get("citation_source", ""),
+                        rec.get("oa_matched", "")])
+    print(f"[main] Attribution table: {attr_path}")
+
     # ── Steps 5–8: Multi-period analysis, viz, reports ────────────────────────
     print(f"\n[5–8/8] Running multi-period analysis …")
     from periods import run_all_periods

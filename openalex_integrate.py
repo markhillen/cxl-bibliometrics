@@ -102,7 +102,9 @@ _GENERIC_INST_WORDS = {
 }
 
 def country_name(cc: str) -> str:
-    return CC.get(cc, cc)
+    """ISO-2 → display name, via the single table in geo.py (CC kept for reference)."""
+    from geo import display_name
+    return display_name(cc)
 
 
 def load_cache() -> dict:
@@ -117,6 +119,8 @@ def overlay(records: list[dict], oa: dict, verbose: bool = True) -> tuple[list[d
         w = oa.get(str(rec.get("pmid")))
         if not w or not w.get("found"):
             rec["oa_matched"] = False
+            rec.setdefault("citation_source", None)
+            rec.setdefault("country_source", rec.get("country_source", "affil_regex"))
             continue
         rec["oa_matched"] = True
         n_match += 1
@@ -131,20 +135,30 @@ def overlay(records: list[dict], oa: dict, verbose: bool = True) -> tuple[list[d
         aus = w.get("authors") or []
         first = next((a for a in aus if a.get("pos") == "first"),
                      aus[0] if aus else None)
-        # First-author country via ROR; if the first author has no resolved
-        # institution, fall back to the first co-author who does; never guess
-        # from the journal's country of publication (the baseline's bug).
+        # First-author country via ROR.  If OpenAlex resolved nothing for the
+        # first author, fall back to the first author's OWN PubMed affiliation
+        # string (geo.py); never to a co-author, never to the journal's country.
         cc = None
         if first and first.get("countries"):
             cc = _pick_country(first, rec)
-        else:
-            for a in aus:
-                if a.get("countries"):
-                    cc = a["countries"][0]
-                    break
-        rec["country"] = country_name(cc) if cc else "Unknown"
         if cc:
+            rec["country"] = country_name(cc)
+            rec["country_source"] = "openalex_ror" if w.get("source") in (None, "openalex") \
+                else str(w.get("source"))
             n_country += 1
+        else:
+            recauth0 = (rec.get("authors") or [None])[0]
+            if recauth0 and recauth0.get("country") not in (None, "", "Unknown"):
+                rec["country"] = recauth0["country"]
+                rec["country_source"] = recauth0.get("country_source", "affil_regex")
+            else:
+                rec["country"] = "Unknown"
+                rec["country_source"] = (recauth0 or {}).get("country_source", "unresolved")
+        if "citation_source" not in rec:
+            rec["citation_source"] = None
+        if w.get("cited_by") is not None:
+            rec["citation_source"] = "openalex" if w.get("source") in (None, "openalex") \
+                else str(w.get("source"))
 
         # attach per-author signals (aligned by author order)
         recauth = rec.get("authors", [])
@@ -154,8 +168,13 @@ def overlay(records: list[dict], oa: dict, verbose: bool = True) -> tuple[list[d
                 a["oa_id"] = oaa.get("id")
                 a["orcid"] = a.get("orcid") or oaa.get("orcid")
                 ccs = oaa.get("countries") or []
+                a["oa_countries"] = [country_name(c) for c in ccs]
                 if ccs:
-                    a["oa_country_name"] = country_name(ccs[0])
+                    a["oa_country_name"] = country_name(_pick_country(oaa, {"authors": [a]}) or ccs[0])
+                    a["country"] = a["oa_country_name"]
+                    a["country_source"] = "openalex_ror"
+        rec["countries_all"] = sorted({a.get("country") for a in recauth
+                                       if a.get("country") not in (None, "", "Unknown")})
 
         insts = []
         for a in aus:
