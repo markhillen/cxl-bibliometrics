@@ -465,114 +465,7 @@ def keyword_stats(records: list[dict], use_mesh: bool = False) -> dict:
 # ── Institution alias table ──────────────────────────────────────────────────
 # Maps lowercase fragments → canonical institution name.
 # Checked BEFORE the generic extractor. Add new entries here freely.
-_INST_ALIASES = {
-    # Switzerland
-    "elza institute":                   "ELZA Institute",
-    "iroc":                             "IROC Zurich",
-    "universitätsspital zürich":        "University Hospital Zurich",
-    "university hospital zurich":       "University Hospital Zurich",
-    "inselspital":                      "Inselspital Bern",
-    "university of zurich":             "University of Zurich",
-    "univ zurich":                      "University of Zurich",
-    "univ. of zurich":                  "University of Zurich",
-    # Germany
-    "tu dresden":                       "TU Dresden",
-    "technische universität dresden":   "TU Dresden",
-    "universitätsklinikum dresden":     "University Hospital Dresden",
-    "charité":                          "Charité – Universitätsmedizin Berlin",
-    "ludwig-maximilians-universität":   "Ludwig Maximilian University Munich",
-    "lmu munich":                       "Ludwig Maximilian University Munich",
-    "university of erlangen":           "University of Erlangen-Nuremberg",
-    "university of marburg":            "University of Marburg",
-    # Greece
-    "university of crete":              "University of Crete",
-    "laservision":                      "Laservision Institute Athens",
-    "athens eye":                       "Athens Eye Hospital",
-    # Italy
-    "university of siena":              "University of Siena",
-    "humanitas":                        "Humanitas University Milan",
-    "milan eye":                        "Milan Eye Center",
-    "university of rome":               "Sapienza University of Rome",
-    "sapienza":                         "Sapienza University of Rome",
-    "university of milan":              "University of Milan",
-    # United States
-    "bascom palmer":                    "Bascom Palmer Eye Institute",
-    "wills eye":                        "Wills Eye Hospital",
-    "mayo clinic":                      "Mayo Clinic",
-    "harvard":                          "Harvard Medical School",
-    "johns hopkins":                    "Johns Hopkins University",
-    "massachusetts eye":                "Mass Eye and Ear / Harvard",
-    "university of southern california":"University of Southern California",
-    "usc roski":                        "University of Southern California",
-    "emory":                            "Emory University",
-    "rutgers":                          "Rutgers University",
-    "university of miami":              "University of Miami",
-    "university of illinois":           "University of Illinois Chicago",
-    "university of arizona":            "University of Arizona",
-    "stanford":                         "Stanford University",
-    "ucsf":                             "University of California San Francisco",
-    "columbia university":              "Columbia University",
-    "new york eye":                     "New York Eye and Ear Infirmary",
-    # United Kingdom
-    "moorfields":                       "Moorfields Eye Hospital",
-    "university of nottingham":         "University of Nottingham",
-    "university of liverpool":          "University of Liverpool",
-    "university of edinburgh":          "University of Edinburgh",
-    "university of bristol":            "University of Bristol",
-    "university of manchester":         "University of Manchester",
-    "king's college":                   "King's College London",
-    "ucl":                              "University College London",
-    # Iran
-    "noor eye":                         "Noor Eye Hospital Tehran",
-    "tehran university of medical":     "Tehran University of Medical Sciences",
-    "shahid beheshti":                  "Shahid Beheshti University of Medical Sciences",
-    "mashhad university":               "Mashhad University of Medical Sciences",
-    "isfahan university":               "Isfahan University of Medical Sciences",
-    # India
-    "lv prasad":                        "LV Prasad Eye Institute",
-    "l v prasad":                       "LV Prasad Eye Institute",
-    "aravind":                          "Aravind Eye Care System",
-    "sankara nethralaya":               "Sankara Nethralaya Chennai",
-    "narayana nethralaya":              "Narayana Nethralaya Bangalore",
-    "aiims":                            "All India Institute of Medical Sciences",
-    "all india institute":              "All India Institute of Medical Sciences",
-    # Singapore
-    "singapore national eye":           "Singapore National Eye Centre",
-    "snec":                             "Singapore National Eye Centre",
-    "nanyang technological":            "Nanyang Technological University",
-    # China / Hong Kong / Taiwan
-    "wenzhou medical":                  "Wenzhou Medical University",
-    "peking university":                "Peking University",
-    "tianjin eye":                      "Tianjin Eye Hospital",
-    "chinese university of hong kong":  "Chinese University of Hong Kong",
-    "cuhk":                             "Chinese University of Hong Kong",
-    "university of hong kong":          "University of Hong Kong",
-    # Australia
-    "royal victorian eye":              "Royal Victorian Eye and Ear Hospital",
-    "centre for eye research australia":"Centre for Eye Research Australia",
-    "cera":                             "Centre for Eye Research Australia",
-    "university of melbourne":          "University of Melbourne",
-    # Spain
-    "universidad de alicante":          "University of Alicante",
-    "university of alicante":           "University of Alicante",
-    # Belgium
-    "university of ghent":              "Ghent University",
-    "ghent university":                 "Ghent University",
-    "katholieke universiteit leuven":   "KU Leuven",
-    "ku leuven":                        "KU Leuven",
-    # Netherlands
-    "maastricht university":            "Maastricht University",
-    "erasmus":                          "Erasmus University Rotterdam",
-    # Israel
-    "tel aviv university":              "Tel Aviv University",
-    "hadassah":                         "Hadassah Medical Center",
-    # Brazil
-    "unifesp":                          "Federal University of São Paulo",
-    "federal university of são paulo":  "Federal University of São Paulo",
-    "universidade de são paulo":        "University of São Paulo",
-    # Other
-    "irwin army":                       "Irwin Army Community Hospital",
-}
+# Institution alias table now lives in data/institution_aliases.csv (institutions.py).
 
 # ── Prefixes that indicate a sub-unit, NOT the institution itself ─────────────
 # Any comma-separated segment STARTING with one of these should be SKIPPED.
@@ -682,129 +575,88 @@ def _affil_segments(affil: str, first_surname: str = "") -> list[str]:
     return [p.strip() for p in re.split(r";\s*", s) if p.strip()]
 
 
-def _norm_institution(affil: str) -> str:
-    """
-    Extract the canonical parent institution from a PubMed affiliation string.
-
-    Strategy (in order):
-    1. Check alias table — fast path for known institutions.
-    2. Split on commas; skip leading department/sub-unit segments.
-    3. Among remaining segments, prefer those containing university/hospital tokens.
-    4. Fall back to the first non-department segment of reasonable length.
-    5. If all else fails, return the whole string truncated.
-    """
-    if not affil:
-        return "Unknown"
-
-    al = affil.lower()
-
-    # ── 1. Alias lookup ────────────────────────────────────────────────────────
-    # Named hospitals/eye centres beat generic universities when both match.
-    # Within each tier, longest key wins (more specific match preferred).
-    _PRIORITY_TOKENS = ("eye", "hospital", "clinic", "nethralaya", "palmer",
-                        "moorfields", "wills", "aravind", "sankara", "prasad",
-                        "bascom", "elza", "iroc", "snec", "noor")
-    tier1 = {}  # named clinical institutions
-    tier2 = {}  # universities / everything else
-    for key, canonical in _INST_ALIASES.items():
-        if key in al:
-            if any(t in key for t in _PRIORITY_TOKENS):
-                tier1[key] = canonical
-            else:
-                tier2[key] = canonical
-    for tier in (tier1, tier2):
-        if tier:
-            best_key = max(tier, key=len)
-            return tier[best_key]
-
-    # ── 2. Split on commas and score each segment ─────────────────────────────
-    parts = [p.strip() for p in affil.split(",") if p.strip()]
-
-    # Score: dept-like = -1, inst-like = +1, neutral = 0; skip very short/country-only
-    COUNTRY_WORDS = {"usa", "uk", "germany", "france", "italy", "spain",
-                     "china", "india", "iran", "brazil", "australia",
-                     "switzerland", "netherlands", "israel", "japan",
-                     "south korea", "turkey", "egypt", "canada"}
-
-    candidates = []
-    for seg in parts:
-        sl = seg.lower().strip(".")
-        if len(seg) < 5:
-            continue
-        if sl in COUNTRY_WORDS or sl.isdigit():
-            continue
-        # Skip zip/postal codes
-        if re.match(r'^[0-9\s\-]+$', sl):
-            continue
-        score = 0
-        if _is_dept(seg):
-            score -= 2
-        if _is_inst(seg):
-            score += 2
-        # Longer = more likely to be the full institution name
-        score += min(len(seg) / 40, 1.0)
-        candidates.append((score, seg))
-
-    if not candidates:
-        return None
-
-    # Sort by score descending; among ties keep original order (stable)
-    candidates.sort(key=lambda x: x[0], reverse=True)
-    best_score, best = candidates[0]
-
-    # If the best candidate is still dept-like, no recoverable institution → None
-    if best_score <= -1:
-        return None
-
-    # Final guard: reject any result that is itself a generic sub-unit label
-    # (catches cases where a division/institute name is the only segment)
-    _GENERIC_RESULTS = {
-        "division of clinical neuroscience", "school of medicine",
-        "school of optometry", "college of medicine",
-        "institute of biochemical and biomedical engineering",
-        "research institute of eye diseases",
-        "augenheilkunde", "augenabteilung",
-    }
-    if best.lower().strip(".").rstrip(",") in _GENERIC_RESULTS:
-        return None
-
-    return best
+def _norm_institution(affil: str) -> str | None:
+    """Canonical institution for one affiliation segment (see institutions.py)."""
+    import institutions
+    return institutions.resolve(affil).canonical
 
 
 def institution_stats(records: list[dict],
-                      first_author_only: bool = False) -> list[dict]:
+                      first_author_only: bool = False,
+                      level: str = "canonical",
+                      counting: str = "primary",
+                      top_n: int = 50) -> list[dict]:
     """Institutional publication and citation counts.
 
-    Args:
-        first_author_only: If True, count only the first author's institution
-            per paper (corresponding to the originating research group).
-            If False (default), count all co-authors' institutions, which
-            inflates counts for institutions that frequently appear as
-            co-authors on others' papers.
+    first_author_only: True → the first author only (the originating group);
+        False → all co-authors' institutions (inflates frequent co-authors).
+    level: "canonical" | "parent" | "cluster" (institutions.py alias table).
+    counting: "primary" → one institution per author (their first resolvable
+        affiliation); "whole" → every institution the author lists, 1 each;
+        "fractional" → every institution, 1/k each.
+    Rows carry competition ranks (ties shown as '=n').  Use
+    institution_stats_meta() to also get the unresolved counts.
     """
-    counter:  dict[str, int] = collections.Counter()
-    cite_sum: dict[str, int] = collections.defaultdict(int)
-    for rec in records:
-        cc = rec.get("citation_count") or 0
-        seen = set()
-        authors = rec.get("authors", [])
-        if first_author_only:
-            # Only the first named author
-            authors = authors[:1]
-        surname = (authors[0].get("last") or authors[0].get("ln") or "") if authors else ""
-        for a in authors:
-            for affil in a.get("affils", []):
-                for segment in _affil_segments(affil, surname):
-                    inst = _norm_institution(segment)
-                    if not inst or len(inst) < 6 or "@" in inst:
-                        continue
-                    if inst not in seen:
-                        counter[inst] += 1
-                        cite_sum[inst] += cc
-                        seen.add(inst)
-    rows = [{"institution": k, "count": v, "citations": cite_sum[k]}
-            for k, v in counter.most_common(50)]
+    rows, _ = institution_stats_meta(records, first_author_only, level, counting, top_n)
     return rows
+
+
+def institution_stats_meta(records: list[dict], first_author_only: bool = False,
+                           level: str = "canonical", counting: str = "primary",
+                           top_n: int = 50) -> tuple[list[dict], dict]:
+    import institutions
+    counter: dict[str, float] = collections.Counter()
+    cite_sum: dict[str, float] = collections.defaultdict(float)
+    n_cited: dict[str, int] = collections.Counter()
+    meta = {"n_records": len(records), "n_no_affiliation": 0, "n_unresolved": 0,
+            "n_resolved": 0, "level": level, "counting": counting,
+            "first_author_only": first_author_only}
+    for rec in records:
+        cc = rec.get("citation_count")
+        authors = rec.get("authors", []) or []
+        if first_author_only:
+            authors = authors[:1]
+        surname = (authors[0].get("last") or "") if authors else ""
+        seen: dict[str, float] = {}
+        any_affil = False
+        for a in authors:
+            if a.get("affils"):
+                any_affil = True
+            res = institutions.author_institutions(a, surname)
+            if not res:
+                continue
+            if counting == "primary":
+                res = res[:1]
+            w = 1.0 / len(res) if counting == "fractional" else 1.0
+            for r in res:
+                name = r.at(level)
+                if not name or len(name) < 4:
+                    continue
+                seen[name] = max(seen.get(name, 0.0), w)
+        if first_author_only:
+            if not any_affil:
+                meta["n_no_affiliation"] += 1
+            elif not seen:
+                meta["n_unresolved"] += 1
+            else:
+                meta["n_resolved"] += 1
+        for name, w in seen.items():
+            counter[name] += w
+            if cc is not None:
+                cite_sum[name] += w * cc
+                n_cited[name] += 1
+    top = counter.most_common(top_n)
+    counts = [round(v, 3) for _, v in top]
+    ranks = institutions.competition_ranks([int(round(c)) if counting != "fractional" else c for c in counts])
+    rows = []
+    for (k, v), rk in zip(top, ranks):
+        rows.append({"institution": k, "count": (int(round(v)) if counting != "fractional" else round(v, 2)),
+                     "citations": int(round(cite_sum[k])), "n_cited_known": n_cited[k],
+                     "rank": rk,
+                     "pct_of_total": round(100 * v / len(records), 2) if records else 0.0,
+                     "pct_of_resolved": (round(100 * v / meta["n_resolved"], 2)
+                                         if first_author_only and meta["n_resolved"] else None)})
+    return rows, meta
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -922,8 +774,11 @@ def run_analysis(records: list[dict]) -> dict:
     mesh_stats = keyword_stats(records, use_mesh=True)
 
     print("[analyze] Computing institution statistics …")
-    institutions            = institution_stats(records, first_author_only=True)
-    institutions_all_authors = institution_stats(records, first_author_only=False)
+    institutions, institutions_meta = institution_stats_meta(
+        records, first_author_only=True,
+        level=getattr(config, "INSTITUTION_LEVEL", "canonical"),
+        counting=getattr(config, "INSTITUTION_COUNTING", "primary"))
+    institutions_all_authors = institution_stats(records, first_author_only=False, counting="whole")
 
     print("[analyze] Computing publication type breakdown …")
     pubtypes = pubtype_stats(records)
@@ -944,6 +799,7 @@ def run_analysis(records: list[dict]) -> dict:
         "keywords":      kw_stats,
         "mesh":          mesh_stats,
         "institutions":         institutions,
+        "institutions_meta":    institutions_meta,
         "institutions_all":     institutions_all_authors,
         "pub_types":     pubtypes,
         "languages":     languages,

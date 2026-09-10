@@ -131,6 +131,16 @@ DISAMBIGUATION_AFFIL_JACCARD_COMMON       = 0.55   # same, for high-collision su
 DISAMBIGUATION_CO_AUTHOR_THRESHOLD_COMMON = 2      # shared co-authors required with the Jaccard rule for common surnames
 MIN_AUTHOR_PUBS = 3
 
+# ── Institution attribution (main table; all variants go to output/sdc/) ──────
+# counting: "primary" = the first author's first-listed resolvable affiliation
+#           (one institution per record, counts are mutually exclusive);
+#           "whole"   = every institution the first author lists, 1 each
+#           (the rule behind the v16 manuscript's Table 3; counts overlap);
+#           "fractional" = every institution, 1/k each.
+# level:    "canonical" | "parent" | "cluster"  (data/institution_aliases.csv)
+INSTITUTION_COUNTING = "primary"
+INSTITUTION_LEVEL    = "canonical"
+
 # ── Citation Enrichment ───────────────────────────────────────────────────────
 FETCH_CITATIONS      = True
 CITATION_BATCH_DELAY = 0.5
