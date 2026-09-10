@@ -645,6 +645,43 @@ def _is_inst(segment: str) -> bool:
     return any(tok in sl for tok in _INST_TOKENS)
 
 
+# ── Affiliation segmentation (added: fixes institution attribution) ───────────
+_EMAIL_RE = re.compile(r"\b[\w.+-]+@[\w.-]+\.\w+\.?")
+_ATTRIB_RE = re.compile(r"\([A-Z][a-zA-Z'\-]+(?:,\s*[A-Z][a-zA-Z'\-]+)*\)")
+
+
+def _affil_segments(affil: str, first_surname: str = "") -> list[str]:
+    """Split one PubMed <Affiliation> element into individual institution segments.
+
+    PubMed supplies an author's affiliations in two shapes that the naive
+    parser mishandles:
+
+    1. All affiliations joined into ONE element with semicolons.  Taking the
+       whole string yields only the first institution and silently discards
+       every other one the author listed.
+    2. Journal-style combined blocks that list SEVERAL authors' affiliations
+       with parenthesised name attributions, e.g.
+       "Dept, Inst A, City (Smith, Jones); Dept, Inst B, City (Brown)".
+       Parsing the whole string credits Inst A to every first author on such a
+       paper, regardless of where that author actually works.
+
+    A trailing corresponding-author e-mail also defeats the parser, which then
+    returns fragments like "Switzerland. name@example.com".
+    """
+    s = _EMAIL_RE.sub("", affil or "").strip().rstrip(".").strip()
+    if not s:
+        return []
+    if _ATTRIB_RE.search(s):
+        parts = re.split(r";\s*", s)
+        if first_surname:
+            mine = [p for p in parts
+                    if "(" in p and re.search(r"\b" + re.escape(first_surname) + r"\b", p)]
+            if mine:
+                return [p.strip() for p in mine if p.strip()]
+        return [parts[0].strip()] if parts else []
+    return [p.strip() for p in re.split(r";\s*", s) if p.strip()]
+
+
 def _norm_institution(affil: str) -> str:
     """
     Extract the canonical parent institution from a PubMed affiliation string.
@@ -754,15 +791,17 @@ def institution_stats(records: list[dict],
         if first_author_only:
             # Only the first named author
             authors = authors[:1]
+        surname = (authors[0].get("last") or authors[0].get("ln") or "") if authors else ""
         for a in authors:
             for affil in a.get("affils", []):
-                inst = _norm_institution(affil)
-                if not inst or len(inst) < 6:
-                    continue
-                if inst not in seen:
-                    counter[inst] += 1
-                    cite_sum[inst] += cc
-                    seen.add(inst)
+                for segment in _affil_segments(affil, surname):
+                    inst = _norm_institution(segment)
+                    if not inst or len(inst) < 6 or "@" in inst:
+                        continue
+                    if inst not in seen:
+                        counter[inst] += 1
+                        cite_sum[inst] += cc
+                        seen.add(inst)
     rows = [{"institution": k, "count": v, "citations": cite_sum[k]}
             for k, v in counter.most_common(50)]
     return rows

@@ -47,7 +47,7 @@ def generate_reports(results: dict):
         {"metric": "Total publications",          "value": n},
         {"metric": "Year range",                  "value": f"{first_year}–{last_year}"},
         {"metric": "Peak publication year",        "value": peak_year},
-        {"metric": "Total citations (CrossRef)",   "value": total_cites},
+        {"metric": "Total citations (OpenAlex)",   "value": total_cites},
         {"metric": "Unique journals",              "value": len(results["journals"])},
         {"metric": "Unique countries",             "value": len([c for c in results["countries"] if c["country"] != "Unknown"])},
         {"metric": "Unique institutions (top)",    "value": len(results["institutions"])},

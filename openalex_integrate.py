@@ -22,6 +22,7 @@ Pipeline use: main.py --use-openalex  (calls overlay() after citations)
 """
 import collections
 import json
+import re
 import pathlib
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -44,6 +45,61 @@ CC = {"US": "United States", "GB": "United Kingdom", "CN": "China", "IT": "Italy
       "JO": "Jordan", "SK": "Slovakia", "SI": "Slovenia", "HR": "Croatia",
       "RS": "Serbia", "BG": "Bulgaria", "LT": "Lithuania", "UA": "Ukraine"}
 
+
+def _pick_country(first_author: dict, rec: dict) -> str:
+    """Choose the first author's country when OpenAlex resolves more than one.
+
+    OpenAlex returns an author's institutions (and countries) in its own order,
+    which is not the order the author listed them in and is not reliably the
+    primary affiliation.  Taking countries[0] therefore mis-assigns a country
+    on roughly a quarter of the records whose first author lists more than one
+    affiliation — about 6% of this corpus — and does so invisibly.  Examples
+    from this dataset: a Queen Victoria Hospital (UK) paper assigned to
+    Australia, a Columbia University (New York) paper assigned to Egypt, and a
+    Geneva University Hospitals paper assigned to the United States because
+    OpenAlex matched "Geneva" to Geneva College, Pennsylvania.
+
+    Fix: prefer the country whose resolved institution name actually appears in
+    the PubMed affiliation string of the first author, which reflects what the
+    author wrote.  Fall back to the previous behaviour when nothing matches.
+    """
+    countries = first_author.get("countries") or []
+    if len(set(countries)) <= 1:
+        return countries[0] if countries else None
+
+    authors = rec.get("authors") or []
+    affil_text = " ".join(authors[0].get("affils", [])).lower() if authors else ""
+    if affil_text:
+        # Among the institutions OpenAlex resolved, keep those whose name
+        # actually appears in what the author wrote, and prefer the one the
+        # author listed FIRST — the primary affiliation by convention.
+        # OpenAlex's own array order is arbitrary and must not decide this.
+        best_pos, best_cc = None, None
+        for inst in first_author.get("insts") or []:
+            name = (inst.get("name") or "").lower()
+            country = inst.get("cc") or inst.get("country")
+            if not name or not country:
+                continue
+            tokens = [t for t in re.findall(r"[a-z]{4,}", name)
+                      if t not in _GENERIC_INST_WORDS]
+            if not tokens:
+                continue
+            positions = [affil_text.find(t) for t in tokens]
+            if any(pos < 0 for pos in positions):
+                continue
+            pos = min(positions)
+            if best_pos is None or pos < best_pos:
+                best_pos, best_cc = pos, country
+        if best_cc:
+            return best_cc
+    return countries[0]
+
+
+_GENERIC_INST_WORDS = {
+    "university", "hospital", "hospitals", "institute", "institution",
+    "college", "school", "medical", "medicine", "center", "centre",
+    "department", "faculty", "clinic", "national", "research", "health",
+}
 
 def country_name(cc: str) -> str:
     return CC.get(cc, cc)
@@ -80,7 +136,7 @@ def overlay(records: list[dict], oa: dict, verbose: bool = True) -> tuple[list[d
         # from the journal's country of publication (the baseline's bug).
         cc = None
         if first and first.get("countries"):
-            cc = first["countries"][0]
+            cc = _pick_country(first, rec)
         else:
             for a in aus:
                 if a.get("countries"):
