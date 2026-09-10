@@ -20,6 +20,34 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import config
+
+
+# ── Citation helpers ──────────────────────────────────────────────────────────
+# A record without a citation count (no OpenAlex/CrossRef match) is None, never
+# 0: it must not drag means down, and the number of such records is reported.
+
+def _cc(rec: dict):
+    v = rec.get("citation_count")
+    return None if v is None else int(v)
+
+
+def _cite_summary(vals: list) -> dict:
+    """mean / median / IQR / n over KNOWN citation counts, plus n_null."""
+    known = sorted(v for v in vals if v is not None)
+    n = len(known)
+    out = {"n_cited_known": n, "n_cite_null": len(vals) - n,
+           "citations": int(sum(known)), "citations_mean": None,
+           "citations_median": None, "citations_q1": None, "citations_q3": None}
+    if n:
+        out["citations_mean"] = round(sum(known) / n, 1)
+        def q(p):
+            k = (n - 1) * p
+            f, c = int(math.floor(k)), int(math.ceil(k))
+            return known[f] if f == c else known[f] + (known[c] - known[f]) * (k - f)
+        out["citations_median"] = round(q(0.5), 1)
+        out["citations_q1"] = round(q(0.25), 1)
+        out["citations_q3"] = round(q(0.75), 1)
+    return out
 from geo import extract_country
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -30,6 +58,8 @@ def temporal_trends(records: list[dict]) -> dict:
     """Publications per year, cumulative, and moving average."""
     by_year: dict[int, int] = collections.Counter()
     cite_by_year: dict[int, int] = collections.defaultdict(int)
+    cite_null_by_year: dict[int, int] = collections.Counter()
+    cites_list_by_year: dict[int, list] = collections.defaultdict(list)
     for rec in records:
         try:
             y = int(rec.get("year", 0))
@@ -37,13 +67,21 @@ def temporal_trends(records: list[dict]) -> dict:
             continue
         if config.START_YEAR <= y <= config.END_YEAR:
             by_year[y] += 1
-            cc = rec.get("citation_count") or 0
-            cite_by_year[y] += cc
+            cc = _cc(rec)
+            if cc is None:
+                cite_null_by_year[y] += 1
+            else:
+                cite_by_year[y] += cc
+                cites_list_by_year[y].append(cc)
 
     years = sorted(by_year.keys())
     counts = [by_year[y] for y in years]
     cumulative = list(itertools.accumulate(counts))
     citations = [cite_by_year[y] for y in years]
+    cite_null = [cite_null_by_year[y] for y in years]
+    cite_mean = [round(cite_by_year[y] / len(cites_list_by_year[y]), 1) if cites_list_by_year[y] else None
+                 for y in years]
+    cite_median = [_cite_summary(cites_list_by_year[y])["citations_median"] for y in years]
 
     # 3-year moving average
     def moving_avg(vals, window=3):
@@ -60,6 +98,9 @@ def temporal_trends(records: list[dict]) -> dict:
         "cumulative":  cumulative,
         "moving_avg":  moving_avg(counts),
         "citations":   citations,
+        "citations_null": cite_null,
+        "citations_mean_per_paper": cite_mean,
+        "citations_median_per_paper": cite_median,
     }
 
 
@@ -78,12 +119,13 @@ def author_stats(records: list[dict]) -> list[dict]:
     first_auth: dict[str, int]        = collections.Counter()
     last_auth:  dict[str, int]        = collections.Counter()
     citations:  dict[str, int]        = collections.defaultdict(int)
+    cite_lists: dict[str, list]       = collections.defaultdict(list)
     affils_sample: dict[str, list]    = collections.defaultdict(list)
     journals_per_auth: dict[str, set] = collections.defaultdict(set)
     years_per_auth: dict[str, set]    = collections.defaultdict(set)
 
     for rec in records:
-        cc = rec.get("citation_count") or 0
+        cc = _cc(rec)
         jrnl = rec.get("journal_abbr") or rec.get("journal", "")
         try:
             yr = int(rec.get("year", 0))
@@ -102,7 +144,9 @@ def author_stats(records: list[dict]) -> list[dict]:
             if not aid or aid == "__collective__":
                 continue
             pubs[aid].append(rec)
-            citations[aid] += cc
+            cite_lists[aid].append(cc)
+            if cc is not None:
+                citations[aid] += cc
             journals_per_auth[aid].add(jrnl)
             if yr:
                 years_per_auth[aid].add(yr)
@@ -130,9 +174,14 @@ def author_stats(records: list[dict]) -> list[dict]:
             continue
         tc = citations[aid]
         yrs = sorted(years_per_auth[aid])
+        csum = _cite_summary(cite_lists[aid])
         rows.append({
             "author_id":          aid,
             "pub_count":          n,
+            "n_cited_known":      csum["n_cited_known"],
+            "citations_median":   csum["citations_median"],
+            "citations_q1":       csum["citations_q1"],
+            "citations_q3":       csum["citations_q3"],
             "first_author_count": first_auth[aid],
             "last_author_count":  last_auth[aid],
             "citation_total":     tc,
@@ -157,17 +206,19 @@ def journal_stats(records: list[dict]) -> list[dict]:
     for rec in records:
         jname = rec.get("journal") or "Unknown"
         jabbr = rec.get("journal_abbr") or jname
-        cc = rec.get("citation_count") or 0
+        cc = _cc(rec)
         if jname not in counter:
             counter[jname] = {"journal": jname, "abbr": jabbr,
-                               "count": 0, "citations": 0}
+                               "count": 0, "_cites": []}
         counter[jname]["count"] += 1
-        counter[jname]["citations"] += cc
+        counter[jname]["_cites"].append(cc)
 
     rows = sorted(counter.values(), key=lambda x: x["count"], reverse=True)
     total = len(records)
     for r in rows:
+        r.update(_cite_summary(r.pop("_cites")))
         r["percentage"] = round(r["count"] / total * 100, 2)
+        r["cites_per_pub"] = r["citations_mean"]
     return rows
 
 
@@ -175,73 +226,61 @@ def journal_stats(records: list[dict]) -> list[dict]:
 # 4. Country analysis
 # ─────────────────────────────────────────────────────────────────────────────
 
-def country_stats(records: list[dict]) -> list[dict]:
+_POP_CACHE: dict[str, int] | None = None
+
+
+def load_populations() -> dict[str, int]:
+    """country display name → 2024 population (data/populations_worldbank_2024.csv)."""
+    global _POP_CACHE
+    if _POP_CACHE is None:
+        import csv as _csv
+        p = pathlib.Path(config.DATA_DIR) / "populations_worldbank_2024.csv"
+        d: dict[str, int] = {}
+        if p.exists():
+            with open(p, encoding="utf-8") as fh:
+                for row in _csv.DictReader(l for l in fh if not l.startswith("#")):
+                    try:
+                        d[row["country"]] = int(row["population_2024"])
+                    except (KeyError, ValueError):
+                        pass
+        _POP_CACHE = d
+    return _POP_CACHE
+
+
+def country_stats(records: list[dict], min_pubs_per_capita: int = 0) -> list[dict]:
     """Publication and citation counts per country (first author).
 
-    Per-capita metrics use 2024 UN population estimates (millions).
-    Countries absent from the lookup table receive pubs_per_million = None.
+    Per-capita output uses the 2024 populations in
+    data/populations_worldbank_2024.csv (World Bank WDI SP.POP.TOTL, which
+    follows UN WPP 2024).  Rows carry percentage of all records and of the
+    records with a resolved country; ranks are competition ranks (ties '=n').
     """
-    # 2024 UN population estimates (millions), covering all countries likely
-    # to appear in the CXL literature.
-    _POP_MILLIONS: dict[str, float] = {
-        "Australia":       26.5,
-        "Austria":          9.1,
-        "Belgium":         11.7,
-        "Brazil":         215.3,
-        "Canada":          38.8,
-        "China":         1412.0,
-        "Czech Republic":  10.9,
-        "Denmark":          5.9,
-        "Egypt":          107.0,
-        "Finland":          5.6,
-        "France":          68.4,
-        "Germany":         84.4,
-        "Greece":          10.4,
-        "Hungary":          9.7,
-        "India":         1441.0,
-        "Iran":            89.2,
-        "Israel":           9.8,
-        "Italy":           59.0,
-        "Japan":          123.3,
-        "Jordan":          10.3,
-        "Lebanon":          5.5,
-        "Netherlands":     17.9,
-        "New Zealand":      5.1,
-        "Norway":           5.5,
-        "Poland":          41.0,
-        "Portugal":        10.3,
-        "Romania":         19.0,
-        "Saudi Arabia":    36.4,
-        "Singapore":        6.0,
-        "South Korea":     51.7,
-        "Spain":           47.4,
-        "Sweden":          10.5,
-        "Switzerland":      8.8,
-        "Taiwan":          23.6,
-        "Turkey":          85.3,
-        "Ukraine":         43.5,
-        "United Arab Emirates": 9.8,
-        "United Kingdom":  67.7,
-        "United States":  335.9,
-    }
-
     counter: dict[str, dict] = {}
     for rec in records:
-        c = rec.get("country", "Unknown")
-        cc = rec.get("citation_count") or 0
+        c = rec.get("country", "Unknown") or "Unknown"
         if c not in counter:
-            counter[c] = {"country": c, "count": 0, "citations": 0}
+            counter[c] = {"country": c, "count": 0, "_cites": []}
         counter[c]["count"] += 1
-        counter[c]["citations"] += cc
+        counter[c]["_cites"].append(_cc(rec))
 
-    rows = sorted(counter.values(), key=lambda x: x["count"], reverse=True)
+    rows = sorted(counter.values(), key=lambda x: (-x["count"], x["country"]))
     total = len(records)
+    resolved = sum(r["count"] for r in rows if r["country"] != "Unknown")
+    pops = load_populations()
+    from institutions import competition_ranks
+    ranks = competition_ranks([r["count"] for r in rows if r["country"] != "Unknown"])
+    ri = iter(ranks)
     for r in rows:
+        r.update(_cite_summary(r.pop("_cites")))
         r["percentage"] = round(r["count"] / total * 100, 2)
-        pop = _POP_MILLIONS.get(r["country"])
-        if pop:
-            r["pubs_per_million"]   = round(r["count"]   / pop, 2)
-            r["cites_per_million"]  = round(r["citations"] / pop, 1)
+        r["pct_of_resolved"] = round(r["count"] / resolved * 100, 2) if resolved and r["country"] != "Unknown" else None
+        r["rank"] = next(ri) if r["country"] != "Unknown" else ""
+        r["cites_per_pub"] = r["citations_mean"]
+        pop = pops.get(r["country"])
+        r["population_2024"] = pop
+        if pop and r["count"] >= min_pubs_per_capita:
+            r["pubs_per_million"]  = round(r["count"] / (pop / 1e6), 2)
+            r["cites_per_million"] = round(r["citations"] / (pop / 1e6), 1)
         else:
             r["pubs_per_million"]  = None
             r["cites_per_million"] = None

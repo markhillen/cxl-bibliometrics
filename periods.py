@@ -88,7 +88,7 @@ def run_all_periods(records: list[dict], output_root: str = None,
 
         # Compute field-level h-index now while period_records is in scope
         cite_counts = sorted(
-            (rec.get("citation_count") or 0 for rec in period_records),
+            (rec["citation_count"] for rec in period_records if rec.get("citation_count") is not None),
             reverse=True,
         )
         h_field = sum(1 for i, c in enumerate(cite_counts, 1) if c >= i)
@@ -119,16 +119,23 @@ def _write_period_summary(all_results: dict, output_root: str) -> None:
         unique_countries = len(
             [c for c in res.get("countries", []) if c.get("country") != "Unknown"]
         )
-        mean_cites = round(total_cites / n_pubs, 1) if n_pubs else ""
+        n_null = sum(res.get("temporal", {}).get("citations_null", []) or [])
+        n_known = n_pubs - n_null
+        mean_cites = round(total_cites / n_known, 1) if n_known else ""
+        n_unknown_country = sum(c.get("count", 0) for c in res.get("countries", [])
+                                if c.get("country") == "Unknown")
         rows.append({
             "period":             label,
             "start_year":         p.get("start", ""),
             "end_year":           p.get("end", ""),
             "total_publications": n_pubs,
             "total_citations":    total_cites,
+            "records_with_citation_count": n_known,
+            "records_without_citation_count": n_null,
             "unique_authors":     unique_authors,
             "unique_journals":    unique_journals,
             "unique_countries":   unique_countries,
+            "records_country_unresolved": n_unknown_country,
             "mean_cites_per_pub": mean_cites,
             "h_index_field":      res.get("_h_index_field", ""),
         })

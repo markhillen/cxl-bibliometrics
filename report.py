@@ -42,12 +42,20 @@ def generate_reports(results: dict):
     peak_year  = temporal["years"][temporal["counts"].index(max(temporal["counts"]))] \
                  if temporal["counts"] else "N/A"
     total_cites = sum(temporal["citations"]) if temporal["citations"] else 0
+    n_cite_null = sum(temporal.get("citations_null", [])) if temporal.get("citations_null") else 0
 
     summary_rows = [
         {"metric": "Total publications",          "value": n},
         {"metric": "Year range",                  "value": f"{first_year}–{last_year}"},
         {"metric": "Peak publication year",        "value": peak_year},
         {"metric": "Total citations (OpenAlex)",   "value": total_cites},
+        {"metric": "Records with citation count",  "value": n - n_cite_null},
+        {"metric": "Records without citation count", "value": n_cite_null},
+        {"metric": "Mean citations per record (known)", "value": round(total_cites / (n - n_cite_null), 1) if n - n_cite_null else ""},
+        {"metric": "Records with resolved first-author country", "value": sum(c["count"] for c in results["countries"] if c["country"] != "Unknown")},
+        {"metric": "Records with unresolved first-author country", "value": sum(c["count"] for c in results["countries"] if c["country"] == "Unknown")},
+        {"metric": "First-author institution resolved / unresolved / no affiliation",
+         "value": "{n_resolved} / {n_unresolved} / {n_no_affiliation}".format(**results.get("institutions_meta", {"n_resolved": "", "n_unresolved": "", "n_no_affiliation": ""}))},
         {"metric": "Unique journals",              "value": len(results["journals"])},
         {"metric": "Unique countries",             "value": len([c for c in results["countries"] if c["country"] != "Unknown"])},
         {"metric": "Unique institutions (top)",    "value": len(results["institutions"])},
@@ -87,6 +95,8 @@ def generate_reports(results: dict):
             "first_author":       a["first_author_count"],
             "last_author":        a.get("last_author_count", 0),
             "total_citations":    a["citation_total"],
+            "citations_median":   a.get("citations_median", ""),
+            "n_cited_known":      a.get("n_cited_known", ""),
             "h_index_estimate":   a["h_index_est"],
             "year_first":         a.get("year_first", ""),
             "year_last":          a.get("year_last", ""),
@@ -96,7 +106,7 @@ def generate_reports(results: dict):
         })
     _write_csv("authors_top.csv",
                ["rank", "author", "publications", "first_author", "last_author",
-                "total_citations", "h_index_estimate", "year_first", "year_last",
+                "total_citations", "citations_median", "n_cited_known", "h_index_estimate", "year_first", "year_last",
                 "years_active", "journal_count", "sample_affiliation"],
                author_rows)
 
@@ -110,10 +120,13 @@ def generate_reports(results: dict):
             "publications":   j["count"],
             "percentage":     j["percentage"],
             "total_citations":j["citations"],
+            "cites_per_pub":  j.get("citations_mean", ""),
+            "citations_median": j.get("citations_median", ""),
+            "n_cited_known":  j.get("n_cited_known", ""),
         })
     _write_csv("journals_top.csv",
                ["rank", "journal", "abbreviation", "publications",
-                "percentage", "total_citations"],
+                "percentage", "total_citations", "cites_per_pub", "citations_median", "n_cited_known"],
                journal_rows)
 
     # ── Countries ─────────────────────────────────────────────────────────
@@ -121,16 +134,22 @@ def generate_reports(results: dict):
     valid = [c for c in results["countries"] if c["country"] != "Unknown"]
     for rank, c in enumerate(valid[:config.TOP_N_COUNTRIES], 1):
         country_rows.append({
-            "rank":              rank,
+            "rank":              c.get("rank", rank),
             "country":           c["country"],
             "publications":      c["count"],
             "percentage":        c["percentage"],
+            "pct_of_resolved":   c.get("pct_of_resolved", ""),
             "total_citations":   c["citations"],
+            "cites_per_pub":     c.get("citations_mean", ""),
+            "citations_median":  c.get("citations_median", ""),
+            "n_cited_known":     c.get("n_cited_known", ""),
+            "population_2024":   c.get("population_2024", ""),
             "pubs_per_million":  c.get("pubs_per_million", ""),
             "cites_per_million": c.get("cites_per_million", ""),
         })
     _write_csv("countries_top.csv",
-               ["rank", "country", "publications", "percentage", "total_citations",
+               ["rank", "country", "publications", "percentage", "pct_of_resolved", "total_citations",
+                "cites_per_pub", "citations_median", "n_cited_known", "population_2024",
                 "pubs_per_million", "cites_per_million"],
                country_rows)
 
@@ -150,9 +169,12 @@ def generate_reports(results: dict):
     _write_csv("mesh_top.csv", ["rank", "mesh_term", "frequency"], mesh_rows)
 
     # ── Institutions ───────────────────────────────────────────────────────
-    inst_rows = [{"rank": i+1, "institution": r["institution"], "publications": r["count"]}
+    inst_rows = [{"rank": r.get("rank", i+1), "institution": r["institution"], "publications": r["count"],
+                  "pct_of_resolved": r.get("pct_of_resolved", ""), "total_citations": r.get("citations", ""),
+                  "n_cited_known": r.get("n_cited_known", "")}
                  for i, r in enumerate(results["institutions"][:50])]
-    _write_csv("institutions_top.csv", ["rank", "institution", "publications"], inst_rows)
+    _write_csv("institutions_top.csv", ["rank", "institution", "publications", "pct_of_resolved",
+                                        "total_citations", "n_cited_known"], inst_rows)
 
     # ── Languages ──────────────────────────────────────────────────────────
     _LANG_NAMES = {
