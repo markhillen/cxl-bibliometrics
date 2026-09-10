@@ -67,38 +67,48 @@ variable.
 
 ---
 
-## Data Sources
+## Data Sources and reproducibility
 
-The pipeline supports three ways to supply records:
+The corpus is defined by the PubMed query in `config.PUBMED_QUERY_BASE`
+(block A: procedure terms; block B: corneal anchor; no NOT block — off-topic
+records are removed by the logged relevance filter in `relevance.py`).
 
-### Option A — PMID list file (recommended for reproducibility)
+Two things can drift over time and are therefore frozen:
 
-Export PMIDs from a PubMed search and save them one per line, then:
+* **The PMID list** of the published corpus: `data/pmids_corpus_<date>.txt`.
+  Re-running the live query later retrieves a slightly different set (PubMed
+  keeps indexing 2025 papers and re-indexing older ones), so **the frozen list,
+  not the live query, reproduces the published record set**:
+  `python3 main.py --pmid-file data/pmids_corpus_2026-09-10.txt`.
+* **OpenAlex citation / affiliation data**: `cache/openalex_cache.json` carries
+  a `fetched` date per record; the SDC provenance table reports the months.
 
-```bash
-python3 main.py --api-key YOUR_KEY --pmid-file pmids_expanded.txt
-```
+The raw PubMed XML of every fetch is kept under `cache/pubmed_xml/<corpus_id>/`
+so parser or filter changes can be replayed offline with `--reparse`.
 
-### Option B — PubMed query (fetch by search term)
-
-```bash
-python3 main.py --api-key YOUR_KEY
-```
-
-The query is defined in `config.py` under `PUBMED_QUERY`. Edit it there,
-or use the GUI's PubMed Query mode to test alternatives interactively.
-
-### Option C — Cached records only (fastest, no network)
-
-> Note: a fresh download has no cache yet — run Option A once first.
-
-Once records have been downloaded, skip re-fetching entirely:
+### One-run reproduction (what the paper reports)
 
 ```bash
-python3 main.py --skip-fetch --skip-citations
+export NCBI_API_KEY=...            # free; optional (3 req/s without)
+python3 main.py --refresh --skip-citations --screen-only     # esearch + efetch + filter + exclusion log
+python3 openalex_enrich.py --api-key $OPENALEX_API_KEY       # or: python3 ror_fallback.py
+python3 main.py --reparse --strict-screening --use-openalex  # analysis, figures, SDC tables
+python3 checkpoint.py diff baseline final --manuscript data/manuscript_numbers.csv
 ```
 
----
+`--strict-screening` refuses to run while `output/screening_queue.csv` holds
+records without a decision in `data/manual_screening.csv`.
+
+### Validation
+
+```bash
+python3 validation.py --recall        # every PMID in validation/known_true_positives.csv must be retained
+python3 validation.py --delta         # added / removed PMIDs vs data/pmids_manuscript_v1.txt
+python3 validation.py --sample 100    # precision sample for hand screening → validation/precision_sample.csv
+python3 validation.py --precision     # precision with Wilson 95% CI once screened
+python3 validation.py --anneotate     # compare with validation/anneotate_cxl.json
+python3 -m pytest tests -q
+```
 
 ## Running the Pipeline
 
