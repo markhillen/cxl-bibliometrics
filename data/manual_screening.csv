@@ -1,2 +1,48 @@
 pmid,decision,reason,screened_by,date
 12462640,exclude,"Timberlake 2002, Photochem Photobiol: synthesis of a coumaryl-diazopyruvate fluorescent label for collagen amines as a precursor to a photoactivated collagen-crosslinking agent for surgical wound closure; tendon and cornea used only as test tissue. Not riboflavin/UVA corneal cross-linking.",MH,2026-09-10
+41463605,include,"Ex vivo stiffness measurement after CXL (tensile vs AFM) — CXL outcome study",Claude-proposed,2026-09-10
+41411262,include,"SMILE and SMILE+CXL biomechanical mapping",Claude-proposed,2026-09-10
+41362441,exclude,"Iontophoretic caspofungin delivery; CXL mentioned only as context",Claude-proposed,2026-09-10
+41010803,exclude,"Cross-linked CMC/silk biomaterial for re-epithelialisation; not CXL procedure",Claude-proposed,2026-09-10
+40793233,exclude,"Optical quality assessment of corneal buttons for nanoparticle imaging; not CXL",Claude-proposed,2026-09-10
+40630944,include,"Corneal hydration and CXL therapy",Claude-proposed,2026-09-10
+40447612,include,"Author correction to an in vivo corneal collagen crosslinking paper",Claude-proposed,2026-09-10
+40257878,include,"Spectroscopic OCT method tested on crosslinked (CXL) regions",Claude-proposed,2026-09-10
+40134920,exclude,"Editorial on ophthalmic technologies; CXL not the subject",Claude-proposed,2026-09-10
+39935895,include,"Hand-held biopen for photochemical corneal cross-linking",Claude-proposed,2026-09-10
+39593816,include,"Dextran solution and CXL effect on corneal biomechanics",Claude-proposed,2026-09-10
+39070790,exclude,"Editorial on corneal medication research; CXL not the subject",Claude-proposed,2026-09-10
+39025900,include,"Dynamic evaluation of CXL and osmotic diffusion",Claude-proposed,2026-09-10
+38483915,include,"Correction to SMILE+CXL epithelial remodelling paper",Claude-proposed,2026-09-10
+38448965,include,"Trial protocol: UV corneal crosslinking as lymphangioregressive pretreatment",Claude-proposed,2026-09-10
+38274339,include,"Enzyme-induced corneal collagen crosslinking (alternative CXL method) on porcine cornea",Claude-proposed,2026-09-10
+38026898,include,"Optomechanical assessment of photorefractive corneal cross-linking",Claude-proposed,2026-09-10
+37939068,include,"SMILE+CXL epithelial remodelling",Claude-proposed,2026-09-10
+36361942,exclude,"Omega-3 eyedrops for dry eye; not CXL",Claude-proposed,2026-09-10
+36233740,include,"Demarcation line after epi-off CXL at the slit lamp",Claude-proposed,2026-09-10
+36144973,include,"Novel crosslinking protocol with intracameral oxygen",Claude-proposed,2026-09-10
+35749931,include,"CXL effect on corneal viscoelastic shear properties",Claude-proposed,2026-09-10
+35479957,include,"OCE mapping of corneal stiffness before/after collagen crosslinking",Claude-proposed,2026-09-10
+34277654,exclude,"Scleral (not corneal) cross-linking hypothesis for myopia",Claude-proposed,2026-09-10
+34100403,include,"Unmet needs of corneal collagen cross-linking (commentary)",Claude-proposed,2026-09-10
+33624461,include,"Heartbeat OCE distinguishing untreated vs CXL corneas in vivo",Claude-proposed,2026-09-10
+33549965,exclude,"Vitreous collagen cross-linking; not corneal",Claude-proposed,2026-09-10
+31605471,include,"In vivo OCE of corneal biomechanics after CXL",Claude-proposed,2026-09-10
+31300155,include,"Corneal stiffness parameters after accelerated CXL",Claude-proposed,2026-09-10
+30872596,include,"Biological inlay implantation combined with CXL",Claude-proposed,2026-09-10
+30826578,exclude,"Ru(II)/gold nanoparticle photocrosslinking of collagen; materials chemistry",Claude-proposed,2026-09-10
+30615727,include,"Interferometric tomography of pig corneas before and after CXL",Claude-proposed,2026-09-10
+30079708,include,"Japanese review of corneal crosslinking (Nippon Ganka Gakkai Zasshi)",Claude-proposed,2026-09-10
+29799859,exclude,"Surface Force Apparatus viscous response of cornea; CXL mentioned only as context",Claude-proposed,2026-09-10
+25955559,exclude,"Air-puff biomechanics method; CXL mentioned only as motivation",Claude-proposed,2026-09-10
+25949993,include,"Review: cross-linking and corneal imaging advances",Claude-proposed,2026-09-10
+25638310,include,"Lamb-wave viscoelasticity validated on collagen cross-linked bovine corneas",Claude-proposed,2026-09-10
+25484904,include,"Two corneal collagen crosslinking methods in bullous keratopathy",Claude-proposed,2026-09-10
+25162621,include,"Constant-force technique measuring corneal biomechanics after collagen cross-linking",Claude-proposed,2026-09-10
+24265319,exclude,"Biochemistry of native collagen cross-links (transglutaminase/lysyl oxidase); not the CXL procedure",Claude-proposed,2026-09-10
+24109889,include,"Lamb-wave propagation in collagen cross-linked bovine corneas",Claude-proposed,2026-09-10
+23998198,include,"Nitroalcohols as therapeutic corneoscleral cross-linking agents",Claude-proposed,2026-09-10
+20006338,exclude,"Constitutive corneal model; cross-linking refers to native age-related cross-links",Claude-proposed,2026-09-10
+19686668,exclude,"SHG structure of oedematous corneas; native cross-link strength, not CXL",Claude-proposed,2026-09-10
+17226767,exclude,"Periostin and collagen fibrillogenesis; not CXL",Claude-proposed,2026-09-10
+16359253,exclude,"Keratoprosthesis/tissue-engineered cornea review; not CXL",Claude-proposed,2026-09-10

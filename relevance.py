@@ -85,7 +85,8 @@ _ALLOW_RE = re.compile(
     r"eye|eyes|ocul|vision|vis(?:ual)?\s*sci|optom|refract|cataract|kerato|"
     r"retina|retinal|glaucoma|strabism|oculoplast|orbit|contact\s+lens|"
     r"klin(?:ische)?\s+monatsbl|graefe|vestn(?:ik)?\s+oftalm|arq(?:uivos)?\s+bras(?:ileiros)?\s+de\s+oftalm|"
-    r"ocular\s+surface|acta\s+ophthalmol|jama\s+ophthalmol|br(?:itish)?\s+j(?:ournal)?\s+ophthalmol)",
+    r"ocular\s+surface|acta\s+ophthalmol|jama\s+ophthalmol|br(?:itish)?\s+j(?:ournal)?\s+ophthalmol|"
+    r"ganka|augen|oftalmol|ophtalmol)",
     re.I,
 )
 # ISSN-L values for journals whose titles do not carry an obvious ophthalmic word.
@@ -248,19 +249,35 @@ def classify(rec: dict) -> Decision:
     if not rec.get("has_abstract", bool(abstract)):
         flags.append("no_abstract")
 
+    kw_text = " ".join(rec.get("keywords", []) or [])
     sig = _first_match(_CXL_SIGNAL_RE, combined)
     oph = _first_match(_OPHTH_RE, combined)
-    if not oph:
-        return Decision(False, "content", "content.no_ophthalmic_term",
-                        "no ophthalmic term in title/abstract", flags)
+    ocular_mesh = _has_ocular_mesh(mesh)
+
     if not sig:
-        # Query matched on MeSH or on a phrase the parser could not see; keep
-        # only when an ophthalmology journal or a corneal MeSH vouches for it.
-        if allow or _has_ocular_mesh(mesh):
+        # PubMed's [tiab] also indexes author keywords, and the query has a MeSH
+        # arm, so a record can be retrieved without the term in title/abstract.
+        if _CXL_SIGNAL_RE.search(kw_text):
+            sig = _first_match(_CXL_SIGNAL_RE, kw_text)
+            flags.append("cxl_signal_in_keywords_only")
+        elif allow or ocular_mesh:
             flags.append("no_cxl_signal_in_text")
         else:
             return Decision(False, "content", "content.no_cxl_signal",
-                            "no cross-linking term in title/abstract", flags)
+                            "no cross-linking term in title, abstract or keywords", flags)
+
+    if not oph:
+        if allow and sig:
+            # Letters/editorials without abstracts in ophthalmology journals:
+            # "Collagen cross-linking." in Ophthalmology, etc.
+            flags.append("ophthalmic_term_absent_journal_vouches")
+        elif ocular_mesh and sig:
+            flags.append("ophthalmic_term_absent_mesh_vouches")
+        elif _OPHTH_RE.search(kw_text) and sig:
+            flags.append("ophthalmic_term_in_keywords_only")
+        else:
+            return Decision(False, "content", "content.no_ophthalmic_term",
+                            "no ophthalmic term in title, abstract, keywords or MeSH", flags)
 
     if not allow and not _DISEASE_AGENT_RE.search(combined):
         flags.append("screen")

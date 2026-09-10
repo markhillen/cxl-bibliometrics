@@ -1,0 +1,23 @@
+pmid,label,source
+12719068,Wollensak 2003 AJO riboflavin/UVA CXL for keratoconus (founding clinical report),canonical
+33340508,Hafezi 2021 AJO Sub400 protocol,reviewer (excluded by v2 NOT block)
+33765359,Cochrane 2021 transepithelial vs epi-off CXL,reviewer (excluded by v2 NOT block)
+24711659,Said 2014 BJO PACK-CXL advanced microbial keratitis,reviewer (excluded by v2 NOT block)
+27584715,JAMA Ophthalmol 2016 RCT epithelial healing after CXL,reviewer (excluded by v2 NOT block)
+32050235,JCRS 2020 3-arm study pain and epithelial healing after CXL,reviewer (excluded by v2 NOT block)
+40023354,AJO 2025 customized PRK+CXL vs CXL alone,reviewer (missed by v2 OR block)
+40015314,Klin Monbl 2025 KeraNatural CAIRS,reviewer (missed by v2 OR block)
+39600613,Clin Ophthalmol 2024 iontophoresis CXL asymmetric keratoconus,reviewer (missed by v2 OR block)
+37140143,Acta Ophthalmol 2024 three CXL protocols paediatric keratoconus,reviewer (missed by v2 OR block)
+37506367,Cornea 2024 factors associated with receipt of crosslinking,reviewer (missed by v2 OR block)
+29673063,Am J Transplant 2018 UV crosslinking regresses corneal vessels,reviewer (excluded by v2 MeSH rule)
+25533553,Zhonghua Yan Ke Za Zhi 2014 corneal research in China,reviewer (excluded by v2 MeSH rule)
+32637419,Front Med 2020 accelerated transepithelial CXL,reviewer (false content-filter exclusion)
+40806799,J Clin Med 2025 pellucid marginal degeneration review,reviewer (false content-filter exclusion)
+18471635,Raiskup-Wolf 2008 JCRS long-term results Dresden,canonical
+21183110,Hersh 2011 JCRS US multicentre RCT CXL,canonical
+28495149,Hersh 2017 Ophthalmology US multicentre trial 1-year,canonical
+24393351,Wittig-Silva 2014 Ophthalmology RCT 3-year results,canonical
+19631120,Koller 2009 JCRS complication and failure rates after CXL,canonical
+19304080,Hafezi 2009 JCRS CXL in thin corneas hypoosmolar riboflavin,canonical
+31619359,Prajna 2020 Ophthalmology CLAIR RCT,canonical

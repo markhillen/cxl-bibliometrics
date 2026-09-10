@@ -47,8 +47,56 @@ ANALYSIS_PERIODS = [
 ]
 
 # ── PubMed Search Query ───────────────────────────────────────────────────────
-# Corneal-specific cross-linking query; avoids cartilage, dental, polymer etc.
+# Block A (procedure signal) AND block B (corneal anchor).  There is deliberately
+# no NOT block: with the corneal anchor in place, a tiab NOT list only ever
+# removed genuine CXL papers (the 2001–2025 v2 query's "wound healing"[tiab]
+# alone excluded 49 records, among them the Sub400 protocol paper and the
+# Cochrane transepithelial-vs-epi-off review).  Off-topic records are removed by
+# the logged relevance filter (relevance.py) instead, so every exclusion is
+# visible in output/exclusion_log.csv.
+#
+# Bare "cross-linking"/"crosslinking" is admitted only alongside a CXL disease or
+# agent term; on its own it floods the corpus with scaffold/biomaterial work.
+# "CXL"[tiab] is safe once anchored.  The MeSH descriptor Corneal Cross-Linking
+# was introduced in 2023 and adds almost nothing before then.
+PUBMED_QUERY_BASE = (
+    '('
+    # A. procedure signal — any one
+    '"corneal cross-linking"[tiab] OR "corneal crosslinking"[tiab] OR "corneal cross linking"[tiab] OR '
+    '"corneal collagen cross-linking"[tiab] OR "corneal collagen crosslinking"[tiab] OR '
+    '"corneal collagen cross linking"[tiab] OR '
+    '"collagen cross-linking"[tiab] OR "collagen crosslinking"[tiab] OR "collagen cross linking"[tiab] OR '
+    '"stromal cross-linking"[tiab] OR "stromal crosslinking"[tiab] OR '
+    '"CXL"[tiab] OR "A-CXL"[tiab] OR "ACXL"[tiab] OR "PACK-CXL"[tiab] OR "KXL"[tiab] OR "C3-R"[tiab] OR '
+    '"epi-off"[tiab] OR "epithelium-off"[tiab] OR '
+    '"photoactivated chromophore"[tiab] OR '
+    '("riboflavin"[tiab] AND ("ultraviolet"[tiab] OR "UVA"[tiab] OR "UV-A"[tiab])) OR '
+    '"Corneal Cross-Linking"[MeSH Terms] OR '
+    # bare cross-linking is admitted from the TITLE only, and only with a CXL
+    # disease/agent term somewhere in the record
+    '(("cross-linking"[ti] OR "crosslinking"[ti] OR "cross-linked"[ti] OR "crosslinked"[ti]) AND '
+    '("keratoconus"[tiab] OR "keratoconic"[tiab] OR "ectasia"[tiab] OR "ectatic"[tiab] OR '
+    '"keratectasia"[tiab] OR "pellucid marginal"[tiab] OR "keratitis"[tiab] OR "riboflavin"[tiab] OR '
+    '"Keratoconus"[MeSH Terms]))'
+    ') AND ('
+    # B. corneal anchor
+    '"cornea"[tiab] OR "corneal"[tiab] OR "corneas"[tiab] OR "keratoconus"[tiab] OR "keratoconic"[tiab] OR '
+    '"ectasia"[tiab] OR "ectatic"[tiab] OR "keratectasia"[tiab] OR "keratitis"[tiab] OR '
+    '"pellucid marginal"[tiab] OR '
+    '"Cornea"[MeSH Terms] OR "Corneal Diseases"[MeSH Terms] OR "Keratoconus"[MeSH Terms]'
+    ')'
+)
+# Note: "epi-on"/"epithelium-on" are NOT searched — PubMed drops "on" as a
+# stop-word and the phrase degenerates to "epithelium", which retrieved ~340
+# unrelated corneal-epithelium papers.  "UV A" degenerates to "uv" the same way.
 PUBMED_QUERY = (
+    f'({PUBMED_QUERY_BASE}) '
+    f'AND ("{ALL_TIME_START}/01/01"[PDAT] : "{END_YEAR}/12/31"[PDAT])'
+)
+
+# Previous query (v2, used for the 2,853-record manuscript corpus of July 2026),
+# kept for the audit trail and for validation.py --compare-queries.
+PUBMED_QUERY_V2 = (
     '('
     '"corneal cross-linking"[tiab] OR "corneal crosslinking"[tiab] OR '
     '"corneal collagen cross-linking"[tiab] OR "corneal collagen crosslinking"[tiab] OR '
