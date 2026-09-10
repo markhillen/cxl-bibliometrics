@@ -285,16 +285,22 @@ def author_ranking_common_rule_off(records: list[dict], top_n: int = 40) -> None
         alt_recs, _ = D.assign_author_ids(copy.deepcopy(base_recs), load_cache() or None)
     finally:
         D._COMMON_SURNAMES = saved
-    alt = collections.Counter(a.get("author_id") for r in alt_recs for a in r.get("authors", [])
-                              if a.get("author_id") and a["author_id"] != "__collective__")
+    # match identities by their occurrences (pmid, author position), not by label
+    prim_occ = {(str(r.get("pmid")), i): a.get("author_id") for r in records
+                for i, a in enumerate(r.get("authors", [])) if a.get("author_id")}
+    alt_occ: dict[str, list] = collections.defaultdict(list)
+    for r in alt_recs:
+        for i, a in enumerate(r.get("authors", [])):
+            if a.get("author_id") and a["author_id"] != "__collective__":
+                alt_occ[a["author_id"]].append((str(r.get("pmid")), i))
     rows = []
-    for name, n in alt.most_common(top_n):
-        base = name.split(" (")[0]
-        prim_same = sum(v for k, v in primary.items() if k == name or k.split(" (")[0] == base)
-        rows.append([name, n, primary.get(name, ""), prim_same, "yes" if "(" in name else ""])
+    for name, occs in sorted(alt_occ.items(), key=lambda kv: -len(kv[1]))[:top_n]:
+        prim_ids = collections.Counter(prim_occ.get(o) for o in occs)
+        modal, shared = prim_ids.most_common(1)[0]
+        rows.append([name, len(occs), modal, primary.get(modal, ""), shared, len(prim_ids)])
     _write("authors_common_surname_rule_off.csv",
-           ["author_id (rule off)", "publications (rule off)", "same id in primary run",
-            "all identities with this surname+initials in primary run", "still split"], rows)
+           ["author_id (rule off)", "publications (rule off)", "matching identity in primary run",
+            "its publications in primary run", "occurrences shared", "primary identities covered"], rows)
 
 
 # ── 6. citation indicators ────────────────────────────────────────────────────

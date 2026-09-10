@@ -202,7 +202,7 @@ def plot_countries(countries: list[dict], top_n: int = 15):
         axes[2].set_title("Median citations"); _panel_letter(axes[2], "C")
         for bar, i in zip(bars, order):
             axes[2].text(bar.get_width() + 0.3, bar.get_y() + bar.get_height() / 2,
-                         f"{vals[i]:.0f}", va="center", fontsize=6)
+                         f"{vals[i]:g}", va="center", fontsize=6)
     else:
         axes[1].axis("off"); axes[2].axis("off")
 
