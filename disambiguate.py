@@ -21,10 +21,18 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import config
 
 
+_UMLAUT = {"ä": "ae", "ö": "oe", "ü": "ue", "ß": "ss", "æ": "ae", "ø": "o"}
+
+
 def _norm_last(s: str) -> str:
-    """Normalize last name: lowercase, strip diacritics via Unicode decomposition."""
+    """Normalize last name for bucketing: lowercase; German umlauts to their
+    transliterations (Spörl = Spoerl); other diacritics stripped; hyphens,
+    apostrophes and spaces removed (Sinha-Roy = Sinha Roy, O'Brart = OBrart)."""
     s = s.lower().strip()
-    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
+    for k, v in _UMLAUT.items():
+        s = s.replace(k, v)
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
+    return re.sub(r"[\s\-'’.]", "", s)
 
 
 def _norm_fore(s: str) -> str:
@@ -41,9 +49,14 @@ def _initials(fore: str, initials: str = "") -> str:
     senior and junior into the same bucket where the KNOWN_DISTINCT safelist
     could not reach them.
     """
+    from_fore = "".join(w[0] for w in re.split(r"[\s.]+", fore) if w).lower()
     if initials and initials.strip():
-        return re.sub(r"[^a-z]", "", initials.lower())
-    return "".join(w[0] for w in fore.split() if w).lower()
+        ini = re.sub(r"[^a-z]", "", initials.lower())
+        # "D P S" with Initials "DP": the forename carries more information
+        if from_fore.startswith(ini) and len(from_fore) > len(ini):
+            return from_fore
+        return ini
+    return from_fore
 
 
 def _fore_key(fore: str, initials: str) -> str:
@@ -252,10 +265,17 @@ def _inst_key(affils: list[str]) -> str | None:
         for pattern in _INST_TOKENS_DIS:
             m = _re.search(pattern, al)
             if m:
-                key = m.group(1).strip().rstrip(".,")
+                toks = [t for t in m.group(1).strip().rstrip(".,").split()
+                        if t not in _KEY_STOPWORDS]
+                key = " ".join(toks[-2:])
                 if len(key) >= 3:
                     return key
     return None
+
+
+_KEY_STOPWORDS = {"of", "to", "the", "at", "and", "an", "a", "in", "for", "with", "affiliated",
+                  "from", "de", "di", "del", "della", "la", "le", "des", "der", "die", "das",
+                  "national", "state", "medical", "normal", "technical", "technological"}
 
 
 def _inst_conflict(affils_i: list[str], affils_j: list[str]) -> bool:

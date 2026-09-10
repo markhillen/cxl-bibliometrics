@@ -192,7 +192,9 @@ def affil_segments(affil: str, first_surname: str = "") -> list[str]:
     if not s:
         return []
     if _ATTRIB_RE.search(s):
-        parts = re.split(r";\s*", s)
+        # journal-style blocks: "Unit (Surname, Surname), Address; Unit (Surname), Address"
+        # or joined with ", and Unit (Surname), Address"
+        parts = re.split(r";\s*|,\s+and\s+(?=[A-Z][^,;]*\()", s)
         if first_surname:
             mine = [p for p in parts if "(" in p and re.search(r"\b" + re.escape(first_surname) + r"\b", p)]
             if mine:

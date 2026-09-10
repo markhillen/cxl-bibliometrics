@@ -173,4 +173,6 @@ for _d in [DATA_DIR, CACHE_DIR, OUTPUT_DIR]:
 FIGURE_FORMAT = "pdf"
 FIG_MAX_WIDTH_IN = 7.0            # journal full-page width; _save() warns beyond this
 CITATION_SOURCE_LABEL = "OpenAlex"  # axis label for citation panels (set by main.py per run mode)
+PER_CAPITA_MIN_PUBS = 20          # Figure 2D and SDC per-capita table: minimum first-author publications
+KEYWORD_TREND_MIN_RECORDS = 10    # Figure 3A: first year with at least this many keyword-bearing records
 CITATION_FILL_CROSSREF = False   # True → records without an OpenAlex match take their CrossRef count (source "crossref")

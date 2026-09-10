@@ -207,19 +207,20 @@ def plot_countries(countries: list[dict], top_n: int = 15):
         axes[1].axis("off"); axes[2].axis("off")
 
     if has_percap:
-        pc = [v if v is not None else 0 for v in percap]
-        order = sorted(range(len(top)), key=lambda i: pc[i], reverse=True)
-        bars = axes[3].barh(y, [pc[i] for i in order], color=PALETTE[4], alpha=0.85)
-        for bar, i in zip(bars, order):
-            if percap[i] is None:
-                bar.set_hatch("///")
-        axes[3].set_yticks(y); axes[3].set_yticklabels([labels[i] for i in order], fontsize=7)
+        # Panel D ranks per-capita output over ALL countries with at least
+        # PER_CAPITA_MIN_PUBS first-author publications, not the top-N by volume
+        min_pubs = getattr(config, "PER_CAPITA_MIN_PUBS", 20)
+        elig = [c for c in countries if c["country"] != "Unknown" and c.get("pubs_per_million") is not None
+                and c["count"] >= min_pubs]
+        elig.sort(key=lambda c: c["pubs_per_million"], reverse=True)
+        elig = elig[:top_n]
+        pl = [c["country"] for c in elig]; pv = [c["pubs_per_million"] for c in elig]
+        bars = axes[3].barh(list(range(len(pl))), pv, color=PALETTE[4], alpha=0.85)
+        axes[3].set_yticks(list(range(len(pl)))); axes[3].set_yticklabels(pl, fontsize=7)
         axes[3].invert_yaxis(); axes[3].set_xlabel("Publications per million population")
-        axes[3].set_title("Per-capita output (2024 population)"); _panel_letter(axes[3], "D")
-        for bar, i in zip(bars, order):
-            if percap[i] is not None:
-                axes[3].text(bar.get_width() + 0.1, bar.get_y() + bar.get_height() / 2,
-                             f"{percap[i]:.1f}", va="center", fontsize=6)
+        axes[3].set_title(f"Per-capita output (≥{min_pubs} publications)"); _panel_letter(axes[3], "D")
+        for bar, v in zip(bars, pv):
+            axes[3].text(bar.get_width() + 0.1, bar.get_y() + bar.get_height() / 2, f"{v:.1f}", va="center", fontsize=6)
     else:
         axes[3].axis("off")
 
@@ -301,7 +302,7 @@ def plot_keywords(kw_data: dict, top_n: int = None, title_suffix: str = ""):
     src = kw_data.get("source", "")
     cov = (kw_data.get("coverage") or {}).get("overall_pct")
     sub = f" — {cov}% of records carry author keywords" if (src == "author" and cov is not None) else ""
-    ax.set_title(f"Top {top_n} normalised keywords {title_suffix}{sub}", fontweight="bold")
+    ax.set_title(f"Top {top_n} normalized keywords {title_suffix}{sub}", fontweight="bold")
     plt.tight_layout()
     safe = title_suffix.replace("(","").replace(")","").replace(" ","_").lower()
     fname = f"fig5_{safe}.pdf" if title_suffix else "fig5_keywords.pdf"
@@ -394,7 +395,7 @@ def plot_country_collab(country_net: dict, top_n: int = 20):
 
 def plot_keyword_trends(records: list[dict], top_keywords: list[str], n: int = 10):
     """Suppl. Fig: A share (%) of keyword-bearing records carrying each of the
-    top-n normalised author keywords, per year; B share of all records that
+    top-n normalized author keywords, per year; B share of all records that
     carry any author keyword (the denominator, which rises from 0% to >60%)."""
     import keywords as _kw
     kws = top_keywords[:n]
@@ -403,7 +404,8 @@ def plot_keyword_trends(records: list[dict], top_keywords: list[str], n: int = 1
                     kws, source="author")
     years = tr["years"]
     # start where the denominator is meaningful
-    first = next((i for i, d in enumerate(tr["denominator"]) if d >= 20), 0)
+    min_den = getattr(config, "KEYWORD_TREND_MIN_RECORDS", 10)
+    first = next((i for i, d in enumerate(tr["denominator"]) if d >= min_den), 0)
     years = years[first:]
     if not years:
         return
@@ -420,7 +422,7 @@ def plot_keyword_trends(records: list[dict], top_keywords: list[str], n: int = 1
                 color=DISTINCT_COLORS[i % 10], linestyle=LINE_STYLES[i % 4],
                 marker=MARKERS[i % 10], markersize=3, markevery=2, linewidth=1.5, label=kw)
     ax.set_ylabel("% of keyword-bearing records")
-    ax.set_title(f"Temporal trajectories of the top {n} normalised author keywords", fontweight="bold")
+    ax.set_title(f"Temporal trajectories of the top {n} normalized author keywords", fontweight="bold")
     ax.yaxis.grid(True, linestyle="--", alpha=0.4)
     ax.legend(bbox_to_anchor=(1.01, 1), loc="upper left", fontsize=6.5, framealpha=0.9,
               edgecolor="#cccccc", handlelength=2.5)

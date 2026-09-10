@@ -242,6 +242,12 @@ def china_vs_usa(records: list[dict], y0: int = 2021, y1: int = 2025, n_boot: in
     diffs.sort()
     lo, hi = diffs[int(0.025 * n_boot)], diffs[int(0.975 * n_boot) - 1]
     p_cn_ahead = sum(1 for d in diffs if d > 0) / n_boot
+    p_tie = sum(1 for d in diffs if d == 0) / n_boot
+    # exact two-sided binomial test on the resolved US+China records (H0: p = 0.5)
+    import math
+    n2 = cn + us
+    k = min(cn, us)
+    p_binom = min(1.0, 2 * sum(math.comb(n2, i) for i in range(0, k + 1)) / 2 ** n2) if n2 else None
     rows = [
         ["window", f"{y0}–{y1}"], ["records_in_window", n],
         ["China_first_author", cn], ["USA_first_author", us], ["difference_CN_minus_US", cn - us],
@@ -250,9 +256,45 @@ def china_vs_usa(records: list[dict], y0: int = 2021, y1: int = 2025, n_boot: in
         ["best_case_USA (all unresolved → USA)", f"{cn} vs {us + unk}"],
         ["bootstrap_95pct_CI_difference", f"[{lo}, {hi}] ({n_boot} resamples of records)"],
         ["bootstrap_share_of_resamples_with_China_ahead", round(p_cn_ahead, 3)],
+        ["bootstrap_share_of_resamples_tied", round(p_tie, 3)],
+        ["binomial_two_sided_P_resolved_US_China_records", round(p_binom, 3) if p_binom is not None else ""],
     ]
     _write("china_vs_usa_2021_2025.csv", ["metric", "value"], rows)
     return {"cn": cn, "us": us, "unk": unk, "ci": (lo, hi), "p_cn_ahead": p_cn_ahead}
+
+
+def author_ranking_common_rule_off(records: list[dict], top_n: int = 40) -> None:
+    """Re-run author disambiguation with the high-collision-surname rule
+    disabled (no stricter thresholds, no institutional splitting) and compare
+    the top-N author counts with the primary run."""
+    import copy
+    import disambiguate as D
+    from openalex_integrate import load_cache
+    # Disambiguation runs on PubMed metadata only (the OpenAlex overlay later
+    # fills ORCIDs from OpenAlex, which must not feed the ORCID identity pass),
+    # so the pre-overlay records are reloaded from the cache.
+    pre = pathlib.Path(config.CACHE_DIR) / "records_disambig.json"
+    base_recs = json.load(open(pre, encoding="utf-8")) if pre.exists() else records
+    keep = {str(r.get("pmid")) for r in records}
+    base_recs = [r for r in base_recs if str(r.get("pmid")) in keep]
+    primary = collections.Counter(a.get("author_id") for r in records for a in r.get("authors", [])
+                                  if a.get("author_id") and a["author_id"] != "__collective__")
+    saved = D._COMMON_SURNAMES
+    try:
+        D._COMMON_SURNAMES = set()
+        alt_recs, _ = D.assign_author_ids(copy.deepcopy(base_recs), load_cache() or None)
+    finally:
+        D._COMMON_SURNAMES = saved
+    alt = collections.Counter(a.get("author_id") for r in alt_recs for a in r.get("authors", [])
+                              if a.get("author_id") and a["author_id"] != "__collective__")
+    rows = []
+    for name, n in alt.most_common(top_n):
+        base = name.split(" (")[0]
+        prim_same = sum(v for k, v in primary.items() if k == name or k.split(" (")[0] == base)
+        rows.append([name, n, primary.get(name, ""), prim_same, "yes" if "(" in name else ""])
+    _write("authors_common_surname_rule_off.csv",
+           ["author_id (rule off)", "publications (rule off)", "same id in primary run",
+            "all identities with this surname+initials in primary run", "still split"], rows)
 
 
 # ── 6. citation indicators ────────────────────────────────────────────────────
@@ -280,14 +322,16 @@ def citation_indicators(records: list[dict], fixed=(2015, 2020), min_pubs: int =
             ncs = [(_cc(r) / ymean[_year(r)]) for r in recs if _cc(r) is not None and ymean.get(_year(r))]
             fw = [_cc(r) for r in recs if fixed[0] <= _year(r) <= fixed[1] and _cc(r) is not None]
             fs = _summary(fw)
+            ncs_sorted = sorted(ncs)
             rows.append([k, len(recs), s["n"], s["sum"], s["mean"], s["median"], s["q1"], s["q3"],
                          round(sum(ncs) / len(ncs), 2) if ncs else None,
+                         round(_quantile(ncs_sorted, 0.5), 2) if ncs else None,
                          fs["n"], fs["mean"], fs["median"]])
         rows.sort(key=lambda r: -(r[4] or 0))
         _write(f"citations_{name}.csv",
                ["name", "publications", "n_with_citation_count", "citations_total", "mean", "median", "q1", "q3",
-                "mean_normalised_citation_score", f"n_{fixed[0]}_{fixed[1]}", f"mean_{fixed[0]}_{fixed[1]}",
-                f"median_{fixed[0]}_{fixed[1]}"], rows)
+                "mean_normalised_citation_score", "median_normalised_citation_score",
+                f"n_{fixed[0]}_{fixed[1]}", f"mean_{fixed[0]}_{fixed[1]}", f"median_{fixed[0]}_{fixed[1]}"], rows)
 
     table(lambda r: r.get("country"), "by_country", min_pubs)
     table(lambda r: r.get("journal_abbr") or r.get("journal"), "by_journal", min_pubs)
@@ -307,11 +351,12 @@ def citation_indicators(records: list[dict], fixed=(2015, 2020), min_pubs: int =
             s = _summary(cites)
             ncs = [(_cc(r) / ymean[_year(r)]) for r in recs if _cc(r) is not None and ymean.get(_year(r))]
             rows.append([k, len(recs), s["n"], s["sum"], s["mean"], s["median"], s["q1"], s["q3"],
-                         round(sum(ncs) / len(ncs), 2) if ncs else None])
+                         round(sum(ncs) / len(ncs), 2) if ncs else None,
+                         round(_quantile(sorted(ncs), 0.5), 2) if ncs else None])
         rows.sort(key=lambda r: -r[1])
         _write("citations_by_author.csv",
                ["author", "publications", "n_with_citation_count", "citations_total", "mean", "median", "q1", "q3",
-                "mean_normalised_citation_score"], rows)
+                "mean_normalised_citation_score", "median_normalised_citation_score"], rows)
     authors_table()
     _write("citations_year_means.csv", ["year", "n", "mean_citations"],
            [[y, len(by_year_mean[y]), round(ymean[y], 2)] for y in sorted(ymean)])
@@ -577,6 +622,7 @@ def run_all(records: list[dict], manifest: dict | None = None, api_key: str = ""
     print(f"      China {r['cn']} vs USA {r['us']}, unresolved {r['unk']}, bootstrap CI {r['ci']}")
     print("[sdc] citation indicators …");         citation_indicators(records)
     print("[sdc] author identity audit …");       author_identity_audit(records)
+    print("[sdc] author ranking, common-surname rule off …"); author_ranking_common_rule_off(records)
     print("[sdc] OpenAlex vs CrossRef …");        oa_vs_crossref(records)
     print("[sdc] keyword coverage …");            keyword_coverage(records)
     print("[sdc] provenance …");                  provenance(records, manifest)
