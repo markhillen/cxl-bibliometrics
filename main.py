@@ -63,6 +63,14 @@ def main():
                         help="Override ALL_TIME_START in config")
     parser.add_argument("--end-year",       type=int, default=None,
                         help="Override END_YEAR in config")
+    parser.add_argument("--reparse",        action="store_true",
+                        help="Rebuild records.json from the cached PubMed XML (no network)")
+    parser.add_argument("--screen-only",    action="store_true",
+                        help="Stop after fetch/reparse + relevance filter (writes the exclusion log)")
+    parser.add_argument("--strict-screening", action="store_true",
+                        help="Fail if output/screening_queue.csv is non-empty")
+    parser.add_argument("--allow-stale",    action="store_true",
+                        help="Use a cache written by an older parser schema")
     args = parser.parse_args()
 
     # ── Verify dependencies before doing any work ──────────────────────────────
@@ -123,17 +131,32 @@ def main():
     disamb_path = pathlib.Path(config.CACHE_DIR) / "records_disambig.json"
     raw_path    = pathlib.Path(config.CACHE_DIR) / "records.json"
 
-    if args.skip_fetch:
-        for p in [cited_path, disamb_path, raw_path]:
+    if args.reparse:
+        from fetch import run_reparse
+        records = run_reparse()
+        for p in (cited_path, disamb_path):      # derived caches are now stale
             if p.exists():
-                print(f"[main] Loading {p.name} from cache …")
-                with open(p) as f:
-                    records = json.load(f)
-                print(f"[main] {len(records):,} records loaded")
-                break
-        else:
+                p.unlink()
+    elif args.skip_fetch:
+        import fetch as _fetch
+        manifest = _fetch.read_manifest() or {}
+        if manifest.get("schema") != config.CACHE_SCHEMA and not args.allow_stale:
+            print(f"[main] ERROR: cache/manifest.json schema {manifest.get('schema')!r} != "
+                  f"{config.CACHE_SCHEMA}. The cached records were written by an older "
+                  f"parser. Re-run with --reparse (offline) or --refresh, or pass --allow-stale.")
+            sys.exit(1)
+        # Newest of the derived caches wins, but never one older than records.json
+        candidates = [p for p in (cited_path, disamb_path, raw_path) if p.exists()]
+        if not candidates:
             print("[main] ERROR: No cached records. Run without --skip-fetch first.")
             sys.exit(1)
+        base_m = raw_path.stat().st_mtime if raw_path.exists() else 0
+        fresh = [p for p in candidates if p.stat().st_mtime >= base_m] or [raw_path]
+        p = max(fresh, key=lambda q: q.stat().st_mtime)
+        print(f"[main] Loading {p.name} from cache …")
+        with open(p) as f:
+            records = json.load(f)
+        print(f"[main] {len(records):,} records loaded")
     else:
         if args.pmid_file:
             from fetch import run_fetch_from_pmids
@@ -146,6 +169,16 @@ def main():
             from fetch import run_fetch
             records = run_fetch(api_key=config.NCBI_API_KEY, force_refresh=args.refresh)
     print(f"[main] {len(records):,} records after fetch + filtering")
+    if args.strict_screening:
+        q = pathlib.Path(config.OUTPUT_DIR) / "screening_queue.csv"
+        n_q = max(0, sum(1 for _ in open(q, encoding="utf-8")) - 1) if q.exists() else 0
+        if n_q:
+            print(f"[main] ERROR: {n_q} records await manual screening ({q}). "
+                  f"Add decisions to data/manual_screening.csv and re-run --reparse.")
+            sys.exit(2)
+    if args.screen_only:
+        print("[main] --screen-only: stopping after relevance filter")
+        return
 
     # ── Step 2: Author disambiguation ─────────────────────────────────────────
     print(f"\n[2/8] Disambiguating authors …")

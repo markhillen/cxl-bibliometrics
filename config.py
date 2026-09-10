@@ -9,7 +9,9 @@ from datetime import date
 
 # ── Project identity ──────────────────────────────────────────────────────────
 PROJECT_NAME    = "CXL Bibliometrics"
-PROJECT_VERSION = "2.0.0"
+PROJECT_VERSION = "3.0.0"
+# Bump when the parsed-record schema changes; main.py refuses stale caches.
+CACHE_SCHEMA    = 3
 
 # ── API Credentials ───────────────────────────────────────────────────────────
 # Get a free NCBI API key at: https://www.ncbi.nlm.nih.gov/account/
@@ -22,6 +24,13 @@ NCBI_API_KEY = os.environ.get("NCBI_API_KEY", "")   # set env var or paste here
 ALL_TIME_START = 2001
 END_YEAR       = min(date.today().year, 2025)  # capped at manuscript corpus year
 START_YEAR     = ALL_TIME_START      # used for primary/default window
+
+# Which date defines a record's publication year.
+#   "earliest" — min(journal-issue year, online-first year); mirrors PubMed's
+#                own [PDAT] filter, which accepts either date.
+#   "issue"    — journal-issue year (falls back to online-first, then PubMed entry).
+# Earlier versions used the PubMed *entry* date, which is not a publication date.
+YEAR_RULE      = "earliest"
 
 # ── Analysis time windows ─────────────────────────────────────────────────────
 # All windows slice the same fetched dataset — no extra API calls.
