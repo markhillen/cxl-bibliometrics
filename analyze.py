@@ -324,176 +324,76 @@ def country_collab_network(records: list[dict]) -> dict:
 # ── Keyword synonym map ───────────────────────────────────────────────────────
 # All variants on the left collapse to the canonical term on the right.
 # Applied BEFORE counting, so merged terms appear as a single entry.
-_KW_SYNONYMS: dict[str, str] = {
-    # ── CXL procedure name variants ──────────────────────────────────────────
-    # These are all the same procedure — merge into one canonical term so the
-    # keyword chart reflects clinical themes, not indexing inconsistency.
-    "corneal cross-linking":                    "corneal cross-linking (CXL)",
-    "corneal crosslinking":                     "corneal cross-linking (CXL)",
-    "corneal collagen cross-linking":           "corneal cross-linking (CXL)",
-    "corneal collagen crosslinking":            "corneal cross-linking (CXL)",
-    "collagen cross-linking":                   "corneal cross-linking (CXL)",
-    "collagen crosslinking":                    "corneal cross-linking (CXL)",
-    "cross-linking":                            "corneal cross-linking (CXL)",
-    "crosslinking":                             "corneal cross-linking (CXL)",
-    "cxl":                                      "corneal cross-linking (CXL)",
-    "corneal collagen cxl":                     "corneal cross-linking (CXL)",
-    "uva/riboflavin cross-linking":             "corneal cross-linking (CXL)",
-    "uva-riboflavin cross-linking":             "corneal cross-linking (CXL)",
-    "riboflavin/uva cross-linking":             "corneal cross-linking (CXL)",
-    "riboflavin/ultraviolet-a cross-linking":   "corneal cross-linking (CXL)",
-    "riboflavin uv-a corneal cross-linking":    "corneal cross-linking (CXL)",
-    "corneal collagen cross linking":           "corneal cross-linking (CXL)",
-    "cross linking":                            "corneal cross-linking (CXL)",
-    "kxl":                                      "corneal cross-linking (CXL)",
-
-    # ── Accelerated CXL variants ─────────────────────────────────────────────
-    "accelerated cxl":                          "accelerated CXL",
-    "accelerated corneal cross-linking":        "accelerated CXL",
-    "accelerated corneal crosslinking":         "accelerated CXL",
-    "accelerated collagen cross-linking":       "accelerated CXL",
-    "a-cxl":                                    "accelerated CXL",
-    "acxl":                                     "accelerated CXL",
-
-    # ── Epithelium-on/off variants ────────────────────────────────────────────
-    "epithelium-off cxl":                       "epi-off CXL",
-    "epi-off cxl":                              "epi-off CXL",
-    "epithelium off cxl":                       "epi-off CXL",
-    "standard cxl":                             "epi-off CXL",
-    "dresden protocol":                         "epi-off CXL",
-    "transepithelial cxl":                      "epi-on CXL (transepithelial)",
-    "epithelium-on cxl":                        "epi-on CXL (transepithelial)",
-    "epi-on cxl":                               "epi-on CXL (transepithelial)",
-    "trans-epithelial cxl":                     "epi-on CXL (transepithelial)",
-    "iontophoresis cxl":                        "epi-on CXL (transepithelial)",
-
-    # ── PACK-CXL variants ────────────────────────────────────────────────────
-    "pack-cxl":                                 "PACK-CXL",
-    "pack cxl":                                 "PACK-CXL",
-    "photoactivated chromophore":               "PACK-CXL",
-    "photoactivated chromophore for keratitis": "PACK-CXL",
-
-    # ── Keratoconus variants ─────────────────────────────────────────────────
-    "keratoconus":                              "keratoconus",
-    "progressive keratoconus":                  "keratoconus",
-    "pediatric keratoconus":                    "paediatric keratoconus",
-    "paediatric keratoconus":                   "paediatric keratoconus",
-    "childhood keratoconus":                    "paediatric keratoconus",
-
-    # ── Cornea / ectasia variants ────────────────────────────────────────────
-    "corneal ectasia":                          "corneal ectasia",
-    "ectasia":                                  "corneal ectasia",
-    "post-lasik ectasia":                       "post-refractive ectasia",
-    "post lasik ectasia":                       "post-refractive ectasia",
-    "iatrogenic ectasia":                       "post-refractive ectasia",
-    "pellucid marginal degeneration":           "pellucid marginal degeneration",
-    "pmd":                                      "pellucid marginal degeneration",
-
-    # ── Riboflavin/UVA — keep as clinical concept, not just procedural label ─
-    "riboflavin":                               "riboflavin",
-    "vitamin b2":                               "riboflavin",
-    "uva":                                      "ultraviolet-A (UVA)",
-    "ultraviolet-a":                            "ultraviolet-A (UVA)",
-    "ultraviolet a":                            "ultraviolet-A (UVA)",
-    "uv-a":                                     "ultraviolet-A (UVA)",
-
-    # ── Corneal topography/imaging ────────────────────────────────────────────
-    "corneal topography":                       "corneal topography",
-    "scheimpflug":                              "corneal topography",
-    "pentacam":                                 "corneal topography",
-    "corneal tomography":                       "corneal topography",
-    "optical coherence tomography":             "OCT",
-    "oct":                                      "OCT",
-    "anterior segment oct":                     "OCT",
-
-    # ── Biomechanics ─────────────────────────────────────────────────────────
-    "corneal biomechanics":                     "corneal biomechanics",
-    "corneal hysteresis":                       "corneal biomechanics",
-    "ocular response analyzer":                 "corneal biomechanics",
-    "corvis st":                                "corneal biomechanics",
-    "young's modulus":                          "corneal biomechanics",
-    "stress-strain":                            "corneal biomechanics",
-
-    # ── Infectious keratitis ─────────────────────────────────────────────────
-    "infectious keratitis":                     "infectious keratitis",
-    "fungal keratitis":                         "infectious keratitis",
-    "bacterial keratitis":                      "infectious keratitis",
-    "acanthamoeba keratitis":                   "infectious keratitis",
-    "microbial keratitis":                      "infectious keratitis",
-    "corneal ulcer":                            "infectious keratitis",
-}
-
-# Terms to exclude entirely from keyword charts — too generic or purely procedural
+# Keyword synonyms now live in data/keyword_synonyms.csv (keywords.py).
+# MeSH noise headings excluded from thematic charts:
 _KW_EXCLUDE: set[str] = {
-    "cornea",           # everything in the dataset involves the cornea
-    "humans",           # MeSH noise
-    "adult",
-    "female",
-    "male",
-    "aged",
-    "middle aged",
-    "prospective studies",
-    "retrospective studies",
-    "treatment outcome",
-    "follow-up studies",
-    "visual acuity",    # near-universal in ophthalmology, not discriminating
-    "refraction, ocular",
+    "cornea", "humans", "adult", "female", "male", "aged", "middle aged",
+    "prospective studies", "retrospective studies", "treatment outcome",
+    "follow-up studies", "visual acuity", "refraction, ocular", "young adult",
+    "adolescent", "child", "aged, 80 and over", "animals",
 }
 
 
 def _clean_keyword(kw: str) -> str | None:
-    """
-    Normalise a keyword: lowercase, strip punctuation, apply synonym map.
-    Returns None if the term should be excluded entirely.
-    """
-    cleaned = kw.lower().strip().rstrip(".,;:")
-    # Apply synonym map (exact match first, then substring for common prefixes)
-    if cleaned in _KW_SYNONYMS:
-        cleaned = _KW_SYNONYMS[cleaned]
-    # Exclude generic terms
-    if cleaned in _KW_EXCLUDE:
+    """Backward-compatible wrapper: normalise one author keyword (keywords.py)."""
+    import keywords
+    t = keywords.normalize(kw)
+    if t is None or t.lower() in _KW_EXCLUDE:
         return None
-    return cleaned if cleaned else None
+    return t
 
 
-def keyword_stats(records: list[dict], use_mesh: bool = False) -> dict:
+def keyword_stats(records: list[dict], use_mesh: bool | None = None,
+                  source: str = "author", exclude_search_terms: bool = True) -> dict:
     """
-    Returns:
-      - freq: {keyword: count}
-      - cooccurrence: {(kw1, kw2): count}  (edges for network)
-    Synonymous keyword variants are merged before counting.
+    Keyword frequencies and co-occurrences.
+
+    source: "author" (author-supplied keywords, normalised via keywords.py),
+            "mesh" (MeSH descriptors only), or "both".
+    use_mesh: deprecated alias — True → "mesh" (was MeSH ∪ author keywords in
+            v2, which the paper mislabelled as MeSH).
+    exclude_search_terms: drop the canonical search concept ("corneal
+            cross-linking (CXL)") from freq; its count is kept in "excluded".
+    Returns freq, cooccurrence, excluded, coverage (share of records with any
+    author keyword — the denominator for every thematic statement).
     """
+    import keywords as _kw
+    if use_mesh is not None:
+        source = "mesh" if use_mesh else "author"
     freq:  dict[str, int]   = collections.Counter()
     cooc:  dict[tuple, int] = collections.Counter()
+    excluded: dict[str, int] = collections.Counter()
 
     for rec in records:
-        kws = rec.get("mesh", []) if use_mesh else rec.get("keywords", [])
-        if use_mesh:
-            kws = list(kws) + rec.get("keywords", [])
-
-        # Clean, deduplicate, and exclude after synonym mapping
-        cleaned = list({
-            ck for k in kws
-            if k.strip()
-            for ck in [_clean_keyword(k)]
-            if ck is not None
-        })
-
-        for k in cleaned:
+        terms = set()
+        for t in _kw.record_terms(rec, source):
+            if t.lower() in _KW_EXCLUDE:
+                continue
+            if exclude_search_terms and t in _kw.SEARCH_TERM_CANONICALS:
+                excluded[t] += 1
+                continue
+            terms.add(t)
+        for k in terms:
             freq[k] += 1
-        for k1, k2 in itertools.combinations(sorted(cleaned), 2):
+        for k1, k2 in itertools.combinations(sorted(terms), 2):
             cooc[(k1, k2)] += 1
 
-    # Filter by minimum frequency / co-occurrence
     freq_filtered = {k: v for k, v in freq.items() if v >= config.MIN_KEYWORD_FREQ}
     cooc_filtered = {k: v for k, v in cooc.items()
                      if v >= config.MIN_COOCCURRENCE
-                     and k[0] in freq_filtered
-                     and k[1] in freq_filtered}
+                     and k[0] in freq_filtered and k[1] in freq_filtered}
+    cov = _kw.coverage_overall(records) if source != "mesh" else \
+        {"n_records": len(records), "n_with_author_keywords": sum(1 for r in records if r.get("mesh")),
+         "pct": round(100 * sum(1 for r in records if r.get("mesh")) / len(records), 1) if records else 0.0}
 
     return {
-        "freq":        freq_filtered,
+        "source":       source,
+        "freq":         freq_filtered,
         "cooccurrence": {f"{k[0]}|||{k[1]}": v for k, v in cooc_filtered.items()},
+        "excluded":     dict(excluded),
+        "coverage":     {"overall_pct": cov["pct"], "n_with_keywords": cov["n_with_author_keywords"],
+                         "n_records": cov["n_records"],
+                         "by_year": _kw.coverage_by_year(records) if source != "mesh" else []},
     }
 
 
@@ -809,8 +709,9 @@ def run_analysis(records: list[dict]) -> dict:
     country_net = country_collab_network(records)
 
     print("[analyze] Computing keyword statistics …")
-    kw_stats = keyword_stats(records, use_mesh=False)
-    mesh_stats = keyword_stats(records, use_mesh=True)
+    kw_stats = keyword_stats(records, source="author")
+    mesh_stats = keyword_stats(records, source="mesh")
+    kw_both = keyword_stats(records, source="both")
 
     print("[analyze] Computing institution statistics …")
     institutions, institutions_meta = institution_stats_meta(
@@ -837,6 +738,7 @@ def run_analysis(records: list[dict]) -> dict:
         "country_net":   country_net,
         "keywords":      kw_stats,
         "mesh":          mesh_stats,
+        "keywords_combined": kw_both,
         "institutions":         institutions,
         "institutions_meta":    institutions_meta,
         "institutions_all":     institutions_all_authors,
