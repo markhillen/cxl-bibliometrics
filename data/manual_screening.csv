@@ -46,3 +46,20 @@ pmid,decision,reason,screened_by,date
 19686668,exclude,"SHG structure of oedematous corneas; native cross-link strength, not CXL",Claude-proposed,2026-09-10
 17226767,exclude,"Periostin and collagen fibrillogenesis; not CXL",Claude-proposed,2026-09-10
 16359253,exclude,"Keratoprosthesis/tissue-engineered cornea review; not CXL",Claude-proposed,2026-09-10
+41488431,exclude,"Antibiotic nanozyme hydrogel for bacterial keratitis; 'corneal cross-linking' is an author keyword only, procedure not studied",Claude-proposed,2026-09-10
+40083774,exclude,"UNION collagen bioink that crosslinks in situ for stromal cell delivery; biomaterial chemistry, not CXL",Claude-proposed,2026-09-10
+38446253,exclude,"Cornea-like tissue from discarded corneo-scleral rims fortified by collagen crosslinking; tissue engineering, not the CXL procedure",Claude-proposed,2026-09-10
+38131919,exclude,"3D-crosslinked hydrogel rings for voriconazole delivery; polymer crosslinking, not CXL",Claude-proposed,2026-09-10
+37689255,exclude,"Citric-acid crosslinked beta-cyclodextrin for antifungal drugs; not CXL",Claude-proposed,2026-09-10
+37627753,include,"Review of corneal infection management listing corneal collagen crosslinking (PACK-CXL) among the treatment modalities discussed",Claude-proposed,2026-09-10
+34829196,exclude,"Fungal keratitis management review; collagen crosslinking mentioned in one sentence as context",Claude-proposed,2026-09-10
+34592226,exclude,"Photo-crosslinked GelMA/collagen membrane as antibacterial corneal implant; biomaterial, not CXL",Claude-proposed,2026-09-10
+33791355,exclude,"Alpaca keratomycosis case (PK + antifungals); 'corneal crosslinking' keyword only, procedure not used",Claude-proposed,2026-09-10
+33682969,exclude,"Commentary on DALK with cross-linked acellular porcine corneal stroma; graft-material crosslinking, not CXL",Claude-proposed,2026-09-10
+33103812,exclude,"DALK with cross-linked acellular porcine corneal stroma; graft-material crosslinking, not CXL",Claude-proposed,2026-09-10
+28855517,exclude,"Cross-linked decellularised porcine corneal graft; graft-material crosslinking, not CXL",Claude-proposed,2026-09-10
+14612343,exclude,"Calcium-chloride cross-linked alginate scleral implant of indomethacin; drug delivery, not CXL",Claude-proposed,2026-09-10
+39463181,exclude,"Riboflavin/UVA cross-linking of a leaking conjunctival bleb; conjunctival, not corneal (consistent with the scleral CXL exclusion)",Claude-proposed,2026-09-10
+35187447,exclude,"Intracorneal silicone oil for bullous keratopathy; collagen crosslinking listed once among alternative treatments",Claude-proposed,2026-09-10
+22553753,exclude,"EDC-crosslinked tissue-engineered cornea; biomaterial, not CXL",Claude-proposed,2026-09-10
+15017101,exclude,"Glutaraldehyde cross-linking of amniotic membrane; not corneal CXL",Claude-proposed,2026-09-10

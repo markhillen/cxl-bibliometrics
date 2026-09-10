@@ -198,11 +198,24 @@ _OPHTH_RE = re.compile(
     re.I,
 )
 # A disease / agent term whose presence makes a non-ophthalmology-journal record
-# unambiguous.  Absent → screening queue.
+# unambiguous.  Absent → screening queue.  "keratocon" alone also matched
+# keratoconjunctivitis (a lupus dry-eye paper slipped through), and a bare
+# "keratitis"/"keratoplasty" next to a generic "cross-link" is not evidence of
+# CXL (drug-delivery implants cross-linked with calcium chloride), so the
+# disease terms are bounded and the agent terms are CXL-specific.
 _DISEASE_AGENT_RE = re.compile(
-    r"\b(keratocon|ectasi|ectatic|keratectasia|keratitis|riboflavin|"
+    r"\b(keratoconus|keratoconic|ectasi|ectatic|keratectasia|riboflavin|"
     r"ultraviolet[\s-]?a\b|uv-?a\b|pellucid|rose bengal|infectious keratitis|"
-    r"corneal (?:melt|ulcer)|keratoplasty)",
+    r"corneal (?:melt|ulcer)|\bcxl\b|pack-cxl|epi-?on\b|epi-?off\b|"
+    r"photoactivated chromophore|corneal (?:collagen )?cross[\s-]?link|"
+    r"cross[\s-]?link\w* (?:of )?(?:the )?(?:human |porcine |rabbit |bovine )?cornea)",
+    re.I,
+)
+# MeSH headings that carry the CXL concept when it is absent from title,
+# abstract and author keywords (records retrieved through the MeSH arm).
+_MESH_CXL_SIGNAL_RE = re.compile(
+    r"cross-linking reagents|riboflavin|ultraviolet (?:rays|therapy)|photosensitizing agents|"
+    r"photochemotherapy|collagen",
     re.I,
 )
 
@@ -260,8 +273,10 @@ def classify(rec: dict) -> Decision:
         if _CXL_SIGNAL_RE.search(kw_text):
             sig = _first_match(_CXL_SIGNAL_RE, kw_text)
             flags.append("cxl_signal_in_keywords_only")
-        elif allow or ocular_mesh:
+        elif (allow or ocular_mesh) and any(_MESH_CXL_SIGNAL_RE.search(mm or "") for mm in mesh):
+            sig = next(mm for mm in mesh if _MESH_CXL_SIGNAL_RE.search(mm or ""))
             flags.append("no_cxl_signal_in_text")
+            flags.append("cxl_signal_in_mesh_only")
         else:
             return Decision(False, "content", "content.no_cxl_signal",
                             "no cross-linking term in title, abstract or keywords", flags)
