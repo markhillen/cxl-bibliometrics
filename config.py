@@ -125,7 +125,10 @@ REQUEST_DELAY     = 0.15
 MAX_RETRIES       = 3
 
 # ── Author Disambiguation ─────────────────────────────────────────────────────
-DISAMBIGUATION_CO_AUTHOR_THRESHOLD = 2
+DISAMBIGUATION_CO_AUTHOR_THRESHOLD        = 2      # shared co-authors to merge name variants
+DISAMBIGUATION_AFFIL_JACCARD              = 0.35   # affiliation-token Jaccard to merge (with ≥1 shared co-author)
+DISAMBIGUATION_AFFIL_JACCARD_COMMON       = 0.55   # same, for high-collision surnames (_COMMON_SURNAMES)
+DISAMBIGUATION_CO_AUTHOR_THRESHOLD_COMMON = 2      # shared co-authors required with the Jaccard rule for common surnames
 MIN_AUTHOR_PUBS = 3
 
 # ── Citation Enrichment ───────────────────────────────────────────────────────
