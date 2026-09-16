@@ -5,6 +5,7 @@ Produces publication-quality figures saved to OUTPUT_DIR.
 """
 
 import json
+import os
 import pathlib
 import sys
 import collections
@@ -63,7 +64,7 @@ def _panel_letter(ax, letter: str):
 
 def _save(fig, name: str):
     # Replace extension with configured format
-    fmt  = getattr(config, "FIGURE_FORMAT", "pdf")
+    fmt  = os.environ.get("BIB_FIGURE_FORMAT") or getattr(config, "FIGURE_FORMAT", "pdf")
     stem = pathlib.Path(name).stem
     fname = f"{stem}.{fmt}"
     path  = _out_dir() / fname
@@ -79,9 +80,14 @@ def _save(fig, name: str):
     except Exception:  # noqa: BLE001
         pass
     kwargs = {"bbox_inches": None, "pad_inches": 0.02}
-    if fmt == "png":
-        kwargs["dpi"] = 300           # high-dpi raster only
-    # PDF and SVG are vector — dpi argument is ignored/irrelevant
+    # Raster formats need an explicit resolution. Journals require at least
+    # 300 dpi for halftones and considerably more for line art, so allow the
+    # value to be raised from the environment (BIB_FIGURE_DPI).
+    if fmt in ("png", "jpg", "jpeg", "tif", "tiff"):
+        kwargs["dpi"] = int(os.environ.get("BIB_FIGURE_DPI", "300"))
+        if fmt in ("jpg", "jpeg"):
+            kwargs["pil_kwargs"] = {"quality": 95}
+    # PDF, EPS and SVG are vector — the dpi argument is ignored/irrelevant
     fig.savefig(path, **kwargs)
     plt.close(fig)
     print(f"  saved: {path.name}")
