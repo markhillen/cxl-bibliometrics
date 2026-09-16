@@ -572,13 +572,16 @@ def institution_stats_meta(records: list[dict], first_author_only: bool = False,
                 if not name or len(name) < 4:
                     continue
                 seen[name] = max(seen.get(name, 0.0), w)
-        if first_author_only:
-            if not any_affil:
-                meta["n_no_affiliation"] += 1
-            elif not seen:
-                meta["n_unresolved"] += 1
-            else:
-                meta["n_resolved"] += 1
+        # Denominators, on the same basis as the counting scheme: a record counts
+        # as resolved when the authors being credited yield at least one
+        # institution. Reported percentages then share a denominator with the
+        # counts above them, whichever scheme is in use.
+        if not any_affil:
+            meta["n_no_affiliation"] += 1
+        elif not seen:
+            meta["n_unresolved"] += 1
+        else:
+            meta["n_resolved"] += 1
         for name, w in seen.items():
             counter[name] += w
             if cc is not None:
@@ -594,7 +597,7 @@ def institution_stats_meta(records: list[dict], first_author_only: bool = False,
                      "rank": rk,
                      "pct_of_total": round(100 * v / len(records), 2) if records else 0.0,
                      "pct_of_resolved": (round(100 * v / meta["n_resolved"], 2)
-                                         if first_author_only and meta["n_resolved"] else None)})
+                                         if meta["n_resolved"] else None)})
     return rows, meta
 
 
@@ -714,10 +717,17 @@ def run_analysis(records: list[dict]) -> dict:
     kw_both = keyword_stats(records, source="both")
 
     print("[analyze] Computing institution statistics …")
+    _first_only = getattr(config, "INSTITUTION_FIRST_AUTHOR_ONLY", True)
     institutions, institutions_meta = institution_stats_meta(
-        records, first_author_only=True,
+        records, first_author_only=_first_only,
         level=getattr(config, "INSTITUTION_LEVEL", "canonical"),
         counting=getattr(config, "INSTITUTION_COUNTING", "primary"))
+    # The scheme not used as the headline is always computed too, so the
+    # manuscript's sensitivity table cannot drift from the main one.
+    institutions_alt, institutions_alt_meta = institution_stats_meta(
+        records, first_author_only=not _first_only,
+        level=getattr(config, "INSTITUTION_LEVEL", "canonical"),
+        counting="primary" if _first_only else "primary")
     institutions_all_authors = institution_stats(records, first_author_only=False, counting="whole")
 
     print("[analyze] Computing publication type breakdown …")
@@ -741,6 +751,8 @@ def run_analysis(records: list[dict]) -> dict:
         "keywords_combined": kw_both,
         "institutions":         institutions,
         "institutions_meta":    institutions_meta,
+        "institutions_alt":      institutions_alt,
+        "institutions_alt_meta": institutions_alt_meta,
         "institutions_all":     institutions_all_authors,
         "pub_types":     pubtypes,
         "languages":     languages,

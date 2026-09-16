@@ -54,8 +54,12 @@ def generate_reports(results: dict):
         {"metric": "Mean citations per record (known)", "value": round(total_cites / (n - n_cite_null), 1) if n - n_cite_null else ""},
         {"metric": "Records with resolved first-author country", "value": sum(c["count"] for c in results["countries"] if c["country"] != "Unknown")},
         {"metric": "Records with unresolved first-author country", "value": sum(c["count"] for c in results["countries"] if c["country"] == "Unknown")},
-        {"metric": "First-author institution resolved / unresolved / no affiliation",
+        {"metric": "Records with institution resolved / unresolved / no affiliation",
          "value": "{n_resolved} / {n_unresolved} / {n_no_affiliation}".format(**results.get("institutions_meta", {"n_resolved": "", "n_unresolved": "", "n_no_affiliation": ""}))},
+        {"metric": "Institution attribution scheme",
+         "value": ("first author only" if results.get("institutions_meta", {}).get("first_author_only")
+                   else "all authors") + ", " +
+                  str(results.get("institutions_meta", {}).get("counting", ""))},
         {"metric": "Unique journals",              "value": len(results["journals"])},
         {"metric": "Unique countries",             "value": len([c for c in results["countries"] if c["country"] != "Unknown"])},
         {"metric": "Unique institutions (top)",    "value": len(results["institutions"])},
@@ -175,6 +179,17 @@ def generate_reports(results: dict):
                  for i, r in enumerate(results["institutions"][:50])]
     _write_csv("institutions_top.csv", ["rank", "institution", "publications", "pct_of_resolved",
                                         "total_citations", "n_cited_known"], inst_rows)
+
+    if results.get("institutions_alt"):
+        alt_rows = [{"rank": r.get("rank", i+1), "institution": r["institution"],
+                     "publications": r["count"],
+                     "pct_of_resolved": r.get("pct_of_resolved", ""),
+                     "total_citations": r.get("citations", ""),
+                     "n_cited_known": r.get("n_cited_known", "")}
+                    for i, r in enumerate(results["institutions_alt"][:50])]
+        _write_csv("institutions_alt_scheme.csv",
+                   ["rank", "institution", "publications", "pct_of_resolved",
+                    "total_citations", "n_cited_known"], alt_rows)
 
     # ── Languages ──────────────────────────────────────────────────────────
     _LANG_NAMES = {

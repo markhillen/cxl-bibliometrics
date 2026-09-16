@@ -138,7 +138,15 @@ MIN_AUTHOR_PUBS = 3
 #           (the rule behind the v16 manuscript's Table 3; counts overlap);
 #           "fractional" = every institution, 1/k each.
 # level:    "canonical" | "parent" | "cluster"  (data/institution_aliases.csv)
-INSTITUTION_COUNTING = "primary"
+# first_author_only: True  = credit only the first author's institution
+#                    False = credit every institution named by any author, which
+#                    is what institutional rankings normally report. First-author
+#                    -only systematically under-credits groups whose people
+#                    publish as senior or middle authors, so the manuscript
+#                    reports all-author counting and keeps first-author-only as
+#                    the sensitivity analysis. Both tables are always written.
+INSTITUTION_FIRST_AUTHOR_ONLY = False
+INSTITUTION_COUNTING = "whole"
 INSTITUTION_LEVEL    = "canonical"
 
 # ── Citation Enrichment ───────────────────────────────────────────────────────
