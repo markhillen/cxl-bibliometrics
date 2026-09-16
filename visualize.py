@@ -87,6 +87,10 @@ def _save(fig, name: str):
         kwargs["dpi"] = int(os.environ.get("BIB_FIGURE_DPI", "300"))
         if fmt in ("jpg", "jpeg"):
             kwargs["pil_kwargs"] = {"quality": 95}
+        elif fmt in ("tif", "tiff"):
+            # Uncompressed TIFF at 600 dpi runs to hundreds of MB per figure.
+            # LZW is lossless and universally accepted by publishers.
+            kwargs["pil_kwargs"] = {"compression": "tiff_lzw"}
     # PDF, EPS and SVG are vector — the dpi argument is ignored/irrelevant
     fig.savefig(path, **kwargs)
     plt.close(fig)
@@ -466,7 +470,15 @@ def plot_institutions(institutions: list[dict], top_n: int = 15):
     fig, axes = plt.subplots(nrows, 1, figsize=(7, 3.4 * nrows))
     if nrows == 1:
         axes = [axes]
-    fig.suptitle(f"Top {top_n} institutions in corneal cross-linking research (first-author primary affiliation)",
+    # Name the scheme that produced the table rather than hardcoding one: the
+    # caption is wrong the moment config changes, and nobody notices.
+    _scope = ("first author" if getattr(config, "INSTITUTION_FIRST_AUTHOR_ONLY", True)
+              else "all authors")
+    _count = getattr(config, "INSTITUTION_COUNTING", "primary")
+    _count = {"primary": "primary affiliation", "whole": "whole counting",
+              "fractional": "fractional counting"}.get(_count, _count)
+    fig.suptitle(f"Top {top_n} institutions in corneal cross-linking research "
+                 f"({_scope}, {_count})",
                  fontsize=10, fontweight="bold")
     y = list(range(len(labels)))
     axes[0].barh(y, counts, color=PALETTE[4], alpha=0.85)

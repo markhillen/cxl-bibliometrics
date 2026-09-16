@@ -140,32 +140,43 @@ def country_counts(records: list[dict]) -> dict[str, list]:
 
 def institution_counts(records: list[dict]) -> None:
     from analyze import institution_stats_meta
-    for counting in ("primary", "whole", "fractional"):
-        for level in ("canonical", "parent", "cluster"):
-            rows, meta = institution_stats_meta(records, True, level, counting, 40)
-            _write(f"institutions_{counting}_{level}.csv",
-                   ["rank", "institution", "publications", "pct_of_resolved", "citations", "n_cited_known"],
-                   [[r["rank"], r["institution"], r["count"], r["pct_of_resolved"], r["citations"], r["n_cited_known"]]
-                    for r in rows])
+    # Both attribution scopes, so the manuscript can cite either without the
+    # supplemental table silently answering a different question.
+    for scope, first_only in (("firstauthor", True), ("allauthors", False)):
+        for counting in ("primary", "whole", "fractional"):
+            for level in ("canonical", "parent", "cluster"):
+                rows, meta = institution_stats_meta(records, first_only, level, counting, 40)
+                _write(f"institutions_{scope}_{counting}_{level}.csv",
+                       ["rank", "institution", "publications", "pct_of_resolved",
+                        "citations", "n_cited_known"],
+                       [[r["rank"], r["institution"], r["count"], r["pct_of_resolved"],
+                         r["citations"], r["n_cited_known"]] for r in rows])
 
 
 def zurich_merge(records: list[dict]) -> list[list]:
     from analyze import institution_stats_meta
     rows = []
-    for counting in ("primary", "whole"):
-        canon, _ = institution_stats_meta(records, True, "canonical", counting, 200)
-        clus, _ = institution_stats_meta(records, True, "cluster", counting, 200)
-        cmap = {r["institution"]: r for r in canon}
-        kmap = {r["institution"]: r for r in clus}
-        for name in ("ELZA Institute", "University of Zurich", "IROC Zurich", "University Hospital Zurich"):
-            r = cmap.get(name)
-            rows.append([counting, "separate", name, r["count"] if r else 0, r["rank"] if r else ""])
-        r = kmap.get("zurich_cxl")
-        rows.append([counting, "merged", "zurich_cxl (ELZA + UZH/CABMM + IROC)", r["count"] if r else 0, r["rank"] if r else ""])
-        for name in ("TU Dresden", "University of Crete", "Tehran University of Medical Sciences"):
-            r = kmap.get(name)
-            rows.append([counting, "merged-table context", name, r["count"] if r else 0, r["rank"] if r else ""])
-    _write("zurich_sensitivity.csv", ["counting", "treatment", "institution", "publications", "rank"], rows)
+    for scope, first_only in (("first author", True), ("all authors", False)):
+        for counting in ("primary", "whole"):
+            canon, _ = institution_stats_meta(records, first_only, "canonical", counting, 200)
+            clus, _ = institution_stats_meta(records, first_only, "cluster", counting, 200)
+            cmap = {r["institution"]: r for r in canon}
+            kmap = {r["institution"]: r for r in clus}
+            for name in ("ELZA Institute", "University of Zurich", "IROC Zurich",
+                         "University Hospital Zurich"):
+                r = cmap.get(name)
+                rows.append([scope, counting, "separate", name,
+                             r["count"] if r else 0, r["rank"] if r else ""])
+            r = kmap.get("zurich_cxl")
+            rows.append([scope, counting, "merged", "zurich_cxl (ELZA + UZH/CABMM + IROC)",
+                         r["count"] if r else 0, r["rank"] if r else ""])
+            for name in ("TU Dresden", "University of Crete",
+                         "Tehran University of Medical Sciences", "Wenzhou Medical University"):
+                r = kmap.get(name)
+                rows.append([scope, counting, "merged-table context", name,
+                             r["count"] if r else 0, r["rank"] if r else ""])
+    _write("zurich_sensitivity.csv",
+           ["scope", "counting", "treatment", "institution", "publications", "rank"], rows)
     return rows
 
 
@@ -217,7 +228,8 @@ def exclude_author_group(records: list[dict]) -> dict:
         rows.append(["author", r["author_id"], r["pub_count"], ""])
     for r in [c for c in country_stats(kept) if c["country"] != "Unknown"][:15]:
         rows.append(["country", r["country"], r["count"], r["rank"]])
-    for r in institution_stats(kept, first_author_only=True,
+    for r in institution_stats(kept,
+                               first_author_only=getattr(config, "INSTITUTION_FIRST_AUTHOR_ONLY", True),
                                level=getattr(config, "INSTITUTION_LEVEL", "canonical"),
                                counting=getattr(config, "INSTITUTION_COUNTING", "primary"))[:15]:
         rows.append(["institution", r["institution"], r["count"], r["rank"]])
