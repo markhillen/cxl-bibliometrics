@@ -515,10 +515,38 @@ def _spearman(a: list[float], b: list[float]) -> float | None:
     return round(num / den, 3) if den else None
 
 
+def _crossref_cache() -> dict:
+    """CrossRef cited-by counts keyed by DOI, as citations.py leaves them.
+
+    The comparison used to need citation_count_crossref on every record, which
+    only a live CrossRef fetch sets — so a --skip-citations run produced an
+    empty cross-check table while the manuscript claimed one. Reading the cache
+    makes the cross-check reproducible from what is already on disk.
+    """
+    import json as _json
+    p = pathlib.Path(config.CACHE_DIR) / "citation_cache.json"
+    if not p.exists():
+        return {}
+    try:
+        raw = _json.load(open(p))
+    except Exception:
+        return {}
+    return {str(k).lower(): v for k, v in raw.items() if isinstance(v, (int, float))}
+
+
 def oa_vs_crossref(records: list[dict]) -> None:
-    pairs = [(int(r["citation_count"]), int(r["citation_count_crossref"])) for r in records
+    cache = _crossref_cache()
+
+    def crossref_for(r):
+        v = r.get("citation_count_crossref")
+        if v is not None:
+            return v
+        doi = (r.get("doi") or "").lower()
+        return cache.get(doi)
+
+    pairs = [(int(r["citation_count"]), int(crossref_for(r))) for r in records
              if r.get("citation_source") == "openalex" and r.get("citation_count") is not None
-             and r.get("citation_count_crossref") is not None]
+             and crossref_for(r) is not None]
     rows = [["records_with_both_counts", len(pairs)]]
     if pairs:
         oa = [p[0] for p in pairs]; cr = [p[1] for p in pairs]
