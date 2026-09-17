@@ -258,13 +258,23 @@ def author_institutions(author: dict, first_surname: str = "",
             if r.canonical and r.canonical not in seen:
                 seen.add(r.canonical)
                 out.append(r)
-    if pmid is not None:
-        for fix in load_corrections().get((str(pmid), author.get("author_id") or ""), []):
+    fixes = load_corrections().get((str(pmid), author.get("author_id") or ""), []) \
+        if pmid is not None else []
+    if fixes:
+        # A curated correction states what an unparseable affiliation actually
+        # is, so it supersedes whatever the fallback scorer guessed from the
+        # same string -- otherwise "Zurich, Switzerland." keeps resolving to a
+        # pseudo-institution called "Zurich" and, under primary counting, wins.
+        out = [r for r in out if r.matched_by != "fallback"]
+        seen = {r.canonical for r in out}
+        head = []
+        for fix in fixes:
             r = resolve(fix["institution"])
             name = r.canonical or fix["institution"]
             if name not in seen:
                 seen.add(name)
-                out.append(r if r.canonical else Resolution(name, matched_by="curated"))
+                head.append(r if r.canonical else Resolution(name, matched_by="curated"))
+        out = head + out
     return out
 
 
