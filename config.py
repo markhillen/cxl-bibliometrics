@@ -146,6 +146,16 @@ MIN_AUTHOR_PUBS = 3
 #                    reports all-author counting and keeps first-author-only as
 #                    the sensitivity analysis. Both tables are always written.
 INSTITUTION_FIRST_AUTHOR_ONLY = False
+
+# Some journals deposit an affiliation for one author or for none: 316 records
+# here (9.8%) carry none at all, 186 of them from a single journal. When this is
+# on, an author with no affiliation on a record takes their own affiliation from
+# another record within IMPUTE_WINDOW_YEARS, marked affil_source="imputed".
+# Applied to every author in the corpus, never to one group, and used for
+# institutional counting only - first-author country still uses what PubMed
+# recorded. See impute.py.
+IMPUTE_MISSING_AFFILIATIONS = False
+IMPUTE_WINDOW_YEARS = 2
 INSTITUTION_COUNTING = "whole"
 INSTITUTION_LEVEL    = "canonical"
 

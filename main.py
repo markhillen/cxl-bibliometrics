@@ -252,6 +252,13 @@ def main():
                         rec.get("oa_matched", "")])
     print(f"[main] Attribution table: {attr_path}")
 
+    if getattr(config, "IMPUTE_MISSING_AFFILIATIONS", False):
+        import impute
+        _imp = impute.impute_affiliations(
+            records, window=getattr(config, "IMPUTE_WINDOW_YEARS", 2))
+    else:
+        _imp = None
+
     # ── Steps 5–8: Multi-period analysis, viz, reports ────────────────────────
     print(f"\n[5–8/8] Running multi-period analysis …")
     from periods import run_all_periods
