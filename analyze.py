@@ -561,7 +561,7 @@ def institution_stats_meta(records: list[dict], first_author_only: bool = False,
         for a in authors:
             if a.get("affils"):
                 any_affil = True
-            res = institutions.author_institutions(a, surname)
+            res = institutions.author_institutions(a, surname, rec.get("pmid"))
             if not res:
                 continue
             if counting == "primary":

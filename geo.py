@@ -282,21 +282,54 @@ def _last_match(rxs: list[tuple[str, re.Pattern]], text: str) -> str:
     return best
 
 
+def _segments(affil_strings: list[str]) -> list[str]:
+    """One author's affiliations, in the order written, one institution each.
+
+    PubMed writes an author's several affiliations either as separate strings
+    or as one string with ';' between them. Both orderings are meaningful: the
+    author's own institution is written first.
+    """
+    out: list[str] = []
+    for a in (affil_strings or []):
+        if not a:
+            continue
+        a = re.sub(r"\S+@\S+", " ", a)
+        for seg in re.split(r";\s*", a):
+            if seg.strip():
+                out.append(seg.strip())
+    return out
+
+
+def _first_segment_match(rxs: list[tuple[str, re.Pattern]], affil_strings: list[str]) -> str:
+    """Country of the first affiliation segment that yields one.
+
+    Within a segment the last match wins, because a single affiliation ends
+    with its country ("Department of X, University of Y, Zurich, Switzerland").
+    Across segments the first wins, because an author who lists several
+    institutions lists their own first. Taking the last match across the whole
+    string, as this function used to, credited a first author with several
+    affiliations to whichever country happened to be written last.
+    """
+    for seg in _segments(affil_strings):
+        c = _last_match(rxs, seg)
+        if c:
+            return c
+    return ""
+
+
 def extract_country(affil_strings: list[str], fallback: str = "") -> str:
     """
     Country of one author from their affiliation string(s).
-    Country names take precedence over city/institution hints; among several
-    matches the last in the string wins.
+    Country names take precedence over city/institution hints; the author's
+    first-listed affiliation wins over any later one.
     """
     text = " ".join(a for a in (affil_strings or []) if a)
     if not text.strip():
         return fallback or "Unknown"
-    # Strip e-mail addresses (they carry .uk/.de etc. that are not affiliations)
-    text = re.sub(r"\S+@\S+", " ", text)
-    c = _last_match(_NAME_RX, text)
+    c = _first_segment_match(_NAME_RX, affil_strings)
     if c:
         return c
-    c = _last_match(_HINT_RX, text)
+    c = _first_segment_match(_HINT_RX, affil_strings)
     if c:
         return c
     return fallback or "Unknown"
@@ -306,11 +339,12 @@ def extract_country_with_source(affil_strings: list[str]) -> tuple[str, str]:
     text = " ".join(a for a in (affil_strings or []) if a)
     if not text.strip():
         return "Unknown", "no_affiliation"
-    text = re.sub(r"\S+@\S+", " ", text)
-    if _last_match(_NAME_RX, text):
-        return _last_match(_NAME_RX, text), "affil_country_name"
-    if _last_match(_HINT_RX, text):
-        return _last_match(_HINT_RX, text), "affil_city_hint"
+    c = _first_segment_match(_NAME_RX, affil_strings)
+    if c:
+        return c, "affil_country_name"
+    c = _first_segment_match(_HINT_RX, affil_strings)
+    if c:
+        return c, "affil_city_hint"
     return "Unknown", "affil_unresolved"
 
 

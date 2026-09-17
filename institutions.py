@@ -37,6 +37,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import config
 
 ALIAS_PATH = pathlib.Path(config.DATA_DIR) / "institution_aliases.csv"
+CORRECTIONS_PATH = pathlib.Path(config.DATA_DIR) / "affiliation_corrections.csv"
 
 
 @dataclasses.dataclass
@@ -92,6 +93,8 @@ def load_aliases(path: pathlib.Path | None = None) -> list[Alias]:
 
 
 def reset() -> None:
+    global _CORRECTIONS
+    _CORRECTIONS = None
     global _ALIASES
     _ALIASES = None
 
@@ -203,8 +206,50 @@ def affil_segments(affil: str, first_surname: str = "") -> list[str]:
     return [p.strip() for p in re.split(r";\s*", s) if p.strip()]
 
 
-def author_institutions(author: dict, first_surname: str = "") -> list[Resolution]:
-    """All distinct resolved institutions an author lists, in the order written."""
+_CORRECTIONS: dict | None = None
+
+
+def load_corrections(path: pathlib.Path | None = None) -> dict:
+    """Curated per-record affiliation corrections, keyed by (pmid, author_id).
+
+    PubMed sometimes carries an affiliation that names a city but no
+    institution ("Zurich, Switzerland."), or carries none at all. Where the
+    authors can state which institution a record belongs to, the correction is
+    recorded here rather than applied by hand, so that every such decision has
+    a PMID, a stated basis and a date, and the table ships with the paper.
+
+    Corrections add an institution; they never remove one the record names.
+    """
+    global _CORRECTIONS
+    if _CORRECTIONS is not None and path is None:
+        return _CORRECTIONS
+    import csv as _csv
+    out: dict = {}
+    p = path or CORRECTIONS_PATH
+    if p.exists():
+        with open(p, newline="") as fh:
+            for row in _csv.DictReader(fh):
+                pmid = (row.get("pmid") or "").strip()
+                aid = (row.get("author_id") or "").strip()
+                inst = (row.get("institution") or "").strip()
+                if not (pmid and aid and inst):
+                    continue
+                out.setdefault((pmid, aid), []).append(
+                    {"institution": inst,
+                     "country": (row.get("country") or "").strip() or None,
+                     "basis": (row.get("basis") or "").strip()})
+    if path is None:
+        _CORRECTIONS = out
+    return out
+
+
+def author_institutions(author: dict, first_surname: str = "",
+                        pmid: str | None = None) -> list[Resolution]:
+    """All distinct resolved institutions an author lists, in the order written.
+
+    When a curated correction exists for this (record, author), the corrected
+    institution is appended if the record did not already name it.
+    """
     out: list[Resolution] = []
     seen: set[str] = set()
     for affil in author.get("affils", []) or []:
@@ -213,12 +258,20 @@ def author_institutions(author: dict, first_surname: str = "") -> list[Resolutio
             if r.canonical and r.canonical not in seen:
                 seen.add(r.canonical)
                 out.append(r)
+    if pmid is not None:
+        for fix in load_corrections().get((str(pmid), author.get("author_id") or ""), []):
+            r = resolve(fix["institution"])
+            name = r.canonical or fix["institution"]
+            if name not in seen:
+                seen.add(name)
+                out.append(r if r.canonical else Resolution(name, matched_by="curated"))
     return out
 
 
-def primary_institution(author: dict, first_surname: str = "") -> Resolution:
+def primary_institution(author: dict, first_surname: str = "",
+                        pmid: str | None = None) -> Resolution:
     """The author's primary affiliation = first resolvable segment."""
-    res = author_institutions(author, first_surname)
+    res = author_institutions(author, first_surname, pmid)
     return res[0] if res else Resolution(None, matched_by="unresolved")
 
 
