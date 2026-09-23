@@ -1,0 +1,51 @@
+rank,institution,publications,pct_of_resolved,total_citations,n_cited_known
+1,ELZA Institute,64,2.21,1547,64
+2,University of Crete,62,2.14,2752,62
+3,University of Zurich,61,2.11,1460,61
+4,TU Dresden / University Hospital Carl Gustav Carus,60,2.07,12405,60
+5,Wenzhou Medical University,53,1.83,1072,53
+6,University of Geneva,52,1.8,1246,52
+7,University of Southern California,45,1.56,1733,45
+8,Moorfields Eye Hospital,41,1.42,1660,40
+=9,Narayana Nethralaya Bangalore,38,1.31,1386,38
+=9,University of Siena,38,1.31,3975,38
+11,Cleveland Clinic,37,1.28,2339,37
+=12,Laservision Institute Athens,36,1.24,2141,36
+=12,Federal University of São Paulo,36,1.24,2087,36
+=14,Harvard Medical School,31,1.07,804,31
+=14,Massachusetts Eye and Ear,31,1.07,776,31
+16,Humanitas University Milan,30,1.04,1797,30
+=17,Farabi Eye Hospital,29,1.0,299,29
+=17,Johns Hopkins University,29,1.0,993,29
+=17,All India Institute of Medical Sciences,29,1.0,1137,29
+20,IROC Zurich,27,0.93,2589,27
+=21,Bascom Palmer Eye Institute,26,0.9,1099,26
+=21,Cardiff University,26,0.9,1104,26
+=21,LV Prasad Eye Institute,26,0.9,869,26
+24,Tehran University of Medical Sciences,25,0.86,362,25
+=25,Noor Eye Hospital Tehran,24,0.83,790,24
+=25,Shahid Beheshti University of Medical Sciences,24,0.83,373,24
+=25,University of Liverpool,24,0.83,490,24
+=25,Tel Aviv University,24,0.83,413,24
+29,University of California,23,0.8,312,23
+30,New Zealand National Eye Centre,22,0.76,935,22
+=31,Siena Crosslinking Center,21,0.73,1040,21
+=31,Centre for Eye Research Australia,21,0.73,1904,21
+=33,Inselspital Bern,20,0.69,640,20
+=33,Chinese University of Hong Kong,20,0.69,431,20
+=33,University of Nottingham,20,0.69,904,20
+=33,University Medical Center Utrecht,20,0.69,1118,20
+37,The University of Sydney,19,0.66,526,19
+38,University of Toronto,18,0.62,285,18
+=39,Aravind Eye Care System,17,0.59,383,17
+=39,Sankara Nethralaya Chennai,17,0.59,357,17
+=39,University College London,17,0.59,287,17
+=39,Maastricht University,17,0.59,713,17
+=39,Columbia University,17,0.59,282,17
+=39,Singapore National Eye Centre,17,0.59,708,16
+=45,Beyoglu Eye Training and Research Hospital,16,0.55,464,16
+=45,Ulucanlar Eye Training and Research Hospital,16,0.55,198,16
+=45,Antwerp University Hospital,16,0.55,660,16
+=45,Vision Engineering Italy srl,16,0.55,332,16
+=45,Ain Shams University,16,0.55,453,16
+=45,Sapienza University of Rome,16,0.55,318,16

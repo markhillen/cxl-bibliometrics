@@ -1,0 +1,13 @@
+metric,value
+window,2021–2025
+records_in_window,1113
+China_first_author,133
+USA_first_author,140
+difference_CN_minus_US,-7
+unresolved_country_in_window,41
+best_case_China (all unresolved → China),174 vs 140
+best_case_USA (all unresolved → USA),133 vs 181
+bootstrap_95pct_CI_difference,"[-39, 25] (5000 resamples of records)"
+bootstrap_share_of_resamples_with_China_ahead,0.324
+bootstrap_share_of_resamples_tied,0.021
+binomial_two_sided_P_resolved_US_China_records,0.717

@@ -1,0 +1,89 @@
+rank,country,publications,pct
+1,United States,547,14.38
+2,China,280,7.36
+3,Turkey,237,6.23
+4,Italy,231,6.07
+=5,United Kingdom,230,6.05
+=5,Germany,230,6.05
+7,India,221,5.81
+8,Switzerland,203,5.34
+9,Greece,139,3.65
+10,Iran,116,3.05
+11,Brazil,92,2.42
+12,Spain,91,2.39
+13,Egypt,85,2.23
+14,Australia,84,2.21
+15,France,64,1.68
+16,Israel,62,1.63
+17,Canada,61,1.6
+18,Netherlands,54,1.42
+19,Japan,49,1.29
+20,Saudi Arabia,44,1.16
+21,Russia,43,1.13
+22,New Zealand,41,1.08
+23,Sweden,33,0.87
+24,Lebanon,32,0.84
+=25,Hong Kong,31,0.81
+=25,Romania,31,0.81
+27,Austria,29,0.76
+28,Singapore,28,0.74
+29,South Korea,25,0.66
+30,Poland,24,0.63
+31,Belgium,22,0.58
+32,Norway,20,0.53
+33,Mexico,19,0.5
+=34,Ireland,18,0.47
+=34,Croatia,18,0.47
+=36,Taiwan,17,0.45
+=36,United Arab Emirates,17,0.45
+=36,Denmark,17,0.45
+=39,Pakistan,16,0.42
+=39,Colombia,16,0.42
+41,Hungary,15,0.39
+42,Portugal,14,0.37
+43,Peru,10,0.26
+=44,Argentina,9,0.24
+=44,Bosnia and Herzegovina,9,0.24
+=44,Serbia,9,0.24
+=44,Czechia,9,0.24
+=48,AG,8,0.21
+=48,Finland,8,0.21
+=48,Jordan,8,0.21
+51,Palestine,6,0.16
+=52,Cambodia,5,0.13
+=52,South Africa,5,0.13
+=52,Thailand,5,0.13
+=52,Morocco,5,0.13
+=56,Syria,4,0.11
+=56,Azerbaijan,4,0.11
+=56,Nepal,4,0.11
+=59,Latvia,3,0.08
+=59,Chile,3,0.08
+=59,Philippines,3,0.08
+=59,Kuwait,3,0.08
+=59,Slovakia,3,0.08
+=59,Oman,3,0.08
+=59,Ukraine,3,0.08
+=59,Cyprus,3,0.08
+=67,Iraq,2,0.05
+=67,Indonesia,2,0.05
+=67,Qatar,2,0.05
+=67,SM,2,0.05
+=71,Macao,1,0.03
+=71,Kenya,1,0.03
+=71,Tunisia,1,0.03
+=71,Bahrain,1,0.03
+=71,Bolivia,1,0.03
+=71,BI,1,0.03
+=71,Sri Lanka,1,0.03
+=71,Bulgaria,1,0.03
+=71,Dominican Republic,1,0.03
+=71,BT,1,0.03
+=71,Algeria,1,0.03
+=71,Slovenia,1,0.03
+=71,Cameroon,1,0.03
+=71,Kazakhstan,1,0.03
+=71,Estonia,1,0.03
+=71,CI,1,0.03
+=71,Costa Rica,1,0.03
+=71,Cuba,1,0.03

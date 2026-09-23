@@ -1,0 +1,89 @@
+rank,country,publications,pct
+1,United States,413.79,13.81
+2,China,252.05,8.41
+3,Turkey,222.84,7.44
+4,Germany,190.43,6.36
+5,Italy,186.54,6.23
+6,India,185.87,6.2
+7,United Kingdom,156.91,5.24
+8,Switzerland,137.16,4.58
+9,Greece,117.16,3.91
+10,Iran,104.46,3.49
+11,Egypt,76.39,2.55
+12,Brazil,68.46,2.29
+13,Spain,67.87,2.27
+14,Australia,56.96,1.9
+15,Canada,54.11,1.81
+16,France,50.33,1.68
+17,Israel,48.97,1.63
+=18,Japan,36.8,1.23
+=18,Netherlands,36.8,1.23
+20,New Zealand,35.39,1.18
+21,Russia,34.51,1.15
+22,Saudi Arabia,33.56,1.12
+23,Romania,29.95,1.0
+24,Sweden,27.76,0.93
+25,South Korea,23.92,0.8
+26,Lebanon,23.07,0.77
+27,Hong Kong,20.35,0.68
+28,Austria,19.61,0.65
+29,Singapore,19.3,0.64
+30,Poland,17.51,0.58
+31,Mexico,15.44,0.52
+32,Norway,14.87,0.5
+33,Colombia,14.38,0.48
+34,Belgium,13.88,0.46
+35,Ireland,13.81,0.46
+36,Croatia,13.48,0.45
+37,Pakistan,13.17,0.44
+38,Portugal,12.3,0.41
+39,Taiwan,11.87,0.4
+40,Hungary,11.48,0.38
+41,Denmark,11.23,0.37
+42,Peru,7.97,0.27
+43,Argentina,6.65,0.22
+44,United Arab Emirates,6.41,0.21
+45,Czechia,6.14,0.21
+46,Bosnia and Herzegovina,6.08,0.2
+47,Finland,5.38,0.18
+48,Thailand,5.0,0.17
+49,Jordan,4.98,0.17
+=50,Nepal,3.67,0.12
+=50,Morocco,3.67,0.12
+52,Syria,3.17,0.11
+53,Serbia,3.04,0.1
+54,Oman,3.0,0.1
+55,AG,2.84,0.09
+56,Cambodia,2.8,0.09
+57,South Africa,2.79,0.09
+58,Palestine,2.73,0.09
+59,Ukraine,2.6,0.09
+60,Azerbaijan,2.25,0.08
+61,Slovakia,2.11,0.07
+=62,Indonesia,2.0,0.07
+=62,Philippines,2.0,0.07
+64,Cyprus,1.87,0.06
+65,SM,1.5,0.05
+66,Chile,1.31,0.04
+=67,Qatar,1.0,0.03
+=67,Tunisia,1.0,0.03
+=67,Algeria,1.0,0.03
+=70,Iraq,0.75,0.03
+=70,Cuba,0.75,0.03
+=72,Kazakhstan,0.57,0.02
+=72,Kuwait,0.57,0.02
+74,Estonia,0.5,0.02
+75,Latvia,0.43,0.01
+76,Cameroon,0.4,0.01
+=77,Bahrain,0.33,0.01
+=77,Dominican Republic,0.33,0.01
+=77,BT,0.33,0.01
+80,BI,0.25,0.01
+=81,Kenya,0.17,0.01
+=81,Bolivia,0.17,0.01
+=81,CI,0.17,0.01
+=84,Bulgaria,0.14,0.0
+=84,Slovenia,0.14,0.0
+86,Costa Rica,0.12,0.0
+87,Sri Lanka,0.11,0.0
+88,Macao,0.05,0.0

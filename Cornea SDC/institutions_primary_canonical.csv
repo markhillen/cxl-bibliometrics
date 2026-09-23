@@ -1,0 +1,41 @@
+rank,institution,publications,pct_of_resolved,citations,n_cited_known
+=1,TU Dresden / University Hospital Carl Gustav Carus,50,1.73,12116,50
+=1,University of Crete,50,1.73,2632,50
+3,Laservision Institute Athens,33,1.14,2127,33
+=4,University of Zurich,28,0.97,675,28
+=4,Narayana Nethralaya Bangalore,28,0.97,1165,28
+=6,Wenzhou Medical University,26,0.9,423,26
+=6,Cleveland Clinic,26,0.9,1887,26
+=6,University of Siena,26,0.9,3656,26
+=9,Massachusetts Eye and Ear,24,0.83,618,24
+=9,All India Institute of Medical Sciences,24,0.83,923,24
+11,Federal University of São Paulo,23,0.8,1638,23
+12,Farabi Eye Hospital,22,0.76,194,22
+13,New Zealand National Eye Centre,21,0.73,931,21
+14,Humanitas University Milan,20,0.69,1548,20
+=15,LV Prasad Eye Institute,19,0.66,478,19
+=15,Moorfields Eye Hospital,19,0.66,749,18
+=15,University Medical Center Utrecht,19,0.66,1075,19
+18,Columbia University,17,0.59,282,17
+19,Johns Hopkins University,16,0.55,603,16
+=20,Aravind Eye Care System,15,0.52,364,15
+=20,Sankara Nethralaya Chennai,15,0.52,277,15
+=20,Cardiff University,15,0.52,783,15
+=20,Noor Eye Hospital Tehran,15,0.52,614,15
+=24,Tel Aviv University,14,0.48,277,14
+=24,Sohag University,14,0.48,279,14
+=26,Ulucanlar Eye Training and Research Hospital,13,0.45,170,13
+=26,University of California,13,0.45,247,13
+=26,IROC Zurich,13,0.45,2168,13
+=26,University of Houston,13,0.45,595,13
+=26,Shandong Provincial Hospital Affiliated to Shandong University,13,0.45,197,13
+=31,The Eye Foundation,12,0.41,160,12
+=31,Shahid Beheshti University of Medical Sciences,12,0.41,231,12
+=31,Peking University,12,0.41,103,12
+=31,Isfahan University of Medical Sciences,12,0.41,167,12
+=31,Cornea and Laser Eye Institute-Hersh Vision Group,12,0.41,1796,12
+=36,Tehran University of Medical Sciences,10,0.35,130,10
+=36,Beyoglu Eye Training and Research Hospital,10,0.35,368,10
+=36,ELZA Institute,10,0.35,113,10
+=36,Eye Institute and Department of Ophthalmology,10,0.35,161,10
+=36,Shiraz University of Medical Sciences,10,0.35,174,10

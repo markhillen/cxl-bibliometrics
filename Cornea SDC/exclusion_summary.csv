@@ -1,0 +1,7 @@
+decision,stage,rule_id,n
+keep,keep,keep.content,3211
+keep,manual,manual.include,30
+exclude,manual,manual.exclude,17
+exclude,journal,journal.biomaterials,8
+exclude,journal,journal.polymer,2
+exclude,journal,journal.orthop,1

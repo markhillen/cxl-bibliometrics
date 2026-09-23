@@ -1,0 +1,9 @@
+metric,value
+records_with_both_counts,3099
+openalex_total,108873
+crossref_total,84629
+ratio_openalex_to_crossref_total,1.286
+spearman_rho,0.977
+median_ratio_per_record,1.238
+records_openalex_gt_crossref,2439
+records_differ_more_than_20pct,1372

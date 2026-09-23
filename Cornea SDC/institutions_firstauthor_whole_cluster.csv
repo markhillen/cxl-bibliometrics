@@ -1,0 +1,41 @@
+rank,institution,publications,pct_of_resolved,citations,n_cited_known
+1,zurich_cxl,73,2.36,3491,73
+2,University of Crete,56,1.81,2815,56
+3,TU Dresden,54,1.75,12304,54
+4,University of Geneva,51,1.65,2366,51
+5,Wenzhou Medical University,43,1.39,895,43
+6,Harvard Medical School,37,1.2,1088,37
+=7,Cleveland Clinic,36,1.16,2209,36
+=7,Narayana Nethralaya Bangalore,36,1.16,1316,36
+9,University of Siena,35,1.13,4102,35
+10,Laservision Institute Athens,34,1.1,2217,34
+11,Tehran University of Medical Sciences,33,1.07,335,33
+12,Humanitas University Milan,32,1.03,2151,32
+13,Federal University of São Paulo,27,0.87,1780,27
+14,All India Institute of Medical Sciences,24,0.78,923,24
+15,Moorfields Eye Hospital,23,0.74,768,22
+=16,University of Southern California,22,0.71,699,22
+=16,Tel Aviv University,22,0.71,395,22
+=16,New Zealand National Eye Centre,22,0.71,953,22
+19,Noor Eye Hospital Tehran,21,0.68,673,21
+=20,LV Prasad Eye Institute,20,0.65,483,20
+=20,University Medical Center Utrecht,20,0.65,1181,20
+=22,Johns Hopkins University,18,0.58,613,18
+=22,Bascom Palmer Eye Institute,18,0.58,904,18
+=24,Beyoglu Eye Training and Research Hospital,17,0.55,570,16
+=24,Columbia University,17,0.55,282,17
+=24,Chinese University of Hong Kong,17,0.55,409,17
+27,University of Bern,16,0.52,542,16
+=28,Aravind Eye Care System,15,0.48,364,15
+=28,Sankara Nethralaya Chennai,15,0.48,277,15
+=28,Cardiff University,15,0.48,783,15
+=28,Isfahan University of Medical Sciences,15,0.48,239,15
+=32,Shahid Beheshti University of Medical Sciences,14,0.45,235,14
+=32,Centre for Eye Research Australia,14,0.45,1666,14
+=32,Shanghai Research Center of Ophthalmology and Optometry,14,0.45,216,14
+=32,Ulucanlar Eye Training and Research Hospital,14,0.45,184,14
+=32,Sohag University,14,0.45,279,14
+=32,University of Toronto,14,0.45,161,14
+=32,Shandong Provincial Hospital Affiliated to Shandong University,14,0.45,288,14
+=39,University of California,13,0.42,247,13
+=39,University of Houston,13,0.42,595,13

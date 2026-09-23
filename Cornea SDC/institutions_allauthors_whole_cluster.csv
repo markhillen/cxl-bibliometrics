@@ -1,0 +1,41 @@
+rank,institution,publications,pct_of_resolved,citations,n_cited_known
+1,zurich_cxl,131,4.17,5261,131
+2,University of Geneva,93,2.96,3641,93
+3,University of Crete,73,2.32,3040,73
+4,TU Dresden,69,2.2,12663,69
+5,Wenzhou Medical University,61,1.94,1296,61
+6,University of Southern California,60,1.91,2275,60
+7,Harvard Medical School,58,1.85,1470,58
+8,University of Siena,54,1.72,4829,54
+=9,Tehran University of Medical Sciences,53,1.69,761,53
+=9,Cleveland Clinic,53,1.69,3087,53
+11,Narayana Nethralaya Bangalore,51,1.62,1893,51
+12,Humanitas University Milan,48,1.53,2490,48
+13,Moorfields Eye Hospital,46,1.46,1754,45
+14,Federal University of São Paulo,40,1.27,2164,40
+15,Laservision Institute Athens,37,1.18,2231,37
+16,University of Liverpool,36,1.15,950,36
+=17,University of Bern,31,0.99,781,31
+=17,All India Institute of Medical Sciences,31,0.99,1142,31
+19,Cardiff University,30,0.96,1125,30
+=20,Bascom Palmer Eye Institute,29,0.92,1199,29
+=20,Johns Hopkins University,29,0.92,993,29
+=20,Tel Aviv University,29,0.92,517,29
+=23,Noor Eye Hospital Tehran,27,0.86,828,27
+=23,LV Prasad Eye Institute,27,0.86,874,27
+25,Shahid Beheshti University of Medical Sciences,26,0.83,440,26
+26,University of California,25,0.8,342,25
+27,New Zealand National Eye Centre,24,0.76,970,24
+28,University Medical Center Utrecht,22,0.7,1238,22
+=29,Beyoglu Eye Training and Research Hospital,21,0.67,614,20
+=29,Centre for Eye Research Australia,21,0.67,1904,21
+=29,Chinese University of Hong Kong,21,0.67,455,21
+=32,University of Nottingham,20,0.64,904,20
+=32,Maastricht University,20,0.64,773,20
+=32,University of Toronto,20,0.64,316,20
+=35,Antwerp University Hospital,19,0.61,686,19
+=35,Shanghai Research Center of Ophthalmology and Optometry,19,0.61,237,19
+=35,The University of Sydney,19,0.61,526,19
+=35,University of Wenzhou,19,0.61,595,19
+=39,Isfahan University of Medical Sciences,18,0.57,273,18
+=39,University College London,18,0.57,293,18

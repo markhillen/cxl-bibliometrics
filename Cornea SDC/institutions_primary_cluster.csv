@@ -1,0 +1,41 @@
+rank,institution,publications,pct_of_resolved,citations,n_cited_known
+1,zurich_cxl,51,1.76,2956,51
+=2,TU Dresden,50,1.73,12116,50
+=2,University of Crete,50,1.73,2632,50
+=4,Harvard Medical School,33,1.14,931,33
+=4,Laservision Institute Athens,33,1.14,2127,33
+6,Tehran University of Medical Sciences,32,1.11,324,32
+7,University of Siena,31,1.07,3959,31
+8,Narayana Nethralaya Bangalore,28,0.97,1165,28
+9,Cleveland Clinic,27,0.93,2008,27
+10,Wenzhou Medical University,26,0.9,423,26
+11,All India Institute of Medical Sciences,24,0.83,923,24
+12,Federal University of São Paulo,23,0.8,1638,23
+13,New Zealand National Eye Centre,21,0.73,931,21
+14,Humanitas University Milan,20,0.69,1548,20
+=15,LV Prasad Eye Institute,19,0.66,478,19
+=15,Moorfields Eye Hospital,19,0.66,749,18
+=15,University Medical Center Utrecht,19,0.66,1075,19
+18,Columbia University,17,0.59,282,17
+=19,Johns Hopkins University,16,0.55,603,16
+=19,University of Geneva,16,0.55,1384,16
+=21,Aravind Eye Care System,15,0.52,364,15
+=21,Sankara Nethralaya Chennai,15,0.52,277,15
+=21,Cardiff University,15,0.52,783,15
+=21,Noor Eye Hospital Tehran,15,0.52,614,15
+=25,Tel Aviv University,14,0.48,277,14
+=25,Sohag University,14,0.48,279,14
+=27,Ulucanlar Eye Training and Research Hospital,13,0.45,170,13
+=27,University of California,13,0.45,247,13
+=27,University of Houston,13,0.45,595,13
+=27,Shandong Provincial Hospital Affiliated to Shandong University,13,0.45,197,13
+=31,The Eye Foundation,12,0.41,160,12
+=31,Shahid Beheshti University of Medical Sciences,12,0.41,231,12
+=31,Peking University,12,0.41,103,12
+=31,Isfahan University of Medical Sciences,12,0.41,167,12
+=31,Cornea and Laser Eye Institute-Hersh Vision Group,12,0.41,1796,12
+36,University of Bern,11,0.38,503,11
+=37,Beyoglu Eye Training and Research Hospital,10,0.35,368,10
+=37,Eye Institute and Department of Ophthalmology,10,0.35,161,10
+=37,Shiraz University of Medical Sciences,10,0.35,174,10
+=37,Umeå University,10,0.35,164,10

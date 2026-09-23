@@ -1,0 +1,54 @@
+table,name,publications,rank
+records,all,3223,
+records,without author group,3084,
+records,removed,139,
+author,Kymionis GD,77,
+author,Spoerl E,56,
+author,Kanellopoulos AJ,45,
+author,Grentzelos MA,44,
+author,Mazzotta C,42,
+author,Jhanji V,37,
+author,Shetty R,37,
+author,Vinciguerra P,36,
+author,Raiskup F,35,
+author,Vinciguerra R,35,
+author,Zhou X (Fudan),30,
+author,Seiler T,29,
+author,Lombardo M,28,
+author,Pillunat LE,28,
+author,O'Brart DPS,26,
+author,Wollensak G,26,
+author,Seitz B,25,
+author,Bilgihan K,25,
+author,Lombardo G,25,
+author,Sinha Roy A,25,
+country,United States,375,1
+country,China,253,2
+country,Turkey,213,3
+country,India,191,4
+country,Germany,190,5
+country,Italy,189,6
+country,United Kingdom,149,7
+country,Greece,118,8
+country,Iran,103,9
+country,Egypt,76,10
+country,Spain,69,11
+country,Switzerland,68,12
+country,Brazil,66,13
+country,Canada,54,14
+country,Australia,53,15
+institution,University of Crete,70,1
+institution,TU Dresden / University Hospital Carl Gustav Carus,65,2
+institution,Narayana Nethralaya Bangalore,48,3
+institution,Moorfields Eye Hospital,46,4
+institution,Cleveland Clinic,45,5
+institution,Wenzhou Medical University,44,6
+institution,Humanitas University Milan,42,7
+institution,Laservision Institute Athens,37,8
+institution,University of Siena,36,9
+institution,University of Liverpool,34,10
+institution,Massachusetts Eye and Ear,33,=11
+institution,Federal University of São Paulo,33,=11
+institution,Harvard Medical School,32,13
+institution,Cardiff University,29,=14
+institution,All India Institute of Medical Sciences,29,=14

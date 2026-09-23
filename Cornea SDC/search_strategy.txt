@@ -1,0 +1,26 @@
+Supplemental: PubMed search strategy
+====================================
+
+Database:        PubMed (NCBI E-utilities, esearch/efetch)
+Date executed:   10 September 2026
+Date limits:     1 January 2001 - 31 December 2025
+Language limits: none
+Identifiers returned by the query: 3,275
+Records retrievable:               3,269
+Records retained after screening:  3,223
+
+Full query string, verbatim:
+
+(("corneal cross-linking"[tiab] OR "corneal crosslinking"[tiab] OR "corneal cross linking"[tiab] OR "corneal collagen cross-linking"[tiab] OR "corneal collagen crosslinking"[tiab] OR "corneal collagen cross linking"[tiab] OR "collagen cross-linking"[tiab] OR "collagen crosslinking"[tiab] OR "collagen cross linking"[tiab] OR "stromal cross-linking"[tiab] OR "stromal crosslinking"[tiab] OR "CXL"[tiab] OR "A-CXL"[tiab] OR "ACXL"[tiab] OR "PACK-CXL"[tiab] OR "KXL"[tiab] OR "C3-R"[tiab] OR "epi-off"[tiab] OR "epithelium-off"[tiab] OR "photoactivated chromophore"[tiab] OR ("riboflavin"[tiab] AND ("ultraviolet"[tiab] OR "UVA"[tiab] OR "UV-A"[tiab])) OR "Corneal Cross-Linking"[MeSH Terms] OR (("cross-linking"[ti] OR "crosslinking"[ti] OR "cross-linked"[ti] OR "crosslinked"[ti]) AND ("keratoconus"[tiab] OR "keratoconic"[tiab] OR "ectasia"[tiab] OR "ectatic"[tiab] OR "keratectasia"[tiab] OR "pellucid marginal"[tiab] OR "keratitis"[tiab] OR "riboflavin"[tiab] OR "Keratoconus"[MeSH Terms]))) AND ("cornea"[tiab] OR "corneal"[tiab] OR "corneas"[tiab] OR "keratoconus"[tiab] OR "keratoconic"[tiab] OR "ectasia"[tiab] OR "ectatic"[tiab] OR "keratectasia"[tiab] OR "keratitis"[tiab] OR "pellucid marginal"[tiab] OR "Cornea"[MeSH Terms] OR "Corneal Diseases"[MeSH Terms] OR "Keratoconus"[MeSH Terms])) AND ("2001/01/01"[PDAT] : "2025/12/31"[PDAT])
+
+Screening applied after retrieval, in order:
+  1. Journal-level  - journals with no ophthalmic scope (biomaterials, polymer,
+                      orthopaedic titles).
+  2. Content-level  - a corneal cross-linking phrase or unambiguous abbreviation
+                      required in title or abstract.
+  3. Manual         - records neither rule resolved, screened by hand against a
+                      written decision rule (30 inclusions, 17 exclusions).
+
+Every excluded record is listed in Supplemental Table 1 with its rule and reason.
+The 3,223 retained identifiers are in final_corpus_pmids.txt and reproduce the
+analysed corpus exactly.

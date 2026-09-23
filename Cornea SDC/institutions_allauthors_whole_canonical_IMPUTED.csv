@@ -1,0 +1,51 @@
+rank,institution,publications,pct_of_resolved,total_citations,n_cited_known
+=1,ELZA Institute,81,2.58,2024,81
+=1,University of Zurich,81,2.58,2061,81
+3,University of Crete,73,2.32,3040,73
+4,TU Dresden / University Hospital Carl Gustav Carus,69,2.2,12663,69
+5,University of Geneva,67,2.13,1695,67
+6,Wenzhou Medical University,61,1.94,1296,61
+7,University of Southern California,60,1.91,2275,60
+=8,Narayana Nethralaya Bangalore,51,1.62,1893,51
+=8,Cleveland Clinic,51,1.62,2909,51
+10,Humanitas University Milan,48,1.53,2490,48
+11,Moorfields Eye Hospital,46,1.46,1754,45
+12,University of Siena,42,1.34,4290,42
+13,Federal University of São Paulo,40,1.27,2164,40
+14,Laservision Institute Athens,37,1.18,2231,37
+15,University of Liverpool,36,1.15,950,36
+16,Massachusetts Eye and Ear,34,1.08,792,34
+=17,Farabi Eye Hospital,32,1.02,407,32
+=17,Harvard Medical School,32,1.02,809,32
+=19,IROC Zurich,31,0.99,2694,31
+=19,All India Institute of Medical Sciences,31,0.99,1142,31
+21,Cardiff University,30,0.96,1125,30
+=22,Bascom Palmer Eye Institute,29,0.92,1199,29
+=22,Johns Hopkins University,29,0.92,993,29
+=22,Tel Aviv University,29,0.92,517,29
+25,Geneva University Hospitals,28,0.89,2008,28
+=26,Noor Eye Hospital Tehran,27,0.86,828,27
+=26,LV Prasad Eye Institute,27,0.86,874,27
+=28,Tehran University of Medical Sciences,26,0.83,372,26
+=28,Shahid Beheshti University of Medical Sciences,26,0.83,440,26
+=30,Siena Crosslinking Center,25,0.8,1157,25
+=30,University of California,25,0.8,342,25
+=32,Inselspital Bern,24,0.76,748,24
+=32,New Zealand National Eye Centre,24,0.76,970,24
+34,University Medical Center Utrecht,22,0.7,1238,22
+=35,Beyoglu Eye Training and Research Hospital,21,0.67,614,20
+=35,Centre for Eye Research Australia,21,0.67,1904,21
+=35,Chinese University of Hong Kong,21,0.67,455,21
+=38,University of Nottingham,20,0.64,904,20
+=38,Maastricht University,20,0.64,773,20
+=38,University of Toronto,20,0.64,316,20
+=41,Antwerp University Hospital,19,0.61,686,19
+=41,Shanghai Research Center of Ophthalmology and Optometry,19,0.61,237,19
+=41,The University of Sydney,19,0.61,526,19
+=41,University of Wenzhou,19,0.61,595,19
+=45,Isfahan University of Medical Sciences,18,0.57,273,18
+=45,University College London,18,0.57,293,18
+=47,Aravind Eye Care System,17,0.54,383,17
+=47,Sankara Nethralaya Chennai,17,0.54,357,17
+=47,Federal University of Sao Paulo,17,0.54,651,17
+=47,Ulucanlar Eye Training and Research Hospital,17,0.54,199,17

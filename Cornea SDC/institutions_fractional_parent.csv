@@ -1,0 +1,41 @@
+rank,institution,publications,pct_of_resolved,citations,n_cited_known
+1,TU Dresden,50.03,1.73,11922,52
+2,University of Crete,45.83,1.58,2501,51
+3,Tehran University of Medical Sciences,29.83,1.03,300,33
+4,Harvard Medical School,29.33,1.01,817,36
+5,University of Siena,27.83,0.96,3794,32
+6,Narayana Nethralaya Bangalore,27.7,0.96,1153,30
+7,Wenzhou Medical University,25.92,0.9,564,37
+8,Cleveland Clinic,24.37,0.84,1838,28
+9,All India Institute of Medical Sciences,22.83,0.79,859,24
+10,Federal University of São Paulo,22.58,0.78,1684,26
+11,Laservision Institute Athens,21.42,0.74,1647,33
+12,New Zealand National Eye Centre,21.0,0.73,931,21
+13,Moorfields Eye Hospital,20.5,0.71,758,21
+14,University of Zurich,20.33,0.7,441,36
+15,University of Geneva,20.12,0.7,1428,35
+16,Humanitas University Milan,19.5,0.67,1580,21
+17,University Medical Center Utrecht,19.0,0.66,1075,19
+18,LV Prasad Eye Institute,18.5,0.64,470,19
+19,Tel Aviv University,16.5,0.57,265,20
+20,Noor Eye Hospital Tehran,15.83,0.55,621,18
+21,Columbia University,15.5,0.54,269,17
+22,Johns Hopkins University,15.33,0.53,604,18
+23,Aravind Eye Care System,15.0,0.52,364,15
+=24,Sankara Nethralaya Chennai,14.5,0.5,264,15
+=24,IROC Zurich,14.5,0.5,2232,19
+26,Cardiff University,14.33,0.5,775,15
+27,Sohag University,14.0,0.48,279,14
+28,University of California,13.0,0.45,247,13
+29,Shahid Beheshti University of Medical Sciences,12.5,0.43,228,14
+=30,The Eye Foundation,12.0,0.41,160,12
+=30,Isfahan University of Medical Sciences,12.0,0.41,167,12
+=30,University of Houston,12.0,0.41,560,13
+=30,Bascom Palmer Eye Institute,12.0,0.41,596,16
+=34,Ulucanlar Eye Training and Research Hospital,11.67,0.4,151,14
+=34,University of Bern,11.67,0.4,470,15
+36,Beyoglu Eye Training and Research Hospital,11.5,0.4,394,13
+37,Peking University,11.0,0.38,93,12
+38,University of Illinois Chicago,10.5,0.36,117,11
+39,Umeå University,10.0,0.35,164,10
+40,Cornea and Laser Eye Institute-Hersh Vision Group,9.83,0.34,1675,12

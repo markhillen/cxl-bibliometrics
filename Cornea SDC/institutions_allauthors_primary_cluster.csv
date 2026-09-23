@@ -1,0 +1,41 @@
+rank,institution,publications,pct_of_resolved,citations,n_cited_known
+1,zurich_cxl,111,3.54,4893,111
+2,University of Crete,69,2.2,3003,69
+3,TU Dresden,67,2.13,12593,67
+4,University of Siena,52,1.66,4787,52
+=5,Tehran University of Medical Sciences,51,1.62,748,51
+=5,Cleveland Clinic,51,1.62,3055,51
+7,Harvard Medical School,50,1.59,1328,50
+=8,Narayana Nethralaya Bangalore,45,1.43,1482,45
+=8,Humanitas University Milan,45,1.43,2237,45
+=10,Wenzhou Medical University,43,1.37,762,43
+=10,University of Geneva,43,1.37,2554,43
+12,Laservision Institute Athens,37,1.18,2231,37
+13,Moorfields Eye Hospital,35,1.11,1256,34
+14,All India Institute of Medical Sciences,31,0.99,1142,31
+15,Federal University of São Paulo,30,0.96,1760,30
+16,Cardiff University,28,0.89,1110,28
+=17,Johns Hopkins University,26,0.83,934,26
+=17,LV Prasad Eye Institute,26,0.83,863,26
+19,Noor Eye Hospital Tehran,25,0.8,770,25
+=20,Shahid Beheshti University of Medical Sciences,24,0.76,428,24
+=20,New Zealand National Eye Centre,24,0.76,970,24
+=22,Bascom Palmer Eye Institute,22,0.7,921,22
+=22,University of Bern,22,0.7,682,22
+=22,University of California,22,0.7,326,22
+=22,Tel Aviv University,22,0.7,431,22
+=22,University Medical Center Utrecht,22,0.7,1238,22
+27,Beyoglu Eye Training and Research Hospital,21,0.67,614,20
+28,Maastricht University,19,0.61,746,19
+=29,Isfahan University of Medical Sciences,18,0.57,273,18
+=29,University of Liverpool,18,0.57,368,18
+=31,Aravind Eye Care System,17,0.54,383,17
+=31,Sankara Nethralaya Chennai,17,0.54,357,17
+=31,Columbia University,17,0.54,282,17
+=34,Ulucanlar Eye Training and Research Hospital,16,0.51,185,16
+=34,Aarhus University Hospital,16,0.51,559,16
+=34,Eye Institute and Department of Ophthalmology,16,0.51,187,16
+=34,Sapienza University of Rome,16,0.51,327,16
+=34,University of Toronto,16,0.51,273,16
+=34,National and Kapodistrian University of Athens,16,0.51,491,16
+40,Ain Shams University,15,0.48,453,15
