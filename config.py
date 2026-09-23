@@ -154,7 +154,7 @@ INSTITUTION_FIRST_AUTHOR_ONLY = False
 # Applied to every author in the corpus, never to one group, and used for
 # institutional counting only - first-author country still uses what PubMed
 # recorded. See impute.py.
-IMPUTE_MISSING_AFFILIATIONS = False
+IMPUTE_MISSING_AFFILIATIONS = True
 IMPUTE_WINDOW_YEARS = 2
 INSTITUTION_COUNTING = "whole"
 INSTITUTION_LEVEL    = "canonical"
