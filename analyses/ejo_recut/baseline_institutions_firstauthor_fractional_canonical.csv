@@ -1,0 +1,61 @@
+rank,institution,publications,pct_of_resolved,citations,n_cited_known
+1,TU Dresden / University Hospital Carl Gustav Carus,52.03,1.68,9431,54
+2,University of Crete,49.83,1.61,2024,56
+3,Narayana Nethralaya Bangalore,33.7,1.09,1004,36
+4,Wenzhou Medical University,31.42,1.02,520,41
+5,Cleveland Clinic,31.37,1.01,1526,35
+6,Humanitas University Milan,29.5,0.95,1542,32
+7,University of Siena,24.83,0.8,2840,28
+8,Federal University of São Paulo,23.08,0.75,1358,26
+9,All India Institute of Medical Sciences,22.83,0.74,659,24
+=10,Massachusetts Eye and Ear,22.0,0.71,443,25
+=10,New Zealand National Eye Centre,22.0,0.71,787,21
+12,Laservision Institute Athens,21.92,0.71,1301,34
+13,University of Zurich,21.67,0.7,438,39
+=14,Farabi Eye Hospital,21.5,0.7,135,22
+=14,Moorfields Eye Hospital,21.5,0.7,622,23
+16,University Medical Center Utrecht,20.0,0.65,953,20
+17,Geneva University Hospitals,19.83,0.64,1233,21
+18,LV Prasad Eye Institute,19.5,0.63,253,20
+19,Noor Eye Hospital Tehran,18.83,0.61,550,20
+20,Tel Aviv University,18.0,0.58,212,20
+21,IROC Zurich,15.83,0.51,1752,21
+=22,Beyoglu Eye Training and Research Hospital,15.5,0.5,424,17
+=22,Columbia University,15.5,0.5,202,17
+24,Johns Hopkins University,15.33,0.5,454,18
+=25,Aravind Eye Care System,15.0,0.48,272,15
+=25,Isfahan University of Medical Sciences,15.0,0.48,181,14
+27,Sankara Nethralaya Chennai,14.5,0.47,218,15
+28,Cardiff University,14.33,0.46,574,15
+29,Sohag University,14.0,0.45,212,13
+30,ELZA Institute,13.28,0.43,114,33
+=31,University of California,13.0,0.42,206,13
+=31,Bascom Palmer Eye Institute,13.0,0.42,551,18
+33,University of Geneva,12.62,0.41,272,29
+34,Shahid Beheshti University of Medical Sciences,12.5,0.4,138,14
+=35,The Eye Foundation,12.0,0.39,128,12
+=35,University of Houston,12.0,0.39,496,13
+37,Ulucanlar Eye Training and Research Hospital,11.67,0.38,113,14
+38,University of Illinois Chicago,11.5,0.37,107,12
+39,Peking University,11.0,0.36,45,7
+40,Sapienza University of Rome,10.5,0.34,194,10
+41,Shandong Provincial Hospital Affiliated to Shandong University,10.25,0.33,191,13
+42,Umeå University,10.0,0.32,140,10
+43,Cornea and Laser Eye Institute-Hersh Vision Group,9.83,0.32,1326,12
+44,Centre for Eye Research Australia,9.64,0.31,843,14
+=45,The University of Sydney,9.5,0.31,356,11
+=45,University of Toronto,9.5,0.31,94,14
+47,Chinese University of Hong Kong,9.23,0.3,160,17
+48,Rutgers University,9.17,0.3,480,12
+49,Antwerp University Hospital,9.08,0.29,247,10
+=50,Siena Crosslinking Center,9.0,0.29,469,13
+=50,Shiraz University of Medical Sciences,9.0,0.29,104,10
+52,Gazi University,8.75,0.28,131,9
+=53,Harvard Medical School,8.67,0.28,275,14
+=53,Inselspital Bern,8.67,0.28,378,12
+55,University of Southern California,8.53,0.28,260,22
+56,Medical University of Vienna,8.5,0.27,178,9
+=57,Tehran University of Medical Sciences,8.33,0.27,96,10
+=57,Saarland University Medical Center,8.33,0.27,156,10
+59,University of Salerno,8.17,0.26,148,9
+60,Mashhad University of Medical Sciences,8.0,0.26,86,7

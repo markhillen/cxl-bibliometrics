@@ -1,0 +1,61 @@
+rank,institution,publications,pct_of_resolved,citations,n_cited_known
+1,University of Crete,55,1.78,2174,55
+2,TU Dresden / University Hospital Carl Gustav Carus,52,1.68,9586,52
+=3,Cleveland Clinic,34,1.1,1675,34
+=3,Laservision Institute Athens,34,1.1,1717,34
+=3,Narayana Nethralaya Bangalore,34,1.1,1017,34
+6,University of Zurich,32,1.03,673,32
+7,Wenzhou Medical University,31,1.0,403,29
+8,Humanitas University Milan,29,0.94,1463,29
+9,University of Siena,28,0.91,2998,27
+=10,Massachusetts Eye and Ear,24,0.78,492,24
+=10,All India Institute of Medical Sciences,24,0.78,709,24
+=10,Federal University of São Paulo,24,0.78,1313,23
+=13,Farabi Eye Hospital,22,0.71,148,22
+=13,New Zealand National Eye Centre,22,0.71,787,21
+=13,Geneva University Hospitals,22,0.71,1313,21
+=16,LV Prasad Eye Institute,20,0.65,259,20
+=16,Moorfields Eye Hospital,20,0.65,615,20
+=16,University Medical Center Utrecht,20,0.65,953,20
+19,Noor Eye Hospital Tehran,18,0.58,545,17
+20,Columbia University,17,0.55,210,17
+=21,Johns Hopkins University,16,0.52,453,16
+=21,Tel Aviv University,16,0.52,237,14
+=23,Aravind Eye Care System,15,0.48,272,15
+=23,Sankara Nethralaya Chennai,15,0.48,230,15
+=23,Cardiff University,15,0.48,580,15
+=23,Isfahan University of Medical Sciences,15,0.48,181,14
+=27,Beyoglu Eye Training and Research Hospital,14,0.45,404,14
+=27,ELZA Institute,14,0.45,85,14
+=27,Sohag University,14,0.45,212,13
+=27,IROC Zurich,14,0.45,1698,14
+=27,Shandong Provincial Hospital Affiliated to Shandong University,14,0.45,226,13
+=32,Ulucanlar Eye Training and Research Hospital,13,0.42,128,13
+=32,University of California,13,0.42,206,13
+=32,University of Houston,13,0.42,528,13
+=35,The Eye Foundation,12,0.39,128,12
+=35,Shahid Beheshti University of Medical Sciences,12,0.39,141,12
+=35,Peking University,12,0.39,45,7
+=35,Cornea and Laser Eye Institute-Hersh Vision Group,12,0.39,1427,12
+=39,University of Illinois Chicago,11,0.36,107,11
+=39,University of Toronto,11,0.36,97,11
+=41,Tehran University of Medical Sciences,10,0.32,102,9
+=41,Harvard Medical School,10,0.32,284,10
+=41,Eye Institute and Department of Ophthalmology,10,0.32,114,10
+=41,Shiraz University of Medical Sciences,10,0.32,122,10
+=41,Umeå University,10,0.32,140,10
+=41,The University of Sydney,10,0.32,351,10
+=41,Sapienza University of Rome,10,0.32,181,9
+=41,University of Nottingham,10,0.32,486,10
+=41,Bascom Palmer Eye Institute,10,0.32,482,10
+=50,Centre for Eye Research Australia,9,0.29,1002,9
+=50,McGill University,9,0.29,77,9
+=50,Medical University of Vienna,9,0.29,184,9
+=50,Antwerp University Hospital,9,0.29,263,7
+=54,Oftalmosalud Institute of Eyes,8,0.26,144,8
+=54,Saarland University Medical Center,8,0.26,220,8
+=54,Wills Eye Hospital,8,0.26,58,8
+=54,Oslo University Hospital,8,0.26,255,8
+=54,University of Geneva,8,0.26,208,8
+=54,King Khaled Eye Specialist Hospital,8,0.26,76,8
+=54,Ain Shams University,8,0.26,212,8
