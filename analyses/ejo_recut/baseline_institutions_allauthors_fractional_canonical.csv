@@ -1,0 +1,61 @@
+rank,institution,publications,pct_of_resolved,citations,n_cited_known
+1,University of Crete,69.83,2.22,2280,73
+2,TU Dresden / University Hospital Carl Gustav Carus,67.03,2.13,9714,68
+3,ELZA Institute,51.62,1.64,1037,81
+=4,Narayana Nethralaya Bangalore,46.0,1.46,1240,51
+=4,Humanitas University Milan,46.0,1.46,1832,48
+6,University of Zurich,45.32,1.44,992,81
+7,Wenzhou Medical University,45.17,1.44,718,58
+8,Cleveland Clinic,43.47,1.38,1987,51
+9,Moorfields Eye Hospital,38.33,1.22,1259,46
+10,University of Siena,36.67,1.17,3309,41
+11,Farabi Eye Hospital,31.5,1.0,334,32
+12,Massachusetts Eye and Ear,31.0,0.99,578,33
+13,Federal University of São Paulo,29.87,0.95,1489,39
+14,All India Institute of Medical Sciences,29.83,0.95,827,31
+15,Cardiff University,28.75,0.92,832,30
+16,Laservision Institute Athens,28.42,0.9,1385,37
+17,Johns Hopkins University,26.83,0.85,686,29
+=18,LV Prasad Eye Institute,26.5,0.84,567,27
+=18,University of Geneva,26.5,0.84,635,67
+20,Noor Eye Hospital Tehran,25.83,0.82,643,25
+21,University of Liverpool,25.33,0.81,517,36
+=22,Bascom Palmer Eye Institute,25.0,0.8,893,29
+=22,Shahid Beheshti University of Medical Sciences,25.0,0.8,311,26
+24,Geneva University Hospitals,24.33,0.77,1575,27
+25,New Zealand National Eye Centre,24.0,0.76,802,23
+=26,Harvard Medical School,23.5,0.75,523,32
+=26,Tel Aviv University,23.5,0.75,308,27
+28,University of California,23.0,0.73,262,25
+29,Tehran University of Medical Sciences,22.83,0.73,284,24
+30,IROC Zurich,22.67,0.72,1975,31
+31,University Medical Center Utrecht,22.0,0.7,977,22
+32,Beyoglu Eye Training and Research Hospital,20.5,0.65,473,21
+33,University of Southern California,20.48,0.65,742,59
+34,Maastricht University,18.83,0.6,605,20
+35,Isfahan University of Medical Sciences,18.0,0.57,211,17
+36,Inselspital Bern,17.58,0.56,573,24
+37,Siena Crosslinking Center,17.33,0.55,694,25
+=38,Aravind Eye Care System,17.0,0.54,288,17
+=38,Sankara Nethralaya Chennai,17.0,0.54,297,17
+40,Sapienza University of Rome,16.5,0.53,240,15
+41,Columbia University,16.0,0.51,202,17
+42,Aarhus University Hospital,15.5,0.49,438,16
+43,University College London,15.33,0.49,200,17
+44,Ain Shams University,15.25,0.49,355,16
+=45,The University of Sydney,15.0,0.48,398,19
+=45,Sohag University,15.0,0.48,212,14
+=45,University of Houston,15.0,0.48,535,14
+=45,National and Kapodistrian University of Athens,15.0,0.48,378,16
+49,Ulucanlar Eye Training and Research Hospital,14.67,0.47,126,17
+=50,University of Illinois Chicago,14.5,0.46,120,15
+=50,University of Toronto,14.5,0.46,201,20
+52,Centre for Eye Research Australia,14.48,0.46,1185,21
+53,Antwerp University Hospital,14.17,0.45,384,17
+54,University of Pittsburgh School of Medicine,14.0,0.45,149,16
+55,Wills Eye Hospital,13.83,0.44,153,15
+=56,University of Nottingham,13.75,0.44,553,20
+=56,Gazi University,13.75,0.44,161,14
+=56,Shandong Provincial Hospital Affiliated to Shandong University,13.75,0.44,208,14
+59,Saarland University Medical Center,13.67,0.44,317,15
+60,Chinese University of Hong Kong,13.23,0.42,204,21
