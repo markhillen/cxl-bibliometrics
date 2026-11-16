@@ -1,0 +1,1150 @@
+[
+ {
+  "pmid": "41597328",
+  "year": "2025",
+  "journal": "Medicina (Kaunas)",
+  "title": "Early Detection of Keratoconus: Diagnostic Advances and Their Impact on Visual Outcomes: A Systematic Review.",
+  "abstract": "Background and Objectives: Keratoconus is a progressive corneal ectatic disorder and a leading cause of corneal transplantation in developed countries. Early detection is critical for initiating timely interventions such as corneal cross-linking, which can halt disease progression and preserve long-term visual function. This review aims to synthesize current diagnostic approaches for early keratoconus detection and assess their clinical impact on visual outcomes. Materials and Methods: A comprehensive literature search was conducted across PubMed/MEDLINE, Web of Science, Google Scholar, Scopus and the Cochrane Library through September 2025. Search terms included \"early keratoconus,\" \"subclinical keratoconus,\" \"forme fruste keratoconus,\" \"keratoconus detection,\" \"corneal topography,\" \"corneal tomography,\" \"anterior segment optical coherence tomography (AS-OCT),\" \"corneal biomechanics,\" \"artificial intelligence,\" \"genetic risk, \"environmental factors\", and \"machine learning.\" Two independent reviewers analyzed the data. Studies were included if they investigated diagnostic modalities for early-stage keratoconus and discussed their relevance to visual outcomes. Results: One hundred and seven studies were included in the final review. Four diagnostic modalities demonstrated consistent clinical value: 1. corneal topography for assessing anterior surface irregularities; 2. corneal tomography, currently regarded as the gold standard due to its ability to detect early posterior elevation and pachymetric changes; 3. AS-OCT for epithelial and stromal profiling; and 4. biomechanical assessments, which evaluate corneal tissue stability prior to structural alterations. Artificial intelligence, when integrated with imaging data, enhances diagnostic sensitivity and standardizes interpretation across clinical settings. Conclusions: Early keratoconus detection is crucial for preserving vision; and integrating multimodal, AI-supported diagnostics into routine care-especially for high-risk groups-enhances accuracy, improves outcomes, and reduces progression rates of disease.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "41016520",
+  "year": "2025",
+  "journal": "Am J Ophthalmol",
+  "title": "Effectiveness and Safety of Cross-Linking in Keratoconus Patients With Corneal Thickness <400 µm: A Systematic Review and Meta-analysis.",
+  "abstract": "PURPOSE: To investigate the effectiveness and safety of corneal cross-linking (CXL) in patients with keratoconus and thin corneas (corneal thickness <400 µm). DESIGN: Systematic review and meta-analysis. METHODS: MEDLINE Ovid, Embase Ovid, and Scopus were searched in July 2024 for studies published in peer-reviewed journals in English. Prospective and retrospective case series, cohort studies, and randomized clinical trials of people with corneal thickness of <400 µm (with or without epithelium) who underwent CXL for keratoconus were eligible, regardless of CXL approach. Key outcomes included maximum and mean corneal curvature (Kmax and Kmean), corrected and uncorrected distance visual acuity, refractive error, corneal thickness, and endothelial cell density at 3, 6, 12, and 24 months. Random effects meta-analysis was used to pool average change from preoperative values across CXL protocols. Study quality was assessed using the JBI Critical Appraisal Checklist for Case Series (PROSPERO registration: CRD42023403190). RESULTS: A total of 29 records published between 2011 and 2024 were included with a total of 470 eyes. Most studies were retrospective case series with substantial potential for bias. Substantial heterogeneity was observed between studies in terms of patients, CXL approach, and observed outcomes. At 12 months, flattening of the maximum corneal curvature (mean change in Kmax = -1.4 D, 95% CI = - 2.0, -0.9, n = 17/402 studies/eyes, I2= 93%) and improvement in corrected distance visual acuity (mean change = -0.09 logMAR units, 95% CI = - 0.13, -0.06], n = 19/443 studies/eyes, I2= 68%) were observed relative to baseline. No study reported major complications, and there were minimal reductions in corneal thickness and endothelial cell density. CONCLUSIONS: Visual and keratometric parameters improved following CXL without major complications, suggesting that CXL may be suitable for patients with stromal thicknesses of <400 µm, providing that adequate modifications have been applied. Prospective comparative studies are required to guide the choice of approach.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review",
+   "Meta-Analysis"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "40936031",
+  "year": "2025",
+  "journal": "Graefes Arch Clin Exp Ophthalmol",
+  "title": "Corneal stability comparison between prophylactic cross-linking with laser refractive surgery technique versus laser refractive surgery technique alone for myopia: a meta-analysis.",
+  "abstract": "PURPOSE: To summarize whether corneal cross-linking (CXL) with laser refractive surgery improves corneal stability more than laser surgery alone for myopia. METHODS: Five electronic databases were systematically searched from inception to Aug, 2023. Studies comparing the effects of prophylactic corneal CXL with laser refractive surgery technique versus laser refractive surgery technique alone in myopic eyes were included. The included articles regarding prophylactic CXL combination with laser refractive surgery technique, riboflavin was all delivered into the stroma with similar accelerated protocols (irradiance of 30mW/cm2 for 60-90 seconds). Primary outcome measures included post-operative changes of keratometry, refraction, corneal thickness, endothelial cell density, and both corrected and uncorrected distance visual acuity (CDVA/UDVA) as the surrogate parameters to corneal stability, measured from post-operative 1-12 and 1-24 months. Meta-analysis was performed using random-effect models, and potential sources of heterogeneity were explored by subgroup analyses of surgery type and myopic level. RESULTS: Twelve eligible studies with 1,252 eyes met our inclusion criteria. Compared to those receiving laser refractive surgery technique alone, patients who received prophylactic CXL with laser refractive surgery technique had significantly less UDVA and CDVA decrease within post-operative 12 months (UDVA:WMD -0.04, 95% CI -0.06-(-0.01), p=0.01/CDVA: WMD -0.01, 95% CI -0.03-(-0.00), p=0.02). Furthermore, patients with spherical equivalent ≤ -5.0 Diopter (UDVA:WMD -0.04, 95% CI -0.07-(-0.02), p<0.001/ CDVA: WMD -0.02, 95% CI -0.03-(-0.01), p<0.001) or receiving LASIK procedures (UDVA:WMD -0.03, 95% CI -0.06-(-0.01), p=0.01) were associated with more profound visual stability after prophylactic CXL. CONCLUSION: For visual outcome, prophylactic CXL with laser refractive surgery, compared to laser refractive surgery alone, provided more stability within post-operative one-year among myopic patients with comparable efficacy and predictability. Particularly, those with higher myopia or receiving LASIK procedure as refractive surgery benefited more from prophylactic CXL.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Comparative Study",
+   "Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "40923612",
+  "year": "2025",
+  "journal": "J Refract Surg",
+  "title": "Corneal Cross-linking in Pediatric Populations: Systematic Review and Future Perspectives.",
+  "abstract": "PURPOSE: To analyze stabilization results using various standard and accelerated corneal cross-linking (CXL) protocols in patients younger than 18 years. METHODS: This systematic review was conducted in accordance with the Preferred Reporting Items for Systematic reviews and Meta-Analyses (PRISMA) 2020 guidelines. A bibliographic search was carried out based on PubMed and Scopus data, with the last being performed in December 2024. Thirty-five articles were eligible for this review. To assess the effectiveness of CXL in children, maximum keratometry measurements were analyzed preoperatively and compared with postoperative values. RESULTS: A total of 2,186 eyes were included in this review. This review consisted of 15 studies with the standard CXL protocol, 11 with the accelerated CXL protocol, and 9 comparative protocols. Standard and accelerated CXL protocols and comparative studies were analyzed separately. Most studies have shown stabilization rates greater than 80% with different CXL protocols. Factors such as younger age, severity of keratoconus, and cone eccentricity seem to influence the effectiveness of the procedure. CONCLUSIONS: The results indicate that standard and accelerated CXL are effective and safe therapeutic options for treating keratoconus in pediatric population.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "40877860",
+  "year": "2025",
+  "journal": "BMC Ophthalmol",
+  "title": "Keratoconus and quality of life: an updated comprehensive review.",
+  "abstract": "Keratoconus (KCN), a progressive ectatic corneal disorder, significantly impacts vision-related quality of life (VRQoL) beyond reduced visual acuity. This review aims to comprehensively examine the impact of keratoconus on patients' quality of life (QoL), considering its economic burden and the effectiveness of various treatment modalities in improving QoL outcomes. KCN profoundly impacts VRQoL, exceeding the effects of reduced visual acuity alone. Multiple factors contribute: refractive errors (leading to challenges with spectacle and contact lens correction, impacting comfort and convenience), decreased contrast sensitivity (hindering daily activities like driving and reading), ocular pain and discomfort (often stemming from the disease itself or treatment), and associated comorbidities (such as vernal keratoconjunctivitis, further compromising ocular health). Disease severity significantly influences VRQoL, with more advanced KCN generally linked to lower QoL scores, although this correlation is not consistently observed across studies. Demographic variations also play a role, with differences noted across genders and age groups in various studies. Nonsurgical options include spectacles (effective in early stages only), contact lenses (soft, rigid gas permeable, and scleral lenses offering varying degrees of visual correction and comfort), each impacting QoL differently based on visual improvement, comfort, and cost. Surgical interventions, such as corneal collagen crosslinking, indirectly improve QoL by stabilizing vision; however, they may not fully restore visual acuity and involve a period of postoperative discomfort. Intracorneal ring segments improve corneal shape and refractive errors, enhancing visual acuity and potentially QoL, but long-term effects and suitability depend on disease stability. Corneal transplantation, reserved for advanced cases, significantly improves vision and QoL for many patients, but it is an invasive procedure with potential complications and a recovery period that can impact QoL. Combined treatment approaches may optimize outcomes, but the optimal strategy remains individualized based on disease severity, patient preferences, and resource access. Ultimately, successful KCN management hinges on a balance of objective visual improvements and subjective QoL enhancements.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "40859367",
+  "year": "2025",
+  "journal": "Int J Retina Vitreous",
+  "title": "Retinal and choroidal changes following corneal collagen cross-linking in keratoconus: a systematic review and meta-analysis of OCT and OCTA studies.",
+  "abstract": "Corneal collagen cross-linking (CXL) is widely used to halt the progression of keratoconus by biomechanically strengthening the corneal stroma; however, its potential effects on retina and choroid remain unclear. This systematic review and meta-analysis synthesized current evidence on structural and microvascular changes in the posterior segment following CXL in patients with keratoconus, assessed by optical coherence tomography (OCT) and OCT angiography (OCTA). A comprehensive search of PubMed, EMBASE, and Web of Science was performed up to May 24, 2025. Random-effects meta-analysis using Hedges' g was applied to pool quantitative data. In addition, studies that met the eligibility criteria but lacked sufficient data for quantitative synthesis were qualitatively assessed and included in the descriptive analysis. Ten studies involving 233 eyes from 215 keratoconus patients were included. Meta-analysis demonstrated no significant change in central macular thickness at 1 month (Hedges's g = -0.15; 95% confidence interval [CI]: -0.44 to 0.13; p = 0.30) or 6 months (Hedges's g = -0.12; 95% CI: -0.47 to 0.22; p = 0.48). Subfoveal choroidal thickness also remained unchanged at 1 month (Hedges's g = -0.14; 95% CI: -0.45 to 0.17; p = 0.37). Sensitivity analyses confirmed the robustness of these results. In the qualitative synthesis, parameters demonstrated overall stability, aside from a few exceptions. In conclusion, current evidence suggests that CXL does not result in clinically meaningful changes in posterior segment structure or microvasculature in keratoconus patients. These findings support the posterior segment safety of CXL.",
+  "pub_types": [
+   "Journal Article",
+   "Review"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "40856685",
+  "year": "2025",
+  "journal": "Cornea",
+  "title": "A Systematic Review and Meta-Analysis Comparing Epithelium-On and Epithelium-Off Corneal Collagen Cross-Linking in Keratoconus Management: Integrating New Evidence.",
+  "abstract": "PURPOSE: Keratoconus is a progressive corneal ectasia leading to visual impairment. Corneal collagen cross-linking (CXL) is a widely used intervention to halt progression, with 2 main approaches: epithelium-on (Epi-On) and epithelium-off (Epi-Off). This study presents a meta-analysis integrating findings from existing literature and newly analyzed data. METHODS: A systematic search was performed to compare Epi-On and Epi-Off CXL outcomes from 2014 to 2024. Meta-analysis techniques were employed to evaluate the changes in visual and imaging outcomes based on the differences between baseline to available 6-month, 1-year, 2-year, and 3-year follow-up. In addition, subgroup analyses were conducted based on study design (randomized controlled trials vs. non-RCT and observational studies) and risk of bias (high vs. low), using standardized risk assessment tools. RESULTS: This meta-analysis included 28 studies, covering 1764 eyes including 875 (49.6%) Epi-Off and 889 (50.4%) Epi-On treated eyes. Maximum keratometry flattening was observed at 6 months (ES = 0.183, P = 0.039), became more pronounced at 1 year (ES = 0.639, P = 0.004), and remained significant at 2 years (ES = 0.377, P <0.001). Central corneal thickness significantly reduced after Epi-Off treatment at 6 months (ES = 0.327, P = 0.012) and 1 year (ES = 0.247, P = 0.040) more than Epi-on group. In addition, spherical equivalent improved significantly at 2 years (ES = -0.395, P = 0.048). In contrast, no significant differences were observed in steepest keratometry, average keratometry, best-corrected distance visual acuity, and uncorrected distance visual acuity between the 2 groups across all follow-up durations. Subgroup analysis supported the robustness of structural outcomes in Epi-Off, particularly in lower risk, observational studies and nonrandomized clinical trials, whereas functional outcomes remained not significant. CONCLUSIONS: Epi-Off CXL demonstrates superior topographic and tomographic improvements compared with Epi-On, although visual acuity outcomes remain equivalent. These findings support a personalized approach in selecting CXL technique based on patient profile and treatment goals.",
+  "pub_types": [
+   "Comparative Study",
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "40580225",
+  "year": "2025",
+  "journal": "Int Ophthalmol",
+  "title": "Corneal biomechanical property changes following corneal collagen cross-linking in keratoconus: a systematic review and meta-regression analysis.",
+  "abstract": "PURPOSE: To evaluate the changes in corneal biomechanical properties following corneal collagen cross-linking (CXL) in keratoconus patients and determine factors influencing measurement sensitivity through systematic review and meta-regression analysis. METHODS: A comprehensive literature search was conducted across PubMed, Scopus, Cochrane Library, and Google Scholar, identifying 8139 records. After duplicate removal and screening, 12 eligible studies (2009-2024) involving various CXL protocols and measurement tools (Corvis ST, Ocular Response Analyzer [ORA], and Ambrsio Relational Thickness [ART]) were included. Risk of bias was assessed using ROBINS-I and the NIH Quality Assessment Tool. Effect sizes were synthesized using random-effects meta-analysis, and heterogeneity was quantified using I2 statistics. Meta-regression was performed to evaluate associations between corneal stiffness and visual acuity outcomes. Publication bias was assessed through funnel plots, Egger's test, and trim-and-fill analysis. RESULTS: CXL significantly improved corneal biomechanical properties, particularly when assessed with Corvis ST, which detected changes in 75% of studies, compared to 25% using ORA. Dynamic parameters such as V1, V2, and L2 were more sensitive than standard metrics. Meta-regression revealed a significant correlation between corneal stiffness and visual acuity for Corvis ST (p = 0.02 and p = 0.04, respectively), but not for ORA. The pooled effect size for biomechanical change was 0.74 (95% CI 0.59-0.89), reduced to 0.62 after Trim-and-Fill adjustment, suggesting 16.2% potential publication bias. Egger's test confirmed small-study effects (p = 0.024). Heterogeneity was high (I2 = 98.3%), attributed to variability in protocols and study designs. CONCLUSIONS: CXL leads to sustained improvements in corneal biomechanical properties in keratoconus patients, with stronger and more consistent detection using dynamic and device-specific metrics, particularly with Corvis ST. While findings support the long-term efficacy of CXL, variability in measurement protocols underscores the need for standardization. Meta-regression confirms the clinical relevance of biomechanical improvements, especially their correlation with visual function.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review",
+   "Meta-Analysis"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "40456396",
+  "year": "2025",
+  "journal": "Am J Ophthalmol",
+  "title": "Combined Accelerated Crosslinking With Laser In Situ Keratomileusis (LASIK) for Myopic Patients: A Systematic Review and Meta-Analysis.",
+  "abstract": "PURPOSE: To compare laser in situ keratomileusis (LASIK) and Simultaneous LASIK and accelerated Crosslinking (LASIK Xtra) for myopia correction. DESIGN: Systematic review and meta-analysis. METHODS: A search of PubMed, EMBASE, Web of Science, the Cochrane Library, and China National Knowledge Internet was conducted up to October 1, 2024 to identify studies comparing LASIK and LASIK Xtra for myopia correction. The outcome of visual acuity and refraction, safety, efficiency, predictability, stability, postoperative corneal thickness and endothelial cell count were measure. RESULTS: A total of 1,647 eyes (836 LASIK, 811 LASIK Xtra) from 15 studies were included. LASIK demonstrated superior postoperative uncorrected distance visual acuity (UDVA) compared to LASIK Xtra, with a mean difference (MD) of -0.03 (8 studies, n = 750 eyes; 95% CI: -0.04 to -0.01, P = .007) at 1 month and (7 studies, n = 672 eyes; MD= -0.01 95% CI: -0.02 to 0.00, P = .02) for long-term results (≥6 months). No significant differences were found in corrected distance visual acuity (CDVA; 6 studies, n = 530 eyes; MD = 0.00, 95% CI: -0.01, 0.00, P = .32), spherical equivalent (14 studies, n = 1639 eyes; MD = 0.03, 95% CI: -0.03, 0.08; P = .40), safety (8 studies, n = 779 eyes; odds ratios [OR]= 0.70; 95% CI: 0.39, 1.26; P = .23), efficiency (11 studies, n = 921 eyes; OR = 0.75, 95% CI: 0.54, 1.05, P = .10), predictability (11 studies, n = 971 eyes; OR= 1.03, 95% CI: 0.72, 1.47, P = .86), stability (3 studies, n = 90 eyes; OR = 0.70, 95% CI: 0.21, 2.28, P = .55). Subgroup analysis indicated a higher risk of postoperative CDVA loss in the Ectasia Risk Group undergoing LASIK-Xtra (OR= 0.20, 95% CI: 0.04 to 0.97, P = .05). The 30 mW/cm² for 90 seconds (2.7 J/cm²) irradiation protocol in LASIK Xtra may resulted in worse UDVA compared to LASIK (MD= -0.01, 95% CI: -0.03 to -0.001, P = .05). The certainty of evidence for the outcomes ranged from \"low to very low\". CONCLUSIONS: Current evidence suggests that LASIK offers a statistically significant advantage in UDVA compared to LASIK Xtra, especially when LASIK Xtra irradiation protocol of 30 mW/cm² for 90 seconds (2.7 J/cm²) is applied. However, given the low to very low certainty of evidence, these findings require cautious interpretation and further confirmation through long-term studies.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review",
+   "Meta-Analysis"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "40455349",
+  "year": "2025",
+  "journal": "Int Ophthalmol",
+  "title": "Efficacy of implantable Collamer lens after corneal cross-linking in patients with keratoconus: a systematic review and meta-analysis.",
+  "abstract": "PURPOSE: To determine the efficacy of implantable Collamer lens (ICL) implantation after corneal collagen cross-linking in keratoconus. METHODS: We searched PubMed, Cochrane CENTRAL, SCOPUS, Web of Science, and Google Scholar from inception until October 2022. We included the relevant studies that assessed ICL implantation post-corneal collagen cross-linking in patients with keratoconus. The efficacy endpoints were corrected distance visual acuity (CDVA), uncorrected distance visual acuity (UDVA), manifest refraction (sphere, cylinder, spherical equivalent), and keratometry. RESULTS: Seven observational studies were eligible for this systematic review and meta-analysis. ICL implantation showed an improvement in UDVA, 6 months postoperative, with a mean change of - 1.27 log MAR (95% CI [- 1.63 to - 0.9]. However, there was a non-significant improvement in CDVA with a mean change of - 0.04 log MAR (95% CI [- 0.11 to 0.02]. A trend toward the improved sphere and spherical equivalent was observed for all eyes after the ICL implantation approach: mean change of 6.82 diopters (95% CI 3.24 to 10.4) for the sphere and 7.30 diopters (95% CI [4.18 to 10.43]) for the spherical equivalent. The refractive cylinder was not improved after ICL implantation 0.62 diopters (95% CI [- 0.53 to 1.77]. CONCLUSION: The ICL implantation approach appears to be effective for improving visual acuity in patients with keratoconus without adversely affecting corneal keratometry after crosslinking.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review",
+   "Meta-Analysis"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "40357455",
+  "year": "2025",
+  "journal": "Clin Ophthalmol",
+  "title": "Efficacy and Safety of Epi-On vs Epi-Off Corneal Cross-Linking in Corneal Ectasia: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.",
+  "abstract": "Corneal ectasias are progressive conditions that impair vision and quality of life. Corneal collagen cross-linking (CXL) aims to halt disease progression by strengthening the cornea. This review compares two CXL methods, epithelium-on (epi-on) and epithelium-off (epi-off), to assess their safety and effectiveness for managing corneal ectasia. A systematic search up to July 2024 of PubMed, Medline, Web of Science, Cochrane Central, Google Scholar, and Scopus identified 13 randomized controlled trials (RCTs) involving 872 patients and 1041 eyes. Data were analyzed following PRISMA guidelines using fixed-effects and random-effects models. The primary outcome was the change in maximal keratometry (Kmax) at 12 months, with secondary outcomes including safety profile, best-corrected visual acuity (BCVA), uncorrected visual acuity (UCVA), spherical equivalent (SE), and endothelial cell count (ECC). The findings revealed no statistically significant differences between epithelium-on (epi-on) and epithelium-off (epi-off) CXL in Kmax, BCVA, UCVA, SE, or corneal curvature parameters. However, epithelium-off (epi-off) CXL was associated with less endothelial cell loss and higher rates of side effects, including corneal haze and postoperative discomfort. The choice of treatment should be tailored to individual patient needs, balancing clinical goals and safety considerations. This review highlights the need for further studies to optimize CXL approaches and improve outcomes while minimizing complications.",
+  "pub_types": [
+   "Journal Article",
+   "Review"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "40328290",
+  "year": "2025",
+  "journal": "Prog Biomed Eng (Bristol)",
+  "title": "Anterior segment applications of optical coherence elastography in ophthalmic and vision science: a systematic review of intrinsic measurement techniques and clinical relevance.",
+  "abstract": "Optical coherence elastography (OCE) is a non-invasive imaging technique that measures the biomechanical properties of materials and tissues. This systematic review focuses on the applications of OCE in the anterior segment of the eye, including the cornea, iris, and crystalline lens, and its clinical relevance in diagnosing and managing ocular diseases. A systematic literature review was conducted using the PRISMA framework to identify studies published between 2014 and 2024. The review included studies that reported intrinsic biomechanical properties of anterior segment tissues measured using OCE. Databases searched included Scopus, Pub Med, and IEEE Xplore. Twenty-five studies met the inclusion criteria. The review found that OCE has been used to measure intrinsic biomechanical parameters such as Young's modulus and shear modulus in ocular tissues. OCE has been utilised to assess corneal stiffness in keratoconus, lens elasticity in presbyopia and cataract formation, and iris biomechanical changes under different lighting conditions. The studies demonstrated that OCE could detect subtle biomechanical changes associated with ocular diseases and measure treatment efficacy, such as collagen crosslinking for keratoconus management. The findings highlight the potential of OCE to enhance clinical diagnostics and patient care by providing detailed insights into the biomechanical properties of ocular tissues. However, variability in measurement techniques, the complexity of the method and reliance on animal models limit the current clinical translation of OCE. Standardised measurement protocols and further development andin vivovalidation are needed to overcome these barriers. OCE shows promise as a valuable non-invasive tool for high-resolution assessments of tissue biomechanics, which can subsequently support the diagnosis and management of ocular diseases. Future research should focus on standardising OCE methods and integrating them into clinical practice to fully realise their potential in improving patient outcomes.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "40269767",
+  "year": "2025",
+  "journal": "BMC Ophthalmol",
+  "title": "Corneal cross-linking for infectious keratitis of various causes: an umbrella review.",
+  "abstract": "OBJECTIVE: To explore the therapeutic role of corneal cross-linking (CXL) for infectious keratitis. METHODS: This is an umbrella review of the systematic reviews and meta-analysis concerning the role of corneal CXL in treating infectious keratitis. Appropriate keywords were carefully selected following the identification of PICO (Population: People who have corneal cross-linking for infectious keratitis; Intervention: corneal cross-linking; Comparison: other treatments such as antibiotic therapy; Outcome: Primary outcome was considered as the efficacy of treatment using re-epithelization and heal rate, and secondary outcome was considered need to penetrating keratoplasty (PK)). The electronic search across various databases, including Cochrane, PubMed, MEDLINE, Embase, SCOPUS, CINAHL, Psychoinfo, and ProQuest, was performed until August 2024. RESULTS: Five systematic reviews out of 53 identified records are included in the umbrella review. Due to the structure of the included studies, statistical analysis was not possible to be conducted. Four studies were included that mainly evaluated the role of adjuvant corneal CXL in bacterial keratitis, and the other study focused mainly on fungal keratitis. The studies reported heterogeneous results. Two systematic reviews reported a shorter period for corneal epithelium healing in the adjuvant CXL group compared to the standard antibiotic therapy (SAT), especially in fungal keratitis. However, two studies showed no significant change in re-epithelization duration. One meta-analysis reported a reduction in corneal infiltrate size 7 days after adjuvant corneal CXL compared to the SAT. None of the included studies reported a difference in corneal complications, such as perforation and the need for PK in the CXL group compared to SAT. CONCLUSION: The corneal CXL in infectious keratitis has no uniform protocol, especially regarding the de-epithelization procedure before CXL, leading to heterogeneity in the trial results. However, it seems the adjuvant corneal CXL next to SAT is not inferior to the unaccompanied SAT and may be superior in some cases, including fungal etiologies, regarding faster corneal healing.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "40023354",
+  "year": "2025",
+  "journal": "Am J Ophthalmol",
+  "title": "Efficacy of Customized Photorefractive Keratectomy With Cross-Linking Versus Cross-Linking Alone in Progressive Keratoconus: A Systematic Review and Meta-Analysis.",
+  "abstract": "TOPIC: This review evaluates the effectiveness and safety of combining cPRK with CXL versus CXL alone in improving visual outcomes for patients with progressive keratoconus. DESIGN: Systematic review and meta-analysis. CLINICAL RELEVANCE: Keratoconus leads to vision loss and affects quality of life. While CXL is the current standard for halting progression, it does not correct the visual impairment. This review explores whether adding cPRK to CXL offers better visual outcomes while maintaining the same safety, potentially refining treatment approaches. METHODS: A systematic search of MEDLINE, PubMed, Cochrane Library and EMBASE was conducted through September 2024, following PRISMA guidelines. The initial study design aimed to include randomized controlled trials (RCTs) as well as comparative nonrandomized prospective or retrospective studies evaluating CXL+cPRK versus CXL alone, with a minimum follow-up of six months. However, only nonrandomized studies were retrieved. As a result, all included studies were assessed for the risk of bias using the ROBINS-I tool. The primary outcomes were uncorrected distance visual acuity (UDVA) and corrected distance visual acuity (CDVA). Secondary outcomes included refraction, corneal structure, and higher-order aberrations (HOA). Meta-analysis was performed using standardized mean differences (SMD) with 95% confidence intervals (CI), and heterogeneity was assessed using a random-effects model where necessary. Sensitivity analysis was conducted using a leave-one-out approach to assess the robustness of the results. This study is registered in the PROSPERO database (CRD42024594757). RESULTS: Eight nonrandomized studies involving 731 eyes from 706 patients were analyzed. Compared to CXL alone, the combination of CXL+cPRK significantly improved postoperative UDVA (SMD = -0.39, 95% CI: -0.69 to -0.08, P = .01) and CDVA (SMD = -0.57, 95% CI: -0.96 to -0.18, P = .004), while also reducing refractive cylinder error. Additionally, CXL+cPRK led to reductions in coma, total HOA, coma-like aberrations, mean keratometry (KM), and central corneal thickness (CCT). No significant differences were observed between the groups in endothelial cell count (ECC). The rate of postoperative ectasia progression was comparable between both groups. All included studies exhibited at least one ROBINS-I domain at high risk of bias, particularly related to confounding. The heterogeneity observed in this analysis was primarily attributed to differences in surgical techniques, patient selection criteria, and study designs across the included studies. CONCLUSIONS: Customized PRK combined with CXL provides superior postoperative visual acuity (UDVA, CDVA) and visual quality compared to CXL alone while maintaining the same corneal stability in the management of progressive keratoconus. Only nonrandomized studies could be retrieved for the purpose of the study.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review",
+   "Research Support, Non-U.S. Gov't"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "39665995",
+  "year": "2024",
+  "journal": "Graefes Arch Clin Exp Ophthalmol",
+  "title": "Topical losartan ophthalmic drops - a review of corneal wound healing and topical losartan for managing corneal haze and potential future indications.",
+  "abstract": "Corneal haze, a consequence of pathological wound healing, manifests as opacity and sometimes irregularity impairing vision. This condition arises from breaches in the epithelial barrier, triggering an inflammatory cascade culminating in myofibroblasts formation. Surgical procedures such as photorefractive keratectomy (PRK), laser in situ keratomileusis (LASIK) and corneal cross-linking (CXL) are major contributors, alongside non-surgical causes like trauma and infections. Research has extensively explored post-surgical corneal haze, focusing on the transforming growth factor beta (TGFβ) pathway, inflammation management, and extracellular matrix remodeling. Losartan, traditionally an antihypertensive, has gained attention in ophthalmology for its anti-fibrotic and anti-inflammatory properties. Studies have supported its efficacy in reducing corneal fibrosis post-descemetorhexis, alkali burn, and PRK injuries in animal models, and human case reports. This review aims to examine the topical use of losartan 0.08% in ophthalmology, assessing its effectiveness against post-surgical corneal haze and exploring its pharmacological profile and potential future applications. We provide a systematic review of all published in-human studies of the use of topical losartan in corneal disease.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "39539159",
+  "year": "2024",
+  "journal": "Eur J Ophthalmol",
+  "title": "Accelerated versus conventional corneal collagen cross-linking for keratoconus: A meta-analysis of randomized controlled trials.",
+  "abstract": "PurposeTo systematically compare the effectiveness of conventional corneal collagen cross-linking (CCXL) protocols and accelerated corneal collagen cross-linking (ACXL) protocols in cases with progressive keratoconus.MethodsThe Cochrane library, EMBASE, MEDLINE, PubMed, and Web of Science databases were searched for randomized controlled trials (RCTs). Outcomes were clinical results and changes in corneal properties. Standardized mean differences (SMD) and 95% confidence interval (CI) were used to estimate the clinical consequences. All outcomes were distributed by different follow-up durations (6 months, 12 months, and > 12 months). We also compared maximum keratometry (Kmax) and best spectacle-corrected visual acuity (BCVA) in subgroups, which were categorized by the discrepant impregnation time period of riboflavin.ResultsWe included 14 RCTs that met the eligibility criteria in this meta-analysis. At the last follow-up, CCXL was superior in postoperative change in demarcation line (SMD: -1.573; 95% CI: -2.897 to -0.248) and in Kmax (SMD:0.302; 95% CI: 0.071 to 0.533), whereas ACXL provided a significantly lower reduction in central corneal thickness (SMD: 0.498; 95% CI: 0.125 to 0.871). No differences in the changes in uncorrected visual acuity, BCVA, manifest refraction spherical equivalent, corneal biomechanical properties, and the endothelial cell density were found among both groups.ConclusionCCXL was superior to ACXL in greater corneal flattening and deeper demarcation line, while ACXL seemed to cause less reduction in CCT and allow for earlier UDVA stability. To clearly define the comparative safety and clinical consequences of the different regimens of CXL, more RCTs are required.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Review",
+   "Comparative Study"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "39215849",
+  "year": "2024",
+  "journal": "Graefes Arch Clin Exp Ophthalmol",
+  "title": "Pulsed corneal crosslinking in the treatment of Keratoconus: a systematic review and meta-analysis.",
+  "abstract": "PURPOSE: Corneal crosslinking (CXL) procedures are the treatment of choice in halting progressive corneal ectasia and preserving visual acuity due to keratoconus. Pulsed crosslinking (P-CXL) was developed using intermittent pulsing ultraviolet (UV) light to mitigate the depletion of oxygen levels that occurs with continuous UV exposure in standard crosslinking protocols (C-CXL). This study aimed to explore the use of P-CXL in the treatment of keratoconus and determine whether the availability of oxygen in P-CXL carries superior efficacy outcomes as an alternative to C-CXL modalities. METHODS: This review was undertaken in accordance with PRISMA guidelines. A search of several databases conducted with two separate reviewers resulted in 29 papers meeting inclusion criteria for the review, 14 selected for meta-analysis. Primary outcomes assessed by the included papers included maximum keratometry (Kmax), corrected and uncorrected distance visual acuity (CDVA, UDVA), and secondary outcomes included central corneal thickness (CCT), endothelial cell count and demarcation line. Statistical analyses were carried out on Review Manager 5.4 and the meta-analysis employed a random-effects model, which estimated the weighted effect size of raw means using inverse variance weights. RESULTS: At 12 months P-CXL showed statistically significant reductions in Kmax (-0.75 D; p < 0.001) and improvement in CDVA (-0.10 logMAR; p < 0.001) compared to baseline. The meta-analysis of comparative studies determined that mean differences in Kmax, CDVA, UDVA, Kmean and CCT after 12 months were not statistically significant between pulsed and continuous crosslinking groups. CONCLUSIONS: Overall, P-CXL is effective in improving visual acuity and keratometry outcomes in keratoconus. The meta-analysis did not show a statistically significant difference in Kmax and CDVA between P-CXL and C-CXL, indicating a non-inferiority of P-CXL. However, findings of the meta-analysis are limited by the fact that different energy levels and exposure times were used for P-CXL in comparison to C-CXL in some studies, making it unsuitable to determine whether the efficacy of CXL is improved by the use of pulsed light. KEY MESSAGES: What is Known • Pulsed crosslinking (P-CXL) uses intermittent UV light to prevent oxygen depletion when using higher energy protocols, unlike continuous UV exposure in standard continuous crosslinking (C-CXL). • This should theoretically enhance the efficacy of the treatment by maintaining higher oxygen levels that are crucial to the cross-linking process. • There are no systematic reviews or meta-analyses directly comparing the efficacy or safety of P-CXL to C-CXL. What is New • Meta-analysis revealed differences in keratometry between P-CXL and C-CXL groups with equivalent fluence (7.2 J/cm2) at 12 months were not statistically significant (Kmax -0.04 dioptres; p = 0.84). • Meta-analysis revealed differences in visual acuity between P-CXL and C-CXL groups with equivalent fluence (7.2 J/cm2) at 12 months were not statistically significant (CDVA -0.01 logMAR letters; p = 0.57). • The use of intermittent pulsing in higher energy CXL protocols renders statistically similar outcomes as continuous light exposure at equivalent fluence (7.2 J/cm2).",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review",
+   "Meta-Analysis"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "39211657",
+  "year": "2024",
+  "journal": "Cureus",
+  "title": "The Utilization of Brillouin Microscopy in Corneal Diagnostics: A Systematic Review.",
+  "abstract": "Corneal biomechanical data has been used since 2005 to screen for keratoconus and corneal ectasia by corneal specialists. Older technology uses force applanation techniques over a 3 mm area in the central cornea, making it highly dependent on extraneous variables and unable to calculate the elasticity of the tissue. Brillouin microscopy is a newer method that uses a natural shift in the frequency of light as it passes through a material. This frequency shift can be used to estimate the viscoelasticity of the tissue. The advantage of Brillouin microscopy is that it can create a full three-dimensional (3D) map of the entire cornea without direct contact. A literature search was conducted using the databases PubMed, Google Scholar, and Ovid regarding the applications of Brillouin microscopy in corneal diagnostics. A final total of 16 articles was included describing the various ex vivo and in vivo studies conducted using Brillouin microscopy. Applications of this technology spanned from keratoconus diagnosis to post-corneal refractive surgery evaluation. All studies evaluated corneal biomechanics and other corneal properties through the quantification of Brillouin frequency shifts. Many of the studies found that this diagnostic device is capable of detecting subtle changes in corneal thickness and biomechanics in keratoconic corneas at a high level of specificity and sensitivity. However, limitations of Brillouin microscopy may include the duration of time required for use and fluctuations in accuracy depending on the corneal hydration state. Future technology seems to be geared toward a combination of optical coherence tomography (OCT) and Brillouin microscopy, using OCT as a three-dimensional pupil-tracking modality. Further research and understanding of the technology involved will lead to better care of patients in the field of ophthalmology.",
+  "pub_types": [
+   "Journal Article",
+   "Review"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "38710236",
+  "year": "2024",
+  "journal": "Surv Ophthalmol",
+  "title": "Refractive surgical approaches to keratoconus: A systematic review and network meta-analysis.",
+  "abstract": "Advancements in diagnostic methods and surgical techniques for keratoconus (KC) have increased non-invasive treatment options. Successful surgical planning for KC involves a combination of clinical science, empirical evidence, and surgical expertise. Assessment of disease progression is crucial, and halting the progression should be the focus if it is progressive. While surgeons used to rely on experience alone to decide the surgical method, comparing the network of primary factors, such as visual acuity, across studies can help them choose the most appropriate treatments for each patient and achieve optimal outcomes. Meticulous tabulation methods facilitate interpretation, highlighting the importance of selecting the correct surgical and rehabilitation approach based on each patient's condition and stage of the disease. We detail the outcomes of a comprehensive network meta-analysis comparing the effectiveness of various combined therapeutic refractive treatments for KC at identical stages of the disease, spanning 4 distinct follow-up intervals. Additionally, the comprehensive analysis suggests that for corneas with optimal best corrected visual acuity (BCVA) preoperatively (classified as regular), combining phakic intraocular lenses with intracorneal ring segments (ICRS) and corneal cross-linking (CXL) could offer the best therapeutic approach provided the disease stage does not exceed stage 3. For irregular corneas, although initial follow-ups show a significant difference in BCVA with surface ablation, longer-term follow-ups recommend combining surface ablation with ICRS and CXL, especially at higher stages.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review",
+   "Network Meta-Analysis"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "38525385",
+  "year": "2024",
+  "journal": "Clin Ophthalmol",
+  "title": "Corneal Collagen Crosslinking for Ectasia After Refractive Surgery: A Systematic Review and Meta-Analysis.",
+  "abstract": "INTRODUCTION: Corneal ectasia leads to progressive irregular corneal curvature and reduced visual acuity. OBJECTIVE: To assess the safety and effectiveness of corneal collagen cross-linking (CXL) for managing corneal ectasia resulting from refractive laser surgery (RSL). METHODS: A systematic review and meta-analysis were realized according to PRISMA guidelines. We searched PubMed, EMBASE, Cochrane, and Web of Science databases for studies on CXL in patients with ectasia after RLS. The outcomes of interest included visual acuity, refractive outcomes, topographic parameters (Kmax, index surface variance (ISV), index of Vertical Asymmetry (IVA), keratoconus index (KI), central keratoconus index (CKI), index of height asymmetry (IHA), index of height decentration (IHD) and Rmin (minimum sagittal curvature)), central corneal thickness, endothelial cell count, and possible adverse events. Statistical analysis was performed using the R software (version 4.2.3, R Foundation for Statistical Computing, Vienna, Austria). RESULTS: 15 studies encompassing 421 patients (512 eyes) were included. The mean age was 32.03 ± 4.4 years. The pooled results showed a stable uncorrected visual acuity post-CXL, with a significant improvement in corrected distance visual acuity (SMD = 0.09; 95% CI: -0.07 to 0.26). The spherical equivalent decreased significantly (SMD = -0.09; 95% CI: -0.35, -0.02). The topographic parameter Kmax decreased significantly (SMD = 0.15; 95% CI:0.01 to 0.28); however, the other parameters, ISV, IVA, KI, CKI, IHA, IHD, and Rmin, did not change significantly. Central corneal thickness decreased significantly (SMD = 0.24; 95% CI:0.07 to 0.41), and the endothelial cell count remained stable The complications were rare. CONCLUSION: CXL is a safe and effective technique for managing corneal ectasia after RLS.",
+  "pub_types": [
+   "Journal Article",
+   "Review"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "38513713",
+  "year": "2024",
+  "journal": "Can J Ophthalmol",
+  "title": "Efficacy comparison of combining cross-linking and refractive laser ablation in progressive keratoconus: systematic review and meta-analysis.",
+  "abstract": "OBJECTIVE: This study assessed the effect of combining corneal collagen cross-linking (CXL) with refractive laser ablation techniques for the treatment of keratoconus, a progressive corneal disorder. METHODS: We performed a systematic review and meta-analysis to assess the effect of combined CXL and refractive techniques. We included all published clinical trials or observational studies published by September 1, 2023. We calculated and compared the standardized mean difference (SMD) between CXL alone and CXL plus laser ablation for uncorrected distance visual acuity, best-corrected distance visual acuity, spherical equivalent manifest refraction, sphere and cylinder, flat keratometry (K1), steep keratometry (K2), and central corneal thickness. RESULTS: We identified 13 studies that fulfilled our inclusion and exclusion criteria. The average follow-up was 21.3 ± 11.8 months. The CXL plus laser ablation group showed improvement in uncorrected distance visual acuity logMAR (SMD, -0.35; 95% CI, -0.67 to -0.04; p = 0.029), best-corrected distance visual acuity logMAR (SMD, -0.17; 95% CI, -0.30 to -0.03; p = 0.014), spherical equivalent manifest refraction (SMD, -0.28; 95% CI, 0.06-0.50; p = 0.013), and change in maximal corneal curvature (Kmax; SMD, -0.41; 95% CI, -0.69 to -0.13; p = 0.004) compared with CXL alone. However, central corneal thickness decreased further among patients who underwent CXL plus laser ablation (SMD, -0.37; 95% CI, -0.66 to -0.07; p = 0.016). No effect was observed in terms of sphere (p = 0.878), cylinder (p = 0.859), K1 (p = 0.907), or K2 (p = 0.169). Ectasia was not observed as an adverse effect resulting from the additional corneal ablation performed during the CXL treatments. CONCLUSIONS: This study showed that combining refractive laser ablation techniques with standard or accelerated CXL treatment improved visual and refractive outcomes and anterior corneal curvature values.",
+  "pub_types": [
+   "Systematic Review",
+   "Meta-Analysis",
+   "Journal Article",
+   "Comparative Study",
+   "Research Support, Non-U.S. Gov't"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "38288954",
+  "year": "2024",
+  "journal": "J Cataract Refract Surg",
+  "title": "Comparison of refractive surgeries (SMILE, LASIK, and PRK) with and without corneal crosslinking: systematic review and meta-analysis.",
+  "abstract": "Corneal crosslinking (CXL) is used for treating keratoconus and post-laser in situ keratomileusis ectasia. However, refractive surgery is not usually performed with prophylactic CXL. Therefore, we performed a meta-analysis comparing outcomes of refractive surgeries with vs without prophylactic CXL. We systematically searched databases for studies comparing refractive surgeries for myopic correction with vs without prophylactic corneal crosslinking. Review Manager 5.4.1 was used to perform statistical analysis. We included 2820 eyes from 28 studies. Compared with refractive surgery alone, surgery with prophylactic CXL resulted in decreased central corneal thickness, corrected distance visual acuity logMAR, and safety and efficacy indices. There were no significant differences in postoperative uncorrected distance visual acuity of 20/20 or better at ≥12 months and other visual outcomes among both groups. More randomized controlled trials with standard crosslinking protocols are needed to analyze the prophylactic use of crosslinking with refractive surgeries.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review",
+   "Meta-Analysis",
+   "Comparative Study"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "38153964",
+  "year": "2023",
+  "journal": "Indian J Ophthalmol",
+  "title": "Scleral collagen cross linkage in progressive myopia.",
+  "abstract": "High myopia is often associated with local ectasia and scleral thinning. The progression of myopia depends upon scleral biochemical and biomechanical properties. Scleral thinning is associated with decreased collagen fiber diameter, defective collagen fibrillogenesis, and collagen cross-linking. Reversing these abnormalities may make the sclera tougher and might serve as a treatment option for myopic progression. Collagen cross-linking is a natural process in the cornea and sclera, which makes the structure stiff. Exogenous collagen cross-linkage is artificially induced with the help of external mediators by using light and dark methods. In this systematic review, we discussed existing literature available on the internet on current evidence-based applications of scleral collagen cross-linking (SXL) by using different interventions. In addition, we compared them in tabular form in terms of their technique, mechanisms, cytotoxicity, and the stage of transition from preclinical to clinical development. Furthermore, we discussed the in-vivo technique to evaluate the post-SXL scleral biomechanical property and outcome in the human eye.",
+  "pub_types": [
+   "Systematic Review",
+   "Journal Article"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "37951953",
+  "year": "2023",
+  "journal": "Syst Rev",
+  "title": "Photoactivated chromophore-corneal cross-linking accelerates corneal healing in fungal keratitis: an updated meta-analysis.",
+  "abstract": "AIM: To determine the effectiveness and safety of photoactivated chromophore-corneal cross-linking (PACK-CXL) adjuvant in infectious keratitis by April 5, 2022. METHODS: We searched randomized controlled trials (RCTs) comparing standard antibiotic treatment (SAT) plus PACK-CXL to SAT in infectious keratitis in Embase, MEDLINE with PubMed, Web of Science, and Cochrane Library. We independently screened and extracted data using predesigned tables. Cochrane's risk-of-bias tool was utilized to examine the quality of RCTs. A random-effects model was employed to determine the overall effect size of the meta-analyses. Grading of Recommendations, and Assessment, Development and Evaluations (GRADE) was also performed to examine the quality of evidence. RESULTS: Seven eligible RCTs with 283 patients were acquired. Adjuvant PACK-CXL reduced the time needed to perform corneal healing in fungal keratitis (- 1.33 months; 95% CI, - 1.83 to - 0.42, I2 = 0%, P < 0.05) as compared to SAT alone. The risks of adverse events were not significantly different both in fungal and bacterial keratitis. Due to the substantial heterogeneity among studies, such as population, the type and severity of infectious keratitis, drug regimens of SAT, PACK-CXL protocol, and the judgment of subjective outcomes, the evidence grade was low. CONCLUSION: Adjuvant PACK-CXL accelerates fungal keratitis healing as compared to SAT alone. But more rigorous RCTs are required to determine the clinical effectiveness and safety.",
+  "pub_types": [
+   "Meta-Analysis",
+   "Journal Article",
+   "Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "37938377",
+  "year": "2023",
+  "journal": "Graefes Arch Clin Exp Ophthalmol",
+  "title": "Epithelium-on versus epithelium-off corneal collagen crosslinking for keratoconus: a systematic review and meta-analysis.",
+  "abstract": "PURPOSE: Corneal collagen crosslinking (CXL) is the primary treatment for progressive keratoconus which has a significant impact on vision and quality of life. Our study aimed to compare the efficacy and safety of epithelium-on versus epithelium-off CXL to treat keratoconus. METHODS: We searched PubMed, Medline, Embase, Web of Science, and Scopus databases. We included studies that compared standard epithelium-off with epithelium-on CXL. The primary outcome measures were changes in corrected distance visual acuity (CDVA) and maximum keratometry (Kmax), and the secondary outcomes were uncorrected distance visual acuity (UDVA), central corneal thickness (CCT), and adverse events. A meta-analysis was performed on the primary and secondary outcomes based on the weighted mean differences between baseline to 12-month follow-up. RESULTS: The search retrieved 887 publications with 27 included in the systematic review. A total of 1622 eyes (1399 patients; age 25.51 ± 4.02 years) were included in comparisons of epithelium-off to epithelium-on CXL in keratoconus. Epithelium-off CXL treated 800 eyes and epithelium-on CXL for 822 eyes. At 12-month follow-up, CDVA and Kmax showed no significant difference between the epithelium-off and epithelium-on CXL. The secondary outcomes showed that UDVA was better in epithelium-off CXL (- 0.11D, 95% CI - 0.12, - 0.1; p < 0.001) and there was more thinning in CCT in epithelium-off CXL (- 3.23 μm, 95% CI - 4.64, - 1.81; p <0.001). CONCLUSION: Epithelium-off and epithelium-on CXL were both effective to treat progressive keratoconus. Further research is needed to compare the long-term outcomes and safety of both CXL protocols for adaptation into clinical practice.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review",
+   "Meta-Analysis"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "37484615",
+  "year": "2022",
+  "journal": "Taiwan J Ophthalmol",
+  "title": "Short- and long-term safety and efficacy of corneal collagen cross-linking in progressive keratoconus: A systematic review and meta-analysis of randomized controlled trials.",
+  "abstract": "PURPOSE: The purpose of the study is to evaluate the safety and outcomes of corneal collagen cross-linking (CXL) and different CXL protocols in progressive keratoconus (PK) population at short and long-term. MATERIALS AND METHODS: A systematic review and meta-analysis was conducted. A total of eight literature databases were searched (up to February 15, 2022). Randomized controlled trials (RCTs) comparing CXL versus placebo/control or comparing different CXL protocols in the PK population were included. The primary objective was assessment of outcomes of CXL versus placebo and comparison of different CXL protocols in terms of maximum keratometry (Kmax) or Kmax change from baseline (Δ), spherical equivalent, best corrected visual acuity (BCVA), and central corneal thickness (CCT) in both at short term (6 months) and long term (1st, 2nd, and 3rd year or more). The secondary objective was comparative evaluation of safety. For the meta-analysis, the RevMan5.3 software was used. RESULTS: A total of 48 RCTs were included. Compared to control, CXL was associated with improvement in Δ Kmax at 1 year (4 RCTs, mean difference [MD], -1.78 [-2.71, -0.86], P = 0.0002) and 2 and 3 years (1 RCT); ΔBCVA at 1 year (7 RCTs, -0.10 [-0.14, -0.06], P < 0.00001); and Δ CCT at 1 year (2 RCTs) and 3 years (1 RCT). Compared to conventional CXL (C-CXL), deterioration in Δ Kmax, ΔBCVA and endothelial cell density was seen at long term in the transepithelial CXL (TE-CXL, chemical enhancer). Up to 2 years, there was no difference between TE-CXL using iontophoresis (T-ionto) and C-CXL. At 2 and 4 years, C-CXL performed better compared to accelerated CXL (A-CXL) in terms of improving Kmax. Although CCT was higher in the A-CXL arm at 2 years, there was no difference at 4 years. While exploring heterogeneity among studies, selection of control eye (fellow eye of the same patient vs. eye of different patient) and baseline difference in Kmax were important sources of heterogeneity. CONCLUSION: CXL outperforms placebo/control in terms of enhancing Kmax and CCT, as well as slowing disease progression over time (till 3 years). T-ionto protocol, on the other hand, performed similarly to C-CXL protocol up to 2 years.",
+  "pub_types": [
+   "Journal Article",
+   "Review"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "37470861",
+  "year": "2023",
+  "journal": "Int Ophthalmol",
+  "title": "The efficacy of 2 different phakic intraocular lens implant in keratoconus as an isolated procedure or combined with collagen crosslinking and intra-stromal corneal ring segments: a systematic review and meta-analysis.",
+  "abstract": "PURPOSE: To compare the efficacy of phakic intra-ocular lenses in isolation or in combination with corneal crosslinking (CXL) and/or intra-stromal corneal ring segments (ICRS) in keratoconus. METHODS: Data extracted from the publications meeting the selection. The outcome parameters included mean pre- and post-operative uncorrected distance visual acuity, corrected distance visual acuity (CDVA), sphere and cylinder of refraction and complications. Available data analyzed with Cochrane Review Manager. RESULTS: A total of 23 studies including 464 eyes were included. All the parameters showed significant improvement in all subgroups other than CDVA in ACPIOL + CXL subgroup and cylinder in PIOL + CXL subgroups. There was not a significant difference between PCPIOL and ACPIOL in the outcomes, exception was more improvement of CDVA in \"ACPIOL only\" than\" PCPIOL only\" subgroup. CONCLUSION: Both PCPIOLs and ACPIOLs are comparably safe and efficient options in management of KCN and their efficacy significantly improves when combined with CXL/ICRS.",
+  "pub_types": [
+   "Meta-Analysis",
+   "Systematic Review",
+   "Journal Article"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "37203022",
+  "year": "2023",
+  "journal": "Indian J Ophthalmol",
+  "title": "Role of corneal collagen cross-linking in bullous keratopathy: A systematic review.",
+  "abstract": "Corneal cross-linking (CXL), a corneal strengthening procedure, is known to alter anterior stroma swelling behavior and is one of the treatment modalities of bullous keratopathy (BK). There are multiple studies published on the role of CXL in the treatment of BK. These articles had heterogeneous study population, different protocols used, and variable conclusions. This systematic review aimed to determine the role of CXL in the treatment of BK. The primary outcomes considered were changes in central corneal thickness (CCT) after 1, 3, and 6 months of CXL. The secondary outcome measures were changes in visual acuity, corneal clarity, subjective symptoms, and complications after CXL. We included randomized control trials (RCTs), observational and interventional studies, and case series with reports of more than 10 cases in this review. In RCTs, the mean pre-CXL CCT (794.0 ± 178.5 μm) in the intervention group (n = 37), decreased at 1 month (750.9 ± 154.3 μm) followed by a subsequent increase, but this difference was not significant during the 6-month follow-up (P- value 0.28, 0.82, and 0.82 at 1, 3, and 6 months, respectively). In noncomparative clinical studies (n = 188), the mean pre-CXL CCT (794.0 ± 178.5 μm) decreased at 1 month (710.9 ± 127.2 μm, P < 0.0001). Seven of the 11 articles included in the review reported no significant improvement in vision with CXL. The initial improvement in corneal clarity and clinical symptoms was not sustained. Current evidence suggests that CXL has short-term efficacy in the treatment of BK. More RCTs with high-quality evidence are needed.",
+  "pub_types": [
+   "Systematic Review",
+   "Journal Article"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "36944752",
+  "year": "2023",
+  "journal": "Graefes Arch Clin Exp Ophthalmol",
+  "title": "Network meta-analysis comparing efficacy and safety of different protocols of corneal cross-linking for the treatment of progressive keratoconus.",
+  "abstract": "PURPOSE: This study aimed to determine the preferred protocol of corneal collagen cross-linking (CXL) in the treatment of progressive keratoconus. METHODS: Relevant studies were retrieved in PubMed, EMBASE and Cochrane Central Register of Controlled Trials (CENTRAL). Maximum keratometry value (Kmax), best spectacle-corrected visual acuity (BSCVA), manifest refraction spherical equivalent (MRSE), and endothelial cell density (ECD) were evaluated in network meta-analysis. RESULTS: Eight randomized controlled trials (RCTs) were included. Low-level evidence suggested that aCXL with 30mW/cm2 for 3 min (aCXL-3) might be the best protocol for reducing BSCVA (65.22%) but worst protocol for reducing MRSE (51.53%). aCXL with 18mW/cm2 for 5 min (aCXL-5) might be the best protocol for reducing Kmax (39.58%) and MRSE (77.85%) but might be the worst for preserving ECD (50.98%). aCXL with 9mW/cm2 for 10 min (aCXL-10) might be the best protocol for preserving ECD (31.53%). CONCLUSION: Overall, three protocols of aCXL are comparable in therapeutic efficacy and safety for treating progressive keratoconus. Despite no direct data comparing the efficacy of each technique according to different patients' profiles, it is reasonable to state that aCXL-5 may be the best for patients at early-stage to reduce Kmax and MRSE, aCXL-3 may be the best for patients at mid-stage to improve BSCVA, and aCXL-10 may be the best for patients at late-stage to preserve DEC.",
+  "pub_types": [
+   "Journal Article",
+   "Review",
+   "Network Meta-Analysis"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "36881260",
+  "year": "2023",
+  "journal": "Graefes Arch Clin Exp Ophthalmol",
+  "title": "Use of corneal cross-linking beyond keratoconus: a systemic literature review.",
+  "abstract": "PURPOSE: The success of corneal collagen cross-linking in altering keratoconus' clinical course has driven a search for further uses of this procedure. This literature review aims to analyze the scientific evidence available for the benefit of cross-linking in the management of ophthalmic diseases other than progressive keratoconus or ectasia induced by corneal refractive procedures. METHODS: A systemic literature review. RESULTS: We reviewed 97 studies. We found that collagen cross-linking can limit the progression of several other corneal ectasias, thus reducing and limiting the need for keratoplasty. Collagen cross-linking also can reduce the refractive power of the cornea and can be considered for a moderate degree of bacterial keratitis or when the organism is unidentified, which is refractive to antibiotics alone. However, the comparative rarity of these procedures has limited the extent of evidence. In fungal, Acanthamoeba, and herpes virus keratitis, the evidence is inconclusive of the safety and efficacy of cross-linking. CONCLUSION: Current clinical data is limited, and laboratory data has not fully correlated with published clinical data.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "36156043",
+  "year": "2022",
+  "journal": "Cornea",
+  "title": "Accelerated Corneal Collagen Cross-Linking Protocols for Progressive Keratoconus: Systematic Review and Meta-analysis.",
+  "abstract": "PURPOSE: The aim of this study was to compare the outcomes of 18 mW/cm 2 (5 minutes) versus 9 mW/cm 2 (10 minutes) accelerated corneal collagen cross-linking protocols in patients with progressive keratoconus. METHODS: A systematic review and meta-analysis were performed according to the Preferred Reporting Items for Systematic Reviews and Meta-analyses guidelines, and electronic information was searched to identify studies comparing the outcomes of 5- versus 10-minute protocols in patients with progressive keratoconus. Mean changes in uncorrected visual acuity, best-corrected visual acuity, cylinder (diopters), thinnest corneal thickness, corneal keratometry values (K1 and K2), corneal high-order aberration (HOA), spherical aberration, coma, and trefoil were the primary outcome measures. Secondary outcome measures included the mean change in central corneal thickness and postoperative complications. Random effects modeling was used for the analysis. RESULTS: Four studies that enrolled 329 eyes were included. The 10-minute protocol had significantly improved outcomes compared with the 5-minute protocol for the mean changes in K1 and K2 ( P < 0.00001), corneal total HOA ( P = 0.0002), and corneal coma ( P = 0.00001). However, no statistically significant differences were found between the 2 protocols in uncorrected visual acuity, best-corrected visual acuity, cylinder, thinnest corneal thickness, spherical aberration, or trefoil. The 5-minute protocol was associated with a significantly lower mean change in the central corneal thickness for secondary outcomes. In addition, no significant differences were found between the 2 protocols for postoperative complications. CONCLUSIONS: The 10-minute protocol had better K1, K2, and HOA outcomes than the 5-minute protocol, but no statistically significant differences in the other outcomes.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "36094374",
+  "year": "2022",
+  "journal": "Asia Pac J Ophthalmol (Phila)",
+  "title": "Oxygen in Corneal Collagen Crosslinking to Treat Keratoconus: A Systematic Review and Meta-Analysis.",
+  "abstract": "PURPOSE: Keratoconus is a disorder that results in visual loss from increased corneal high-order aberrations and irregular astigmatism and reduces quality of life. The primary treatment for progressive keratoconus is crosslinking (CXL). Recently, it has been suggested that oxygen enhances the type II photodynamic reaction of CXL that is oxygen dependent. Our study investigated the effect of increased oxygen availability in epithelium-on CXL on visual acuity and corneal curvature. METHODS: We searched PubMed, EMBASE, Medline, Web of Science, and Scopus databases on November 3, 2021. We included studies that reported increased oxygen availability during CXL in patients with keratoconus published within the last 10 years. A meta-analysis on the primary outcomes, maximum keratometry, and corrected distance visual acuity, was conducted. RESULTS: The search yielded 108 publications which were screened and assessed for eligibility. Six studies were included in the systematic review and 5 studies were included in our meta-analysis of the outcomes of increased oxygen availability in accelerated CXL. The meta-analysis on data after 6 months of follow-up found a significant decrease in mean maximum keratometry of 1.2 diopter (95% confidence interval: 0.2-2.3; P =0.02) and an improvement in mean corrected distance visual acuity by 0.08 logMAR (95% confidence interval, 0.02-0.13; P =0.01). There were no serious adverse events reported. CONCLUSIONS: Increasing oxygen during epithelium-on CXL improved visual acuity and produced corneal flattening without any serious adverse events in patients with keratoconus. The demarcation line depth was significantly higher with oxygen compared to the control group. Further data are required with a control group and long-term follow-up across a range of CXL protocols for implementation into standard clinical practice.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "35372437",
+  "year": "2022",
+  "journal": "Front Med (Lausanne)",
+  "title": "Comparison of Efficacy and Safety Between Standard, Accelerated Epithelium-Off and Transepithelial Corneal Collagen Crosslinking in Pediatric Keratoconus: A Meta-Analysis.",
+  "abstract": "PURPOSE: The purpose of the study is to compare the efficacy of standard epithelium-off CXL (SCXL), accelerated epithelium-off CXL (ACXL), and transepithelial crosslinking CXL (TECXL) for pediatric keratoconus. METHODS: A literature search on the efficacy of SCXL, ACXL, and TECXL [including accelerated TECXL (A-TECXL)] for keratoconus patients younger than 18 years was conducted using PubMed, Cochrane Library, ClinicalTrials.gov, and EMBASE up to 2021. Primary outcomes were changes in uncorrected visual acuity (UCVA) and maximum keratometry (Kmax) after CXL. Secondary outcomes were changes in best-corrected visual acuity (BCVA), mean refractive spherical equivalent (MRSE), and central corneal thickness (CCT). Estimations were analyzed by weighted mean difference (WMD) and 95% confidence interval (CI). RESULTS: A number of eleven identified studies enrolled 888 eyes (SCXL: 407 eyes; ACXL: 297 eyes; TECXL: 28 eyes; A-TECXL: 156 eyes). For pediatric keratoconus, except for a significant greater improvement in BCVA at 24-month follow-up in SCXL (WMD = -0.08, 95%CI: -0.14 to -0.01, p = 0.03, I2 = 71%), no significant difference was observed in other outcomes between the SCXL and ACXL groups. SCXL seems to provide greater changes in UCVA (WMD = -0.24, 95% CI: -0.34 to -0.13, p < 0.00001, I2 = 89%), BCVA (WMD = -0.09, 95% CI: -0.15 to -0.04, p = 0.0008, I2 = 94%), and Kmax (WMD = -1.93, 95% CI: -3.02 to -0.85, p = 0.0005, I2 = 0%) than A-TECXL, with higher incidence of adverse events. CONCLUSION: For pediatric keratoconus, both SCXL and ACXL appear to be comparable in the efficacy of visual effects and keratometric outcomes; SCXL seems to provide greater changes in visual and pachymetric outcomes than A-TECXL.",
+  "pub_types": [
+   "Systematic Review",
+   "Journal Article"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "34898463",
+  "year": "2021",
+  "journal": "JMIR Med Inform",
+  "title": "Machine Learning Algorithms to Detect Subclinical Keratoconus: Systematic Review.",
+  "abstract": "BACKGROUND: Keratoconus is a disorder characterized by progressive thinning and distortion of the cornea. If detected at an early stage, corneal collagen cross-linking can prevent disease progression and further visual loss. Although advanced forms are easily detected, reliable identification of subclinical disease can be problematic. Several different machine learning algorithms have been used to improve the detection of subclinical keratoconus based on the analysis of multiple types of clinical measures, such as corneal imaging, aberrometry, or biomechanical measurements. OBJECTIVE: The aim of this study is to survey and critically evaluate the literature on the algorithmic detection of subclinical keratoconus and equivalent definitions. METHODS: For this systematic review, we performed a structured search of the following databases: MEDLINE, Embase, and Web of Science and Cochrane Library from January 1, 2010, to October 31, 2020. We included all full-text studies that have used algorithms for the detection of subclinical keratoconus and excluded studies that did not perform validation. This systematic review followed the PRISMA (Preferred Reporting Items for Systematic Reviews and Meta-Analyses) recommendations. RESULTS: We compared the measured parameters and the design of the machine learning algorithms reported in 26 papers that met the inclusion criteria. All salient information required for detailed comparison, including diagnostic criteria, demographic data, sample size, acquisition system, validation details, parameter inputs, machine learning algorithm, and key results are reported in this study. CONCLUSIONS: Machine learning has the potential to improve the detection of subclinical keratoconus or early keratoconus in routine ophthalmic practice. Currently, there is no consensus regarding the corneal parameters that should be included for assessment and the optimal design for the machine learning algorithm. We have identified avenues for further research to improve early detection and stratification of patients for early treatment to prevent disease progression.",
+  "pub_types": [
+   "Journal Article",
+   "Review"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "34565473",
+  "year": "2021",
+  "journal": "Eye Vis (Lond)",
+  "title": "Corneal collagen cross-linking epithelium-on vs. epithelium-off: a systematic review and meta-analysis.",
+  "abstract": "BACKGROUND: The purpose of the study was to determine the advantages and disadvantages of epi-on corneal cross-linking (CXL) techniques compared with standard epi-off CXL. METHODS: We searched MEDLINE and EMBASE for randomized controlled trials (RCTs) and non-randomized studies of interventions (NRSIs) and we evaluated the selected papers according to the Cochrane risk of bias tool. We considered, as primary outcomes, average Kmax flattening, changes in uncorrected and corrected distance visual acuity (UDVA and CDVA); as secondary outcomes, we considered changes in pachymetry values and endothelial cell density (ECD). We also investigated adverse events related to the treatments and treatment failure. Meta-analysis was conducted with a fixed or random-effects model using weighted mean difference (MD) with 95% confidence interval (CI) as the effect size. RESULTS: A total of 15 studies were included and among these 15 trials, 9 were RCTs and 6 were NRSIs, but only 4 studies showed no high risk of bias and were included in this meta-analysis. Our analysis revealed significant postoperative differences in CDVA (MD = 0.07; 95% CI 0.04 to 0.10; P < 0.001), and no significative differences in UDVA, Kmax, central corneal thickness (CCT) and ECD (P > 0.05). Epi-on CXL protocol was found to be significantly less prompt to have risks of delay in epithelial healing (P = 0.035) and persistent stromal haze (P = 0.026). CONCLUSION: Epi-on CXL is as effective as epi-off CXL. Except for a higher significant improvement in CDVA with current epi-on protocols, our meta-analysis demonstrates that epi-on and epi-off CXL have comparable effects on visual, topographic, pachymetric, and endothelial parameters. Epi-on CXL has clinical advantages in terms of comfort and avoidance of complications as it reduces the risk of developing delay in epithelial healing and persistent stromal haze.",
+  "pub_types": [
+   "Journal Article",
+   "Review"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "34294638",
+  "year": "2021",
+  "journal": "Cornea",
+  "title": "Progression of Pediatric Keratoconus After Corneal Cross-Linking: A Systematic Review and Pooled Analysis.",
+  "abstract": "PURPOSE: Corneal collagen cross-linking (CXL) is an effective treatment to slow down keratoconus (KC) progression in adults. Several studies have also shown efficacious outcomes in pediatric populations, yet no systematic analysis has been performed and no accepted definition for progression is available in children after CXL. This study aimed to establish the most commonly used criteria for progression and to conduct a systematic review of the literature with pooled analysis to assess children's keratoconus progression after CXL. METHODS: A systemic literature review combined with pooled analysis was performed on full-length studies of KC after CXL treatment in a pediatric population and the methods used to report progression were analyzed. RESULTS: Thirty-seven studies (2078 eyes) were identified on the rates of KC progression after CXL. The most common method to report progression was increased Kmax, Kmean, or Ksteep by ≥1.0 diopter (78.3% of studies). Using these criteria, the mean pooled progression rate after epithelium-off CXL was 9.9% (95% confidence interval: 6.1% -14.6%, total pooled sample size: 1508 eyes) with high heterogeneity between studies [I 2 = 86.48% (95% confidence interval: 80.98 - 90.39), P < 0.0001]. CONCLUSIONS: When considering KC progression after CXL in children, with an increase in Kmax, Kmean, or Ksteep ≥ 1.0 diopter, the progression risk was roughly 10%. We encourage clear quantitative reporting of KC progression in future studies evaluating CXL efficacy in pediatric populations.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "34203646",
+  "year": "2021",
+  "journal": "J Clin Med",
+  "title": "Corneal Cross-Linking for Paediatric Keratoconus: A Systematic Review and Meta-Analysis.",
+  "abstract": "All corneal cross-linking techniques attenuated disease progression in patients with pediatric keratoconus for at least one year based on a meta-analysis. A standard and accelerated technique led to marked improvement in visual acuity. We determined the efficacy and safety of corneal cross-linking (CXL) in pediatric keratoconus by conducting a systematic review and meta-analysis. The PubMed and Cochrane databases were searched for relevant studies on the effects of standard, transepithelial, and/or accelerated CXL protocols in patients aged 18 years or younger. Standardized mean differences with 95% confidence intervals were calculated to compare the data collected at baseline and 12 months. The primary outcomes were maximum keratometry (Kmax) and uncorrected visual acuity (UCVA), and the secondary outcomes were the thinnest corneal thickness (TCT), best-corrected visual acuity (BCVA), and manifest refraction spherical equivalent or cylindrical refraction. Our search yielded 7913 publications, of which 26 were included in our systematic review and 21 were included in the meta-analysis. Standard CXL significantly improved the Kmax, UCVA, and BCVA, and significantly decreased the TCT. Accelerated CXL significantly improved UCVA and BCVA. In the transepithelial and accelerated-transepithelial CXL methods, each measurable parameter did not change after treatments. All CXL techniques attenuated disease progression in patients with pediatric keratoconus for at least one year. Standard and accelerated CXL led to marked improvement in visual acuity.",
+  "pub_types": [
+   "Journal Article",
+   "Review"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "34048801",
+  "year": "2021",
+  "journal": "Am J Ophthalmol",
+  "title": "Transepithelial Versus Epithelium-Off Corneal Crosslinking for Progressive Keratoconus: Findings From a Cochrane Systematic Review.",
+  "abstract": "PURPOSE: The purpose of this study was to summarize key findings from a systematic review of the effectiveness and safety of transepithelial corneal crosslinking (CXL) compared with epithelium-off CXL for progressive keratoconus. DESIGN: Cochrane systematic review. METHODS: We included in our review only randomized controlled trials (RCTs) in which transepithelial and epithelium-off CXL had been compared among participants with progressive keratoconus. The primary outcome was keratoconus stabilization based on post-operative maximum keratometry (Kmax). We adhered to Cochrane methods for trial selection, data extraction, risk of bias evaluation, and data synthesis. RESULTS: Thirteen RCTs with 567 participants (661 eyes) were included; 11 studies compared non-iontophoresis-assisted transepithelial with epithelium-off CXL. Keratoconus stabilization was described as an outcome in 2 studies. The estimated difference in Kmax means (ie, the \"mean difference,\" MD) from meta-analysis of 177 eyes in 5 RCTs indicated that there were no differences between intervention groups in Kmax at 12 months or later (MD: 0.99 diopter [D]; 95% confidence interval: -0.11 to 2.09). Meta-analysis of keratometry and visual acuity outcomes at 12 months or longer after surgery from 2 studies that had compared transepithelial CXL using iontophoresis provided no conclusive evidence of an advantage over epithelium-off CXL. CONCLUSIONS: Lack of precision due to small sample sizes, indeterminate risk of bias due to inadequate reporting, and inconsistency in how outcomes were measured and reported among studies make it difficult to state with confidence whether transepithelial CXL confers an advantage over epithelium-off CXL for patients with progressive keratoconus with respect to stabilization of keratoconus, visual acuity, or patient-reported outcomes based on available data.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Research Support, N.I.H., Extramural",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "33929804",
+  "year": "2021",
+  "journal": "J Cataract Refract Surg",
+  "title": "Alternative indications for corneal crosslinking.",
+  "abstract": "Corneal crosslinking (CXL) is the current mainstay treatment for progressive keratoconus. In the past 15 years, a variety of other indications have been tested. A systematic review was conducted to examine these alternative indications for CXL. In total, 143 papers on crosslinking as a treatment for infectious keratitis, bullous keratopathy, pellucid marginal degeneration, and postlaser in situ keratomileusis (LASIK) ectasia and as a way to improve vision either on its own or in combination with other interventions were included. Post-LASIK ectasia is a definite indication for crosslinking. Surprisingly, only limited research has been performed on pellucid marginal degeneration, with no randomized trials available to date. Other interesting applications are the combined use of refractive lasers and crosslinking for suspicious or ectatic corneas and crosslinking as a standalone intervention for minor refractive errors. CXL might offer a solution for refractory bacterial keratitis. In bullous keratopathy, it seems to offer only a transient benefit.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "33812086",
+  "year": "2021",
+  "journal": "Ocul Surf",
+  "title": "Safety and efficacy of UV application for superficial infections in humans: A systematic review and meta-analysis.",
+  "abstract": "BACKGROUND: Ultraviolet (UV) light is naturally antimicrobial, but risks associated with UV overexposure have limited its clinical application. This systematic review evaluates the safety and efficacy of UV light treatment of superficial human infections. METHODS: MEDLINE, Embase, Cochrane CENTRAL, ANZCTR and US National Library of Medicine were searched (March 25, 2020). Clinical studies applying UV light (200-400 nm) for superficial infections and non-clinical studies evaluating the antimicrobial effects of UV light on human samples were included. Randomised controlled trials (RCTs) and non- RCTs were appraised using the Cochrane risk of bias and the ROBINS-I tools, respectively. RESULTS: Eleven RCTs, seven non-RCTs, 24 case studies, and 11 in vitro studies were included. Most clinical studies (34/42) evaluated UVA treatment for microbial keratitis (MK) using cross-linking (UVA-CXL) methods. Six clinical studies assessed UVC; one, UVB; and one, broadband UV for chronic skin infections. Pooled data analysis showed no difference in the time to wound resolution with UVA-CXL relative to standard treatment (mean difference [MD]: -18.20 [95% CI: -39.04 to 2.65] days; p = 0.09). Adverse event incidence was similar to control for UVA-CXL in MK (RR: 0.70 [95%CI: 0.32-1.79]; 5 RCTs) and UVC in skin infections (RR: 0.63 [95%CI: 0.25-1.54]; 2 RCTs). CONCLUSION: Alone or as an adjunct to standard therapy, UV light shows promise as a safe and effective treatment for a wide range of infections. Applications of UV light as an anti-infective agent are deserving of further evaluation, especially in the context of growing antibiotic resistance. REGISTRATION: PROSPERO registration number CRD42020176510.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "33769765",
+  "year": "2021",
+  "journal": "J Cataract Refract Surg",
+  "title": "Infectious keratitis after corneal crosslinking: systematic review.",
+  "abstract": "Corneal crosslinking is a U.S. Food and Drug Administration--approved therapy to stiffen the cornea and prevent progression of corneal ectasia in patients with keratoconus. The standard procedure involves removal of the corneal epithelium (epithelial-off) prior to treatment. Variations to the standard procedure include accelerated crosslinking and transepithelial procedures. This study reviewed what is known regarding the risk for infection after epithelial-off crosslinking, the spectrum of pathogens, and clinical outcomes. 26 publications were identified. All eyes were fit with a bandage contact lens postoperatively. Available data indicate that the overall frequency of infectious keratitis after epithelium-off crosslinking is low. Bacterial infections are the most common, with a mean time of presentation of 4.8 days postoperatively. The use of steroids and bandage contact lenses in the immediate postoperative period and/or a history of atopic or herpetic disease were associated with infection. These patients require intense postoperative care with prophylactic antiviral therapy when appropriate.",
+  "pub_types": [
+   "Journal Article",
+   "Research Support, N.I.H., Extramural",
+   "Research Support, Non-U.S. Gov't",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "33765359",
+  "year": "2021",
+  "journal": "Cochrane Database Syst Rev",
+  "title": "Transepithelial versus epithelium-off corneal crosslinking for progressive keratoconus.",
+  "abstract": "BACKGROUND: Keratoconus is the most common corneal dystrophy. It can cause loss of uncorrected and best-corrected visual acuity through ectasia (thinning) of the central or paracentral cornea, irregular corneal scarring, or corneal perforation. Disease onset usually occurs in the second to fourth decade of life, periods of peak educational attainment or career development. The condition is lifelong and sight-threatening. Corneal collagen crosslinking (CXL) using ultraviolet A (UVA) light applied to the cornea is the only treatment that has been shown to slow progression of disease. The original, more widely known technique involves application of UVA light to de-epithelialized cornea, to which a photosensitizer (riboflavin) is added topically throughout the irradiation process. Transepithelial CXL is a recently advocated alternative to the standard CXL procedure, in that the epithelium is kept intact during CXL. Retention of the epithelium offers the putative advantages of faster healing, less patient discomfort, faster visual rehabilitation, and less risk of corneal haze. OBJECTIVES: To assess the short- and long-term effectiveness and safety of transepithelial CXL compared with epithelium-off CXL for progressive keratoconus. SEARCH METHODS: To identify potentially eligible studies, we searched the Cochrane Central Register of Controlled Trials (CENTRAL) (which contains the Cochrane Eyes and Vision Trials Register) (2020, Issue 1); Ovid MEDLINE; Embase.com; PubMed; Latin American and Caribbean Health Sciences Literature database (LILACS); ClinicalTrials.gov; and World Health Organization (WHO) International Clinical Trials Registry Platform (ICTRP). We did not impose any date or language restrictions. We last searched the electronic databases on 15 January 2020. SELECTION CRITERIA: We included randomized controlled trials (RCTs) in which transepithelial CXL had been compared with epithelium-off CXL in participants with progressive keratoconus. DATA COLLECTION AND ANALYSIS: We used standard Cochrane methodology. MAIN RESULTS: We included 13 studies with 723 eyes of 578 participants enrolled; 13 to 119 participants were enrolled per study. Seven studies were conducted in Europe, three in the Middle East, and one each in India, Russia, and Turkey. Seven studies were parallel-group RCTs, one study was an RCT with a paired-eyes design, and five studies were RCTs in which both eyes of some or all participants were assigned to the same intervention. Eleven studies compared transepithelial CXL with epithelium-off CXL in participants with progressive keratoconus. There was no evidence of an important difference between intervention groups in maximum keratometry (denoted 'maximum K' or 'Kmax'; also known as steepest keratometry measurement) at 12 months or later (mean difference (MD) 0.99 diopters (D), 95% CI -0.11 to 2.09; 5 studies; 177 eyes; I2 = 41%; very low certainty evidence). Few studies described other outcomes of interest. The evidence is very uncertain that epithelium-off CXL may have a small (data from two studies were not pooled due to considerable heterogeneity (I2 = 92%)) or no effect on stabilization of progressive keratoconus compared with transepithelial CXL; comparison of the estimated proportions of eyes with decreases or increases of 2 or more diopters in maximum K at 12 months from one study with 61 eyes was RR 0.32 (95% CI 0.09 to 1.12) and RR (non-event) 0.86 (95% CI 0.74 to 1.00), respectively (very low certainty). We did not estimate an overall effect on corrected-distance visual acuity (CDVA) because substantial heterogeneity was detected (I2 = 70%). No study evaluated CDVA gain or loss of 10 or more letters on a logarithm of the minimum angle of resolution (logMAR) chart. Transepithelial CXL may result in little to no difference in CDVA at 12 months or beyond. Four studies reported that either no adverse events or no serious adverse events had been observed. Another study noted no change in endothelial cell count after either procedure. Moderate certainty evidence from 4 studies (221 eyes) found that epithelium-off CXL resulted in a slight increase in corneal haze or scarring when compared to transepithelial CXL (RR (non-event) 1.07, 95% CI 1.01 to 1.14). Three studies, one of which had three arms, compared outcomes among participants assigned to transepithelial CXL using iontophoresis versus those assigned to epithelium-off CXL. No conclusive evidence was found for either keratometry or visual acuity outcomes at 12 months or later after surgery. Low certainty evidence suggests that transepithelial CXL using iontophoresis results in no difference in logMAR CDVA (MD 0.00 letter, 95% CI -0.04 to 0.04; 2 studies; 51 eyes). Only one study examined gain or loss of 10 or more logMAR letters. In terms of adverse events, one case of subepithelial infiltrate was reported after transepithelial CXL with iontophoresis, whereas two cases of faint corneal scars and four cases of permanent haze were observed after epithelium-off CXL. Vogt's striae were found in one eye after each intervention. The certainty of the evidence was low or very low for the outcomes in this comparison due to imprecision of estimates for all outcomes and risk of bias in the studies from which data have been reported. AUTHORS' CONCLUSIONS: Because of lack of precision, frequent indeterminate risk of bias due to inadequate reporting, and inconsistency in outcomes measured and reported among studies in this systematic review, it remains unknown whether transepithelial CXL, or any other approach, may confer an advantage over epithelium-off CXL for patients with progressive keratoconus with respect to further progression of keratoconus, visual acuity outcomes, and patient-reported outcomes (PROs). Arrest of the progression of keratoconus should be the primary outcome of interest in future trials of CXL, particularly when comparing the effectiveness of different approaches to CXL. Furthermore, methods of assessing and defining progressive keratoconus should be standardized. Trials with longer follow-up are required in order to assure that outcomes are measured after corneal wound-healing and stabilization of keratoconus. In addition, perioperative, intraoperative, and postoperative care should be standardized to permit meaningful comparisons of CXL methods. Methods to increase penetration of riboflavin through intact epithelium as well as delivery of increased dose of UVA may be needed to improve outcomes. PROs should be measured and reported. The visual significance of adverse outcomes, such as corneal haze, should be assessed and correlated with other outcomes, including PROs.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Research Support, N.I.H., Extramural",
+   "Research Support, Non-U.S. Gov't",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "33667017",
+  "year": "2021",
+  "journal": "Clin Exp Ophthalmol",
+  "title": "Transepithelial corneal collagen cross-linking using iontophoresis versus the Dresden protocol in progressive keratoconus: A meta-analysis.",
+  "abstract": "BACKGROUND: Standard epithelium-off collagen cross-linking using Dresden protocol (S-CXL) is the standard of care for progressive keratoconus. Despite its efficacy, epithelial debridement is associated with pain, delayed visual rehabilitation, stromal oedema and haze. Minimising these complications while achieving a comparable efficacy remains an unmet need. METHODS: Comparative studies between transepithelial iontophoresis-assisted CXL (I-CXL) and S-CXL reporting the outcomes of visual, refractive, topographic, aberrometry, demarcation line, endothelial cell density, confocal microscopy or complications were identified from databases. Assessments of publication bias, meta-analyses, sensitivity analysis, subgroup analysis, and meta-regressions were performed. RESULTS: In this meta-analysis, 586 eyes from three randomised controlled trials and seven comparative studies were analysed. No differences were found in the change in uncorrected/corrected distance visual acuities, mean/maximum keratometry, central corneal thickness, higher order aberration, spherical aberration, coma, subbasal nerve/anterior stromal keratocyte density and demarcation line depth in both CXL protocols (P ≥ .052). However, I-CXL resulted in less thinning at the minimum pachymetry (standardised mean difference 0.25; 95% confidence interval [CI] 0.06-0.44). More importantly, there was a significant reduction in complications following I-CXL (odds ratio 0.30; 95% CI 0.12-0.75). Meta-regression analyses on demarcation line depth and complication suggested that I-CXL was more effective than S-CXL when baseline maximum keratometry was >55.2 D and the risk of complication was independent of other baseline covariates. CONCLUSION: I-CXL has a more favourable safety profile, as evidenced by the available literature, with less thinning at the minimum pachymetry and reduced risk of complications while achieving comparable effects on visual, refractive, topographic, aberrometry, and morphological outcomes as S-CXL.",
+  "pub_types": [
+   "Journal Article"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "33617389",
+  "year": "2021",
+  "journal": "Semin Ophthalmol",
+  "title": "Comparison of Different Methods of Corneal Collagen Crosslinking: A Systematic Review.",
+  "abstract": "Purpose: To review the scientific literature on the comparison of the efficacy of different corneal collagen crosslinking (CXL) protocols for the treatment of progressive keratoconus.Methods: Systematic review of randomized clinical trials (RCTs) on CXL outcomes. A search was carried out using the Cochrane Library, PubMed, EMBASE, Web of Science, Ovid MEDLINE, and Scopus databases. Internal validity was analyzed by applying the filter CASPe (Critical Appraisal Skills Program Spain).Results: The search yielded 1151 articles, and among these, 14 articles met the inclusion and exclusion criteria defined. Conventional (S) crosslinking (CXL) provided better topographic outcomes than transepithelial (TE) CXL, and S-CXL had a better therapeutic effect of corneal flattening than accelerated (A) CXL. The corneal thinning after CXL was lower with hypotonic riboflavin than with riboflavin-dextran. While one study demonstrated a better therapeutic effect of corneal flattening with S-CXL than with A-CXL, another study showed similar results between both techniques. No correlation was found between the depth of the demarcation line and topographic changes, which was not a direct measure of treatment effectiveness. Quality analysis of the literature reviewed yielded a mean score of 8.64, indicating that the RCTs evaluated had an overall acceptable quality.Conclusions: Good-quality RCTs comparing CXL techniques have been conducted, and most of them suggest that epi-off CXL can be considered the standard treatment for progressive keratoconus. TE-CXL and iontophoresis-assisted CXL are mainly indicated in patients with a risk of corneal scarring and patients with pain intolerance, respectively.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "33575037",
+  "year": "2021",
+  "journal": "J Ophthalmol",
+  "title": "Comparison of Standard and Transepithelial Corneal Cross-Linking for the Treatment of Keratoconus: A Meta-analysis.",
+  "abstract": "PURPOSE: To compare the clinical results of standard corneal cross-linking (SCXL) with transepithelial corneal cross-linking (TECXL) in progressive keratoconus using a meta-analysis. METHODS: PubMed, EMBASE, and Cochrane Central Register of Controlled Trials were searched up to June 2020 to identify relevant studies. The PRISMA guidelines were followed. Primary outcomes were change in uncorrected distance visual acuity and maximum keratometry (K max) after CXL. Secondary outcomes were change in corrected distance visual acuity, mean refractive spherical equivalent (MRSE), spherical and cylindrical error, endothelial cells density (ECD), and central corneal thickness (CCT). RESULTS: Sixteen studies with a total of 690 eyes (SCXL: 332 eyes; TECXL: 358 eyes) were included. At the last follow-up, SCXL provided a greater decrease in maximum keratometry (K max) than TECXL (weighted mean difference (WMD) -1.12; 95% confidence interval (CI) -1.96, -0.29). For the other outcomes, there were no statistically significant differences. CONCLUSIONS: Except for a greater decrease in Kmax with SCXL group, both groups have a comparable effect on visual, pachymetric, and endothelial parameters at 24 months after surgery. Larger studies with a longer follow-up time are necessary to determine whether these techniques are comparable in the long term.",
+  "pub_types": [
+   "Journal Article"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "33383093",
+  "year": "2020",
+  "journal": "Ophthalmology",
+  "title": "Transepithelial versus Epithelium-off Corneal Collagen Cross-linking for Corneal Ectasia: A Systematic Review and Meta-analysis.",
+  "abstract": "TOPIC: To evaluate the safety and efficacy of transepithelial corneal cross-linking in comparison with the established epithelium-off technique for corneal ectasia. CLINICAL RELEVANCE: Considerable debate exists regarding whether transepithelial and epithelium-off cross-linking are comparable in their safety and efficacy. METHODS: We searched 16 electronic databases, including Medline, Embase, Web of Science, and the grey literature, current to July 8, 2020, for randomized controlled trials comparing transepithelial and epithelium-off cross-linking for corneal ectasia. We excluded studies evaluating cross-linking for nonectatic indications, as well as non-randomized controlled trials. Our primary outcome was the change in maximal keratometry (Kmax) at 12 months after cross-linking, and we considered additional topographic, visual, and safety outcomes. We summarized our analyses by calculating weighted mean differences (MDs) with associated 95% confidence intervals (CIs) for continuous outcomes and relative risks (RRs) with corresponding 95% CIs for dichotomous outcomes. We conducted trial sequential analysis to determine whether the required information size was met for each outcome. The quality of individual trials was evaluated using the Cochrane Collaboration's risk of bias assessment tool, and the evidence was assessed at an outcome level using the Grading of Recommendations Assessment, Development, and Evaluation methodology. RESULTS: Twelve studies totaling 966 eyes were eligible. A significant difference was found between transepithelial and epithelium-off cross-linking groups in the change in Kmax at 12 months (MD, 0.75; 95% CI, 0.23-1.28; P = 0.004; primary outcome) and at longest follow-up (MD, 1.20; 95% CI, 0.62-1.77; P < 0.001; secondary outcome) after treatment. No significant difference was found between the 2 groups when examining uncorrected distance visual acuity (MD, 0.04; 95% CI, -0.06 to 0.14; P = 0.386) or corrected distance visual acuity (MD, 0.01; 95% CI, -0.06 to 0.09; P = 0.732). Transepithelial cross-linking was associated with significantly fewer complications than the epithelium-off approach (RR, 0.22; 95% CI, 0.06-0.79; P = 0.020), although it was associated with an increased rate of disease progression at 12 months after treatment (RR, 4.49; 95% CI, 1.24-16.25; P = 0.022). The required information size was met for our primary outcome and trial sequential analysis supported the conventional meta-analysis. The quality of evidence was rated as moderate using the Grading of Recommendations Assessment, Development, and Evaluation methodology. DISCUSSION: The efficacy of transepithelial cross-linking remains inferior to the epithelium-off approach, although it is significantly safer.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "33279597",
+  "year": "2020",
+  "journal": "J AAPOS",
+  "title": "Corneal collagen cross-linking in pediatric keratoconus with three protocols: a systematic review and meta-analysis.",
+  "abstract": "BACKGROUND: Keratoconus is a bilateral progressive noninflammatory degenerative disease of the cornea characterized by corneal thinning, irregular astigmatism, and subsequent visual impairment. It has an aggressive course in children. This systematic review evaluates the efficacy of available corneal collagen cross-linking (CXL) protocols for stabilizing the cornea in pediatric patients with keratoconus. METHODS: We searched all peer-reviewed publications from 2000 to 2019 indexed in PubMed, Google Scholars, Web of Science, and Cochrane's Database for the terms keratoconus and cross-linking. The following data were extracted from eligible studies: study design, type of intervention, number of the eyes and mean age of patients for each study, duration of follow-up period, mean pre- and postoperative uncorrected and corrected visual acuity, keratometric and aberrometric indices, were analyzed with RevMan 5.3 software. Intra-and intergroup post hoc analyses of outcome variables were performed using t tests. RESULTS: A total of 28 studies, including 1,300 eyes, were reviewed. In conventional and accelerated epithelium-off techniques, there was a significant improvement in uncorrected and corrected visual acuities. Similarly, the keratometric indices improved significantly after CXL. Uncorrected visual acuity did not alter after CXL using transepithelial method. CONCLUSIONS: Both conventional and accelerated collagen CXL of the cornea are effective therapeutic options in management of keratoconus in children.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "32557558",
+  "year": "2020",
+  "journal": "Cochrane Database Syst Rev",
+  "title": "Corneal collagen cross-linking for bacterial infectious keratitis.",
+  "abstract": "BACKGROUND: Infectious keratitis is an infection of the cornea that can be caused by bacteria, viruses, fungi, protozoa, or parasites. It may be associated with ocular surgery, trauma, contact lens wear, or conditions that cause deficiency or loss of corneal sensation, or suppression of the immune system, such as diabetes, chronic use of topical steroids, or immunomodulatory therapies. Photoactivated chromophore for collagen cross-linking (PACK-CXL) of the cornea is a therapy that has been successful in treating eye conditions such as keratoconus and corneal ectasia. More recently, PACK-CXL has been explored as a treatment option for infectious keratitis. OBJECTIVES: To determine the comparative effectiveness and safety of PACK-CXL with standard therapy versus standard therapy alone for the treatment of bacterial keratitis. SEARCH METHODS: We searched the Cochrane Central Register of Controlled Trials (CENTRAL) (which contains the Cochrane Eyes and Vision Trials Register) (2019, Issue 7); Ovid MEDLINE; Embase.com; PubMed; Latin American and Caribbean Health Science Information database (LILACS); ClinicalTrials.gov; and the World Health Organization (WHO) International Clinical Trials Registry Platform (ICTRP). We did not use any date or language restrictions in the electronic search for trials. We last searched the electronic databases on 8 July 2019. SELECTION CRITERIA: We included randomized controlled trials (RCTs), quasi-RCTs, and controlled clinical trials (CCTs) of PACK-CXL for bacterial keratitis. We included quasi-RCTs and CCTs as we anticipated that there would not be many RCTs eligible for inclusion. DATA COLLECTION AND ANALYSIS: Two review authors working independently selected studies for inclusion in the review, assessed trials for risk of bias, and extracted data. The primary outcome was proportion of participants with complete healing at four to eight weeks. Secondary outcomes included visual acuity, morphology, adverse events, and treatment failure at four to eight weeks. MAIN RESULTS: We included three trials (two RCTs and one quasi-RCT) in this review for a total of 59 participants (59 eyes) with bacterial keratitis. Trials were all single-center and were conducted in Egypt, Iran, and Thailand between 2010 and 2014. It is very uncertain whether PACK-CXL with standard antibiotic therapy is more effective than standard antibiotic therapy alone for re-epithelialization and complete healing (risk ratio (RR) 1.53, 95% confidence interval (CI) 0.88 to 2.66; participants = 15). We judged the certainty of the evidence to be very low due to the small sample size and high risk of selection and performance bias. The high risk of selection bias reflects the overall review. Masking of participants was not possible for the surgical arm. No participant had a best-corrected visual acuity of 20/100 or better at eight weeks (very low certainty evidence). There is also no evidence that use of PACK-CXL with standard therapy results in fewer instances of treatment failure than standard therapy alone (RR 0.50, 95% CI 0.05 to 4.98; participants = 32). We judged the certainty of evidence to be low due to the small sample size and high risk of selection bias. There were no adverse events reported at 14 days (low certainty evidence). Data on other outcomes, such as visual acuity and morphological characteristics, could not be compared because of variable time points and specific metrics. AUTHORS' CONCLUSIONS: The current evidence on the effectiveness of PACK-CXL for bacterial keratitis is of low certainty and clinically heterogenous in regard to outcomes. There are five ongoing RCTs enrolling 1136 participants that may provide better answers in the next update of this review. Any future research should include subgroup analyses based on etiology. A core outcomes set would benefit healthcare decision-makers in comparing and understanding study data.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Research Support, Non-U.S. Gov't",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "31567558",
+  "year": "2020",
+  "journal": "JBI Evid Synth",
+  "title": "Effectiveness of adjuvant photoactivated chromophore corneal collagen cross-linking versus standard antimicrobial treatment for infectious keratitis: a systematic review protocol.",
+  "abstract": "OBJECTIVE: The objective of this review is to systematically examine the effectiveness of adjuvant photoactivated chromophore for keratitis - corneal collagen cross-linking (PACK-CXL) versus standard antimicrobial treatment alone for corneal healing in patients with infectious keratitis. INTRODUCTION: Infectious keratitis is a major cause for corneal blindness globally. Broad-spectrum antimicrobial therapy is currently the standard treatment, but there is a growing need for alternative or adjuvant antimicrobial treatment, due to the emerging antimicrobial resistance, long treatment duration and cost of treatment. Photoactivated chromophore for keratitis - corneal collagen cross-linking has been increasingly used as an adjuvant treatment for infectious keratitis but high-quality evidence is limited. INCLUSION CRITERIA: This review will consider studies that include patients with infectious keratitis, encompassing bacterial, fungal, acanthamoeba, viral, mixed or culture-negative presumed infectious keratitis cases. Patients who have a previous history of infectious keratitis before the study or those that had less than seven days' follow-up from the start of the treatment will be excluded. METHODS: The electronic databases to be searched will include MEDLINE, Embase and Cochrane Central Register of Controlled Trials. Only English articles will be included. Titles, abstracts and full text of the relevant studies will be assessed by two independent reviewers. The extracted data will include specific details about the study, including authors and study title, year of publication, sample size, populations, and study methods. A meta-analysis will be performed for the included randomized controlled trials when there are sufficient similarities in the reporting of outcome measures. SYSTEMATIC REVIEW REGISTRATION NUMBER: PROSPERO CRD42019131290.",
+  "pub_types": [
+   "Journal Article",
+   "Research Support, Non-U.S. Gov't"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "31401338",
+  "year": "2019",
+  "journal": "Ocul Surf",
+  "title": "Photoactivated chromophore for infectious keratitis - Corneal cross-linking (PACK-CXL): A systematic review and meta-analysis.",
+  "abstract": "PURPOSE: To examine the efficacy of adjuvant photoactivated chromophore for infectious keratitis-corneal cross-linking (PACK-CXL) for the treatment of infectious keratitis (IK). METHODS: Electronic databases, including MEDLINE, EMBASE and Cochrane Central, were searched for articles related to PACK-CXL. All clinical studies, including randomized controlled trials (RCTs), non-randomized controlled studies, case series and case reports, were included. A meta-analysis was further performed when there were sufficient similarities in the included RCTs. Primary outcome measure was time to complete corneal healing and secondary outcome measures included size of epithelial defect and infiltrate, corrected-distance-visual-acuity (CDVA), and adverse events. RESULTS: Forty-six eligible studies (including four RCTs) with 435 patients were included. When compared to standard antimicrobial treatment (SAT) alone, adjuvant PACK-CXL resulted in shorter mean time to complete corneal healing (-7.44 days; 95% CI, -10.71 to -4.16) and quicker resolution of the infiltrate at 7 days (-5.49 mm2; 95% CI, -7.44 to -3.54) and at 14-30 days (-5.27 mm2; 95% CI, -9.12 to -1.41). There was no significant difference in the size of epithelial defect, CDVA and risk of adverse events. Evidence on the use of PACK-CXL in acanthamoeba and mixed IK was insufficient. CONCLUSIONS: Our study demonstrates that adjuvant PACK-CXL expedites the healing of IK when compared to SAT alone (low-quality evidence). Further adequately powered, high-quality RCTs are required to fully ascertain the therapeutic effect of PACK-CXL.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Research Support, Non-U.S. Gov't",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "31369463",
+  "year": "2020",
+  "journal": "Cornea",
+  "title": "Accelerated Versus Standard Corneal Cross-Linking for Progressive Keratoconus: A Meta-Analysis of Randomized Controlled Trials.",
+  "abstract": "PURPOSE: To compare the clinical results of accelerated corneal collagen cross-linking (ACXL) to standard corneal collagen cross-linking (SCXL) in progressive keratoconus by summarizing randomized controlled trials using a meta-analysis. METHODS: Trials meeting the selection criteria were quality appraised, and data were extracted by 2 independent authors. A comprehensive search was performed using the Cochrane methodology to evaluate the clinical outcomes of ACXL and SCXL for treating progressive keratoconus. Estimates were evaluated by weighted mean difference (WMD) and 95% confidence interval (CI) for absolute changes of the outcomes during 12-month observation periods. Postoperative demarcation line depth was also compared. RESULTS: We identified 6 randomized controlled trials that met the eligibility criteria for this meta-analysis. SCXL resulted in a significantly better outcome in postoperative changes in best spectacle-corrected visual acuity (WMD = -0.02; 95% CI, -0.03 to -0.01; P < 0.0001); however, the small differences may not be clinically significant. ACXL provided a significantly better improvement of cylindrical refraction after the 1-year follow-up (WMD = 0.15; 95% CI, 0.05-0.26; P = 0.005). Demarcation line depth at 1 month after SCXL was deeper than that after ACXL (WMD = -102.25; 95% CI, -157.16 to -47.35; P = 0.0003). No differences in the changes in maximum keratometry, central corneal thickness, uncorrected visual acuity, spherical equivalent refraction, corneal biomechanical properties, and corneal endothelial cell density were found among both groups. CONCLUSIONS: An ACXL shows a comparable efficacy and safety profile at the 1-year follow-up, but it has less impact on improving best spectacle-corrected visual acuity when compared with the Dresden protocol. Overall, both methods similarly stop the disease progression.",
+  "pub_types": [
+   "Comparative Study",
+   "Journal Article",
+   "Meta-Analysis"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "31250289",
+  "year": "2019",
+  "journal": "Interdiscip Sci",
+  "title": "Accelerated Versus Conventional Corneal Collagen Cross-Linking in the Treatment of Keratoconus: A Meta-analysis and Review of the Literature.",
+  "abstract": "AIM: Our aim was to examine existing literature, and determine if there are outcome differences between accelerated corneal collagen cross-linking (A-CXL) and conventional corneal collagen cross-linking (C-CXL). METHODS: A systematic review of the literature was conducted examining studies which compared A-CXL to C-CXL. Available studies were combined and the weighted mean difference (WMD) was calculated for range of outcome measures including maximal keratometry (Kmax), mean keratometry (Kmean) and minimum keratometry (Kmin), spherical equivalent, best corrected visual acuity (BCVA), and central corneal thickness (CCT). RESULTS: Seven eligible studies were included in our meta-analysis, with 283 eyes (135 in A-CXLand 148 in C-CXL). In the combined analysis, there was no statistically significant difference observed in Kmin or Kmax between A-CXL and C-CXL for at least 6 months after the procedure. Kmean was statistically higher in the C-CXL group in comparison with the A-CXL group for at least 6 months after the procedure (WMD - 3.15, 95% CI - 4.34 to - 1.97, p < 0.01).No statistically significant difference observed in spherical equivalent or central corneal thickness between the A-CXL group and C-CXL group for at least 6 months after the operation. The BCVA was statistically higher in the A-CXL group in comparison with the C-CXL group for at least 6 months after the procedure (WMD - 0.05, 95% CI 0.00-0.10, p < 0.05). No surgery complication was recorded in the researches. CONCLUSION: Our study demonstrated greater reductions of Kmean in the A-CXL group in comparison with the C-CXL group. Overall A-CXL is comparable to C-CXL from outcome basis.",
+  "pub_types": [
+   "Comparative Study",
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "31222533",
+  "year": "2019",
+  "journal": "Int Ophthalmol",
+  "title": "The efficacy of standard versus accelerated epi-off corneal cross-linking protocols: a systematic review and sub-group analysis.",
+  "abstract": "PURPOSE: To compare the one-year efficacy of accelerated and standard 5.4 J/cm2 protocols of cross-linking (CXL) in the treatment of progressive keratoconus. METHODS: In this systematic review, two members of the research team searched Scopus, Pubmed, ISI, Ovid, Science Direct, and Cochrane databases independently for publications between January 2010 and December 2016. The majority of retrieved studies were not randomized clinical trials (RCT), or the second arm of the RCT was either untreated or customized CXL. The outcomes of interest were uncorrected distance visual acuity, corrected visual acuity, manifest refraction spherical equivalent, maximum keratometry in the central 3 mm, minimum keratometry in the central 3 mm, and corneal thickness in the apex or thinnest point at baseline and 1 year after CXL. RESULTS: Of the 453 papers found in the preliminary search, 23 papers were included in the final analysis. Analysis of variance of one-year changes showed that longer irradiation times were associated with a greater corneal flattening effect, although there was no difference in terms of improvement in vision or refraction. CONCLUSIONS: In other words, efficacy is comparable among different CXL protocols, so it is recommended to use the standard method in cases where maximum flattening is expected, such as young people and severe cases.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "31211003",
+  "year": "2019",
+  "journal": "Transl Vis Sci Technol",
+  "title": "Efficacy of Different Procedures of Intra-Corneal Ring Segment Implantation in Keratoconus: a Systematic Review and Meta-Analysis.",
+  "abstract": "PURPOSE: To evaluate the efficacy of the functional, keratometric, and refractive postoperative parameters of intracorneal ring segment (ICRS) implantation in keratoconus and its association with collagen cross-linking (CXL), photorefractive keratectomy (PRK), and intraocular lenses (IOLs). METHODS: We conducted a systematic review and meta-analysis on case series published between 2007 and 2017. RESULTS: We included 95 case series with a total of 4560 patients. We included 64 studies of the ICRS procedure, 20 studies of ICRS+CXL, 9 studies of ICRS+CXL+PRK, and 5 studies of ICRS+IOL. We demonstrated an overall improvement of all parameters in all procedures. Cylinder was decreased with an overall effect size (ES) of -1.15 (-1.36 to -0.95; I2 = 93.7%). Corrected distance visual acuity was improved with an overall ES of 0.89 (0.78 to 1.00; I2 = 81.9%). Maximal keratometry was decreased with an overall ES of 0.98 (0.85 to 1.11; I2 = 78.9%). ICRS+IOL is the best procedure to improve spherical equivalent and uncorrected distance visual acuity (P < 0.05) compared with other procedures. ICRSs versus ICRS+CXL are similar in all parameters except for corrected distance visual acuity. ICRS+CXL+PRK is better than ICRS alone in all parameters except for the correction of spherical equivalent. CONCLUSIONS: Although the quality and strength of the data are questionable, ICRS implantation is an effective strategy to preserve visual function in keratoconic patients. Particularly, ICRS+CXL+PRK could be a low invasive procedure to propose to young keratoconic patients. TRANSLATIONAL RELEVANCE: To propose an overview of postoperative parameters on each ICRS procedure on keratoconus.",
+  "pub_types": [
+   "Journal Article",
+   "Review"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "31133582",
+  "year": "2019",
+  "journal": "BMJ Open",
+  "title": "Transepithelial versus epithelium-off corneal collagen cross-linking for corneal ectasia: protocol for a systematic review, meta-analysis and trial sequential analysis of randomised controlled trials.",
+  "abstract": "INTRODUCTION: Corneal ectasias are progressive, degenerative ocular diseases defined by abnormal structural changes in the cornea, leading to distortion of vision and substantial reduction in quality of life. Corneal collagen cross-linking (CXL) increases the biomechanical rigidity of the cornea and has been shown to halt ectatic processes. The established CXL protocol requires removal of the corneal epithelium. However, some surgeons have proposed transepithelial approaches to enhance patient recovery and minimise adverse events. Whether novel transepithelial approaches are as effective in arresting ectasia as the established epithelium-off protocol remains unclear. This study will systematically review the evidence on transepithelial CXL approaches and compare it to the epithelium-off protocol. METHODS AND ANALYSIS: We will include randomised controlled trials (RCTs) comparing transepithelial and epithelium-off CXL for any corneal ectasia. We will search 16 electronic databases including MEDLINE and Embase, as well as the grey literature. Two reviewers will independently screen search results to identify eligible studies, complete data abstraction and conduct quality assessment. We will assess the quality of individual RCTs using the Cochrane risk of bias assessment tool. Our primary outcome will be the change in maximal keratometry at 12 months after treatment, and we will examine 11 additional outcomes. We will summarise our analyses by measures of association (relative risk or odds ratio) and corresponding 95% confidence intervals (CIs) for dichotomous outcomes and weighted mean differences with 95% CIs for continuous outcomes. Prespecified subgroup analyses will be conducted to explore heterogeneity. The overall quality of evidence will be rated using the Grading of Recommendations Assessment, Development and Evaluation approach. ETHICS AND DISSEMINATION: Ethics approval is not required for this systematic review as it draws from previously published data. Results of the study will be submitted to a peer-reviewed journal for publication and discussed at conferences and seminars. PROSPERO REGISTRATION NUMBER: CRD42018102069.",
+  "pub_types": [
+   "Journal Article"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "30949880",
+  "year": "2019",
+  "journal": "Mycopathologia",
+  "title": "Fungal Keratitis Caused by Colletotrichum dematium: Case Study and Review.",
+  "abstract": "Colletotrichum species are known as important pathogens of plants with an impact on crop production. Some of these species are also known as a cause of rare ophthalmic infections in humans. A case of keratitis caused by Colletotrichum dematium after corneal trauma in a 56-year-old woman is presented. Infection was diagnosed based on positive microscopy and culture. The fungal isolate was identified by morphological characteristics and DNA sequencing of the ITS rDNA region, β-tubulin (tub2) and glyceraldehyde-3-phosphate dehydrogenase (gapdh) genes. The patient responded well to topical therapy with amphotericin B combined with intravenous amphotericin B but improvement was associated with the corneal collagen cross-linking. The review of the literature revealed another 13 cases of C. dematium keratitis, all but one patient having at least one keratitis risk factor in their history. Almost all patients (n = 12) were treated with topical polyene antibiotics (natamycin or amphotericin B), improvement and cure were achieved in eight of them.",
+  "pub_types": [
+   "Case Reports",
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "30947752",
+  "year": "2019",
+  "journal": "Syst Rev",
+  "title": "Protocol for a systematic review, meta-analysis, and trial sequential analysis of clinical outcomes following accelerated versus conventional corneal collagen cross-linking for corneal ectasia.",
+  "abstract": "BACKGROUND: Collagen cross-linking (CXL) is an evolving procedure that enhances the biomechanical rigidity of the cornea and can slow or halt ectatic disease. CXL requires delivery of 5.4 J/cm2 of ultraviolet A (UVA) radiation to a cornea saturated with riboflavin in order to induce cross-link formation. The conventional CXL procedure achieves this fluence by exposing the cornea to a 3 mW/cm2 UVA lamp for 30 min; however, some surgeons have proposed accelerated protocols which achieve the same fluence in a shorter period of time by using a higher power light source. Whether accelerated protocols are as effective in arresting ectasia as the established conventional procedure remains unclear. Accordingly, this study will systematically review and synthesise the evidence on accelerated CXL and compare it to the conventional approach across an array of clinical outcomes. METHODS: We will search 16 electronic databases, including MEDLINE, Embase, and the Cochrane Library, from inception to February 1, 2019. We will include all randomised controlled trials comparing accelerated and conventional CXL for any corneal ectatic disease. Two reviewers will independently screen search results to identify eligible articles, complete data collection, and conduct quality assessment. The quality of individual trials will be assessed using the Cochrane Collaboration's Risk of Bias Assessment Tool. Our primary outcome will be the change in maximal keratometry (Kmax) at 12 months following treatment. Additional outcomes will include: incidence of disease progression, incidence of serious adverse events, as well as change in Kmax at longest follow-up, mean stromal demarcation line depth, mean uncorrected distance visual acuity, mean corrected distance visual acuity, mean Kmax, mean endothelial cell density, mean central corneal thickness, mean spherical equivalent, mean intraocular pressure, and mean corneal power, at 12 months following treatment. We will calculate relative risks and 95% confidence intervals (CIs) for dichotomous outcomes and weighted mean differences and corresponding 95% CIs for continuous outcomes. Prespecified subgroup analyses will be performed to investigate heterogeneity. We will rate the overall quality of evidence using the Grading of Recommendations Assessment, Development, and Evaluation (GRADE) approach. DISCUSSION: This review will provide a comprehensive evaluation of the evidence on accelerated and conventional CXL approaches and serve to inform clinical practice, medical device design, and future research. Evaluating variations of the CXL protocol aimed at reducing treatment duration is of critical importance and a prerequisite to expanding treatment availability to more patients. SYSTEMATIC REVIEW REGISTRATION: PROSPERO CRD42018104151.",
+  "pub_types": [
+   "Journal Article"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "30858022",
+  "year": "2019",
+  "journal": "Ophthalmology",
+  "title": "Keratoconus Natural Progression: A Systematic Review and Meta-analysis of 11 529 Eyes.",
+  "abstract": "PURPOSE: We set out to describe the natural history of keratoconus. We included untreated patients, and our key outcome measures were vision, refraction, and corneal curvature. CLINICAL RELEVANCE: Keratoconus affects 86 in 100 000 people, causing visual loss due to increasing irregular corneal astigmatism, and the quality of life declines in patients. Interventions are used to stabilize the disease or improve vision, including corneal cross-linking (CXL) and grafting, but these carry risks. Detailed knowledge of the natural history of keratoconus is fundamental in making informed decisions on when their benefits outweigh these risks. METHODS: We included prospective or retrospective studies of pediatric or adult patients who reported 1 or more of visual acuity, refraction, and corneal curvature measures: steep keratometry (K2), mean keratometry (Kmean), or maximum keratometry (Kmax), thinnest pachymetry, corneal transplantation rates, corneal scarring incidence, and patient-reported outcome measures (PROMs). Databases analyzed included Medline, Embase, CENTRAL, and CINAHL. Searches were carried out until October 2018. Bias assessment was carried out using the Joanna Briggs Institute model of evidence-based healthcare. RESULTS: Our search yielded 3950 publication titles, of which 41 were included in our systematic review and 23 were incorporated into the meta-analysis. Younger patients and those with greater Kmax demonstrated more steepening of Kmax at 12 months. The meta-analysis for Kmax demonstrated a significant increase in Kmax of 0.7 diopters (D) at 12 months (95% confidence interval [CI], 0.31-1.14; P = 0.003). Our meta-regression model predicted that patients had 0.8 D less Kmax steepening over 12 months for every 10-year increase in age (P = 0.01). Patients were predicted to have 1 D greater Kmax steepening for every 5 D of greater baseline Kmax (P = 0.003). At 12 months, there was a significant increase in the average Kmean of 0.4 D (95% CI, 0.18-0.65; P = 0.004). CONCLUSIONS: We report the first systematic review and meta-analysis of keratoconus natural history data including 11 529 eyes. Younger patients and those with Kmax steeper than 55 D at presentation have a significantly greater risk of progression of keratoconus. Closer follow-up and a lower threshold for cross-linking should be adopted in patients younger than 17 years and steeper than 55 D Kmax.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "30855097",
+  "year": "2019",
+  "journal": "J Refract Surg",
+  "title": "Effectiveness of Intrastromal Corneal Ring Implantation in the Treatment of Adult Patients With Keratoconus: A Systematic Review.",
+  "abstract": "PURPOSE: To evaluate the available evidence on the effectiveness of intrastromal corneal rings (ICRs) in the treatment of adults with keratoconus. METHODS: A systematic review of electronic databases was completed through July 30, 2017. All primary research articles in which adults with keratoconus were treated with ICRs were included. Two independent reviewers assessed methodological quality and classified the studies into high, low, or undefined risk of bias. The measured variables assessed were visual acuity, refraction, keratometry, ring type, and complications. RESULTS: The initial search yielded 442 scientific articles, 62 articles were read extensively, and 18 articles were assessed for eligibility and included for statistical analysis and quality assessment. A total of 1,325 eyes were analyzed, and the results were evaluated preoperatively and at 12 months of follow-up. Uncorrected distance visual acuity (UDVA) improved 0.23 ± 0.28 logMAR and corrected distance visual acuity (CDVA) improved 0.06 ± 0.21 logMAR. Sphere improved 2.81 ± 1.54 diopters (D), cylinder improved 1.49 ± 0.83 D, and mean keratometry improved 3.41 ± 2.13 D within 12 months of follow-up. ICR implantation combined with corneal crosslinking improved UDVA, refraction, and keratometry to a greater degree than ICR implantation alone. CONCLUSIONS: The studies analyzed demonstrate refractive and visual improvement of patients treated with the ICR implantation technique. However, description of the methodological process necessary to evaluate the bias effectively is insufficient. [J Refract Surg. 2019;35(3):191-200.].",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "30296330",
+  "year": "2018",
+  "journal": "J Refract Surg",
+  "title": "Outcomes of Simultaneous and Sequential Cross-linking With Excimer Laser Surface Ablation in Keratoconus.",
+  "abstract": "PURPOSE: To evaluate the outcomes of simultaneous and sequential corneal crosslinking (CXL) and excimer laser surface ablation protocols in keratoconus. METHODS: A literature review was conducted using MEDLINE. The studies were divided into three groups: the sequential group included studies with CXL followed by excimer laser surface ablation later, the simultaneous group included simultaneous excimer laser surface ablation and CXL, and the no CXL group included excimer laser surface ablation only with no CXL. The data on change in logMAR uncorrected distance visual acuity (UDVA), spectacle corrected distance visual acuity (CDVA), change in spherical equivalent (SE) and refractive astigmatism, change in maximum keratometry (Kmax), complications, and safety and efficacy indices were presented for the latest follow-up visits in all groups. RESULTS: Twenty-one studies (3 = sequential; 11 = simultaneous, 7 = no CXL) were included. UDVA improved in all groups. CDVA improved more in the sequential group. SE change was greatest in the no CXL group and the refractive astigmatism reduced comparably in the sequential and no CXL groups but less in the simultaneous group. Kmax reduced in all groups. Only the sequential group showed no progression. Corneal haze was reported in 100%, 54.5%, and 57.1% studies, respectively. Safety and efficacy indices were 1.96 and 1.58, 1.41 ± 0.32 and 0.91 ± 0.41, and 1 and 0.82, respectively. CONCLUSIONS: The sequential group showed greater improvement in CDVA, SE, and refractive astigmatism. Corneal haze was frequently reported in all protocols. Safety and efficacy indices were highest when CXL was performed before excimer laser and least when excimer laser was performed alone without CXL. [J Refract Surg. 2018;34(10):690-696.].",
+  "pub_types": [
+   "Comparative Study",
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "30211742",
+  "year": "2018",
+  "journal": "Cornea",
+  "title": "Appropriate Sequence of Combined Intracorneal Ring Implantation and Corneal Collagen Cross-Linking in Keratoconus: A Systematic Review and Meta-Analysis.",
+  "abstract": "PURPOSE: To compare surgical sequences of combined intracorneal ring segment (ICRS) implantation and corneal collagen cross-linking (CXL) in keratoconus and corneal ectasia in terms of visual, refractive, and keratometric outcomes. METHODS: A comprehensive electronic search (in PubMed, Web of Science, Scopus, Embase, and Cochrane Library) was conducted in accordance with the PRISMA statement to find articles on combined ICRS implantation and CXL in keratoconus and corneal ectasia. The search period was from the inception of the database up to April 2017. Eligible articles were categorized into 3 surgical sequences (same day, ICRS first, and CXL first) and assessed qualitatively. Articles with 12 months of follow-up data after combined surgery were included in the meta-analysis. RESULTS: The initial search identified 120 related articles, of which 17 were included in the review after screening. The quality assessment showed that visual, refractive, and keratometric improvement was observed in all studies in all 3 groups of combined surgery. Meta-analysis on 6 studies that reported 12-month follow-up outcomes showed no significant differences between the 3 groups regarding uncorrected and best-corrected visual acuity and cylindrical refractive error. However, results with simultaneous surgery were superior to the CXL-first technique in terms of spherical refractive errors and flat-K (P = 0.011 and P = 0.0001, respectively) and to both CXL first and ICRS first in terms of steep-K (P = 0.002 and P = 0.007, respectively). CONCLUSIONS: Simultaneous ICRS implantation and CXL may provide better outcomes than staged techniques for improving the corneal shape.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "30073363",
+  "year": "2018",
+  "journal": "Invest Ophthalmol Vis Sci",
+  "title": "Comparison of Standard Versus Accelerated Corneal Collagen Cross-Linking for Keratoconus: A Meta-Analysis.",
+  "abstract": "PURPOSE: To systematically compare epithelial-off standard (SCXL) to accelerated corneal collagen cross-linking (ACXL) for the treatment of keratoconus. METHODS: PubMed, Embase, the Cochrane Library, and the US trial registry were searched for trials comparing SCXL and ACXL for keratoconus up to October 2017. Standardized mean differences (SMDs) with 95% confidence intervals (CIs) were calculated. Primary outcomes were changes in uncorrected distance visual acuity, maximum keratometry (Kmax), and mean keratometry (mean K). Secondary outcomes were changes in corrected distance visual acuity, mean refractive spherical equivalent, central corneal thickness (CCT), and endothelial cell density (ECD). RESULTS: Eleven trials were included. For primary outcomes, SCXL showed a greater reduction in Kmax (SMD 0.32; 95% CI 0.16, 0.48) than ACXL. For secondary outcomes, the decrease in CCT (SMD 0.32; 95% CI 0.03, 0.61) and ECD (SMD 0.26; 95% CI 0.06, 0.46) was less with ACXL than with SCXL. For the other outcomes, there were no statistically significant differences. CONCLUSIONS: SCXL has a greater effect in terms of reduction in Kmax than ACXL, while ACXL induces less reduction in CCT and ECD than SCXL. Further well-designed randomized controlled trials comparing ACXL and SCXL are indicated.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Research Support, Non-U.S. Gov't"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "29855152",
+  "year": "2018",
+  "journal": "Acta Ophthalmol",
+  "title": "Comparison of standard and accelerated corneal cross-linking for the treatment of keratoconus: a meta-analysis.",
+  "abstract": "PURPOSE: To compare results between standard and accelerated corneal collagen cross-linking (CXL) for the treatment of progressive keratoconus. METHODS: We performed literature searches in PubMed, Cochrane Library, Web of Science, ISRCTN registry, ClinicalTrials.gov, and EMBASE for studies comparing conventional Dresden (C-CXL) and accelerated CXL (A-CXL). Outcomes were clinical results and changes in corneal properties. Weighted mean differences were used to evaluate the effects. RESULTS: Here, 22 studies with 1158 eyes (C-CXL: 577 eyes; A-CXL: 581 eyes) were included. At the last follow-up, C-CXL was superior regarding minimum keratometry (p < 0.00001) and demarcation line depth (p < 0.00001), whereas A-CXL should be favoured when considering minimum corneal thickness (p = 0.0005). No differences in uncorrected and corrected distance visual acuity (p = 0.09 and 0.98), spherical equivalent (p = 0.11), spherical and cylindrical error (p = 0.29 and 0.32), maximal and average keratometry (p = 0.05 and 0.65), central corneal thickness (p = 0.15), corneal biomechanical properties (p ≥ 0.21 respectively), time of reepithelialization (p = 0.76), subbasal nerve density (p = 0.69), endothelial cell density (p = 0.30) and morphology (p ≥ 0.40 respectively) were found among both groups. CONCLUSION: Consideration of less corneal thinning favours A-CXL, whereas the deeper demarcation line and greater changes in minimum keratometric values in C-CXL may indicate a higher treatment efficacy. Altogether, C-CXL, as well as A-CXL, provides successful results in the strengthening of corneal tissue.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "29847492",
+  "year": "2018",
+  "journal": "Cornea",
+  "title": "Comparison of Epithelium-Off Versus Transepithelial Corneal Collagen Cross-Linking for Keratoconus: A Systematic Review and Meta-Analysis.",
+  "abstract": "PURPOSE: To systematically compare standard epithelium-off corneal collagen cross-linking (SCXL) and transepithelial corneal collagen cross-linking (TECXL) for treating keratoconus. METHODS: PubMed, EMBASE, the Cochrane Library, the US trial registry (ClinicalTrials.gov), VIP Database, Wanfang Databse, and China National Knowledge Infrastructure searches up to February 2017 were conducted. Primary outcomes were changes at 1 year in uncorrected distance visual acuity, maximum keratometry (Kmax), and mean keratometry (mean K). Secondary outcomes were changes at 1 year in corrected distance visual acuity, mean refractive spherical equivalent, central corneal thickness, endothelial cell density, and the occurrence of adverse events. RESULTS: Eight studies with a total of 455 eyes were included. For primary outcomes, SCXL showed a greater reduction in mean K [standardized mean difference (SMD) 0.28; 95% confidence interval (CI), 0.03-0.53; P = 0.03] compared with TECXL. Subgroup analysis indicated that SCXL had a comparable effect on reducing mean K with TECXL protocols using chemical enhancers (SMD 0.05; 95% CI, -0.36 to 0.45; P = 0.82) but a greater reduction in mean K compared with TECXL with current iontophoretic protocols (SMD 0.43; 95% CI, 0.10-0.75; P = 0.01). For the other outcomes, there were no statistically significant differences. CONCLUSIONS: With the exception of less reduction in mean K with current iontophoretic protocols, analysis of the limited number of comparative studies available seems to demonstrate that SCXL and TECXL have a comparable effect on visual, refractive, pachymetric, and endothelial parameters at 1 year after surgery. Further follow-up is required to determine whether these techniques are comparable in the long-term.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "29621306",
+  "year": "2018",
+  "journal": "PLoS One",
+  "title": "Conventional and transepithelial corneal cross-linking for patients with keratoconus.",
+  "abstract": "Previous studies investigating the effectiveness of conventional corneal collagen cross-linking (CXL) and transepithelial CXL in keratoconus treatment have reported conflicting outcomes. Therefore, we conducted a meta-analysis to compare the effectiveness of these treatments. We searched MEDLINE, EMBASE, and Cochrane Central Register of Controlled Trials for prospective randomized controlled trials (RCTs) with no restrictions. We included visual acuity (corrected distance visual acuity, uncorrected distance visual acuity) and corneal keratometry (K) as primary outcome parameters, and spherical equivalent, central corneal thickness (CCT), and endothelial cell density, as secondary parameters. We finally included seven reports (including six RCTs involving 305 participants and 344 eyes). Our analysis revealed significant postoperative differences in average K and CCT values between conventional and transepithelial CXL-treated patients [K: weighted mean difference (WMD) = 0.79, 95% confidence interval (CI) = 0.04-1.53, p = 0.04; CCT: WMD = 4.53, 95% CI = 0.42-8.64, p = 0.03]. In contrast, we did not find any significant differences in visual acuity, flattest K value, steepest K value, cylinder K value, apex K value, spherical equivalent, or endothelial cell density between groups. In conclusion, transepithelial CXL has a more protective influence on corneal thickness than conventional CXL, and results in lesser postoperative corneal flattening. Further investigation of the clinical outcomes of transepithelial CXL is required.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Research Support, Non-U.S. Gov't"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "29282020",
+  "year": "2017",
+  "journal": "BMC Ophthalmol",
+  "title": "Efficacy and safety of transepithelial corneal collagen crosslinking surgery versus standard corneal collagen crosslinking surgery for keratoconus: a meta-analysis of randomized controlled trials.",
+  "abstract": "BACKGROUND: The aim of this study was to evaluate the efficacy and safety of transepithelial corneal collagen crosslinking (transepithelial CXL) versus standard corneal collagen crosslinking (epithelium-off CXL) on keratoconus. METHODS: Eligible studies were identified by systematically searching PubMed, the Cochrane Library and Embase. Topographic parameters, corrected distant visual acuity (CDVA), uncorrected distant visual acuity (UDVA), and corneal thickness (CT) were assessed by the pooled weighted mean differences (WMDs) of the change from baseline to the end of follow up. Quality was assessed according to Cochrane handbook. And we used Review Manager to analysis the included trials. RESULTS: Three trials involving 244 eyes were evaluated, with 111 eyes in the standard CXL group and 133 eyes in the transepithelial CXL group. The pooled results showed that there were significant differences between the two groups in maximum keratometry (mean difference = 1.05D, 95% CI 0.19 to 1.92, P = 0.02)),and the standard CXL is more effective in decreasing the maximum keratometry at least 12 months after operation; the transepithelial CXL group gained more improvement in CDVA (mean difference = -0.07, 95% CI -0.12 to -0.02, P = 0.007);there were no significant differences in uncorrected distant visual acuity (UDVA) between the two groups (mean difference = -0.03, 95% CI -0.20 to 0.15, P = 0.75). A similar change was found in corneal thickness (mean difference = 4.35, 95% CI -0.43 to 9.13, P = 0.07)). CONCLUSIONS: The standard CXL is more effective in decreasing the maximum keratometry than the transepithelial CXL; the transepithelial CXL provided favorable visual outcomes; they both exhibit similar safety.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "28944203",
+  "year": "2017",
+  "journal": "Int J Ophthalmol",
+  "title": "Systematic review and Meta-analysis comparing modified cross-linking and standard cross-linking for progressive keratoconus.",
+  "abstract": "AIM: To compare the effectiveness and safety between modified cross-linking (MC) and standard cross-linking (SC) in mild or moderate progressive keratoconus. METHODS: Eligible studies were retrieved from four electronic databases, including CENTRAL, Clinical Trials gov, PupMed and OVID MEDLINE. We set post-surgical maximum K value (Kmax) as the primary outcome. In addition, uncorrected and corrected distant visual acuity (UDVA and UDVA), spherical equivalent (SE), endothelial cell density (ECD), central cornea thickness (CCT) and depth of demarcation line (DDL) were Meta-analyzed as secondary outcomes. Mean differences for these outcomes were pooled through either a random-effect model or fixed-effect model according to data heterogeneity. RESULTS: Twenty-four comparative studies either on accelerated cross-linking (AC) compared with SC or on trans-epithelial cross-linking (TC) compared with SC were included and pooled for analysis. The results indicated that MC was significantly inferior to SC at delaying Kmax deterioration [AC vs SC 0.49 (95% CI: 0.04-0.94, I2=75%, P=0.03); TC vs SC 1.15 (95% CI: 0.54-1.75, I2=50%, P=0.0002)]. SE decreased significantly for SC when compared to AC [0.62 (95% CI: 0.38-0.86, I2=22%, P<0.00001)]. DDL of SC was more significantly deeper than that of TC [-133.49 (95% CI: -145.94 to -121.04, I2=33%, P<0.00001)]. Other outcomes demonstrated comparable results between MC and SC. CONCLUSION: SC is more favorable at halting the progression of keratoconus, but visual acuity improvement showed comparable results between MCs and SC.",
+  "pub_types": [
+   "Journal Article"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "28913504",
+  "year": "2017",
+  "journal": "J Curr Ophthalmol",
+  "title": "A review and meta-analysis of corneal cross-linking for post-laser vision correction ectasia.",
+  "abstract": "PURPOSE: The aim of this study was to review the safety and stability of cornea cross-linking (CXL) for the treatment of keratectasia after Excimer Laser Refractive Surgery. METHODS: Eligible studies were identified by systematically searching PubMed, Embase, Web of Science and reference lists. Meta-analysis was performed using Stata 12.1 software. The primary outcome parameters included the changes of corrected distant visual acuity (CDVA), uncorrected visual acuity (UCVA), the maximum keratometry value (Kmax) and minimum keratometry value (Kmin), the surface regularity index (SRI), the surface asymmetry index (SAI), the keratoconus prediction index (KPI), corneal thickness, and endothelial cell count. Efficacy estimates were evaluated by weighted mean difference (WMD) and 95% confidence interval (CI) for absolute changes of the interested outcomes. RESULTS: Seven studies involving 118 patients treated with CXL for progressive ectasia after laser-assisted in situ keratomileusis (LASIK) or photorefractive keratectomy (PRK) (140 eyes; the follow-up time range from 12 to 62 months) were included in the meta-analysis. The pooled results showed that there were no significant differences in Kmax and Kmin values after CXL (WMD = 0.584; 95% CI: -0.289 to 1.458; P = 0.19; WMD = 0.466; 95% CI: -0.625 to 1.556; P = 0.403, respectively). The CDVA improved significantly after CXL (WMD = 0.045; 95% CI: 0.010 to 0.079; P = 0.011), whereas UCVA did not differ statistically (WMD = 0.011; 95% CI: -0.055 to 0.077; P = 0.746). The changes were not statistically significant in SRI, SAI, and KPI (WMD = 0.116; 95% CI: -0.090 to 0.322; P = 0.269; WMD = 0.240; 95% CI: -0.200 to 0.681; P = 0.285; WMD = 0.045; 95% CI: -0.001 to 0.090; P = 0.056, respectively). Endothelial cell count and corneal thickness did not deteriorate (WMD = 12.634; 95% CI: -29.460 to 54.729; P = 0.556; WMD = 0.657; 95% CI: -9.402 to 10.717; P = 0.898, respectively). CONCLUSION: The study showed that CXL is a promising treatment to stabilize the keratectasia after Excimer Laser Refractive Surgery. Further long-term follow-up studies are necessary to assess the persistence of the effect of the CXL.",
+  "pub_types": [
+   "Journal Article",
+   "Review"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "28691035",
+  "year": "2017",
+  "journal": "Biomed Res Int",
+  "title": "Corneal Collagen Cross-Linking for Keratoconus: Systematic Review.",
+  "abstract": "PURPOSE: To evaluate the efficacy of collagen cross-linking (CXL) one year after treatment for keratoconus compared to no treatment by summarizing randomized controlled trials (RCTs) using a systematic review. METHODS: Trials meeting the selection criteria were quality appraised, and the data were extracted by two independent authors. The outcome parameters included maximum keratometry (Kmax), corneal thickness at the thinnest point, best spectacle-corrected visual acuity (BSCVA), uncorrected visual acuity (UCVA), spherical equivalent (SE) refraction, and cylindrical refraction one year after CXL. We compared the changes in the above parameters with the control group. RESULTS: We identified five RCTs involving 289 eyes that met the eligibility criteria for this systematic review. The changes in BSCVA from baseline to one year exhibited a significant difference between the two groups. There was no statistically significant difference between the two groups for changes in corneal thickness and cylindrical refraction. We did not conduct a meta-analysis in Kmax, UCVA, and SE refraction because their I2 values were greater than 50%. CONCLUSIONS: According to the systematic review, CXL may be effective in halting the progression of keratoconus for one year under certain conditions, although evidence is limited due to the significant heterogeneity and paucity of RCTs.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "27678078",
+  "year": "2016",
+  "journal": "Acta Ophthalmol",
+  "title": "Cross-linking in children with keratoconus: a systematic review and meta-analysis.",
+  "abstract": "Keratoconus can behave more aggressively in pediatric than in adult patients. We systematically reviewed the literature to determine the effectiveness of corneal collagen cross-linking (CXL) in children. For this study, MEDLINE® and Cochrane databases were searched for all studies examining the effects of standard, trans-epithelial or accelerated CXL protocols in patients age 18 years or younger. Primary outcomes were; uncorrected visual acuity (UCVA) and maximum keratometry (Kmax) and secondary outcomes were; best-corrected visual acuity (BCVA), mean refractive spherical equivalent (MRSE), central corneal thickness (CCT) and endothelial cell density (ECD). Standardized mean differences (SMD) and 95% confidence intervals were calculated, comparing baseline values with those at 6, 12 and 24 months. A total of 13 papers, published between May 2011 and December 2014 examining 490 eyes of 401 patients with a mean age of 15.25 (±1.5) years, were included in the qualitative analysis in this review. Nine papers were included in the meta-analysis, showing significant improvement in UCVA and BCVA and stable Kmax at 12 months, and stable UCVA, improved BCVA and improved Kmax at 24 months in the standard protocol group UCVA, BCVA and KMax were stable at 12 months in the trans-epithelial group. Mean refractive spherical equivalent (MRSE), CCT and ECD remained stable in both groups. In conclusion it was found that standard CXL may be effective in halting progression of keratoconus in pediatric patients at 1 year. However, larger, more long-term studies are required to ascertain its effectiveness.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "27171132",
+  "year": "2017",
+  "journal": "Eye Contact Lens",
+  "title": "Outcome of Keratoconus Management: Review of the Past 20 Years' Contemporary Treatment Modalities.",
+  "abstract": "OBJECTIVES: To describe the past 20 years' contemporary management modalities for keratoconus (KC) and their outcomes and failures and to propose recommendations in reporting their outcomes. METHODS: A systematic review of the literature on KC management options for the last 20 years was performed. Original articles that reported the outcome of any form of KC management other than full-thickness or lamellar corneal graft were reviewed to collect information on their outcomes and complications and the level of scientific evidence of the study. RESULTS: A total of 1,147 articles retrieved and of those, 241 satisfied the inclusion criteria, and 41.1% of them were prospective case series. The higher level of evidence studies, that is, randomized controlled trials (RCTs), were limited to only one intervention, that is, corneal collagen cross-linking (CXL). However, the quality of most RCTs was limited because of performance and detection bias. Contact lenses (CLs) remain the mainstream of KC management and were associated with reversible and non-sight-threatening complications. Surgical options such as intracorneal segment implantation and phakic intraocular lens are considered in the visual rehabilitation of CL intolerants, and CXL is the only available option to stop or delay the disease progression. Generally, these surgical procedures are associated with transient inflammatory events and permanent sequelae. CONCLUSIONS: The published studies on KC management options varied significantly with respect to the study population, age of participants, severity of KC, clinical outcome measurements, and follow-up period. High-quality longer follow-up RCTs are required to evaluate the long-term effects of KC interventions.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "27093581",
+  "year": "2016",
+  "journal": "Semin Ophthalmol",
+  "title": "Current and Future Applications of Photoactivated Chromophore for Keratitis-Corneal Collagen Cross-Linking (PACK-CXL): An Overview of the Different Treatments Proposed.",
+  "abstract": "PURPOSE: To review the application of the PACK-CXL and to identify different treatment protocols according to the pathogens associated with keratitis. METHODS: A systematic review of 21 articles. The primary outcome was the healing of a corneal ulcer, defined as epithelization, blocking corneal melting. The secondary end-point was the recovery of visual acuity. RESULTS: We studied a total of 145 eyes. Infectious keratitis was associated with bacteria in 80 eyes (55.55%), fungus in 24 eyes (16.67%), and protozoa in 13 (8.97%). In 26 (18%), the microbiological culture was negative or not performed. The mean time of re-epithelization was 25.70±29.83days (1-180). A total of 27 patients needed corneal transplantation. The overall probability of blocking corneal melting was 84.13%. Three different protocols for each group of pathogens have been proposed. CONCLUSION: PACK-CXL still has a limit in its spread. In the future, we hope that each pathogen will be treated with the most efficient and least invasive protocols available.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "26751990",
+  "year": "2016",
+  "journal": "Cornea",
+  "title": "Efficacy of Corneal Collagen Cross-Linking for the Treatment of Keratoconus: A Systematic Review and Meta-Analysis.",
+  "abstract": "PURPOSE: To examine the efficacy of corneal collagen cross-linking (CXL) for the treatment of keratoconus (KCN). METHODS: A systemic literature review and meta-analysis of ocular functional and structural parameters of patients with KCN undergoing cross-linking procedures were performed using PubMed and the web of science. A literature search was performed for relevant peer-reviewed publications on population-based studies. Data were analyzed with R software (Meta library), and heterogeneity was assessed with the Cochran Q and I. A random-effects model was used for high heterogeneity; otherwise a fixed model was used. Sensitivity analysis of particular tested groups was used to explain high heterogeneity. The main outcome measures extracted from the articles were corrected distance visual acuity, uncorrected distance visual acuity, and maximum K. RESULTS: An improvement in visual acuity of 1 to 2 Snellen lines was found 3 months or more after undergoing CXL. Changes were more pronounced in uncorrected visual acuity. Some topography parameters were found to be improved (0.6-1 diopters) 12 to 24 months after CXL. The refractive cylinder improved by 0.4 to 0.7 diopters. Endothelial cell density decreased by 225 cells per square millimeter in the first 3 months and thereafter returned to normal. Corneal thickness was reduced by 10 to 20 μm in the year following CXL but not after 24 months. No changes in intraocular pressure were noted. CONCLUSIONS: CXL is a safe and effective method for halting the deterioration of KCN, while slightly improving visual function.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "26509768",
+  "year": "2016",
+  "journal": "Cornea",
+  "title": "Corneal Collagen Cross-Linking for Infectious Keratitis: A Systematic Review and Meta-Analysis.",
+  "abstract": "PURPOSE: To assess the efficacy of corneal collagen cross-linking (CXL) in the management of infectious keratitis. METHODS: Comprehensive literature search was performed in MEDLINE/PubMed and Cochrane Central Register of Controlled Trials using combinations of the following search terms: \"corneal collagen cross linking\" or \"photoactivated riboflavin\" or \"UVA light and riboflavin\" and \"infectious keratitis\" or \"corneal ulcer.\" Last search was on March 19, 2015. Extracted data from individual studies were summarized and summary proportions of eyes healed and complications for different subgroups were estimated. RESULTS: Twenty-five studies were included (2 randomized controlled trials, 13 case series, and 10 case reports) with a total of 210 eyes of 209 patients, of which 175 eyes underwent CXL. Causative microorganisms were bacteria, fungi, acanthamoeba, and Herpes simplex virus in 96, 32, 11, and 2 cases, respectively. Coinfections were present in 13 and cause was inconclusive in 21 cases. Sixteen of 175 eyes received no additional antibiotics, whereas 159 underwent CXL as an adjunct to antimicrobial treatment. Proportion of eyes healed with CXL was 87.2% (95% confidence interval (CI), 81.9%, 91.8%). For bacterial keratitis, the proportion of eyes healed was 85.7% (95% CI, 78.5%, 91.7%), whereas 10/11 and 25/32 eyes with acanthamoeba and fungal keratitis, respectively, were healed (available data not sufficient to provide a valid proportion analysis). Treatment resulted in corneal melting and tectonic keratoplasty in both Herpes simplex virus cases. CONCLUSIONS: CXL seems promising in the management of infectious keratitis, excluding viral infections. However, more randomized controlled trials are required to assess its efficacy.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "25985208",
+  "year": "2015",
+  "journal": "PLoS One",
+  "title": "Efficacy of corneal collagen cross-linking for treatment of keratoconus: a meta-analysis of randomized controlled trials.",
+  "abstract": "OBJECTIVE: To evaluate the efficacy of corneal collagen cross-linking (CXL) for the treatment of keratoconus. METHODS: We performed a literature search for randomized controlled trials that assessed the effect of CXL in slowing progression of keratoconus. The primary outcome measures included changes of topographic parameters, visual acuity, and refraction. Efficacy estimates were evaluated by weighted mean difference (WMD) and 95% confidence interval (CI) for absolute changes of the interested outcomes. RESULTS: Significant decrease in mean keratometry value, maximum keratometry value and minimum keratometry value were demonstrated in the CXL group compared with the control group (WMD = -1.65; 95% CI: -2.51 to -0.80; P < 0.00001; WMD = -2.05; 95% CI: -3.10 to -1.00; P < 0.00001; WMD = -1.94; 95% CI: -2.63 to -1.26; P < 0.00001; respectively). Best spectacle-corrected visual acuity improved significantly in CXL group (WMD = -0.10; 95% CI: -0.15 to -0.05; P < 0.00001), whereas uncorrected visual acuity did not differ statistically. Manifest cylinder error decreased significantly in patients undergoing CXL procedure compared with control patients in sensitivity analysis (WMD = -0.388; 95% CI: -0.757 to -0. 019; P = 0.04). The changes in central corneal thickness and intraocular pressure were not statistically significant. CONCLUSION: CXL may be an effective option in stabilizing keratoconus. Further long-term follow-up studies will be necessary to assess the persistence of CXL.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "25803325",
+  "year": "2015",
+  "journal": "Cochrane Database Syst Rev",
+  "title": "Corneal collagen cross-linking for treating keratoconus.",
+  "abstract": "BACKGROUND: Keratoconus is a condition of the eye that affects approximately 1 in 2000 people. The disease leads to a gradual increase in corneal curvature and decrease in visual acuity with consequent impact on quality of life. Collagen cross-linking (CXL) with ultraviolet A (UVA) light and riboflavin (vitamin B2) is a relatively new treatment that has been reported to slow or halt the progression of the disease in its early stages. OBJECTIVES: The objective of this review was to assess whether there is evidence that CXL is an effective and safe treatment for halting the progression of keratoconus compared to no treatment. SEARCH METHODS: We searched the Cochrane Central Register of Controlled Trials (CENTRAL; 2014, Issue 7), Ovid MEDLINE, Ovid MEDLINE In-Process and Other Non-Indexed Citations, Ovid MEDLINE Daily, Ovid OLDMEDLINE (January 1946 to August 2014), EMBASE (January 1980 to August 2014), Latin American and Caribbean Health Sciences Literature Database (LILACS) (1982 to August 2014), Cumulative Index to Nursing and Allied Health Literature (CINAHL) (1982 to August 2014), OpenGrey (System for Information on Grey Literature in Europe) (www.opengrey.eu/), the metaRegister of Controlled Trials (mRCT) (www.controlled-trials.com), ClinicalTrials.gov (www.clinicaltrials.gov) and the World Health Organisation International Clinical Trials Registry Platform (ICTRP) (www.who.int/ictrp/search/en). We used no date or language restrictions in the electronic searches for trials. We last searched the electronic databases on 28 August 2014. SELECTION CRITERIA: We included randomised controlled trials (RCTs) where CXL with UVA light and riboflavin was used to treat people with keratoconus and was compared to no treatment. DATA COLLECTION AND ANALYSIS: Two review authors independently screened the search results, assessed trial quality, and extracted data using standard methodological procedures expected by Cochrane. Our primary outcomes were two indicators of progression at 12 months: increase in maximum keratometry of 1.5 dioptres (D) or more and deterioration in uncorrected visual acuity of more than 0.2 logMAR. MAIN RESULTS: We included three RCTs conducted in Australia, the United Kingdom, and the United States that enrolled a total of 225 eyes and analysed 219 eyes. The total number of people enrolled was not clear in two of the studies. Only adults were enrolled into these studies. Out of the eyes analysed, 119 had CXL (all using the epithelium-off technique) and 100 served as controls. One of these studies only reported comparative data on review outcomes. All three studies were at high risk for performance bias (lack of masking), detection bias (only one trial attempted to mask outcome assessment), and attrition bias (incomplete follow-up). It was not possible to pool data due to differences in measuring and reporting outcomes. We identified a further three unpublished trials that potentially had enrolled a total of 195 participants.There was limited evidence on the risk of progression. Analysis of the first few participants followed up to one year in one study suggested that eyes given CXL were less likely to have an increase in maximum keratometry of 1.5 D or more at 12 months compared to eyes given no treatment, but the confidence intervals (CI) were wide and compatible with no effect or more progression in the CXL group (risk ratio (RR) 0.12, 95% CI 0.01 to 2.00, 19 eyes). The same study reported the number of eyes with an increase of 2 D or more at 36 months in the whole cohort with a RR of 0.03 favouring CXL (95% CI 0.00 to 0.43, 94 eyes). Another study reported \"progression\" at 18 months using a different definition; people receiving CXL were less likely to progress, but again the effect was uncertain (RR 0.14, 95% CI 0.01 to 2.61, 44 eyes). We judged this to be very low-quality evidence due to the risk of bias of included studies, imprecision, indirectness and publication bias but noted that the size of the potential effect was large.On average, treated eyes had a less steep cornea (approximately 2 D less steep) (mean difference (MD) -1.92, 95% CI -2.54 to -1.30, 94 eyes, 1 RCT, very low-quality evidence) and better uncorrected visual acuity (approximately 2 lines or 10 letters better) (MD -0.20, 95% CI -0.31 to -0.09, 94 eyes, 1 RCT, very low-quality evidence) at 12 months. None of the studies reported loss of 0.2 logMAR acuity. The data on corneal thickness were inconsistent. There were no data available on quality of life or costs. Adverse effects were not uncommon but mostly transient and of low clinical significance. In one trial, 3 out of 12 participants treated with CXL had an adverse effect including corneal oedema, anterior chamber inflammation, and recurrent corneal erosions. In one trial at 3 years 3 out of 50 participants experienced adverse events including mild diffuse corneal oedema and paracentral infiltrate, peripheral corneal vascularisation, and subepithelial infiltrates and anterior chamber inflammation. No adverse effects were reported in the control groups. AUTHORS' CONCLUSIONS: The evidence for the use of CXL in the management of keratoconus is limited due the lack of properly conducted RCTs.",
+  "pub_types": [
+   "Journal Article",
+   "Research Support, Non-U.S. Gov't",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "25392046",
+  "year": "2014",
+  "journal": "Semin Ophthalmol",
+  "title": "Infectious Keratitis Following Corneal Crosslinking: A Systematic Review of Reported Cases: Management, Visual Outcome, and Treatment Proposed.",
+  "abstract": "AIM: To describe the infectious complications and the group of pathogens involved in the infection following corneal crosslinking, the visual outcome, and the treatment proposed. METHODS: A Medline (National Library of Medicine, Bethesda, MD, USA) search from October 2000 to October 2013 was performed to identify all articles describing infectious keratitis following corneal crosslinking treatment. Nineteen articles were selected. Ten articles reported infectious complications of corneal crosslinking treatment were included. Nine articles were excluded, because seven described sterile keratitis, one article was in German, and one reported general complication without describing the infection complication. RESULTS: A total number of infections reported included 10 eyes. The infectious keratitis was associated with bacteria in five eyes (50%): gram-positive bacteria in three eyes (30%) (staphylococcus epidermidis, S. aureus and streptococcus salivarius plus S. oralis, respectively) and gram-negative bacteria in two eyes (20%) (E. coli; P. aeruginosa); there was herpes virus in two eyes, fungus in two eyes (Fusarium and Microsporidia) (20%), and Acanthamoeba in one eye (10%). CONCLUSIONS: Only 10 cases of infectious keratitis following corneal crosslinking are published. The most virulent pathogens were Pseudomonas aeruginosa and Acanthamoeba. Less virulent organisms were Escherichia coli and S. epidermidis. Two cases of herpes keratitis were described, suggesting the possibility of systemic antiviral prophylaxis before corneal crosslinking treatment. The most common risk factor of infections identified was postoperative incorrect patient behavior.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "25007895",
+  "year": "2014",
+  "journal": "Sci Rep",
+  "title": "Corneal collagen cross-linking in keratoconus: a systematic review and meta-analysis.",
+  "abstract": "The aim of this study was to determine the effectiveness of corneal collagen cross-linking (CXL) for the treatment of progressive keratoconus (KC). Some of the published literature, including a few small, randomized controlled trials (RCTs), demonstrated good results after CXL, but large RCTs with long-term follow-up to establish a cause-effect relationship are lacking. Using PubMed, EMBASE, and the Cochrane Library database, we searched for relevant studies published between October 2007 and March 2014. A comprehensive literature search was performed using the Cochrane Collaboration methodology to identify the effectiveness of CXL for treating KC. The primary outcome parameters included uncorrected visual acuity (UCVA), best-corrected visual acuity (BCVA), refraction, corneal topography, and corneal thickness at baseline and at 1, 3, 6, 12, and 18 months after CXL. A total of 1171 participants (1557 eyes) were enrolled in this meta-analysis. CXL may be effective in halting the progress of KC for at least 12 months under certain conditions. However, further research from randomized trials is needed to confirm our findings.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "24999102",
+  "year": "2014",
+  "journal": "Ocul Surf",
+  "title": "Epithelium-off photochemical corneal collagen cross-linkage using riboflavin and ultraviolet a for keratoconus and keratectasia: a systematic review and meta-analysis.",
+  "abstract": "This report presents the results of a systematic review and meta-analyses of studies on epithelium-off photochemical corneal collagen cross-linkage for the management of keratoconus and secondary ectasia. The literature search identified 3,400 records of which 49 were considered for inclusion in the meta-analyses. Eight papers reported 4 unique randomized controlled trials, 29 studies were prospective, and 12 were retrospective studies. The majority of the studies (39/49) were graded as very low quality evidence. Twenty-six studies described adverse events and were included in the safety analysis. Meta-analyses are presented for changes in four outcomes: visual acuity, topography, refraction and astigmatism, and central corneal thickness. Statistically significant improvements were found in all efficacy outcomes at 12 months after the operation. Common side effects were pain, corneal edema, and corneal haze, which resolved usually within a few days after the procedure. The remaining uncertainty is duration of benefit to establish the procedure's potential benefit in avoiding or delaying disease progression and possibly reducing the need for corneal transplantation.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Research Support, Non-U.S. Gov't",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "24751584",
+  "year": "2014",
+  "journal": "Ophthalmologica",
+  "title": "Corneal collagen crosslinking: a systematic review.",
+  "abstract": "Keratoconus (KCN) is an ectatic disorder with progressive corneal thinning and a clinical picture of corneal protrusion, progressive irregular astigmatism, corneal fibrosis and visual deterioration. Other ectatic corneal disorders include: post-LASIK ectasia (PLE) and pellucid marginal degeneration (PMD). Corneal crosslinking (CXL) is a procedure whereby riboflavin sensitization with ultraviolet A radiation induces stromal crosslinks. This alters corneal biomechanics, causing an increase in corneal stiffness. In recent years, CXL has been an established treatment for the arrest of KCN, PLE and PMD progression. CXL has also been shown to be effective in the treatment of corneal infections, chemical burns, bullous keratopathy and other forms of corneal edema. This is a current review of CXL - its biomechanical principles, the evolution of CXL protocols in the past, present and future, indications for treatment, treatment efficacy and safety.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "23718849",
+  "year": "2013",
+  "journal": "J Ophthalmic Inflamm Infect",
+  "title": "Corneal cross linking and infectious keratitis: a systematic review with a meta-analysis of reported cases.",
+  "abstract": "BACKGROUND: Collagen cross linking (CXL) of the cornea has been developed recently as a new treatment for multidrug-resistant infectious keratitis. The aim of this study is to summarize the previously published data and evaluate the effectiveness of this treatment. RESULTS: The search identified 12 articles. The number of eyes was 104. The infectious keratitis was associated with bacteria in 58 eyes (57f%): Gram-positive bacteria in 44 (43%; 4 of which were infected with Mycobacterium (3.6%)) and Gram-negative bacteria in 14 eyes (13%), fungus in 13 eyes (12%), and Acanthamoeba in 7 eyes (7%). In 26 eyes (25%), the microbiological culture was negative or not performed. The mean time of re-epithelization after CXL was 20.7±28.1 days (minimum of 3, maximum of 145). Sixteen eyes underwent deep or lamellar keratoplasty. The pooled analysis suggested that CXL has a favorable effect on the block of corneal melting in 85% (95%; CI 0.77, 0.91) of eyes. CONCLUSION: Although randomized controlled trials are needed, the available evidence supports the use of CXL in the treatment of infectious keratitis.",
+  "pub_types": [
+   "Journal Article"
+  ],
+  "tagged": false,
+  "title_match": true
+ },
+ {
+  "pmid": "23347375",
+  "year": "2012",
+  "journal": "J Refract Surg",
+  "title": "Corneal collagen cross-linking for nonectatic disorders: a systematic review.",
+  "abstract": "PURPOSE: To provide a background regarding the biochemical rationale for corneal collagen cross-linking (CXL) and outline its current use, critically evaluate the current literature for the use of CXL in nonectatic disorders, highlight limitations and areas for further research, and address additional novel applications of CXL. METHODS: A literature search was performed using the EMBASE and MEDLINE database from 1970 to November 2011. Keywords included \"corneal collagen cross linking,\" \"crosslinking,\" \"cross-linking,\" \"ultraviolet,\" \"riboflavin,\" \"corneal edema,\" and \"keratitis\" in various combinations. A search through the references of retrieved articles was also performed. RESULTS: Cross-linking for corneal edema showed a temporary improvement in objective measures of central corneal thickness, corrected distance visual acuity, and corneal clarity along with subjective measures such as pain and irritation. Cross-linking was also tolerated as an adjunctive therapy for infectious keratitis without complications. In all studies, the progression of corneal melting was halted after treatment, avoiding the need for emergency keratoplasty. CONCLUSIONS: Cross-linking with riboflavin and ultraviolet A light is a promising, minimally invasive treatment for corneal ectasia. A growing number of studies suggest additional application in corneal edema and infectious keratitis may be beneficial. However, further studies are needed to address long-term outcomes and safety concerns.",
+  "pub_types": [
+   "Journal Article",
+   "Research Support, Non-U.S. Gov't",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": true
+ },
+ {
+  "pmid": "22661479",
+  "year": "2012",
+  "journal": "Invest Ophthalmol Vis Sci",
+  "title": "Variation in the lysyl oxidase (LOX) gene is associated with keratoconus in family-based and case-control studies.",
+  "abstract": "PURPOSE: Keratoconus is a bilateral noninflammatory progressive corneal disorder with complex genetic inheritance and a common cause for cornea transplantation in young adults. A genomewide linkage scan in keratoconus families identified a locus at 5q23.2, overlapping the gene coding for the lysyl oxidase (LOX). LOX encodes an enzyme responsible for collagen cross-linking in a variety of tissues including the cornea. Corneal collagen cross-linking with long-wave ultraviolet light and riboflavin is a promising new treatment for keratoconus. To determine whether LOX is a genetic determinant of the pathogenesis of keratoconus, we analyzed association results of LOX polymorphisms in two independent case-control samples and in keratoconus families. METHODS: Association results were analyzed of single-nucleotide polymorphisms (SNPs) in the LOX gene from a Genome-Wide Association Study (GWAS) investigation in two independent panels of patients with keratoconus and controls and in keratoconus families. RESULTS: Evidence of association was found at SNPs rs10519694 and rs2956540 located in intron 4 of LOX in the GWAS discovery case-control panel with P values of 2.3×10(-3) and 7×10(-3), respectively. The same two SNPs were found to be associated with keratoconus by family-based association testing with P values of 2.7×10(-3) and 7.7×10(-4), respectively. Meta P values of 4.0×10(-5) and 4.0×10(-7) were calculated for SNPs rs10519694 and rs2956540 by analyzing case-control and family samples simultaneously. Sequencing of LOX exons in a subset of keratoconus patients identified two polymorphisms, rs1800449 and rs2288393, located in LOX transcripts I and II, associated with keratoconus in case-control and family samples with a meta P value of 0.02. CONCLUSIONS: Results provided strong genetic evidence that LOX variants lead to increased susceptibility to developing of keratoconus.",
+  "pub_types": [
+   "Journal Article",
+   "Meta-Analysis",
+   "Research Support, N.I.H., Extramural",
+   "Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ },
+ {
+  "pmid": "17269248",
+  "year": "2007",
+  "journal": "J Refract Surg",
+  "title": "How might corneal elasticity help us understand diabetes and intraocular pressure?",
+  "abstract": "PURPOSE: To determine how changes in corneal elasticity/stiffness might influence intraocular pressure (IOP) readings in diabetic patients. METHODS: A systematic review of the literature was performed to understand the conflicting relationship between diabetes, elevated IOP, and glaucoma progression. RESULTS: Diabetic patients have been found to have statistically significant higher IOP readings in some population-based studies compared to non-diabetics. Insulin resistance states, hyperglycemia and glycosylated hemoglobin have been correlated with higher IOP (1 mmHg) measurements in diabetic patients. In the Ocular Hypertension Treatment Study (OHTS), a self reported history of diabetes was found to be protective against the progression of primary open-angle glaucoma. Small differences in IOP measurements in diabetic patients may be due to corneal stiffening, as demonstrated by the protective effect of glucose-mediated collagen cross-linking against the manifestation and keratometric progression of keratoconus. Different collagen cross-linking agents may induce different degrees of corneal stiffening, which can result in differences in measured IOP. CONCLUSIONS: Glucose-mediated corneal stiffening due to collagen cross-linking might be responsible for IOP overestimation in diabetic patients. Corneal stiffening might explain why diabetic eyes tend to have higher IOP readings in large population-based studies and why those with ocular hypertension have a reduced risk for glaucoma progression.",
+  "pub_types": [
+   "Journal Article",
+   "Systematic Review"
+  ],
+  "tagged": true,
+  "title_match": false
+ }
+]

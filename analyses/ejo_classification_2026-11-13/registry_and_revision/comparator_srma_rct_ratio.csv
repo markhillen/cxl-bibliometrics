@@ -1,0 +1,25 @@
+literature,period,rct_pt,srma_pt,ratio
+CXL (study query),2011-15,43,8,0.19
+CXL (study query),2016-20,46,24,0.52
+CXL (study query),2021-25,43,37,0.86
+Keratoconus,2011-15,52,13,0.25
+Keratoconus,2016-20,55,32,0.58
+Keratoconus,2021-25,42,72,1.71
+Corneal Transplantation,2011-15,53,13,0.25
+Corneal Transplantation,2016-20,56,39,0.7
+Corneal Transplantation,2021-25,43,53,1.23
+Glaucoma,2011-15,389,147,0.38
+Glaucoma,2016-20,340,197,0.58
+Glaucoma,2021-25,314,389,1.24
+Dry Eye Syndromes,2011-15,186,57,0.31
+Dry Eye Syndromes,2016-20,246,119,0.48
+Dry Eye Syndromes,2021-25,324,253,0.78
+"Keratomileusis, Laser In Situ",2011-15,77,12,0.16
+"Keratomileusis, Laser In Situ",2016-20,36,14,0.39
+"Keratomileusis, Laser In Situ",2021-25,37,26,0.7
+Cataract Extraction,2011-15,450,65,0.14
+Cataract Extraction,2016-20,350,98,0.28
+Cataract Extraction,2021-25,315,186,0.59
+Macular Degeneration,2011-15,510,175,0.34
+Macular Degeneration,2016-20,506,233,0.46
+Macular Degeneration,2021-25,345,327,0.95

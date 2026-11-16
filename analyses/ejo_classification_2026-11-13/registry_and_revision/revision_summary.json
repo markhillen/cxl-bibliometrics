@@ -1,0 +1,419 @@
+{
+ "flow": {
+  "tagged": 132,
+  "tagged_confirmed": 109,
+  "untagged": 218,
+  "untagged_confirmed": 28,
+  "reports": 137,
+  "primary": 101,
+  "secondary": 31,
+  "unclear": 5,
+  "tagged_not_trial_reasons": {
+   "UNCLEAR/NA": 2,
+   "N-NONRAND/NA": 11,
+   "N-OTHER/NA": 6,
+   "TAGGED/N": 4
+  }
+ },
+ "trials_year_changed_by_adjudication": {},
+ "srma_abstract_only_candidates": 11,
+ "pt_systematic_review_first_year": 2007,
+ "periods": {
+  "2001-10": {
+   "trials": 2,
+   "trials_incl_unclear": 3,
+   "syntheses": 0,
+   "title_only": 0,
+   "pubtype_sr_or_ma": 1,
+   "pubtype_ma": 0
+  },
+  "2011-15": {
+   "trials": 28,
+   "trials_incl_unclear": 28,
+   "syntheses": 7,
+   "title_only": 7,
+   "pubtype_sr_or_ma": 8,
+   "pubtype_ma": 4
+  },
+  "2016-20": {
+   "trials": 44,
+   "trials_incl_unclear": 46,
+   "syntheses": 23,
+   "title_only": 23,
+   "pubtype_sr_or_ma": 23,
+   "pubtype_ma": 17
+  },
+  "2021-25": {
+   "trials": 27,
+   "trials_incl_unclear": 29,
+   "syntheses": 37,
+   "title_only": 39,
+   "pubtype_sr_or_ma": 34,
+   "pubtype_ma": 19
+  },
+  "2021-24": {
+   "trials": 21,
+   "trials_incl_unclear": 22,
+   "syntheses": 27,
+   "title_only": 26,
+   "pubtype_sr_or_ma": 22,
+   "pubtype_ma": 12
+  },
+  "2022-25": {
+   "trials": 16,
+   "trials_incl_unclear": 18,
+   "syntheses": 26,
+   "title_only": 29,
+   "pubtype_sr_or_ma": 27,
+   "pubtype_ma": 16
+  },
+  "2022-24": {
+   "trials": 10,
+   "trials_incl_unclear": 11,
+   "syntheses": 16,
+   "title_only": 16,
+   "pubtype_sr_or_ma": 15,
+   "pubtype_ma": 9
+  }
+ },
+ "trend": {
+  "trials_2021-25_vs_2016-20": {
+   "rr": 0.61,
+   "lo": 0.37,
+   "hi": 1.01,
+   "p": 0.0568
+  },
+  "syntheses_2021-25_vs_2016-20": {
+   "rr": 1.61,
+   "lo": 0.93,
+   "hi": 2.84,
+   "p": 0.0925
+  },
+  "syntheses_vs_trials_2021-25": {
+   "rr": 1.37,
+   "lo": 0.81,
+   "hi": 2.34,
+   "p": 0.2604
+  },
+  "syntheses_vs_trials_2022-25": {
+   "rr": 1.62,
+   "lo": 0.84,
+   "hi": 3.24,
+   "p": 0.1641
+  },
+  "syntheses_vs_trials_2021-24": {
+   "rr": 1.29,
+   "lo": 0.7,
+   "hi": 2.39,
+   "p": 0.4709
+  },
+  "fisher_2x2_trials_syntheses_2016-20_vs_2021-25": {
+   "odds_ratio": 2.6216,
+   "p": 0.0087
+  },
+  "poisson_trials_2016-2025": {
+   "annual_rr": 0.915,
+   "lo": 0.834,
+   "hi": 1.003,
+   "p": 0.0591,
+   "dispersion": 1.25
+  },
+  "poisson_syntheses_2016-2025": {
+   "annual_rr": 1.072,
+   "lo": 0.98,
+   "hi": 1.172,
+   "p": 0.128,
+   "dispersion": 0.87
+  },
+  "poisson_trials_2011-2025": {
+   "annual_rr": 1.006,
+   "lo": 0.939,
+   "hi": 1.077,
+   "p": 0.865,
+   "dispersion": 2.27
+  },
+  "poisson_syntheses_2011-2025": {
+   "annual_rr": 1.141,
+   "lo": 1.074,
+   "hi": 1.212,
+   "p": 0.0,
+   "dispersion": 0.94
+  }
+ },
+ "agreement_characteristics": {
+  "denominator_records_both_trial": 136,
+  "Eyes (exact)": {
+   "n": 136,
+   "agreement": 0.882,
+   "kappa": 0.88
+  },
+  "Follow-up months (exact)": {
+   "n": 136,
+   "agreement": 0.978,
+   "kappa": 0.974
+  },
+  "Primary outcome": {
+   "n": 136,
+   "agreement": 0.963,
+   "kappa": 0.913
+  },
+  "FU>=12 (binary)": {
+   "n": 136,
+   "agreement": 0.993,
+   "kappa": 0.986
+  },
+  "Eyes within 10%": {
+   "n": 123,
+   "agreement": 0.927
+  },
+  "H1 params": {
+   "n": 59,
+   "agreement": 0.966,
+   "kappa": 0.896
+  },
+  "H2 in use": {
+   "n": 59,
+   "agreement": 0.763,
+   "kappa": 0.536
+  },
+  "H3 endpoint": {
+   "n": 59,
+   "agreement": 1.0,
+   "kappa": 1.0
+  },
+  "H4 FU>=12": {
+   "n": 59,
+   "agreement": 1.0,
+   "kappa": 1.0
+  },
+  "Head-to-head derived (protocol trials)": {
+   "n": 59,
+   "agreement": 1.0,
+   "kappa": 1.0
+  }
+ },
+ "protocol_trials": 46,
+ "h_fail_patterns": {
+  "fails H1+H2+H3": 11,
+  "fails H1+H3": 18,
+  "fails H1": 4,
+  "fails H1+H2": 3,
+  "fails H3": 3,
+  "meets H1-H3": 3,
+  "fails H2+H3": 4
+ },
+ "h_each": {
+  "h1": {
+   "N": 36,
+   "Y": 10
+  },
+  "h2": {
+   "UNCLEAR": 12,
+   "Y": 28,
+   "N": 6
+  },
+  "h3": {
+   "N": 36,
+   "Y": 10
+  },
+  "h4": {
+   "Y": 35,
+   "N": 10,
+   "UNCLEAR": 1
+  }
+ },
+ "primary_outcome_protocol": {
+  "NR": 31,
+  "PROG": 1,
+  "KMAX": 9,
+  "OTHER": 2,
+  "VA": 3
+ },
+ "primary_outcome_all_trials": {
+  "NR": 72,
+  "KMAX": 14,
+  "PROG": 1,
+  "MICRO": 4,
+  "HEAL": 2,
+  "OTHER": 4,
+  "VA": 4
+ },
+ "protocol_ectasia_only": 40,
+ "protocol_by_period": {
+  "2001-10": 0,
+  "2011-15": 11,
+  "2016-20": 21,
+  "2021-25": 14
+ },
+ "comparator_ratio_retrieved": "2026-11-13",
+ "comparator": [
+  {
+   "literature": "CXL (study query)",
+   "period": "2011-15",
+   "rct_pt": 43,
+   "srma_pt": 8,
+   "ratio": 0.19
+  },
+  {
+   "literature": "CXL (study query)",
+   "period": "2016-20",
+   "rct_pt": 46,
+   "srma_pt": 24,
+   "ratio": 0.52
+  },
+  {
+   "literature": "CXL (study query)",
+   "period": "2021-25",
+   "rct_pt": 43,
+   "srma_pt": 37,
+   "ratio": 0.86
+  },
+  {
+   "literature": "Keratoconus",
+   "period": "2011-15",
+   "rct_pt": 52,
+   "srma_pt": 13,
+   "ratio": 0.25
+  },
+  {
+   "literature": "Keratoconus",
+   "period": "2016-20",
+   "rct_pt": 55,
+   "srma_pt": 32,
+   "ratio": 0.58
+  },
+  {
+   "literature": "Keratoconus",
+   "period": "2021-25",
+   "rct_pt": 42,
+   "srma_pt": 72,
+   "ratio": 1.71
+  },
+  {
+   "literature": "Corneal Transplantation",
+   "period": "2011-15",
+   "rct_pt": 53,
+   "srma_pt": 13,
+   "ratio": 0.25
+  },
+  {
+   "literature": "Corneal Transplantation",
+   "period": "2016-20",
+   "rct_pt": 56,
+   "srma_pt": 39,
+   "ratio": 0.7
+  },
+  {
+   "literature": "Corneal Transplantation",
+   "period": "2021-25",
+   "rct_pt": 43,
+   "srma_pt": 53,
+   "ratio": 1.23
+  },
+  {
+   "literature": "Glaucoma",
+   "period": "2011-15",
+   "rct_pt": 389,
+   "srma_pt": 147,
+   "ratio": 0.38
+  },
+  {
+   "literature": "Glaucoma",
+   "period": "2016-20",
+   "rct_pt": 340,
+   "srma_pt": 197,
+   "ratio": 0.58
+  },
+  {
+   "literature": "Glaucoma",
+   "period": "2021-25",
+   "rct_pt": 314,
+   "srma_pt": 389,
+   "ratio": 1.24
+  },
+  {
+   "literature": "Dry Eye Syndromes",
+   "period": "2011-15",
+   "rct_pt": 186,
+   "srma_pt": 57,
+   "ratio": 0.31
+  },
+  {
+   "literature": "Dry Eye Syndromes",
+   "period": "2016-20",
+   "rct_pt": 246,
+   "srma_pt": 119,
+   "ratio": 0.48
+  },
+  {
+   "literature": "Dry Eye Syndromes",
+   "period": "2021-25",
+   "rct_pt": 324,
+   "srma_pt": 253,
+   "ratio": 0.78
+  },
+  {
+   "literature": "Keratomileusis, Laser In Situ",
+   "period": "2011-15",
+   "rct_pt": 77,
+   "srma_pt": 12,
+   "ratio": 0.16
+  },
+  {
+   "literature": "Keratomileusis, Laser In Situ",
+   "period": "2016-20",
+   "rct_pt": 36,
+   "srma_pt": 14,
+   "ratio": 0.39
+  },
+  {
+   "literature": "Keratomileusis, Laser In Situ",
+   "period": "2021-25",
+   "rct_pt": 37,
+   "srma_pt": 26,
+   "ratio": 0.7
+  },
+  {
+   "literature": "Cataract Extraction",
+   "period": "2011-15",
+   "rct_pt": 450,
+   "srma_pt": 65,
+   "ratio": 0.14
+  },
+  {
+   "literature": "Cataract Extraction",
+   "period": "2016-20",
+   "rct_pt": 350,
+   "srma_pt": 98,
+   "ratio": 0.28
+  },
+  {
+   "literature": "Cataract Extraction",
+   "period": "2021-25",
+   "rct_pt": 315,
+   "srma_pt": 186,
+   "ratio": 0.59
+  },
+  {
+   "literature": "Macular Degeneration",
+   "period": "2011-15",
+   "rct_pt": 510,
+   "srma_pt": 175,
+   "ratio": 0.34
+  },
+  {
+   "literature": "Macular Degeneration",
+   "period": "2016-20",
+   "rct_pt": 506,
+   "srma_pt": 233,
+   "ratio": 0.46
+  },
+  {
+   "literature": "Macular Degeneration",
+   "period": "2021-25",
+   "rct_pt": 345,
+   "srma_pt": 327,
+   "ratio": 0.95
+  }
+ ]
+}

@@ -1,0 +1,120 @@
+nct,start,completion,status,has_results,enroll,sponsor_class,cxl_arm,comparison,comparison2,indication,protocol_comparison,h1,h3,fu12,reason
+NCT01325298,2011-03,2014-05,UNKNOWN,N,250,OTHER,Y,C04,,I7,Y,N,Y,N,"20 vs 30 min UV exposure (""two UV dosing regimens""); irradiance and epithelial status not registered; UNSURE C04 vs C03; PO corneal curvature at 6 mo"
+NCT06212830,2024-02,2025-08,UNKNOWN,N,51,OTHER_GOV,Y,C15,,I1,N,NA,NA,NA,Gabapentin vs Targin vs control analgesia after CXL (perioperative pain)
+NCT06478134,2023-07-01,2024-05-01,COMPLETED,N,124,OTHER,N,C99,,NA,N,NA,NA,NA,Dry eye tear substitute containing cross-linked hyaluronic acid; no corneal CXL
+NCT06967376,2018-05-21,2022-02-03,COMPLETED,N,40,OTHER,Y,C13,,I6,N,NA,NA,NA,Adjuvant PACK-CXL plus antimicrobials vs antimicrobials alone in infective keratitis
+NCT04094090,2019-10-19,2029-10-19,RECRUITING,N,500,OTHER,Y,C03,,I7,Y,N,N,Y,"PXL-330 pulsed 4 mW x 45 min vs 8 mW x 22.5 min (same dose, different irradiance/time); epithelial status not registered; PO BSCVA to 12 mo"
+NCT04427956,2017-05-23,2024-11-19,COMPLETED,N,54,OTHER,Y,C10b,C08,I1,Y,N,Y,Y,Three arms at 9 mW/cm2 x 10 min: isotonic vs hypotonic riboflavin vs iontophoresis (Ricrolin); epithelial status not stated explicitly (H1 borderline); co-primary VA and Kmax to 24 mo
+NCT01459679,2012-07,2016-08,TERMINATED,N,1721,NETWORK,Y,C03,,I7,Y,N,Y,Y,"KXL 15 vs 30 vs 45 mW/cm2 at equal dose (8, 4, 2:40 min); epithelial status not registered; PO Kmax ""Month 6 or 12"" (FU12 UNSURE)"
+NCT02883478,2012-08,2016-08,UNKNOWN,N,40,OTHER,Y,C03,,I7,Y,N,Y,Y,3 mW/cm2 x 30 min vs 9 mW/cm2 x 10 min with HPMC riboflavin; epithelial status not registered; composite PO incl. Kmax at 2 y
+NCT02475343,2015-02,2016-06,UNKNOWN,N,1000,OTHER_GOV,N,C99,,NA,N,NA,NA,NA,"Schiotz tonometer biomechanics study; arms are diagnostic groups (normal, keratoconus, keratoplasty); CXL is routine background, not a randomized comparison; UNSURE"
+NCT05019768,2017-09-01,2020-12-31,COMPLETED,N,41,OTHER,Y,C10a,C03,I1,Y,N,N,Y,"Custom-fast accelerated epi-on (vitamin E TPGS riboflavin) vs standard Dresden; Dresden arm epithelial status only implied (H1 borderline); PO ""topographical parameters"" at 2 y, not specified as Kmax (H3 borderline)"
+NCT05255016,2022-03-14,2024-02-24,UNKNOWN,N,488,INDUSTRY,Y,C13,,I6,N,NA,NA,NA,CXL plus standard care vs sham CXL plus standard care in refractory corneal ulcers
+NCT04685109,2021-05-11,2026-09-30,ACTIVE_NOT_RECRUITING,N,80,INDUSTRY,N,C99,,NA,N,NA,NA,NA,Dry eye drops with cross-linked hyaluronic acid; no corneal CXL
+NCT04383431,2020-06-02,2023-01-15,COMPLETED,N,37,OTHER,Y,C13,,I6,N,NA,NA,NA,Standard vs accelerated PACK-CXL in infectious keratitis (PACK-CXL always C13)
+NCT06264024,2024-02-12,2034-02-01,RECRUITING,N,81,OTHER,Y,C12,C14,I1,N,NA,NA,NA,CXL combined with transepithelial PTK vs CXL alone (SHARK)
+NCT03922542,2019-04-16,2026-06-30,COMPLETED,N,508,INDUSTRY,Y,C03,,I7,Y,N,Y,N,9 mW/cm2 x 10 min vs 3 mW/cm2 x 30 min; epithelial status not registered; PO Kmax at 6 mo
+NCT01081561,2009-01-21,2021-06-30,UNKNOWN,N,600,OTHER,Y,C12,,I7,N,NA,NA,NA,CXL alone vs CXL plus Intacs in keratoconus and post-LASIK ectasia
+NCT04532788,2021-03-01,2024-06-05,COMPLETED,N,124,OTHER,Y,C07,,I1,Y,N,Y,Y,"Customized (Mosaic, 3 concentric zones) vs standard accelerated epi-off 10 mW/cm2 x 9 min; customized arm gives no irradiance/fluence values; PO Kmax at 12 mo"
+NCT04177082,2020-01-10,2022-05-05,COMPLETED,N,200,OTHER,Y,C03,,I7,Y,N,Y,Y,PXL-330 pulsed 6 mW/cm2 x 30 min vs 4 mW/cm2 x 45 min (same dose); epithelial status not registered; PO Kmax/Kmean at 12 mo
+NCT07812129,2023-11-01,2025-05-30,COMPLETED,N,24,OTHER,Y,C15,,I1,N,NA,NA,NA,"Topical insulin drops vs standard postoperative care after CXL (epithelial healing), paired-eye"
+NCT01181219,2010-07,2014-12,COMPLETED,N,20,OTHER,Y,C10a,,I1,Y,N,N,Y,"CXL without vs with epithelial removal, contralateral; no irradiance/time registered; PO BCDVA at 1 y"
+NCT05255107,2022-03-14,2024-02-24,UNKNOWN,N,468,INDUSTRY,Y,C13,,I6,N,NA,NA,NA,CXL plus standard care vs sham CXL plus standard care in untreated corneal ulcers
+NCT02119039,2014-07,2015-12,COMPLETED,N,40,OTHER,Y,C15,,I1,N,NA,NA,NA,RGTA (Cacicol20) vs hyaluronic acid drops for epithelial healing after CXL
+NCT03187912,2016-09-19,2020-03-30,COMPLETED,N,60,OTHER,Y,C08,,I1,Y,N,Y,Y,Riboflavin with 20% dextran vs HPMC in an accelerated protocol; irradiance and epithelial status not registered; PO Kmax at 12 mo
+NCT02349165,2011-05,2014-09,COMPLETED,N,61,OTHER,Y,C10a,,I1,Y,N,Y,Y,"Epi-off isotonic riboflavin vs transepithelial Ricrolin TE, both 30 min UVA; irradiance not registered; PO clinical stabilisation at 1 y"
+NCT06549387,2024-08-15,2025-04-30,UNKNOWN,N,55,OTHER,Y,C10a,C11,I1,Y,N,Y,N,Customized accelerated epi-on vs standard accelerated epi-off vs progressive-fluence epi-on; no parameters registered; PO corneal (Kmax) flattening at 6 mo
+NCT00815256,2008-08,,UNKNOWN,N,15,OTHER,Y,C16,,I1,N,NA,NA,NA,Only one arm registered (epi-off CXL in progressive keratoconus); comparator arm not in registry so comparison cannot be coded; UNSURE (possibly C01)
+NCT05870566,2023-11-20,2028-09-30,RECRUITING,N,110,OTHER,Y,C01,,I8,N,NA,NA,NA,CXL pretreatment vs no CXL before high-risk keratoplasty (corneal neovascularization)
+NCT06100939,2023-10-30,2026-06-12,COMPLETED,N,396,INDUSTRY,Y,C01,,I1,N,NA,NA,NA,"Epi-on CXL vs placebo/sham, keratoconus age 8-45 (APRICITY-A)"
+NCT06601101,2024-08-01,2026-03-20,TERMINATED,N,19,OTHER,Y,C15,,I1,N,NA,NA,NA,Topical insulin vs placebo drops for epithelial healing after CXL
+NCT01868620,2013-05,2017-03,TERMINATED,N,28,OTHER,Y,C10b,,I1,Y,N,N,Y,"Iontophoretic CXL vs standard epi-off, both 3 mW/cm2 x 30 min; iontophoresis arm epithelial status only implied (H1 borderline); PO ""non-inferiority"" with no measure named, at 1 y"
+NCT02865876,2015-06,2017-03,UNKNOWN,N,264,OTHER,Y,C13,,I6,N,NA,NA,NA,Accelerated CXL vs sham as adjunct in infectious keratitis
+NCT03295292,2017-08-01,2020-06,UNKNOWN,N,15,OTHER,Y,C15,,NR,N,NA,NA,NA,Limbal stem cells in fibrin vs vehicle for haze prevention after PRK/PTK or CXL; CXL is one of the background surgeries; UNSURE (C15 vs C99)
+NCT01643252,2012-07,,WITHDRAWN,N,0,INDUSTRY,Y,C01,,I3,N,NA,NA,NA,Riboflavin plus UVA vs placebo plus UVA in post-refractive ectasia (withdrawn)
+NCT07124910,2025-08-01,2028-12-31,RECRUITING,N,485,OTHER,Y,C11,,I7,Y,N,Y,N,Epi-on CXL 18 vs 24 min pulsed UVA; irradiance not registered; PO Kmax and CDVA at 6 mo
+NCT02456961,2010-01,2014-12,COMPLETED,N,126,OTHER,Y,C10b,,I1,Y,Y,Y,Y,Epi-off 3 mW/cm2 x 30 min vs transepithelial iontophoresis 3 mW/cm2 x 30 min; PO Kmax at 2 y
+NCT07372911,2025-09-01,2027-12-30,RECRUITING,N,50,OTHER,Y,C12,C14,I1,N,NA,NA,NA,Corneal wavefront-guided PRK plus CXL vs PTK epithelial removal plus CXL
+NCT06100952,2023-11-01,2026-03-17,COMPLETED,N,398,INDUSTRY,Y,C01,,I1,N,NA,NA,NA,"Epi-on CXL vs placebo/sham, keratoconus age 8-45 (APRICITY-B)"
+NCT01708538,2012-10,2024-10,UNKNOWN,N,30,OTHER,Y,C10a,,I7,Y,N,Y,Y,Epithelium-on vs epithelium-off CXL; no irradiance/time registered; co-primary VA and keratometry at 1 y
+NCT01417663,2008-11,2011-06,COMPLETED,N,48,OTHER,N,C99,,NA,N,NA,NA,NA,Cardiovascular AGE-crosslink breaker drug and exercise; not corneal
+NCT03791684,2016-01-16,2017-06-26,COMPLETED,N,111,OTHER,Y,C03,,I3,Y,N,Y,NR,"18 mW/cm2 x 5 min vs 3 mW/cm2 x 30 min (5.4 J/cm2) in ectasia after refractive surgery and PK; epithelial status not registered; PO Kmax, timeframe ""12 post treatment"" has no unit (FU12 UNSURE)"
+NCT05110001,2022-08-03,2025-06-30,COMPLETED,Y,330,OTHER,Y,C13,,I6,N,NA,NA,NA,"Rose bengal photodynamic ""cross-linking"" plus antimicrobials vs sham in fungal/acanthamoeba keratitis (REAGIR); not riboflavin/UVA; UNSURE whether it counts as a CXL arm"
+NCT03074344,2016-05,2016-11,COMPLETED,N,40,OTHER,N,C99,,NA,N,NA,NA,NA,Dry eye drops with cross-linked hyaluronic acid and CoQ10; no corneal CXL
+NCT03029104,2016-12-21,2020-12-27,TERMINATED,Y,2228,INDUSTRY,Y,C04,C03,I1,Y,N,N,Y,"CXLO solution, pulsed UVA 4 mW/cm2 x 20 min vs 6 mW/cm2 x 20 min vs 4 mW/cm2 x 30 min (dose-ranging); epithelial status not registered; ""asymmetric corneas"" (indication UNSURE); PO CDVA to 12 mo"
+NCT03858036,2019-03-08,2024-12-31,UNKNOWN,N,550,OTHER,Y,C10a,,I7,Y,N,Y,Y,"Epi-on vs epi-off with Ricrolin+ and VEGA, 30 min UVA; irradiance not registered; PO corneal curvature to 12 mo"
+NCT05691335,2018-06-01,2023-01-05,COMPLETED,N,97,OTHER,Y,C10a,C03,I2,Y,N,Y,Y,Pediatric: standard epi-off (30 min) vs accelerated epi-off (5 min) vs transepithelial (5 min); irradiance not registered; primaries incl. Kmax at 36 mo
+NCT02328053,2014-02,2015-09,UNKNOWN,N,20,OTHER,Y,C13,,I6,N,NA,NA,NA,Adjuvant CXL vs antifungal therapy alone in fungal keratitis
+NCT03080077,2016-06,2019-06,UNKNOWN,N,8,OTHER,Y,C10b,,I7,Y,N,Y,Y,Epi-off vs iontophoresis epi-on (Ricrolin+); no irradiance/time in registry text supplied (truncated); PO Kmax at 2 y
+NCT01152541,2010-06,2025-12,UNKNOWN,N,160,OTHER,Y,C08,,I7,Y,N,N,N,Hypotonic riboflavin vs riboflavin/dextran during UV exposure; no irradiance or epithelial status; PO intraoperative corneal thickness
+NCT04584125,2027-01-01,2028-11-30,NOT_YET_RECRUITING,N,216,OTHER,Y,C16,,I8,N,NA,NA,NA,"Ex vivo cross-linked vs non-cross-linked donor tissue for keratoplasty in keratoconus; CXL of donor tissue, not of the patient cornea; UNSURE (C16 vs C01)"
+NCT00626717,2007-08,2012-12,COMPLETED,N,30,OTHER,Y,C01,,I1,N,NA,NA,NA,Epi-off CXL vs sham in keratoconus
+NCT03353909,2016-07-01,2017-02-15,COMPLETED,N,300,INDUSTRY,N,C99,,NA,N,NA,NA,NA,Cross-linked hyaluronan gel for intrauterine adhesion; not ophthalmic
+NCT06517667,2023-11-01,2024-06-01,COMPLETED,N,30,OTHER,N,C99,,NA,N,NA,NA,NA,Dry eye tear substitutes with cross-linked hyaluronic acid; no corneal CXL
+NCT01893359,2013-08,2016-04,TERMINATED,Y,2,INDUSTRY,Y,C12,C05,I8,N,NA,NA,NA,LASIK plus CXL (continuous or pulsed) vs LASIK alone for hyperopia
+NCT04811924,2021-07-26,2023-02-22,TERMINATED,N,4,OTHER,Y,C15,,I1,N,NA,NA,NA,Mitomycin C vs placebo applied after CXL for haze
+NCT06753916,2025-04-01,2031-01-01,RECRUITING,N,96,OTHER,Y,C16,,I8,N,NA,NA,NA,Ex vivo cross-linked vs untreated donor tissue in vascularized high-risk keratoplasty; UNSURE (C16 vs C01)
+NCT05905978,2023-06,2027-07,NOT_YET_RECRUITING,N,70,OTHER,Y,C16,,I8,N,NA,NA,NA,CXL-pretreated vs conventional donor graft for DALK in keratoconus; UNSURE (C16 vs C01)
+NCT03598634,2014-06-01,2017-12-31,COMPLETED,N,32,OTHER,Y,C10a,,I1,Y,N,N,Y,Epi-off (dextran riboflavin) vs epi-on (riboflavin with TRIS/EDTA); no irradiance/time registered; PO BCVA up to 48 mo
+NCT00567671,2007-12,2010-06,COMPLETED,N,160,OTHER,Y,C01,,I7,N,NA,NA,NA,CXL vs sham in progressive keratoconus or corneal ectasia
+NCT03938883,2019-06-25,2019-10-10,COMPLETED,N,250,INDUSTRY,N,C99,,NA,N,NA,NA,NA,Cross-linked hyaluronic acid bandage gel vs bandage lens after PRK; no corneal CXL
+NCT04213885,2020-05-04,2024-08-05,COMPLETED,N,12,OTHER,Y,C05,C04,I7,Y,N,Y,Y,PXL-330 pulsed 30 mW x 10 min vs continuous 9 mW x 10 min; epithelial status not registered; PO mean keratometry at 1 y
+NCT02867176,2016-01,2016-07,COMPLETED,N,25,OTHER,Y,C15,,I1,N,NA,NA,NA,Gabapentin vs ketorolac for pain after epi-off or epi-on CXL
+NCT01604135,2012-05,2027-04,ACTIVE_NOT_RECRUITING,N,36,OTHER,Y,C01,,I1,N,NA,NA,NA,CXL vs no treatment in progressive keratoconus
+NCT01546129,2012-04,,UNKNOWN,N,180,OTHER,N,C99,,NA,N,NA,NA,NA,Obstetric gel (cross-linked polyacrylic acid); not ophthalmic
+NCT01112072,2010-04,2025-12,UNKNOWN,N,160,OTHER,Y,C12,,I7,N,NA,NA,NA,Intacs with same-session CXL vs Intacs followed by CXL at 3 months (timing)
+NCT06450470,2024-11-25,2025-11,RECRUITING,N,116,INDUSTRY,Y,C15,,I1,N,NA,NA,NA,Amniotic membrane under therapeutic lens vs lens alone after CXL (pain)
+NCT02514200,2014-03,2019-10,UNKNOWN,N,50,OTHER,Y,C07,C04,I1,Y,N,N,Y,"Topography-based pulsed CXL 7.2-15 J/cm2 vs conventional pulsed 5.4 J/cm2, both epi-off; irradiance and time not registered; PO refraction to 12 mo"
+NCT05314738,2022-03-08,2026-02,UNKNOWN,N,150,INDUSTRY,Y,C04,C01,I1,Y,N,N,Y,"Dose-ranging: NXL total energy levels 1/2/3 plus one sham group; energy values and epithelial status not registered; UNSURE C04 vs C01; PO ""Topography"" at 12 mo (H3 borderline)"
+NCT03041883,2017-01-04,2028-01,RECRUITING,N,40,OTHER,Y,C16,,I8,N,NA,NA,NA,Cross-linked vs non-cross-linked donor carrier graft for Boston KPro (corneal melting); UNSURE (C16 vs C01)
+NCT02570321,2015-11,2019-03-19,COMPLETED,Y,147,OTHER,Y,C13,,I6,N,NA,NA,NA,CXL plus standard therapy vs standard therapy in bacterial/fungal ulcers (CLAIR)
+NCT04787471,2021-05-03,2029-09-15,RECRUITING,N,138,INDUSTRY,Y,C03,,I8,Y,N,N,N,3 mW/cm2 x 30 min vs 9 mW/cm2 x 10 min for corneal neovascularization; epithelial status not registered; PO neovascular area at 6 mo
+NCT04667572,2021-02-01,2024-08-21,COMPLETED,N,249,OTHER,Y,C03,,I7,Y,N,Y,Y,PXL-330 pulsed 5 mW/cm2 x 36 min vs 8 mW/cm2 x 22.5 min (same dose); epithelial status not registered; PO Kmax/Kmean at 12 mo
+NCT02088970,2014-09,2017-04,TERMINATED,N,21,OTHER,Y,C13,,I6,N,NA,NA,NA,CXL plus antibiotics vs antibiotics alone in infectious keratitis
+NCT01809977,2012-07,2012-12,COMPLETED,N,22,OTHER,Y,C14,,I1,Y,N,N,N,Total vs partial (ring) epithelial removal before CXL; no irradiance/time registered; PO BCVA at 6 mo
+NCT03990506,2019-04-02,2023-01-24,COMPLETED,N,32,OTHER,Y,C10c,,I1,Y,N,Y,Y,"Epi-on PiXL in high-oxygen environment vs epi-off PiXL; fluence 7.2-15 J/cm2 and time given but no irradiance, epi-on text truncated (H1 borderline); PO Kmax to 24 mo"
+NCT05027295,2021-07-30,2025-07,UNKNOWN,N,170,OTHER,Y,C05,,I7,Y,N,Y,N,Continuous 12 mW/cm2 x 7.5 min vs pulsed 12 mW/cm2 x 15 min; epithelial status not registered; PO Kmax at 6 mo
+NCT00647699,2007-12,2011-04,COMPLETED,Y,147,INDUSTRY,Y,C01,,I1,N,NA,NA,NA,"CXL (3 mW/cm2, 30 min) vs sham (riboflavin without UVA) in progressive keratoconus"
+NCT01831206,2013-03,2014-12,COMPLETED,N,30,OTHER,Y,C13,,I6,N,NA,NA,NA,CXL plus standard treatment vs standard treatment in infectious keratitis
+NCT02009709,2013-10,,UNKNOWN,N,100,OTHER,Y,C03,,I7,Y,N,Y,N,9 mW/cm2 x 10 min vs 18 mW/cm2 x 5 min; epithelial status not registered; PO maximum corneal curvature at 3 and 6 mo
+NCT02717871,2016-03,2020-10,COMPLETED,N,35,OTHER,Y,C13,,I6,N,NA,NA,NA,PACK-CXL vs antimicrobial therapy (Swiss PACK-CXL trial)
+NCT04905108,2021-06-02,2025-12,UNKNOWN,N,160,OTHER,Y,C08,C11,I7,Y,N,Y,Y,"Transepithelial CXL, riboflavin every 2 vs every 10 min during UVA; irradiance not registered; PO Kmax at 12 mo"
+NCT01972854,2013-11,2017-04,TERMINATED,N,92,INDUSTRY,Y,C01,,I1,N,NA,NA,NA,"Riboflavin vs placebo solution, both with pulsed UVA (KXL) in keratoconus"
+NCT01143389,2010-05,2017-08-30,COMPLETED,Y,510,INDUSTRY,Y,C08,,I7,Y,N,Y,N,Riboflavin every 5 vs every 2 min during 30 min UVX; irradiance and epithelial status not registered; PO Kmax at 6 mo
+NCT02507362,2014-08,2016-02,UNKNOWN,N,40,OTHER,Y,C04,,I1,Y,Y,Y,Y,"Epi-off 9 mW/cm2 x 7 min (adapted, lower fluence) vs 9 mW/cm2 x 10 min; co-primary keratometry and VA at 1 y"
+NCT05693740,2022-08-01,2024-12-01,COMPLETED,N,45,OTHER,Y,C05,,I1,Y,N,N,Y,"Pulsed vs continuous accelerated epi-off CXL; no irradiance/time registered; primaries visual, refractive and ""topographic"" measures at 1 y (H3 borderline)"
+NCT04401865,2020-06-01,2023-06-30,UNKNOWN,N,300,INDUSTRY,Y,C03,,I7,Y,N,N,N,PXL-330 pulsed 5 mW x 24 min vs 4 mW x 30 min (same dose); epithelial status not registered; PO CDVA at 6 mo
+NCT03760770,2018-02-01,2019-02-01,UNKNOWN,N,90,OTHER,Y,C15,C08,I1,N,NA,NA,NA,Riboflavin at 4 C vs room temperature during CXL for postoperative pain
+NCT00674661,2007-12,2011-11,COMPLETED,Y,130,INDUSTRY,Y,C01,,I3,N,NA,NA,NA,CXL vs sham (riboflavin without UVA) in ectasia after refractive surgery
+NCT02943967,2010-01,2014-01,COMPLETED,N,44,OTHER,Y,C12,,I8,N,NA,NA,NA,CXL followed by PRK vs PRK alone in fellow eyes with asymmetric corneal topography; indication UNSURE
+NCT02979054,2016-12,2018-03,COMPLETED,Y,157,INDUSTRY,Y,C15,,I1,N,NA,NA,NA,T4020 vs saline for epithelial defect after epi-off accelerated CXL
+NCT04097730,2020-09-24,2024-09-18,COMPLETED,N,280,OTHER,Y,C13,,I6,N,NA,NA,NA,Bacterial keratitis: standard therapy vs early steroids vs CXL plus early steroids (SCUT II)
+NCT01344187,2012-07,2016-06,COMPLETED,N,236,INDUSTRY,Y,C01,,I1,N,NA,NA,NA,"Riboflavin vs placebo solution, both with UVA 30 mW/cm2 x 4 min, in keratoconus"
+NCT01672814,2012-08,2017-06-01,COMPLETED,N,3,OTHER,Y,C12,,I1,N,NA,NA,NA,Microwave keratoplasty (Keraflex) plus CXL vs CXL alone
+NCT04062435,2019-12-01,2020-03-01,COMPLETED,N,36,OTHER,N,C99,,NA,N,NA,NA,NA,"Riboflavin drops in inferior fornix vs on cornea, outcome anterior chamber riboflavin concentration; no UVA/CXL arm registered; UNSURE (C99 vs C08)"
+NCT02425150,2009-10,2014-10,COMPLETED,N,120,OTHER,Y,C16,,I1,N,NA,NA,NA,CXL with corneal compression by sutured rigid lens (CRXL) vs standard CXL; healthy non-intervention controls also listed
+NCT01643226,2012-07,2016-09,COMPLETED,N,230,INDUSTRY,Y,C01,,I1,N,NA,NA,NA,"Riboflavin vs placebo solution, both with UVA 30 mW/cm2 x 4 min, in keratoconus"
+NCT03918408,2019-09-01,2030-12,RECRUITING,N,300,OTHER,Y,C05,C03,I7,Y,N,Y,Y,PXL-330 pulsed 18 mW x 10 min vs continuous 9 mW x 10 min; epithelial status not registered; PO mean keratometry at 12 mo
+NCT02721628,2015-09,2018-03,UNKNOWN,N,60,OTHER,Y,C02,,I1,N,NA,NA,NA,Femtosecond epikeratoplasty vs standard epi-off CXL in progressive keratoconus
+NCT05881187,2023-06-15,2024-06,UNKNOWN,N,60,OTHER,Y,C13,,I6,N,NA,NA,NA,Antimicrobials alone vs two PACK-CXL protocols in infectious keratitis
+NCT02117999,2014-01,2016-09,COMPLETED,Y,30,OTHER,Y,C10b,,I1,Y,N,Y,Y,Transepithelial iontophoresis CXL vs standard epi-off 3 mW/cm2 x 30 min; iontophoresis-arm UVA settings missing from registry text supplied (truncated; H1 borderline); co-primary Kmax and ECD at 12 mo
+NCT02863809,2017-03-15,2021-08-31,COMPLETED,Y,76,OTHER,Y,C16,,I8,N,NA,NA,NA,Cross-linked vs riboflavin-only KPro carrier tissue in high-risk keratoprosthesis; UNSURE (C16 vs C01)
+NCT01190306,2010-08,2011-12,TERMINATED,Y,127,INDUSTRY,Y,C01,,I1,N,NA,NA,NA,CXL (VEGA) vs riboflavin-only sham in keratoconus
+NCT04240457,2020-07-08,2023-02-18,TERMINATED,Y,11,OTHER,Y,C05,C11,I7,Y,Y,Y,Y,Epi-on PXL-330: pulsed 18 mW x 10 min vs continuous 9 mW x 10 min; PO mean keratometry at 1 y
+NCT03429569,2015-08-12,2018-06-30,UNKNOWN,N,40,OTHER,Y,C10b,,I1,Y,N,N,N,Accelerated conventional CXL vs iontophoresis CXL; no parameters registered; PO demarcation line depth at 1 mo
+NCT05161052,2022-01-01,2023-02-01,UNKNOWN,N,55,OTHER,N,C99,,NA,N,NA,NA,NA,Corvis ST/OCT measurements before and after CXL; no arms registered and no randomized comparison; UNSURE
+NCT06235567,2025-04-11,2027-07,ENROLLING_BY_INVITATION,N,20,OTHER,Y,C15,,I1,N,NA,NA,NA,Dexamethasone intracanalicular insert vs prednisolone drops after epi-off CXL
+NCT07559149,2024-07-07,2025-08-14,COMPLETED,N,32,OTHER,Y,C13,,I6,N,NA,NA,NA,PACK-CXL with vs without riboflavin-moxifloxacin amniotic membrane (PACK-CXL always C13)
+NCT01398839,2010-12,2012-07,TERMINATED,Y,103,INDUSTRY,Y,C01,,I3,N,NA,NA,NA,"CXL (VEGA) vs riboflavin-only sham in ""ectasia""; ectasia type not specified in registry (indication UNSURE, I3 vs I7)"
+NCT04168112,2020-02-12,2023-04-05,COMPLETED,Y,20,OTHER,Y,C15,,I1,N,NA,NA,NA,Dexamethasone insert vs prednisolone taper after CXL (LINK)
+NCT04343326,2020-01-01,2020-06-01,UNKNOWN,N,30,OTHER,Y,C06,C03,I1,Y,N,N,Y,"Accelerated CXL (9 mW/cm2 x 10 min) with vs without systemic supplemental oxygen, plus conventional arm; epithelial status not registered; PO refractive error at 12 mo"
+NCT03987880,2018-01-22,2020-10-15,COMPLETED,N,27,OTHER,Y,C11,,I8,Y,Y,N,Y,"PiXL for low myopia, epi-on in high oxygen: 4.0 mm zone (30 mW pulsed) vs 3.5 mm zone (45 mW pulsed), 10-15 J/cm2; PO UCVA and spherical equivalent to 24 mo; code UNSURE (C11 vs C16)"
+NCT03138785,2015-01-01,2017-07-01,UNKNOWN,N,20,OTHER,Y,C13,,I6,N,NA,NA,NA,Conventional antifungal treatment vs plus CXL in fungal keratitis
+NCT07841470,2025-10-01,2031-06-30,RECRUITING,N,500,INDUSTRY,Y,C05,C03,I7,Y,N,Y,N,Pulsed 18 mW/cm2 x 10 min vs non-pulsed 9 mW/cm2 x 10 min; epithelial status not registered; PO Kmax at 6 mo
+NCT00841386,2008-09,2011-12,UNKNOWN,N,150,OTHER,Y,C01,,I1,N,NA,NA,NA,Epi-off CXL vs sham in keratoconus
+NCT01464268,2011-11,2025-12,UNKNOWN,N,160,OTHER,Y,C08,C11,I7,Y,N,Y,Y,"Transepithelial CXL, riboflavin every 1 vs every 2 min during UV; irradiance not registered; PO Kmax at 12 mo"
+NCT03913338,2014-07-24,2018-07-03,COMPLETED,N,26,OTHER,Y,C12,,I8,N,NA,NA,NA,LASIK with CXL (LASIK Xtra) vs LASIK alone in high myopia
+NCT00832897,2008-03,2010-10,COMPLETED,N,31,OTHER,Y,C01,,I1,N,NA,NA,NA,CXL vs sham eyedrop arm in keratoconus (ring surgery afterwards); sham arm undescribed
+NCT04897503,2021-04-16,2025-12,UNKNOWN,N,170,OTHER,Y,C08,,I7,Y,N,Y,Y,"Epi-off CXL with riboflavin/dextran vs riboflavin/HPMC, 30 min UV; irradiance not registered; PO Kmax at 12 mo"
+NCT00679666,2008-04,2010-10,WITHDRAWN,N,0,OTHER,Y,C01,,I7,N,NA,NA,NA,CXL vs sham with crossover at 3 months in progressive keratoconus or ectasia (withdrawn)
+NCT03442751,2018-04-06,2020-08-10,COMPLETED,Y,201,INDUSTRY,Y,C01,,I1,N,NA,NA,NA,Epi-on CXL vs sham in progressive keratoconus
